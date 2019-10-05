@@ -32,7 +32,7 @@ export class User extends Model<User> {
   }
 
   fromSimplification(simplification: any): void {
-    this.userName = simplification['username'];
+    this.userName = simplification['userName'];
     this.isVerified = simplification['isVerified'];
     this.email = simplification['email'];
     this.userGroup = simplification['userGroup'];
