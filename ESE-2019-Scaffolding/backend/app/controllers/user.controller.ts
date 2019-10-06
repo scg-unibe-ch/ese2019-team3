@@ -39,6 +39,32 @@ router.post('/register', async (req, res) => {
 
 });
 
+/**
+ * Method for user login
+ * Path: ./user/login
+ * Request type: GET
+ *
+ */
+
+router.get('/login', async (req: Request, res: Response) => {
+  const userName = await req.body.userName;
+  const userPassword = await req.body.password;
+  const user = await User.findOne({where: {userName: userName}});
+  console.log(userName);
+  console.log(userPassword);
+  if (user == null) {
+    res.statusCode = 401;  //unauthorized
+    res.send('Username not found');
+  }
+  console.log(user.password);
+   if ( await( bcrypt.compare( userPassword, user.password)) === false) {
+    res.statusCode = 401;
+    res.send('Invalid password!');
+  }
+  res.statusCode = 200;
+  res.send(user.toSimplification());
+});
+
 
 /**
  * Method to show all registered users
@@ -47,9 +73,9 @@ router.post('/register', async (req, res) => {
  */
 
 router.get('/', async (req: Request, res: Response) => {
-  const instances = await User.findAll();
+  const user = await User.findAll();
   res.statusCode = 200;
-  res.send(instances.map(e => e.toSimplification()));
+  res.send(user.map(e => e.toSimplification()));
 });
 
 /**
@@ -83,13 +109,15 @@ router.put('/verify/:id', async (req: Request, res: Response) => {
 
 /**
  * Method to get information about a specific user
- * Path: ./user/:id
+ * Path: ./user/:userName
  * Request type: GET
  */
 
-router.get('/:id', async (req: Request, res: Response) => {
-  const id = parseInt(req.params.id);
-  const user = await User.findById(id);
+router.get('/:userName', async (req: Request, res: Response) => {
+  const userName = req.params.userName;
+  console.log(userName);
+  const user = await User.find( {where: {userName: userName});
+   console.log(user);
   if (user == null) {
     res.statusCode = 404;
     res.json({

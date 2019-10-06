@@ -1,16 +1,18 @@
-import {Table, Column, Model, HasMany, BelongsTo, ForeignKey} from 'sequelize-typescript';
+import {Table, Column, Model, HasMany, BelongsTo, ForeignKey, Unique} from 'sequelize-typescript';
 import {TodoList} from './todolist.model';
 import {TodoItem} from './todoitem.model';
 
 @Table
 export class User extends Model<User> {
 
+  @Unique
   @Column
   userName!: string;
 
   @Column
   isVerified!: boolean;
 
+  @Unique
   @Column
   email!: string;
 
@@ -23,7 +25,7 @@ export class User extends Model<User> {
   toSimplification(): any {
     return {
       'id': this.id,
-      'username': this.userName,
+      'userName': this.userName,
       'isVerified': this.isVerified,
       'email': this.email,
       'userGroup': this.userGroup,

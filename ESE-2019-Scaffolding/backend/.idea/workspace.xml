@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="992e0b49-8d91-4c27-8b5d-12c526a2f781" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/user.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/user.controller.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/user.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.model.ts" afterDir="false" />
@@ -60,7 +59,11 @@
       <workItem from="1570269679450" duration="295000" />
       <workItem from="1570270004555" duration="2196000" />
       <workItem from="1570272702673" duration="8792000" />
-      <workItem from="1570303628160" duration="767000" />
+      <workItem from="1570303628160" duration="807000" />
+      <workItem from="1570360763350" duration="1396000" />
+      <workItem from="1570362209502" duration="802000" />
+      <workItem from="1570390341508" duration="2394000" />
+      <workItem from="1570396840934" duration="3080000" />
     </task>
     <servers />
   </component>
@@ -72,7 +75,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
