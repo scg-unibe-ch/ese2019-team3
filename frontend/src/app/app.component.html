@@ -3,7 +3,7 @@
     
     <ion-toolbar>
       <ion-title>
-        Startseite
+        Name of our app
       </ion-title>
     </ion-toolbar>
   </ion-header>
@@ -21,8 +21,8 @@
     </ion-card>
     <app-todo-list [todoList]="todoList" (destroy)="onTodoListDestroy($event)" *ngFor="let todoList of todoLists"></app-todo-list>
      -->
+    <app-home> </app-home>
 
-            <app-login></app-login>
 
   </ion-content>
 </ion-app>

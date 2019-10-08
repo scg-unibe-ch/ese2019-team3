@@ -1,0 +1,15 @@
+<ion-app>
+  <ion-content>
+    <ion-text>
+      <h5 (click)="goHome()">Home</h5>
+    </ion-text>
+    <br>
+    <ion-button class ="logInButton" *ngIf="!showLogIn"
+            (click)="goToLogin()"
+    >Login</ion-button>
+    <br>
+    <ion-button *ngIf="!showLogIn">Registration</ion-button>
+  <app-login *ngIf="showLogIn"></app-login>
+  </ion-content>
+</ion-app>
+
