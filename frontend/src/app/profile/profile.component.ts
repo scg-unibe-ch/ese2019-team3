@@ -13,7 +13,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {}
 
   disable(){
-    color: 'grey';
+    color: 'green';
   }
 
 }
