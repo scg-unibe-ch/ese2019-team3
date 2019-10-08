@@ -11,4 +11,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
+  msg() {
+    alert("Benutzer existiert nicht");
+  }
 }

@@ -2,7 +2,7 @@
   <ion-header>
       <ion-toolbar>
         <ion-title>
-          Login
+          Login <p ng-bind="name"></p>
         </ion-title>
       </ion-toolbar>
     </ion-header>
@@ -11,14 +11,14 @@
     <ion-title></ion-title>
     <ion-list>
       <ion-item>
-        <ion-input placeholder = "Benutzername"> </ion-input>
+        <ion-input placeholder = "Benutzername" ng-model="name"> </ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-input placeholder = "Passwort"> </ion-input>
+        <ion-input placeholder = "Passwort" ng-model="password"> </ion-input>
       </ion-item>
     </ion-list>
 
-    <ion-button>Log In</ion-button>
+    <ion-button (click)="msg()">Log In</ion-button>
   </ion-content>
 </div>
