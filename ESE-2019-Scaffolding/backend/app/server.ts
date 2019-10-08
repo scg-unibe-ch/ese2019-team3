@@ -1,6 +1,7 @@
 // import everything from express and assign it to the express variable
 import express from 'express';
 
+
 // import all the controllers. If you add a new controller, make sure to import it here as well.
 import {TodoListController, TodoItemController} from './controllers';
 import {Sequelize} from 'sequelize-typescript';

@@ -1,8 +1,17 @@
 import {Router, Request, Response} from 'express';
 import {User} from '../models/user.model';
+const jwt = require('jsonwebtoken'); //JSON Webtoken
 
 const router: Router = Router();
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');  //used to hash passwords
+
+/**
+ * To-Do:
+ * Make sure the registration method
+ * sends an error if the username
+ * or the e-mail is already registered
+ */
+
 
 /**
  * Method for creating a new user in the database after registration
@@ -24,8 +33,9 @@ router.post('/register', async (req, res) => {
   // Check if all necessary information was entered
   if (user.email == null || user.userName == null || user.password == null || user.userGroup == null) {
     res.statusCode = 400; // Bad Request
-    // res.send('Incomplete information!');
+    res.send('Incomplete information!');
   }
+
   // hash password
   user.password = bcrypt.hashSync(user.password, 8);
 
@@ -33,8 +43,10 @@ router.post('/register', async (req, res) => {
   user.isVerified = false;
 
   await user.save().then ( async() => {
-    res.statusCode = 201;
-    res.send(user.toSimplification());
+    const payload = { subject: user.id }
+    const token = jwt.sign(payload, 'key');  // 'key' could be any string
+    res.statusCode = 201; //Status code: created
+    res.send({token});
   });
 
 });
@@ -56,13 +68,15 @@ router.get('/login', async (req: Request, res: Response) => {
     res.statusCode = 401;  //unauthorized
     res.send('Username not found');
   }
-  console.log(user.password);
+
    if ( await( bcrypt.compare( userPassword, user.password)) === false) {
     res.statusCode = 401;
     res.send('Invalid password!');
   }
-  res.statusCode = 200;
-  res.send(user.toSimplification());
+  const payload = { subject: user.id }
+  const token = jwt.sign(payload, 'key');
+  res.statusCode = 200; //status code: OK
+  res.send({token}, user.id);
 });
 
 

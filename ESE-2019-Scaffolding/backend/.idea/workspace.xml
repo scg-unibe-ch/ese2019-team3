@@ -5,7 +5,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/user.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/user.controller.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/user.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/server.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -63,7 +66,9 @@
       <workItem from="1570360763350" duration="1396000" />
       <workItem from="1570362209502" duration="802000" />
       <workItem from="1570390341508" duration="2394000" />
-      <workItem from="1570396840934" duration="3080000" />
+      <workItem from="1570396840934" duration="3174000" />
+      <workItem from="1570477065492" duration="1308000" />
+      <workItem from="1570557273960" duration="3325000" />
     </task>
     <servers />
   </component>

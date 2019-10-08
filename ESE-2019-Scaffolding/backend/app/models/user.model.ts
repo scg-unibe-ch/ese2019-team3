@@ -6,7 +6,7 @@ import {TodoItem} from './todoitem.model';
 export class User extends Model<User> {
 
   @Unique
-  @Column
+  @Column({unique: true})
   userName!: string;
 
   @Column
