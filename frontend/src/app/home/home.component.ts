@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   showLogIn = false;
+  showProfile = false;
   constructor() {
   }
 
@@ -16,6 +17,11 @@ export class HomeComponent implements OnInit {
   }
   goHome(){
     this.showLogIn = false;
+    this.showProfile = false;
+
   }
 
+  goToProfile(){
+    this.showProfile = true;
+  }
 }
