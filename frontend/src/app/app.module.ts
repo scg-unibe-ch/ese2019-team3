@@ -15,6 +15,8 @@ import { TodoItemComponent } from './todo-list/todo-item/todo-item.component';
 import { LoginComponent } from './login/login.component'
 import {HomeComponent} from './home/home.component';
 import{ProfileComponent} from './profile/profile.component';
+import{PasswordforgottenComponent} from './passwordforgotten/passwordforgotten.component';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -22,7 +24,9 @@ import{ProfileComponent} from './profile/profile.component';
         TodoItemComponent,
         LoginComponent,
         HomeComponent,
-        ProfileComponent
+        ProfileComponent,
+        PasswordforgottenComponent
+
     ],
 
   entryComponents: [],

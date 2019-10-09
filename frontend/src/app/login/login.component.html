@@ -2,12 +2,12 @@
   <ion-header>
       <ion-toolbar>
         <ion-title>
-          Login <p ng-bind="name"></p>
+          Login
         </ion-title>
       </ion-toolbar>
     </ion-header>
 
-  <ion-content>
+  <ion-content ng-app="">
     <ion-title></ion-title>
     <ion-list>
       <ion-item>
@@ -19,6 +19,11 @@
       </ion-item>
     </ion-list>
 
-    <ion-button (click)="msg()">Log In</ion-button>
+    <ion-button fill="clear" *ngIf="!showPasswordForgotten" (click)="goToPasswordForgotten()">Passwort vergessen ? </ion-button>
+    <app-passwordforgotten *ngIf="showPasswordForgotten"></app-passwordforgotten>
+    
+    <ion-button (click)="msg()" >Log In</ion-button>
+   
+
   </ion-content>
 </div>

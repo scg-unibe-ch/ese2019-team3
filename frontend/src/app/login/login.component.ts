@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HomeComponent } from '../home/home.component';
 
 @Component({
   selector: 'app-login',
@@ -8,10 +9,16 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
 
   constructor() { }
-
+  showLogIn = true;
+  showPasswordForgotten = false;
   ngOnInit() {}
 
   msg() {
     alert("Benutzer existiert nicht");
+  }
+
+  goToPasswordForgotten(){
+    this.showLogIn = false;
+    this.showPasswordForgotten = true;
   }
 }
