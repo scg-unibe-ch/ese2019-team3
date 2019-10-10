@@ -5,13 +5,6 @@ const jwt = require('jsonwebtoken'); //JSON Webtoken
 const router: Router = Router();
 const bcrypt = require('bcryptjs');  //used to hash passwords
 
-/**
- * To-Do:
- * Make sure the registration method
- * sends an error if the username
- * or the e-mail is already registered
- */
-
 
 /**
  * Method for creating a new user in the database after registration
@@ -20,7 +13,7 @@ const bcrypt = require('bcryptjs');  //used to hash passwords
  * Request type: POST
  * Request Body:
  *  {
- *      "username": string,
+ *
  *      "password": string,
  *      "email": string,
  *      "userGroup": string
@@ -31,10 +24,16 @@ router.post('/register', async (req, res) => {
   user.fromSimplification(req.body);
 
   // Check if all necessary information was entered
-  if (user.email == null || user.userName == null || user.password == null || user.userGroup == null) {
+  if (user.email == null || user.password == null || user.userGroup == null) {
     res.statusCode = 400; // Bad Request
     res.send('Incomplete information!');
   }
+
+  if (await User.findOne({where: {email: user.email}})  !== null) {
+
+    res.send('E-Mail already registered!');
+  }
+
 
   // hash password
   user.password = bcrypt.hashSync(user.password, 8);
@@ -59,14 +58,14 @@ router.post('/register', async (req, res) => {
  */
 
 router.get('/login', async (req: Request, res: Response) => {
-  const userName = await req.body.userName;
+  const email = await req.body.email;
   const userPassword = await req.body.password;
-  const user = await User.findOne({where: {userName: userName}});
-  console.log(userName);
+  const user = await User.findOne({where: {email: email}});
+  console.log(email);
   console.log(userPassword);
   if (user == null) {
     res.statusCode = 401;  //unauthorized
-    res.send('Username not found');
+    res.send('Account not found');
   }
 
    if ( await( bcrypt.compare( userPassword, user.password)) === false) {
@@ -80,6 +79,7 @@ router.get('/login', async (req: Request, res: Response) => {
 });
 
 
+
 /**
  * Method to show all registered users
  * Path: ./user/
@@ -90,6 +90,8 @@ router.get('/', async (req: Request, res: Response) => {
   const user = await User.findAll();
   res.statusCode = 200;
   res.send(user.map(e => e.toSimplification()));
+
+
 });
 
 /**
@@ -127,10 +129,10 @@ router.put('/verify/:id', async (req: Request, res: Response) => {
  * Request type: GET
  */
 
-router.get('/:userName', async (req: Request, res: Response) => {
-  const userName = req.params.userName;
-  console.log(userName);
-  const user = await User.find( {where: {userName: userName});
+router.get('/:email', async (req: Request, res: Response) => {
+  const email = req.params.userName;
+  console.log(email);
+  const user = await User.find( {where: {email: email});
    console.log(user);
   if (user == null) {
     res.statusCode = 404;
