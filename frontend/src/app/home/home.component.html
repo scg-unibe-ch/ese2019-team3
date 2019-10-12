@@ -1,25 +1,29 @@
-<ion-app>
-  <ion-content>
-    <ion-text>
-      <h5 (click)="goHome()">Home</h5>
-    </ion-text>
-    <br>
-    <ion-button class ="logInButton" *ngIf="!showLogIn"
-            (click)="goToLogin()"
-    >Login</ion-button>
-    <br>
-    <app-login *ngIf="showLogIn"></app-login>
+<mat-card>
+  <mat-card-title><h5 (click)="goHome()">Home</h5></mat-card-title>
+  <mat-card-content>
 
-    <ion-button class ="registrationButton" *ngIf="!showRegistration"
-            (click)="goToRegistration()"
-    >Registration</ion-button>
-    <app-registration *ngIf="showRegistration"></app-registration>
+      <!-- need paragraph otherwise on same line -->
+    <p>
+          
+  </mat-card-content>
+  
+  <p>
+  <button mat-raised-button color="primary"class ="logInButton" *ngIf="!showLogIn"
+  (click)="goToLogin()"
+>Login</button>
+</p>
+<app-login *ngIf="showLogIn"></app-login>
+<p>
+  <button mat-raised-button color="primary" class ="registrationButton" *ngIf="!showRegistration"
+(click)="goToRegistration()"
+>Registration </button>
+</p>
+<app-registration *ngIf="showRegistration"></app-registration>
+<p>
+<button mat-raised-button color="primary" class ="profileButton" *ngIf="!showProfile"
+(click)="goToProfile()">Profile</button>
+</p>
+<app-profile *ngIf="showProfile"></app-profile>
 
-
-   <ion-button class ="profileButton" *ngIf="!showProfile"
-            (click)="goToProfile()">Profile</ion-button>
-
-  <app-profile *ngIf="showProfile"></app-profile>
-  </ion-content>
-</ion-app>
+</mat-card>
 

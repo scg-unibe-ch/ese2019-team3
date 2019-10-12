@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 
+//need to add every module, that you wanna use as a tag
 import {
   MatCardModule,
   MatInputModule,
