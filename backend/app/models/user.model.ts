@@ -5,15 +5,11 @@ import {TodoItem} from './todoitem.model';
 @Table
 export class User extends Model<User> {
 
-  @Unique
-  @Column({unique: true})
-  userName!: string;
-
   @Column
   isVerified!: boolean;
 
   @Unique
-  @Column
+  @Column({unique: true})
   email!: string;
 
   @Column
@@ -22,10 +18,22 @@ export class User extends Model<User> {
   @Column
   password!: string;
 
+   @Column
+   vorname!: string;
+
+    @Column
+    nachname!: string;
+
+    @Column
+    Adresse!: string;
+
+    @Column
+    telefon!: string;
+
+
   toSimplification(): any {
     return {
       'id': this.id,
-      'userName': this.userName,
       'isVerified': this.isVerified,
       'email': this.email,
       'userGroup': this.userGroup,
@@ -34,7 +42,6 @@ export class User extends Model<User> {
   }
 
   fromSimplification(simplification: any): void {
-    this.userName = simplification['userName'];
     this.isVerified = simplification['isVerified'];
     this.email = simplification['email'];
     this.userGroup = simplification['userGroup'];
@@ -43,7 +50,7 @@ export class User extends Model<User> {
   }
 
   createAdminUser() {
-    this.userName = 'admin';
+    this.email = 'admin';
     this.password = 'admin';
     this.userGroup = 'adminGroup';
     this.isVerified = true;
