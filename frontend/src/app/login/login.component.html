@@ -16,13 +16,14 @@
                 </mat-form-field>
               </p>
         </mat-card-content>
+        <p>
 
         <button mat-raised-button color="primary" (click)="msg()" >Log In</button>
         <button mat-button  *ngIf="!showPasswordForgotten" (click)="goToPasswordForgotten()" >Passwort vergessen ? </button>
-        
+        </p>
+
         <app-passwordforgotten *ngIf="showPasswordForgotten"> </app-passwordforgotten>
        
-        <br>
         <button mat-raised-button color="primary" type="submit">Registrieren</button>
     
       </mat-card>

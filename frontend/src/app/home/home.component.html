@@ -8,9 +8,12 @@
             (click)="goToLogin()"
     >Login</ion-button>
     <br>
-
-    <ion-button *ngIf="!showLogIn">Registration</ion-button>
     <app-login *ngIf="showLogIn"></app-login>
+
+    <ion-button class ="registrationButton" *ngIf="!showRegistration"
+            (click)="goToRegistration()"
+    >Registration</ion-button>
+    <app-registration *ngIf="showRegistration"></app-registration>
 
 
    <ion-button class ="profileButton" *ngIf="!showProfile"

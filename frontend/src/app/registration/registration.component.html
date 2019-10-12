@@ -1,8 +1,7 @@
-
-<div class="profile-box">
+<div class="registration-box">
 
   <mat-card>
-      <mat-card-title>Mein Profile</mat-card-title>
+      <mat-card-title>Registrierung</mat-card-title>
       <mat-card-content>
 
             <mat-list>
@@ -20,6 +19,12 @@
 
                 <mat-list-item>
                     <mat-form-field>
+                    <input matInput placeholder="Geburtsdatum" >
+                  </mat-form-field>
+                </mat-list-item>
+
+                <mat-list-item>
+                    <mat-form-field>
                     <input matInput placeholder="Addresse" >
                   </mat-form-field>
                 </mat-list-item>
@@ -29,14 +34,28 @@
                     <input matInput placeholder="Telefonnummer" >
                   </mat-form-field>
                 </mat-list-item>
+            
+                
+                  
+                    <mat-list-item>
+                    <mat-radio-group aria-label="Benutzereigenschaft">
+                      <p>
+                        <mat-radio-button value="1">Service-Anbieter</mat-radio-button>
+                      </p>
+                        <p>
+                        <mat-radio-button value="2">Service-Nachfrager</mat-radio-button>
+                        </p>
 
+                    </mat-radio-group>
+                  </mat-list-item> 
+               
+                  
+          
            </mat-list>
            
       </mat-card-content>  
       
-      <button mat-raised-button color="primary">Ändern</button>
-      &nbsp;
-      <button mat-raised-button color="primary">Speichern</button>
+      <button mat-raised-button color="primary">Bestätigen</button>
     </mat-card>
 
 </div>
