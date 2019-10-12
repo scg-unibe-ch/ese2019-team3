@@ -1,43 +1,82 @@
 <div class="profile-box">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>
-        Mein Profile
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <ion-content>
+    <div class="profile-box">
+
+        <mat-card>
+            <mat-card-title>Registrierung</mat-card-title>
+            <mat-card-content>
+    
+                  <mat-list>
+                      <mat-list-item>
+                          <mat-form-field>
+                          <input matInput placeholder="Vorname" >
+                        </mat-form-field>
+                      </mat-list-item>
+
+                      <mat-list-item>
+                          <mat-form-field>
+                          <input matInput placeholder="Nachname" >
+                        </mat-form-field>
+                      </mat-list-item>
+
+                      <mat-list-item>
+                          <mat-form-field>
+                          <input matInput placeholder="Geburtsdatum" >
+                        </mat-form-field>
+                      </mat-list-item>
+
+                      <mat-list-item>
+                          <mat-form-field>
+                          <input matInput placeholder="Addresse" >
+                        </mat-form-field>
+                      </mat-list-item>
+
+                      <mat-list-item>
+                          <mat-form-field>
+                          <input matInput placeholder="Telefonnummer" >
+                        </mat-form-field>
+                      </mat-list-item>
+                  
+                      
+                        
+                          <mat-list-item>
+                          <mat-radio-group aria-label="Benutzereigenschaft">
+                              <mat-radio-button value="1">Service-Anbieter</mat-radio-button>
+                              <mat-radio-button value="2">Service-Nachfrager</mat-radio-button>
+                          </mat-radio-group>
+                        </mat-list-item> 
+                     
+                        
+                
+                 </mat-list>
+                 
+            </mat-card-content>  
+            
+            <button mat-raised-button color="primary">Bestätigen</button>
+          </mat-card>
+    </div>
+
+  <!-- 
     <ion-list>
-      <ion-item>
-        <ion-input required>
-          <ion-label>Benutzername</ion-label> 
-        </ion-input>
-      </ion-item>
 
-      <ion-item>
-        <ion-input><ion-label>Vorname</ion-label></ion-input>
-      </ion-item>
+        <ion-radio-group>
+          <ion-list-header>
+            <ion-label>Benutzereigenschaft</ion-label>
+          </ion-list-header>
+      
+          <ion-item>
+            <ion-label>Service Anbieter</ion-label>
+            <ion-radio slot="start" value="service-provider" checked></ion-radio>
+          </ion-item>
+      
+          <ion-item>
+            <ion-label>Nachfrager</ion-label>
+            <ion-radio slot="start" value="service-User"></ion-radio>
+          </ion-item>
+          
+        </ion-radio-group>
+      </ion-list>
 
-      <ion-item>
-        <ion-input> <ion-label>Nachname</ion-label> </ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-input> <ion-label>Addresse</ion-label></ion-input>
-      </ion-item>
-
-      <ion-item>
-          <ion-input > <ion-label>Telefonnummer</ion-label></ion-input>
-      </ion-item>
-  
-
-      <ion-item> <!-- should only accept e-mail adresses -->
-        <ion-input type="email" > <ion-label>E-Mail</ion-label></ion-input>
-      </ion-item>
-    </ion-list>
-
-    <ion-button (click)="disable()">Ändern</ion-button>
-    <ion-button>Speichern</ion-button>
-  </ion-content>
+    <ion-button>Bestätigen</ion-button>
+  </ion-content> -->
 </div>
