@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   showLogIn = false;
+  showRegistration = false;
+
   showProfile = false;
   
   constructor() {
@@ -16,18 +18,28 @@ export class HomeComponent implements OnInit {
   goToLogin(){
     this.showLogIn = true;
     this.showProfile = false;
+    this.showRegistration = false;
+
 
   }
   goHome(){
     this.showLogIn = false;
     this.showProfile = false;
+    this.showRegistration = false;
+
 
   }
 
   goToProfile(){
     this.showProfile = true;
     this.showLogIn = false;
+    this.showRegistration = false;
   }
 
+  goToRegistration(){
+    this.showRegistration = true;
+    this.showProfile = false;
+    this.showLogIn = false;
+  }
   
 }
