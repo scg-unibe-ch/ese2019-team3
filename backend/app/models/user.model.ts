@@ -25,7 +25,7 @@ export class User extends Model<User> {
     nachname!: string;
 
     @Column
-    Adresse!: string;
+    adresse!: string;
 
     @Column
     telefon!: string;
@@ -55,4 +55,9 @@ export class User extends Model<User> {
     this.userGroup = 'adminGroup';
     this.isVerified = true;
   }
+
+  setPassword(newPassword: string) {
+      this.password = newPassword;
+
+    }
 }

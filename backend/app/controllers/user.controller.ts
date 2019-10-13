@@ -28,13 +28,9 @@ router.post('/register', async (req, res) => {
     res.statusCode = 400; // Bad Request
     res.send('Incomplete information!');
   }
-
   if (await User.findOne({where: {email: user.email}})  !== null) {
-
     res.send('E-Mail already registered!');
   }
-
-
   // hash password
   user.password = bcrypt.hashSync(user.password, 8);
 
@@ -42,12 +38,14 @@ router.post('/register', async (req, res) => {
   user.isVerified = false;
 
   await user.save().then ( async() => {
-    const payload = { subject: user.id }
+    const payload = {
+      id: user.id,
+      userGroup: user.userGroup
+    }
     const token = jwt.sign(payload, 'key');  // 'key' could be any string
     res.statusCode = 201; //Status code: created
     res.send({token});
   });
-
 });
 
 /**
@@ -67,17 +65,80 @@ router.get('/login', async (req: Request, res: Response) => {
     res.statusCode = 401;  //unauthorized
     res.send('Account not found');
   }
-
    if ( await( bcrypt.compare( userPassword, user.password)) === false) {
     res.statusCode = 401;
     res.send('Invalid password!');
   }
-  const payload = { subject: user.id }
+  const payload = {
+     id: user.id,
+    userGroup: user.userGroup
+  }
   const token = jwt.sign(payload, 'key');
   res.statusCode = 200; //status code: OK
-  res.send({token}, user.id);
+  res.send({token});
 });
 
+/**
+ * Middleware to verify token
+ * Token must be send in the header of a request from the frontend
+ */
+function verifyToken (req,res,next) {
+    if (!req.headers.authorization) {   // The word authorization may need to be changed, depends on the naming of the header in the frontend
+      res.statusCode = 401;
+      res.send('Unauthorized request');
+    }
+    let token = req.headers.authorization;
+
+    if (token ==='null') {
+      res.statusCode = 401;
+      res.send('Unauthorized request');
+    }
+
+    let payload = jwt.verify(token, 'key');
+    if (!payload) {
+      res.statusCode = 401;
+      res.send('Unauthorized request');
+    }
+    req.id = payload.id;
+    next();
+}
+
+/**
+ * Template Method
+ *  => VerifyToken wird aufgerufen
+ *  Wenn dieser Pfad aufgerufen wird, wird der Token überprüft
+ *  Für Seiten nach dem Login zu nutzen
+ */
+
+router.get('/verifyToken', verifyToken, async (req, res) => {
+  //  ....
+
+});
+
+/**
+ * Method to change password
+ * Doesn't work yet, the password is not really changed...
+ */
+
+router.put('/setNewPassword', async (req: Request, res: Response) => {
+  const id = parseInt(req.body.id);
+  const user = await User.findByPk(id);
+  const userPassword = await req.body.password;
+  const newPassword = await req.body.newPassword;
+  const newPasswordHash = bcrypt.hashSync(newPassword, 8);
+
+  if ( await( bcrypt.compare( userPassword, user.password)) === false) {
+    res.statusCode = 401;
+    res.send('Incorrect Password');
+  } else {
+    console.log(newPasswordHash);
+  }
+  user.setPassword(newPasswordHash);
+  res.statusCode = 200; //status code: OK
+  res.send('Password changed!');
+  }
+
+});
 
 
 /**
@@ -90,8 +151,6 @@ router.get('/', async (req: Request, res: Response) => {
   const user = await User.findAll();
   res.statusCode = 200;
   res.send(user.map(e => e.toSimplification()));
-
-
 });
 
 /**
@@ -115,7 +174,7 @@ router.get('/verify', async (req: Request, res: Response) => {
 
 router.put('/verify/:id', async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
-  const user = await User.findById(id);
+  const user = await User.findByPk(id);
   user.isVerified = true;
   res.statusCode = 200;
   res.send('User verified!');
@@ -125,12 +184,12 @@ router.put('/verify/:id', async (req: Request, res: Response) => {
 
 /**
  * Method to get information about a specific user
- * Path: ./user/:userName
+ * Path: ./user/:email
  * Request type: GET
  */
 
 router.get('/:email', async (req: Request, res: Response) => {
-  const email = req.params.userName;
+  const email = req.params.email;
   console.log(email);
   const user = await User.find( {where: {email: email});
    console.log(user);
@@ -155,7 +214,7 @@ router.get('/:email', async (req: Request, res: Response) => {
 
 router.put('/:id', async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
-  const user = await User.findById(id);
+  const user = await User.findByPk(id);
   if (user == null) {
     res.statusCode = 404;
     res.json({
@@ -177,7 +236,7 @@ router.put('/:id', async (req: Request, res: Response) => {
 
 router.delete('/:id', async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
-  const user = await User.findById(id);
+  const user = await User.findByPk(id);
   if (user == null) {
     res.statusCode = 404;
     res.json({
