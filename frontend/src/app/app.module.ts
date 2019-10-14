@@ -28,7 +28,7 @@ const appRoutes: Routes = [
     { path: 'LogIn/PasswordForgotten', component: PasswordforgottenComponent },
     { path: 'Registration', component: RegistrationComponent},
     { path: 'Profile', component: ProfileComponent},
-    { path: '', component: HomeComponent},
+    { path: '', component: TodoListComponent},
 ];
 @NgModule({
     declarations: [

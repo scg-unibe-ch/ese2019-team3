@@ -6,9 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  LoggedIn = true;
+  LoggedIn = false;
+  innerWidth: any;
+
   constructor() {
   }
-
-  ngOnInit() {}
+  ngOnInit() {
+    this.innerWidth = window.innerWidth;
+  }
 }

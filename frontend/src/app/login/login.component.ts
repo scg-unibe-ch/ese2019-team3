@@ -16,11 +16,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   msg() {
-    alert("Benutzer existiert nicht");
-  }
-  goToPasswordForgotten(){
-    this.showPasswordForgotten= true;
-    home.goToPasswordForgotten();
+    alert('Benutzer existiert nicht');
   }
 
 }

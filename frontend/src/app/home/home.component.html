@@ -1,12 +1,11 @@
-<mat-card>
-  <mat-card-title>
-    <h5>Home</h5>
-  </mat-card-title>
-  <mat-card-content>
 
-      <!-- need paragraph otherwise on same line -->
-    <p>
-      <nav>
+  <mat-card>
+  <mat-card-header>
+    <mat-card-title routerLink=""
+                    routerLinkActive="active">
+      Name of your App
+    </mat-card-title>
+      <div class = "distanceToTitle"></div>
         <button *ngIf="!LoggedIn"
                 mat-raised-button color="primary"
                 class ="logInButton"
@@ -14,6 +13,7 @@
                 routerLinkActive="active">
           Log In
         </button>
+    <div class = "divider"></div>
         <button *ngIf="!LoggedIn"
                 mat-raised-button color="primary"
                 class ="registrationButtonButton"
@@ -28,10 +28,9 @@
                 routerLinkActive="active">
           Profile
         </button>
-      </nav>
-  </mat-card-content>
-
-<p>
-
-</mat-card>
+  </mat-card-header>
+    <div class="routerBox">
+  <router-outlet></router-outlet>
+    </div>
+  </mat-card>
 
