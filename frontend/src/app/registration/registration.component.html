@@ -8,25 +8,25 @@
             <mat-list>
                 <mat-list-item>
                     <mat-form-field>
-                    <input matInput placeholder="Vorname" formControlName="firstName">
+                    <input matInput placeholder="Vorname" formControlName="firstName" required>
                   </mat-form-field>
                 </mat-list-item>
 
                 <mat-list-item>
                     <mat-form-field>
-                    <input matInput placeholder="Nachname" formControlName="lastName">
+                    <input matInput placeholder="Nachname" formControlName="lastName" required>
                   </mat-form-field>
                 </mat-list-item>
 
                 <mat-list-item>
                     <mat-form-field>
-                    <input matInput placeholder="Geburtsdatum" formControlName="birthday">
+                    <input matInput placeholder="Geburtsdatum" formControlName="birthday" required>
                   </mat-form-field>
                 </mat-list-item>
 
                 <mat-list-item>
                     <mat-form-field>
-                    <input matInput placeholder="Addresse" formControlName="adress">
+                    <input matInput placeholder="Addresse" formControlName="adress" required>
                   </mat-form-field>
                 </mat-list-item>
 
@@ -38,14 +38,13 @@
             
                 
                   
-                    <mat-list-item> 
-                      <!-- problem with controller -->
-                    <mat-radio-group aria-label="Benutzereigenschaft"  >
+                <mat-list-item>
+                    <mat-radio-group aria-label="Benutzereigenschaft" formControlName="serviceType">
                       <p>
-                        <mat-radio-button value="provider" formControlName="serviceType">Service-Anbieter</mat-radio-button>
+                        <mat-radio-button value="provider" >Service-Anbieter</mat-radio-button>
                       </p>
                         <p>
-                        <mat-radio-button value="customer" formControlName="serviceType">Service-Nachfrager</mat-radio-button>
+                        <mat-radio-button value="customer" >Service-Nachfrager</mat-radio-button>
                         </p>
 
                     </mat-radio-group>
@@ -54,14 +53,11 @@
                   
           
            </mat-list>
-             
-          </div>
-
-        {{ registrationForm.value }} test
-        <!-- no validation yet, so per default enabled add into button  [disabled]="!registartionForm.valid" -->
-        <p>
-        <button mat-raised-button color="primary" type="submit" >Bestätigen</button>
+      
+       <p>
+        <button mat-raised-button color="primary" type="submit" (click)="onSubmit()" [disabled]="!registrationForm.valid">Bestätigen</button>
        </p>     
+      </div>
       </mat-card-content>  
      
     </mat-card>
