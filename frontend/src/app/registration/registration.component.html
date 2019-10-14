@@ -4,46 +4,47 @@
       <mat-card-title>Registrierung</mat-card-title>
       <mat-card-content>
 
+        <div [formGroup]="registrationForm" (ngSubmit)="onSubmit()"> 
             <mat-list>
                 <mat-list-item>
                     <mat-form-field>
-                    <input matInput placeholder="Vorname" >
+                    <input matInput placeholder="Vorname" formControlName="firstName" required>
                   </mat-form-field>
                 </mat-list-item>
 
                 <mat-list-item>
                     <mat-form-field>
-                    <input matInput placeholder="Nachname" >
+                    <input matInput placeholder="Nachname" formControlName="lastName" required>
                   </mat-form-field>
                 </mat-list-item>
 
                 <mat-list-item>
                     <mat-form-field>
-                    <input matInput placeholder="Geburtsdatum" >
+                    <input matInput placeholder="Geburtsdatum" formControlName="birthday" required>
                   </mat-form-field>
                 </mat-list-item>
 
                 <mat-list-item>
                     <mat-form-field>
-                    <input matInput placeholder="Addresse" >
+                    <input matInput placeholder="Addresse" formControlName="adress" required>
                   </mat-form-field>
                 </mat-list-item>
 
                 <mat-list-item>
                     <mat-form-field>
-                    <input matInput placeholder="Telefonnummer" >
+                    <input matInput placeholder="Telefonnummer" formControlName="number" >
                   </mat-form-field>
                 </mat-list-item>
             
                 
                   
-                    <mat-list-item>
-                    <mat-radio-group aria-label="Benutzereigenschaft">
+                <mat-list-item>
+                    <mat-radio-group aria-label="Benutzereigenschaft" formControlName="serviceType">
                       <p>
-                        <mat-radio-button value="1">Service-Anbieter</mat-radio-button>
+                        <mat-radio-button value="provider" >Service-Anbieter</mat-radio-button>
                       </p>
                         <p>
-                        <mat-radio-button value="2">Service-Nachfrager</mat-radio-button>
+                        <mat-radio-button value="customer" >Service-Nachfrager</mat-radio-button>
                         </p>
 
                     </mat-radio-group>
@@ -52,10 +53,13 @@
                   
           
            </mat-list>
-           
-      </mat-card-content>  
       
-      <button mat-raised-button color="primary">Bestätigen</button>
+       <p>
+        <button mat-raised-button color="primary" type="submit" (click)="onSubmit()" [disabled]="!registrationForm.valid">Bestätigen</button>
+       </p>     
+      </div>
+      </mat-card-content>  
+     
     </mat-card>
 
 </div>
