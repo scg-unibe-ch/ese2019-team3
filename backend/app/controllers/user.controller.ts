@@ -1,7 +1,7 @@
 import {Router, Request, Response} from 'express';
 import {User} from '../models/user.model';
 const jwt = require('jsonwebtoken'); //JSON Webtoken
-
+import randomString from 'randomstring';
 const router: Router = Router();
 const bcrypt = require('bcryptjs');  //used to hash passwords
 
@@ -132,13 +132,33 @@ router.put('/setNewPassword', async (req: Request, res: Response) => {
   if ( await( bcrypt.compare( userPassword, user.password)) === false) {
     res.statusCode = 401;
     res.send('Incorrect Password');
-  } else {
-    console.log(newPasswordHash);
   }
   user.setPassword(newPasswordHash);
   res.statusCode = 200; //status code: OK
   res.send('Password changed!');
   }});
+
+/**
+ * Method to send a new password to a user if he forgot it
+ * Path: ./user/forgotPassword
+ * Request type: PUT
+ *
+ */
+
+router.put('/forgotPassword', async (req: Request, res: Response) => {
+  const email = req.body.email;
+  const user = await User.findOne( {where: {email: email}} );
+  const newPassword = randomString.generate(8);
+  const newPasswordHash = bcrypt.hashSync(newPassword, 8);
+  console.log(newPassword);
+  user.setPassword(newPasswordHash);
+  res.statusCode=200;
+  res.send(newPassword);
+
+  // Enter code that sends the new password to the user by email here
+
+  }});
+
 
 /**
  * Method to show all registered users
