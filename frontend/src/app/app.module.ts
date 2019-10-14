@@ -12,15 +12,24 @@ import { AppComponent } from './app.component';
 
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoItemComponent } from './todo-list/todo-item/todo-item.component';
-import { LoginComponent } from './login/login.component'
+import { LoginComponent } from './login/login.component';
 import {HomeComponent} from './home/home.component';
-import{ProfileComponent} from './profile/profile.component';
-import{RegistrationComponent} from './registration/registration.component';
-import{PasswordforgottenComponent} from './passwordforgotten/passwordforgotten.component';
+import {ProfileComponent} from './profile/profile.component';
+import {RegistrationComponent} from './registration/registration.component';
+import {PasswordforgottenComponent} from './passwordforgotten/passwordforgotten.component';
+
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
+import { RouterModule, Routes } from '@angular/router';
 
-
+const appRoutes: Routes = [
+    { path: 'LogIn', component: LoginComponent },
+    { path: 'LogIn/PasswordForgotten', component: PasswordforgottenComponent },
+    { path: 'Registration', component: RegistrationComponent},
+    { path: 'Profile', component: ProfileComponent},
+    { path: '', component: HomeComponent},
+];
 @NgModule({
     declarations: [
         AppComponent,
@@ -42,7 +51,11 @@ import { MaterialModule } from './material.module';
         FormsModule,
         BrowserAnimationsModule,
         MaterialModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        RouterModule.forRoot(
+            appRoutes,
+            { enableTracing: true } // <-- debugging purposes only
+        )
     ],
   providers: [
     StatusBar,
