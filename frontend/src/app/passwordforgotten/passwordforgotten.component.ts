@@ -17,9 +17,13 @@ export class PasswordforgottenComponent implements OnInit {
   }
   constructor() { }
 
-  ngOnInit() {}
+  //testing
+  ngOnInit() {
+    this.passwordforgottenForm.valueChanges.subscribe((value) => console.log(value),)
+  }
 
   onSubmit(){
     console.warn(this.passwordforgottenForm.value);
   }
+
 }
