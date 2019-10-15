@@ -1,5 +1,6 @@
 import {Router, Request, Response} from 'express';
 import {User} from '../models/user.model';
+
 const jwt = require('jsonwebtoken'); //JSON Webtoken
 import randomString from 'randomstring';
 const router: Router = Router();
@@ -20,24 +21,24 @@ const bcrypt = require('bcryptjs');  //used to hash passwords
  *  }
  */
 router.post('/register', async (req, res) => {
-  const user = new User();
-  user.fromSimplification(req.body);
+    const user = new User();
+    user.fromSimplification(req.body);
 
-  // Check if all necessary information was entered
-  if (user.email == null || user.password == null || user.userGroup == null) {
-    res.statusCode = 400; // Bad Request
-    res.send('Incomplete information!');
-  }
-  if(!validateEmail(user.email)) res.send('Typo in email-address.');
+    // Check if all necessary information was entered
+    if (user.email == null || user.password == null || user.userGroup == null) {
+        res.statusCode = 400; // Bad Request
+        res.send('Incomplete information!');
+    }
+    if (!validateEmail(user.email)) res.send('Typo in email-address.');
 
-  if (await User.findOne({where: {email: user.email}})  !== null) {
-    res.send('E-Mail already registered!');
-  }
-  // hash password
-  user.password = bcrypt.hashSync(user.password, 8);
+    if (await User.findOne({where: {email: user.email}}) !== null) {
+        res.send('E-Mail already registered!');
+    }
+    // hash password
+    user.password = bcrypt.hashSync(user.password, 8);
 
-  // Set default verification status to false
-  user.isVerified = false;
+    // Set default verification status to false
+    user.isVerified = false;
 
   await user.save().then ( async() => {
     const payload = {
@@ -132,6 +133,8 @@ router.put('/setNewPassword', async (req: Request, res: Response) => {
   if ( await( bcrypt.compare( userPassword, user.password)) === false) {
     res.statusCode = 401;
     res.send('Incorrect Password');
+  } else {
+    console.log(newPasswordHash);
   }
   user.setPassword(newPasswordHash);
   res.statusCode = 200; //status code: OK

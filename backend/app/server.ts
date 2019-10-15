@@ -8,7 +8,7 @@ import {Sequelize} from 'sequelize-typescript';
 import {TodoList} from './models/todolist.model';
 import {TodoItem} from './models/todoitem.model';
 import {User} from './models/user.model';
-import {UserController} from './controllers/user.controller';
+import {UserController} from './controllers';
 
 const sequelize =  new Sequelize({
   database: 'development',
@@ -78,5 +78,5 @@ async function createAdminUser() {
     await user.save();
     console.log('Admin User created!');
   }
-};
+}
 
