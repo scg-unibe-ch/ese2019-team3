@@ -1,7 +1,8 @@
 import {Router, Request, Response} from 'express';
 import {User} from '../models/user.model';
-const jwt = require('jsonwebtoken'); //JSON Webtoken
 
+const jwt = require('jsonwebtoken'); //JSON Webtoken
+import randomString from 'randomstring';
 const router: Router = Router();
 const bcrypt = require('bcryptjs');  //used to hash passwords
 
@@ -20,22 +21,24 @@ const bcrypt = require('bcryptjs');  //used to hash passwords
  *  }
  */
 router.post('/register', async (req, res) => {
-  const user = new User();
-  user.fromSimplification(req.body);
+    const user = new User();
+    user.fromSimplification(req.body);
 
-  // Check if all necessary information was entered
-  if (user.email == null || user.password == null || user.userGroup == null) {
-    res.statusCode = 400; // Bad Request
-    res.send('Incomplete information!');
-  }
-  if (await User.findOne({where: {email: user.email}})  !== null) {
-    res.send('E-Mail already registered!');
-  }
-  // hash password
-  user.password = bcrypt.hashSync(user.password, 8);
+    // Check if all necessary information was entered
+    if (user.email == null || user.password == null || user.userGroup == null) {
+        res.statusCode = 400; // Bad Request
+        res.send('Incomplete information!');
+    }
+    if (!validateEmail(user.email)) res.send('Typo in email-address.');
 
-  // Set default verification status to false
-  user.isVerified = false;
+    if (await User.findOne({where: {email: user.email}}) !== null) {
+        res.send('E-Mail already registered!');
+    }
+    // hash password
+    user.password = bcrypt.hashSync(user.password, 8);
+
+    // Set default verification status to false
+    user.isVerified = false;
 
   await user.save().then ( async() => {
     const payload = {
@@ -64,7 +67,7 @@ router.get('/login', async (req: Request, res: Response) => {
   if (user == null) {
     res.statusCode = 401;  //unauthorized
     res.send('Account not found');
-  }
+  } else {
    if ( await( bcrypt.compare( userPassword, user.password)) === false) {
     res.statusCode = 401;
     res.send('Invalid password!');
@@ -76,7 +79,7 @@ router.get('/login', async (req: Request, res: Response) => {
   const token = jwt.sign(payload, 'key');
   res.statusCode = 200; //status code: OK
   res.send({token});
-});
+}});
 
 /**
  * Middleware to verify token
@@ -126,7 +129,7 @@ router.put('/setNewPassword', async (req: Request, res: Response) => {
   const userPassword = await req.body.password;
   const newPassword = await req.body.newPassword;
   const newPasswordHash = bcrypt.hashSync(newPassword, 8);
-
+  if(user != null){
   if ( await( bcrypt.compare( userPassword, user.password)) === false) {
     res.statusCode = 401;
     res.send('Incorrect Password');
@@ -136,9 +139,28 @@ router.put('/setNewPassword', async (req: Request, res: Response) => {
   user.setPassword(newPasswordHash);
   res.statusCode = 200; //status code: OK
   res.send('Password changed!');
-  }
+  }});
 
-});
+/**
+ * Method to send a new password to a user if he forgot it
+ * Path: ./user/forgotPassword
+ * Request type: PUT
+ *
+ */
+
+router.put('/forgotPassword', async (req: Request, res: Response) => {
+  const email = req.body.email;
+  const user = await User.findOne( {where: {email: email}} );
+  const newPassword = randomString.generate(8);
+  const newPasswordHash = bcrypt.hashSync(newPassword, 8);
+  console.log(newPassword);
+  user.setPassword(newPasswordHash);
+  res.statusCode=200;
+  res.send(newPassword);
+
+  // Enter code that sends the new password to the user by email here
+
+  }});
 
 
 /**
@@ -146,7 +168,6 @@ router.put('/setNewPassword', async (req: Request, res: Response) => {
  * Path: ./user/
  * Request type: GET
  */
-
 router.get('/', async (req: Request, res: Response) => {
   const user = await User.findAll();
   res.statusCode = 200;
@@ -158,9 +179,8 @@ router.get('/', async (req: Request, res: Response) => {
  * Path: ./user/verified
  * Request type: GET
  */
-
 router.get('/verify', async (req: Request, res: Response) => {
-  const user = await User.findAll({where: {isVerified: false});
+  const user = await User.findAll({where: {isVerified: false}});
   res.statusCode = 200;
   res.send(user.map(e => e.toSimplification()));
 });
@@ -171,14 +191,15 @@ router.get('/verify', async (req: Request, res: Response) => {
  * Request type: PUT
  * Example: Put request to http://localhost:3000/user/validate/4 sets status of isVerified of user with id 4 to true
  */
-
 router.put('/verify/:id', async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
   const user = await User.findByPk(id);
-  user.isVerified = true;
-  res.statusCode = 200;
-  res.send('User verified!');
-  await user.save();
+  if(user != null) {
+      user.isVerified = true;
+      res.statusCode = 200;
+      res.send('User verified!');
+      await user.save();
+  }
 });
 
 
@@ -187,11 +208,10 @@ router.put('/verify/:id', async (req: Request, res: Response) => {
  * Path: ./user/:email
  * Request type: GET
  */
-
 router.get('/:email', async (req: Request, res: Response) => {
   const email = req.params.email;
   console.log(email);
-  const user = await User.find( {where: {email: email});
+  const user = await User.find( {where: {email: email}});
    console.log(user);
   if (user == null) {
     res.statusCode = 404;
@@ -211,7 +231,6 @@ router.get('/:email', async (req: Request, res: Response) => {
  * Path: ./user/:id
  * Request type: PUT
  */
-
 router.put('/:id', async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
   const user = await User.findByPk(id);
@@ -233,7 +252,6 @@ router.put('/:id', async (req: Request, res: Response) => {
  * Path: ./user/:id
  * Request type: DELETE
  */
-
 router.delete('/:id', async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
   const user = await User.findByPk(id);
@@ -247,8 +265,23 @@ router.delete('/:id', async (req: Request, res: Response) => {
   user.fromSimplification(req.body);
   await user.destroy();
   res.statusCode = 204;
-  res.send('user deleted'});
+  res.send('user deleted');
 });
 
-
 export const UserController: Router = router;
+
+/**
+ * Validates the form of an email-address
+ * @param email email-address to vaildate
+ * @return true if email is correct
+ * @author rbu
+ */
+function validateEmail(email : string): boolean {
+  let reg = /@/;
+  if(reg.test(email)) {
+    let domain = email.split("@");
+    let regDom = /./;
+    return regDom.test(domain[1]);
+  }
+  return false;
+}

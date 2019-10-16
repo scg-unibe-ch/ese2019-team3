@@ -58,6 +58,7 @@ export class User extends Model<User> {
 
   setPassword(newPassword: string) {
       this.password = newPassword;
-
+      this.save();
     }
+
 }
