@@ -39,7 +39,7 @@ const appRoutes: Routes = [
         HomeComponent,
         ProfileComponent,
         PasswordforgottenComponent,
-        RegistrationComponent
+        RegistrationComponent,
 
     ],
 
