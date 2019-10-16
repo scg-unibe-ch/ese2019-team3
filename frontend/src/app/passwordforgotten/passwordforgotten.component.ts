@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
+import {router} from 'express';
 
 @Component({
   selector: 'app-passwordforgotten',
@@ -37,8 +38,10 @@ export class PasswordforgottenComponent implements OnInit {
         )
   }
 
+
   onSubmit(){
     console.warn(this.passwordforgottenForm.value);
+    router.put('/forgotPassword');
   }
 
 }
