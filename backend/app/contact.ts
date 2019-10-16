@@ -11,7 +11,9 @@ var transporter = nodemailer.createTransport({
     }
 });
 
-function sendRegistrationConfirmation(clientMail: string) {
+module.exports = {
+
+    sendRegistrationConfirmation: function sendRegistrationConfirmation(clientMail: string) {
     var mailOptions = {
         from: 'cooleseproject@gmail.com',
         to: clientMail,
@@ -25,9 +27,9 @@ function sendRegistrationConfirmation(clientMail: string) {
             console.log('Email sent: ' + info.response);
         }
     });
-}
+},
 
-function sendValidatedEmail(clientMail: string) {
+    sendValidatedEmail: function sendValidatedEmail(clientMail: string) {
     var mailOptions = {
         from: 'cooleseproject@gmail.com',
         to: clientMail,
@@ -42,11 +44,10 @@ function sendValidatedEmail(clientMail: string) {
         }
     });
 }
-
-function sendNewPassword(clientMail: string, newPassword: string) {
+    sendNewPassword: function sendNewPassword(email: string, newPassword: string) {
     var mailOptions = {
         from: 'cooleseproject@gmail.com',
-        to: clientMail,
+        to: email,
         subject: 'Reset Password',
         text: 'Your Password has been reset, your new Password is: \n' + newPassword +'\n best regards \n your Ese Team'
     };
@@ -58,3 +59,6 @@ function sendNewPassword(clientMail: string, newPassword: string) {
         }
     });
 }
+
+};
+

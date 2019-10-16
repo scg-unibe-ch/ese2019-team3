@@ -1,10 +1,10 @@
 import {Router, Request, Response} from 'express';
 import {User} from '../models/user.model';
-
 const jwt = require('jsonwebtoken'); //JSON Webtoken
 import randomString from 'randomstring';
 const router: Router = Router();
 const bcrypt = require('bcryptjs');  //used to hash passwords
+var contact = require('../contact');
 
 
 /**
@@ -49,7 +49,7 @@ router.post('/register', async (req, res) => {
     res.statusCode = 201; //Status code: created
     res.send({token});
   });
-  sendRegistrationConfirmation(user.email);
+  contact.sendRegistrationConfirmation(user.email);
 });
 
 /**
@@ -141,6 +141,9 @@ router.put('/setNewPassword', async (req: Request, res: Response) => {
   res.send('Password changed!');
   }});
 
+
+
+
 /**
  * Method to send a new password to a user if he forgot it
  * Path: ./user/forgotPassword
@@ -154,14 +157,17 @@ router.put('/forgotPassword', async (req: Request, res: Response) => {
   if(user != null) {
       const newPassword = randomString.generate(8);
       const newPasswordHash = bcrypt.hashSync(newPassword, 8);
-      console.log(newPassword);
       user.setPassword(newPasswordHash);
+      console.log(email);
+      console.log(newPassword);
+      contact.sendNewPassword( email, newPassword);
+      console.log(user.email);
+      console.log(newPassword);
       res.statusCode = 200;
       res.send(newPassword);
-
-      sendNewPassword(user.email, newPassword);
-  } else console.log('User not found');
+  } else { console.log('User not found'); }
   });
+
 
 
 /**
@@ -200,7 +206,7 @@ router.put('/verify/:id', async (req: Request, res: Response) => {
       res.statusCode = 200;
       res.send('User verified!');
       await user.save();
-      sendValidatedEmail(user.email);
+      contact.sendValidatedEmail(user.email);
   } else console.log('user not found ' + id);
 });
 
