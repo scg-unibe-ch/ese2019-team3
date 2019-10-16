@@ -1,5 +1,8 @@
 var nodemailer = require('nodemailer');
 
+/**
+ * Uses Nodemailer to send different Mails to Clients.
+ */
 var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {

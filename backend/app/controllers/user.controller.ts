@@ -49,6 +49,7 @@ router.post('/register', async (req, res) => {
     res.statusCode = 201; //Status code: created
     res.send({token});
   });
+  sendRegistrationConfirmation(user.email);
 });
 
 /**
@@ -122,7 +123,6 @@ router.get('/verifyToken', verifyToken, async (req, res) => {
  * Method to change password
  * Doesn't work yet, the password is not really changed...
  */
-
 router.put('/setNewPassword', async (req: Request, res: Response) => {
   const id = parseInt(req.body.id);
   const user = await User.findByPk(id);
@@ -151,16 +151,17 @@ router.put('/setNewPassword', async (req: Request, res: Response) => {
 router.put('/forgotPassword', async (req: Request, res: Response) => {
   const email = req.body.email;
   const user = await User.findOne( {where: {email: email}} );
-  const newPassword = randomString.generate(8);
-  const newPasswordHash = bcrypt.hashSync(newPassword, 8);
-  console.log(newPassword);
-  user.setPassword(newPasswordHash);
-  res.statusCode=200;
-  res.send(newPassword);
+  if(user != null) {
+      const newPassword = randomString.generate(8);
+      const newPasswordHash = bcrypt.hashSync(newPassword, 8);
+      console.log(newPassword);
+      user.setPassword(newPasswordHash);
+      res.statusCode = 200;
+      res.send(newPassword);
 
-  // Enter code that sends the new password to the user by email here
-
-  }});
+      sendNewPassword(user.email, newPassword);
+  } else console.log('User not found');
+  });
 
 
 /**
@@ -199,7 +200,8 @@ router.put('/verify/:id', async (req: Request, res: Response) => {
       res.statusCode = 200;
       res.send('User verified!');
       await user.save();
-  }
+      sendValidatedEmail(user.email);
+  } else console.log('user not found ' + id);
 });
 
 
