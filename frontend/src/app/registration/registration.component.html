@@ -53,13 +53,18 @@
                   
           
            </mat-list>
-      
-       <p>
-        <button mat-raised-button color="primary" type="submit" (click)="onSubmit()" [disabled]="!registrationForm.valid">Bestätigen</button>
-       </p>     
+            <br>
+        <p>
+            <button mat-raised-button color="primary">Bestätigen</button>
+        </p>
+
+            <p>You already have an account?
+              <button routerLink="/LogIn" mat-button color="primary" type="submit">
+                  Log in</button>
+          </p>
       </div>
-      </mat-card-content>  
-     
+      </mat-card-content>
+
     </mat-card>
 
 </div>

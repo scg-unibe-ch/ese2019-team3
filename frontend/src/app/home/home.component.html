@@ -1,29 +1,36 @@
-<mat-card>
-  <mat-card-title><h5 (click)="goHome()">Home</h5></mat-card-title>
-  <mat-card-content>
 
-      <!-- need paragraph otherwise on same line -->
-    <p>
-          
-  </mat-card-content>
-  
-  <p>
-  <button mat-raised-button color="primary"class ="logInButton" *ngIf="!showLogIn"
-  (click)="goToLogin()"
->Login</button>
-</p>
-<app-login *ngIf="showLogIn"></app-login>
-<p>
-  <button mat-raised-button color="primary" class ="registrationButton" *ngIf="!showRegistration"
-(click)="goToRegistration()"
->Registration </button>
-</p>
-<app-registration *ngIf="showRegistration"></app-registration>
-<p>
-<button mat-raised-button color="primary" class ="profileButton" *ngIf="!showProfile"
-(click)="goToProfile()">Profile</button>
-</p>
-<app-profile *ngIf="showProfile"></app-profile>
-
-</mat-card>
+  <mat-card>
+  <mat-card-header>
+    <mat-card-title routerLink=""
+                    routerLinkActive="active">
+      Name of your App
+    </mat-card-title>
+      <div class = "distanceToTitle"></div>
+        <button *ngIf="!LoggedIn"
+                mat-raised-button color="primary"
+                class ="logInButton"
+                routerLink="/LogIn"
+                routerLinkActive="active">
+          Log In
+        </button>
+    <div class = "divider"></div>
+        <button *ngIf="!LoggedIn"
+                mat-raised-button color="primary"
+                class ="registrationButtonButton"
+                routerLink="/Registration"
+                routerLinkActive="active">
+          Register
+        </button>
+        <button *ngIf="LoggedIn"
+                mat-raised-button color="primary"
+                class ="profileButton"
+                routerLink="/Profile"
+                routerLinkActive="active">
+          Profile
+        </button>
+  </mat-card-header>
+    <div class="routerBox">
+  <router-outlet></router-outlet>
+    </div>
+  </mat-card>
 

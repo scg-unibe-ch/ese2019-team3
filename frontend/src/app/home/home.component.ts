@@ -6,40 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  showLogIn = false;
-  showRegistration = false;
+  LoggedIn = false;
+  innerWidth: any;
 
-  showProfile = false;
-  
   constructor() {
   }
-
-  ngOnInit() {}
-  goToLogin(){
-    this.showLogIn = true;
-    this.showProfile = false;
-    this.showRegistration = false;
-
-
+  ngOnInit() {
+    this.innerWidth = window.innerWidth;
   }
-  goHome(){
-    this.showLogIn = false;
-    this.showProfile = false;
-    this.showRegistration = false;
-
-
-  }
-
-  goToProfile(){
-    this.showProfile = true;
-    this.showLogIn = false;
-    this.showRegistration = false;
-  }
-
-  goToRegistration(){
-    this.showRegistration = true;
-    this.showProfile = false;
-    this.showLogIn = false;
-  }
-  
 }

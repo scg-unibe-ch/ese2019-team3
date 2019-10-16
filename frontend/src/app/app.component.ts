@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private httpClient: HttpClient
+    public httpClient: HttpClient
   ) {
     this.initializeApp();
   }
@@ -51,4 +51,9 @@ export class AppComponent implements OnInit {
   onTodoListDestroy(todoList: TodoList) {
     this.todoLists.splice(this.todoLists.indexOf(todoList), 1);
   }
+
+  getHttpClient() {
+    return this.httpClient;
+  }
+
 }

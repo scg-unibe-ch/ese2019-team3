@@ -1,18 +1,22 @@
-h5{
-  margin-left: 1.5%;
+mat-card{
+  padding-top: 3%;
+  padding-bottom: 50%;
 }
-.logInButton{
-  margin-top: 5%;
+mat-card-title{
+  width: 200px;
 }
-button{
-  margin-left: 40%;
+.distanceToTitle{
+  width: 65%;
+}
+.divider{
+  width: 20px;
 }
 
-.registrationButton{
-  margin-top: 5%;
+.routerBox{
+  padding-top: 5%;
 }
 
-
-.profileButton{
-  margin-top: 5%;
+mat-toolbar{
+  background: none;
 }
+
