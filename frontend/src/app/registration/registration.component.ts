@@ -12,6 +12,9 @@ export class RegistrationComponent implements OnInit {
   
   //Controll over multiple values
   registrationForm = new FormGroup({
+    email: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+    passwordconfirm: new FormControl('', Validators.required),
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
     birthday: new FormControl('', Validators.required),
