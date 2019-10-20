@@ -22,12 +22,14 @@ import {PasswordforgottenComponent} from './passwordforgotten/passwordforgotten.
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { RouterModule, Routes } from '@angular/router';
+import {ChangePasswordComponent} from './change-password/change-password.component';
 
 const appRoutes: Routes = [
     { path: 'LogIn', component: LoginComponent },
     { path: 'LogIn/PasswordForgotten', component: PasswordforgottenComponent },
     { path: 'Registration', component: RegistrationComponent},
     { path: 'Profile', component: ProfileComponent},
+    { path: 'Profile/ChangePassword', component: ChangePasswordComponent},
     { path: '', component: TodoListComponent},
 ];
 @NgModule({
@@ -40,6 +42,7 @@ const appRoutes: Routes = [
         ProfileComponent,
         PasswordforgottenComponent,
         RegistrationComponent,
+        ChangePasswordComponent,
 
     ],
 
