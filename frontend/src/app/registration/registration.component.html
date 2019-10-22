@@ -8,7 +8,7 @@
     <mat-vertical-stepper  #stepper>
     
     
-    <mat-step [stepControl]="registrationForm">
+    <mat-step [stepControl]="registrationForm" [editable]= "isEditable">
       
     
       <form [formGroup]="registrationForm">
@@ -33,9 +33,9 @@
         </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="registrationForm">
+    <mat-step [stepControl]="registrationForm"  [editable]= "isEditable">
       <form [formGroup]="registrationForm">
-        <ng-template matStepLabel>Fill out your Details</ng-template>
+        <ng-template matStepLabel >Fill out your Details</ng-template>
         
         <mat-form-field>
                       <input matInput placeholder="Vorname" formControlName="firstName" required>
@@ -59,7 +59,7 @@
     
                     <mat-radio-group aria-label="Benutzereigenschaft" formControlName="serviceType">
                         <p>
-                          <mat-radio-button value="provider" >Service-Anbieter</mat-radio-button>
+                          <mat-radio-button value="provider" [checked]="true" >Service-Anbieter</mat-radio-button>
                         </p>
                           <p>
                           <mat-radio-button value="customer" >Service-Nachfrager</mat-radio-button>
@@ -68,12 +68,13 @@
                       </mat-radio-group>
         <div>
           <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext (click) = 'registerUser()'>Confirm Registration</button>
+          <button mat-button matStepperNext (click) = 'registerUser()' (click)= "isEditable =! isEditable" >Confirm Registration</button>
         </div>
       </form>
     </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
+
+    <mat-step  >
+      <ng-template matStepLabel >Done</ng-template>
       You are done with the registration.
       Please wait 5-10 minutes and check your email.
       

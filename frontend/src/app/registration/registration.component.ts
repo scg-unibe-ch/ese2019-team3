@@ -26,6 +26,8 @@ export class RegistrationComponent implements OnInit {
 
   });
 
+  isEditable = true;
+
 
   //in progress
   constructor(private http: HttpClient, private authentification: AuthenticationService) {
