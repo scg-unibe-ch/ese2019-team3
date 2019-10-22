@@ -10,6 +10,9 @@ import {TodoItem} from './models/todoitem.model';
 import {User} from './models/user.model';
 import {UserController} from './controllers';
 
+//cross-origin resource sharing; communcation between different ports
+const cors = require('cors');
+
 const sequelize =  new Sequelize({
   database: 'development',
   dialect: 'sqlite',
@@ -22,6 +25,7 @@ sequelize.addModels([TodoList, TodoItem, User]);
 // create a new express application instance
 const app: express.Application = express();
 app.use(express.json());
+app.use(cors());
 
 // define the port the express app will listen on
 var port: number = 3000;

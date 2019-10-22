@@ -21,15 +21,15 @@ export class PasswordforgottenComponent implements OnInit {
   }
 
   //in progress
-  constructor(private http: HttpClient) {
+  /*constructor(private http: HttpClient) {
 
-    const url = 'http://localhost:4200/login/passwordforgotten';
+    const url = 'http://localhost:4200/forgotpassword';
     this.http.post(url, this.passwordforgottenForm.value).subscribe(
         () => {},
         (e) => console.error(e)
 
     )
-  }
+  }*/
 
   //testing
   ngOnInit() {
@@ -38,8 +38,12 @@ export class PasswordforgottenComponent implements OnInit {
         )
   }
 
+  registerUserData = {
+   email: this.passwordforgottenForm.value
+  }
 
   onSubmit(){
+    console.log(this.registerUserData);
     console.warn(this.passwordforgottenForm.value);
     //router.put('/forgotPassword');
   }

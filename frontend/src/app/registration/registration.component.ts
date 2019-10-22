@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
-
+import {AuthenticationService} from '../authentication.service'
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -27,7 +27,7 @@ export class RegistrationComponent implements OnInit {
 
 
   //in progress
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private authentification: AuthenticationService) {
 
     const url = 'http://localhost:4200/registration';
     this.http.post(url, this.registrationForm.value).subscribe(
@@ -55,5 +55,26 @@ export class RegistrationComponent implements OnInit {
   get serviceType() {
     return this.registrationForm.get('serviceType');
     
+  }
+  registerUserData = {
+    email: this.registrationForm.value,
+    password: this.registrationForm.value,
+    passwordconfirm: new FormControl('', Validators.required),
+    firstName: new FormControl('', Validators.required),
+    lastName: new FormControl('', Validators.required),
+    birthday: new FormControl('', Validators.required),
+    adress: new FormControl(''),
+    number: new FormControl(''),
+    //TODO Validate
+    serviceType: new FormControl('')
+
+  }
+  registerUser(){
+    this.authentification.registerUser(this.registerUserData)
+        .subscribe(
+            res => console.log(res),
+            err => console.log(err)
+        )
+
   }
 }
