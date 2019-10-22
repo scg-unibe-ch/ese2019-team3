@@ -10,6 +10,7 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) {
   }
+
   //accepts userObject and returns response of backend, backend responses either with error or registered user
   registerUser(user){
     return this.http.post<any>(this.registerUrl, user)

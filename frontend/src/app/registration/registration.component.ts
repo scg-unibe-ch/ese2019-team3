@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {AuthenticationService} from '../authentication.service'
+
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -56,19 +57,13 @@ export class RegistrationComponent implements OnInit {
     return this.registrationForm.get('serviceType');
     
   }
+
   registerUserData = {
-    email: this.registrationForm.value,
-    password: this.registrationForm.value,
-    passwordconfirm: new FormControl('', Validators.required),
-    firstName: new FormControl('', Validators.required),
-    lastName: new FormControl('', Validators.required),
-    birthday: new FormControl('', Validators.required),
-    adress: new FormControl(''),
-    number: new FormControl(''),
-    //TODO Validate
-    serviceType: new FormControl('')
+    return : this.registrationForm.value
 
   }
+
+  //sends registered User to backend
   registerUser(){
     this.authentification.registerUser(this.registerUserData)
         .subscribe(
