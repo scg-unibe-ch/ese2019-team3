@@ -15,14 +15,15 @@ export class RegistrationComponent implements OnInit {
   registrationForm = new FormGroup({
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
+    //TODO Validate 
+    userGroup: new FormControl('') ,
     passwordconfirm: new FormControl('', Validators.required),
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
     birthday: new FormControl('', Validators.required),
     adress: new FormControl(''),
     number: new FormControl(''),
-    //TODO Validate 
-    serviceType: new FormControl('') 
+    
 
   });
 
@@ -55,14 +56,18 @@ export class RegistrationComponent implements OnInit {
   }
 
   //not used yet
-  get serviceType() {
-    return this.registrationForm.get('serviceType');
+  get userGroup() {
+    return this.registrationForm.get('userGroup');
     
   }
 
   registerUserData = {
     return : this.registrationForm.value
-
+    
+    // right format
+    //  email : this.registrationForm.get('email'),
+    // password : this.registrationForm.get('password'),
+    // userGroup : this.registrationForm.get('userGroup')
   }
 
   //sends registered User to backend
