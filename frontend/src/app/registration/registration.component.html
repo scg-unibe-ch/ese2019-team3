@@ -1,95 +1,146 @@
+<div class="registration-box" (ngSubmit)="onSubmit()">
+  <mat-card>
+    <mat-card-title>Registrierung</mat-card-title>
+    <mat-card-content>
+      <mat-vertical-stepper #stepper>
+        <mat-step [stepControl]="registrationForm" [editable]="isEditable">
+          <form [formGroup]="registrationForm">
+            <ng-template matStepLabel
+              >Fill out your E-mail and Password</ng-template
+            >
 
-<div class="registration-box"  (ngSubmit)="onSubmit()">
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="E-mail"
+                formControlName="email"
+                required
+              />
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Password"
+                formControlName="password"
+                type="password"
+                required
+              />
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Confirm Password"
+                formControlName="passwordconfirm"
+                type="password"
+                required
+              />
+            </mat-form-field>
 
-   
-    <mat-card>
-        <mat-card-title>Registrierung</mat-card-title>
-        <mat-card-content>
-    <mat-vertical-stepper  #stepper>
-    
-    
-    <mat-step [stepControl]="registrationForm" [editable]= "isEditable">
-      
-    
-      <form [formGroup]="registrationForm">
-        <ng-template matStepLabel>Fill out your E-mail and Password</ng-template>
-        
-      
-    
-        <mat-form-field>
-                      <input matInput placeholder="E-mail" formControlName="email" required>
-                    </mat-form-field>
-                    <br>
-                      <mat-form-field>
-                      <input matInput placeholder="Password" formControlName="password" type= "password" required>
-                    </mat-form-field>
-                    <br>
-                      <mat-form-field>
-                      <input matInput placeholder="Confirm Password" formControlName="passwordconfirm" type= "password" required>
-                    </mat-form-field>
-        
-        <div>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step [stepControl]="registrationForm"  [editable]= "isEditable">
-      <form [formGroup]="registrationForm">
-        <ng-template matStepLabel >Fill out your Details</ng-template>
-        
-        <mat-form-field>
-                      <input matInput placeholder="Vorname" formControlName="firstName" required>
-                    </mat-form-field>
-                    <br>
-                      <mat-form-field>
-                      <input matInput placeholder="Nachname" formControlName="lastName" required>
-                    </mat-form-field>
-                    <br>
-                      <mat-form-field>
-                      <input matInput placeholder="Geburtsdatum" formControlName="birthday" required>
-                    </mat-form-field>
-                  <br>
-                      <mat-form-field>
-                      <input matInput placeholder="Addresse" formControlName="adress" required>
-                    </mat-form-field>
-                  <br>
-                      <mat-form-field>
-                      <input matInput placeholder="Telefonnummer" formControlName="number" >
-                    </mat-form-field>
-    
-                    <mat-radio-group aria-label="Benutzereigenschaft" formControlName="userGroup">
-                        <p>
-                          <mat-radio-button value="provider" [checked]="true" >Service-Anbieter</mat-radio-button>
-                        </p>
-                          <p>
-                          <mat-radio-button value="customer" >Service-Nachfrager</mat-radio-button>
-                          </p>
-    
-                      </mat-radio-group>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext (click) = 'registerUser()' (click)= "isEditable =! isEditable" >Confirm Registration</button>
-        </div>
-      </form>
-    </mat-step>
+            <div>
+              <button
+                mat-button
+                matStepperNext
+                [disabled]="!checkPasswordEqual()"
+              >
+                Next
+              </button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="registrationForm" [editable]="isEditable">
+          <form [formGroup]="registrationForm">
+            <ng-template matStepLabel>Fill out your Details</ng-template>
 
-    <mat-step  >
-      <ng-template matStepLabel >Done</ng-template>
-      You are done with the registration.
-      Please wait 5-10 minutes and check your email.
-      
-    </mat-step>
-    </mat-vertical-stepper>
-    
-    <p>You already have an account?
-                <button routerLink="/LogIn" mat-button color="primary" type="submit">
-                    Log in</button>
-            </p>
-    
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Vorname"
+                formControlName="firstName"
+                required
+              />
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Nachname"
+                formControlName="lastName"
+                required
+              />
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Geburtsdatum"
+                formControlName="birthday"
+                required
+              />
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Addresse"
+                formControlName="adress"
+                required
+              />
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Telefonnummer"
+                formControlName="number"
+              />
+            </mat-form-field>
+
+            <mat-radio-group
+              aria-label="Benutzereigenschaft"
+              formControlName="userGroup"
+            >
+              <p>
+                <mat-radio-button value="provider"
+                  >Service-Anbieter</mat-radio-button
+                >
+              </p>
+              <p>
+                <mat-radio-button value="customer"
+                  >Service-Nachfrager</mat-radio-button
+                >
+              </p>
+            </mat-radio-group>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button
+                mat-button
+                matStepperNext
+                (click)="registerUser()"
+                [disabled]="!registrationForm.valid"
+                (click)="isEditable = !isEditable"
+                (click)="onSubmit()"
+              >
+                Confirm Registration
+              </button>
+            </div>
+          </form>
+        </mat-step>
+
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          You are done with the registration. Please wait 5-10 minutes and check
+          your email.
+        </mat-step>
+      </mat-vertical-stepper>
+
+      <p>
+        You already have an account?
+        <button routerLink="/LogIn" mat-button color="primary" type="submit">
+          Log in
+        </button>
+      </p>
     </mat-card-content>
-    
-      </mat-card>
-    
-    
-    </div>
-
+  </mat-card>
+</div>

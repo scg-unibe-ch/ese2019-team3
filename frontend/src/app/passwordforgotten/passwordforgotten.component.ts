@@ -1,23 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
-import {HttpClient} from '@angular/common/http';
+import { Component, OnInit } from "@angular/core";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { HttpClient } from "@angular/common/http";
 //import {router} from 'express';
 
 @Component({
-  selector: 'app-passwordforgotten',
-  templateUrl: './passwordforgotten.component.html',
-  styleUrls: ['./passwordforgotten.component.scss'],
+  selector: "app-passwordforgotten",
+  templateUrl: "./passwordforgotten.component.html",
+  styleUrls: ["./passwordforgotten.component.scss"]
 })
 export class PasswordforgottenComponent implements OnInit {
+  email = new FormControl("", [Validators.required]);
 
-  email = new FormControl ('', [Validators.required]);
-
-  passwordforgottenForm = new FormGroup ({
-    email : new FormControl('', [Validators.required, Validators.email])
+  passwordforgottenForm = new FormGroup({
+    email: new FormControl("", [Validators.required, Validators.email])
   });
 
-  getErrorMessage(){
-    return this.email.hasError('required') ? 'You must enter a valid email' : this.email.hasError('email') ? ' Not a valid email' : '';
+  getErrorMessage() {
+    return this.email.hasError("required")
+      ? "You must enter a valid email"
+      : this.email.hasError("email")
+      ? " Not a valid email"
+      : "";
   }
 
   //in progress
@@ -33,20 +36,18 @@ export class PasswordforgottenComponent implements OnInit {
 
   //testing
   ngOnInit() {
-    this.passwordforgottenForm.valueChanges.subscribe(
-        (value) => console.log(value),
-        )
+    this.passwordforgottenForm.valueChanges.subscribe(value =>
+      console.log(value)
+    );
   }
 
   registerUserData = {
-   email: this.passwordforgottenForm.value
-  }
+    email: this.passwordforgottenForm.value
+  };
 
-  onSubmit(){
+  onSubmit() {
     console.log(this.registerUserData);
     console.warn(this.passwordforgottenForm.value);
     //router.put('/forgotPassword');
   }
-
 }
-
