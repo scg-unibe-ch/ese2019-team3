@@ -42,7 +42,7 @@
               <button
                 mat-button
                 matStepperNext
-                [disabled]="!checkPasswordEqual()"
+                [disabled]="!checkPasswordEqual() || !validEmail()"
               >
                 Next
               </button>
@@ -127,9 +127,9 @@
             </div>
           </form>
         </mat-step>
-
-        <mat-step>
-          <ng-template matStepLabel>Done</ng-template>
+        <!-- WIP, either all editable or none -->
+        <mat-step  [editable]="false">
+          <ng-template matStepLabel >Done</ng-template>
           You are done with the registration. Please wait 5-10 minutes and check
           your email.
         </mat-step>

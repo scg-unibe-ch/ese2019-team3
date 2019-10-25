@@ -12,7 +12,7 @@ import { User } from "../user";
 export class RegistrationComponent implements OnInit {
   //Controll over multiple values
   registrationForm = new FormGroup({
-    email: new FormControl("", Validators.required),
+    email: new FormControl("", [Validators.required, Validators.email]),
     password: new FormControl("", Validators.required),
     //TODO Validate
     userGroup: new FormControl(""),
@@ -25,7 +25,7 @@ export class RegistrationComponent implements OnInit {
   });
 
   isEditable = true;
-
+  
   //in progress
   constructor(
     private http: HttpClient,
@@ -40,6 +40,7 @@ export class RegistrationComponent implements OnInit {
   // testing
   ngOnInit() {
     this.registrationForm.valueChanges.subscribe(value => console.log(value));
+    console.log(this.validEmail())
   }
 
   // sends registerUser by submit to the backend
@@ -58,7 +59,7 @@ export class RegistrationComponent implements OnInit {
     };
 
     console.warn(registerUserData);
-
+    
     //calls method to post the registerUser to the backend
     this.registerUser(registerUserData);
   }
@@ -85,10 +86,17 @@ export class RegistrationComponent implements OnInit {
     ) {
       return true;
     }
+    
 
     return (
       this.registrationForm.get("password").value ==
       this.registrationForm.get("passwordconfirm").value
     );
   }
+
+  validEmail(): boolean{
+    return this.registrationForm.get("email").valid
+  }
 }
+
+  
