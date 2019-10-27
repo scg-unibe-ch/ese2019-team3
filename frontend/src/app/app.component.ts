@@ -33,13 +33,13 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.httpClient.get('http://localhost:3000/todolist').subscribe((instances: any) => {
+    this.httpClient.get('http://localhost:4200/todolist').subscribe((instances: any) => {
       this.todoLists = instances.map((instance) => new TodoList(instance.id, instance.name));
     });
   }
 
   onTodoListCreate() {
-    this.httpClient.post('http://localhost:3000/todolist', {
+    this.httpClient.post('http://localhost:4200/todolist', {
       name: this.todoList.name
     }).subscribe((instance: any) => {
       this.todoList.id = instance.id;

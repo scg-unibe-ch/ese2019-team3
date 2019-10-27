@@ -30,7 +30,7 @@ export class RegistrationComponent implements OnInit {
   //in progress
   constructor(private http: HttpClient, private authentification: AuthenticationService) {
 
-    const url = 'http://localhost:4200/registration';
+    const url = 'http://localhost:4200/Registration';
     this.http.post(url, this.registrationForm.value).subscribe(
       () => {},
       (e) => console.error(e)
