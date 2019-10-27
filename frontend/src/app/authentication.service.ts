@@ -6,7 +6,10 @@ import {HttpClient} from '@angular/common/http'
 })
 export class AuthenticationService {
 
-  private registerUrl = "http://localhost:3000/user/register"
+
+  private registerUrl = "http://localhost:3000/api/register"
+  private loginUrl = "http://localhost:3000/api/login"
+
 
   constructor(private http: HttpClient) {
   }
@@ -16,11 +19,7 @@ export class AuthenticationService {
     return this.http.post<any>(this.registerUrl, user)
   }
 
-  public get loggedIn () : boolean {
-    return
-  }
-
-  public isUser() : boolean {
-    return
+  loginUser(user){
+    return this.http.post<any>(this.loginUrl, user)
   }
 }
