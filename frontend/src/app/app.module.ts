@@ -24,6 +24,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { RouterModule, Routes } from '@angular/router';
 import {ChangePasswordComponent} from './change-password/change-password.component';
+import {HeaderComponent} from "./header/header.component";
+import {MatSelectModule} from "@angular/material/select";
 
 const appRoutes: Routes = [
     { path: 'LogIn', component: LoginComponent },
@@ -44,6 +46,7 @@ const appRoutes: Routes = [
         PasswordforgottenComponent,
         RegistrationComponent,
         ChangePasswordComponent,
+        HeaderComponent,
 
     ],
 
@@ -58,8 +61,9 @@ const appRoutes: Routes = [
         ReactiveFormsModule,
         RouterModule.forRoot(
             appRoutes,
-            { enableTracing: true } // <-- debugging purposes only
-        )
+            {enableTracing: true} // <-- debugging purposes only
+        ),
+        MatSelectModule
     ],
   providers: [
     StatusBar,

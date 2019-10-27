@@ -15,4 +15,12 @@ export class AuthenticationService {
   registerUser(user){
     return this.http.post<any>(this.registerUrl, user)
   }
+
+  public get loggedIn () : boolean {
+    return
+  }
+
+  public isUser() : boolean {
+    return
+  }
 }
