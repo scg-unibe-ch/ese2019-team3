@@ -22,4 +22,10 @@ export class AuthenticationService {
   loginUser(user){
     return this.http.post<any>(this.loginUrl, user)
   }
+  public get loggedIn () : boolean {
+    return
+  }
+  public isUser() : boolean {
+    return
+  }
 }
