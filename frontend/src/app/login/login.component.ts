@@ -11,9 +11,7 @@ import {AuthenticationService} from '../authentication.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-    private loginData= {password: "",
-        username: "",
-    };
+   
 
   /* @ToDO auf Login drücken, dann wird man eingeloggt, Passwort und Username mit Datenbank abgleichen; authentication!*/
     constructor(private http: HttpClient, private authentification: AuthenticationService) {
@@ -42,9 +40,13 @@ export class LoginComponent implements OnInit {
 
 //takes information from login form and passes it on
     loginUser(){
-    this.loginData.password=this.loginForm.get("password").value;
-    this.loginData.username = this.loginForm.get("username").value;
-    this.sendUserData(this.loginData);
+
+        const loginData = {
+            username: this.loginForm.get("username").value,
+            password: this.loginForm.get("password").value,
+
+        };
+    this.sendUserData(loginData);
 
     }
 
