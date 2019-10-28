@@ -28,6 +28,7 @@ import {AdminComponent} from './admin/admin.component';
 
 import {HeaderComponent} from "./header/header.component";
 import {MatSelectModule} from "@angular/material/select";
+import {AuthGuard} from './auth.guard';
 
 
 
@@ -35,9 +36,9 @@ const appRoutes: Routes = [
     { path: 'LogIn', component: LoginComponent },
     { path: 'LogIn/PasswordForgotten', component: PasswordforgottenComponent },
     { path: 'Registration', component: RegistrationComponent},
-    { path: 'Profile', component: ProfileComponent},
-    { path: 'Profile/ChangePassword', component: ChangePasswordComponent},
-    { path: 'Admin', component: AdminComponent},
+    { path: 'Profile', component: ProfileComponent, canActivate: [AuthGuard] },
+    { path: 'Profile/ChangePassword', component: ChangePasswordComponent, canActivate: [AuthGuard] },
+    { path: 'Admin', component: AdminComponent, canActivate: [AuthGuard] },
     { path: '', component: HeaderComponent},
 ];
 @NgModule({
