@@ -26,6 +26,10 @@ import { RouterModule, Routes } from '@angular/router';
 import {ChangePasswordComponent} from './change-password/change-password.component';
 import {AdminComponent} from './admin/admin.component';
 
+import {HeaderComponent} from "./header/header.component";
+import {MatSelectModule} from "@angular/material/select";
+
+
 const appRoutes: Routes = [
     { path: 'LogIn', component: LoginComponent },
     { path: 'LogIn/PasswordForgotten', component: PasswordforgottenComponent },
@@ -33,7 +37,7 @@ const appRoutes: Routes = [
     { path: 'Profile', component: ProfileComponent},
     { path: 'Profile/ChangePassword', component: ChangePasswordComponent},
     { path: 'Admin', component: AdminComponent},
-    { path: '', component: TodoListComponent},
+    { path: '', component: HeaderComponent},
 ];
 @NgModule({
     declarations: [
@@ -46,7 +50,8 @@ const appRoutes: Routes = [
         PasswordforgottenComponent,
         RegistrationComponent,
         ChangePasswordComponent,
-        AdminComponent
+        AdminComponent,
+        HeaderComponent,
 
     ],
 
@@ -61,8 +66,9 @@ const appRoutes: Routes = [
         ReactiveFormsModule,
         RouterModule.forRoot(
             appRoutes,
-            { enableTracing: true } // <-- debugging purposes only
-        )
+            {enableTracing: true} // <-- debugging purposes only
+        ),
+        MatSelectModule
     ],
   providers: [
     StatusBar,
