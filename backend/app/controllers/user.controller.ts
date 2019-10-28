@@ -152,7 +152,9 @@ router.put('/setNewPassword', async (req: Request, res: Response) => {
  */
 
 router.put('/forgotPassword', async (req: Request, res: Response) => {
+  console.log("test");
   const email = req.body.email;
+  console.log(email);
   const user = await User.findOne( {where: {email: email}} );
   if(user != null) {
       const newPassword = randomString.generate(8);
@@ -165,7 +167,11 @@ router.put('/forgotPassword', async (req: Request, res: Response) => {
       console.log(newPassword);
       res.statusCode = 200;
       res.send(newPassword);
+<<<<<<< HEAD
   } else { res.send('User not found'); }
+=======
+  } else { res.send('user not found');}
+>>>>>>> passwordforgotten
   });
 
 
