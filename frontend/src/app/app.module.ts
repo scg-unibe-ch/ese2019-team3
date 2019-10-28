@@ -24,6 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { RouterModule, Routes } from '@angular/router';
 import {ChangePasswordComponent} from './change-password/change-password.component';
+import {AdminComponent} from './admin/admin.component';
 
 const appRoutes: Routes = [
     { path: 'LogIn', component: LoginComponent },
@@ -31,6 +32,7 @@ const appRoutes: Routes = [
     { path: 'Registration', component: RegistrationComponent},
     { path: 'Profile', component: ProfileComponent},
     { path: 'Profile/ChangePassword', component: ChangePasswordComponent},
+    { path: 'Admin', component: AdminComponent},
     { path: '', component: TodoListComponent},
 ];
 @NgModule({
@@ -44,6 +46,7 @@ const appRoutes: Routes = [
         PasswordforgottenComponent,
         RegistrationComponent,
         ChangePasswordComponent,
+        AdminComponent
 
     ],
 

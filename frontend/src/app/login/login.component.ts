@@ -11,7 +11,7 @@ import {AuthenticationService} from '../authentication.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-   
+
 
   /* @ToDO auf Login drücken, dann wird man eingeloggt, Passwort und Username mit Datenbank abgleichen; authentication!*/
     constructor(private http: HttpClient, private authentification: AuthenticationService) {
