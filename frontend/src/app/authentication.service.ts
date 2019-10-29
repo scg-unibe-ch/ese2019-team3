@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
-})
+}) 
 export class AuthenticationService {
 
 
@@ -13,12 +13,13 @@ export class AuthenticationService {
   private verificationUrl = "http://localhost:3000/api/verifyToken"
 
 
+  private passwordforgottenUrl = "http://localhost:3000/user/forgotPassword"
   constructor(private http: HttpClient) {
 
   }
 
   //accepts userObject and returns response of backend, backend responses either with error or registered user
-  registerUser(user){
+  registerUser(user: Object){
     return this.http.post<any>(this.registerUrl, user)
   }
 
@@ -36,5 +37,14 @@ export class AuthenticationService {
   }
   public isUser() : boolean {
     return
+  }
+   /** 
+   * Initiate the passwordforgotten
+   * sends put request to the backend 
+   * to replace old password
+   * @param email email of the user 
+   */ 
+  passwordForgotten(email: Object){
+    return this.http.put<any>(this.passwordforgottenUrl, email)
   }
 }
