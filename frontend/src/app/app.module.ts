@@ -30,6 +30,7 @@ import {HeaderComponent} from "./header/header.component";
 import {MatSelectModule} from "@angular/material/select";
 import {AuthGuard} from './auth.guard';
 import {RoleGuard} from './role.guard';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 
 
 const appRoutes: Routes = [
@@ -43,6 +44,7 @@ const appRoutes: Routes = [
             expectedRole: 'admin'
         } },
     { path: '', component: HeaderComponent},
+    { path: '**', component: PageNotFoundComponent },
 ];
 @NgModule({
     declarations: [
@@ -57,6 +59,7 @@ const appRoutes: Routes = [
         ChangePasswordComponent,
         AdminComponent,
         HeaderComponent,
+        PageNotFoundComponent
 
     ],
 
