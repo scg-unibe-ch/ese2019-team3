@@ -12,12 +12,18 @@ import {MatSelectModule} from "@angular/material/select";
 export class HeaderComponent implements OnInit {
   LoggedIn = false;
 
-  events : string [] = ['Concert', 'Opera', 'Poetry Slam', 'Festival', 'Museum', 'Comedy'];
-
+  services : string [] = ['Food & Drink', 'Musik', 'Licht & Bühne', 'Werbung' ];
   locations : string [] = ['Aarau', 'Basel', 'Bern', 'Biel/Bienne', 'Frauenfeld', 'Freiburg', 'Genf', 'Lausanne', 'Lugano','Luzern', 'Neuenburg', 'Schaffhausen',
   'Schwyz', 'Sitten', 'Solothurn', 'St. Gallen', 'Zug', 'Zürich'];
-
   dates : string [] = ['Today', 'This Week', 'This Month', 'This Year'];
+
+  //filter for l = location, s = services and d= dates
+  filter : any = {
+    l : '',
+    s: '',
+    d  : '',
+  };
+
 
   constructor(public authentication : AuthenticationService ) {
 

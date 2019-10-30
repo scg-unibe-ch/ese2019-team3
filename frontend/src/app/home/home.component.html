@@ -6,8 +6,8 @@
       Name of your App
     </mat-card-title>
       <div class = "distanceToTitle"></div>
-        <button *ngIf="!LoggedIn" 
-                mat-raised-button color="primary"
+        <button *ngIf="!LoggedIn"
+                mat-button
                 class ="logInButton"
                 routerLink="/LogIn"
                 routerLinkActive="active">
@@ -15,7 +15,7 @@
         </button>
         <!-- what if on diffrent page? -->
         <button *ngIf="LoggedIn"
-                mat-raised-button color="primary" (click) = "logOut()"
+                mat-button (click) = "logOut()"
                 class ="logOutButton"
                 routerLink="/LogIn"
                 routerLinkActive="active">
@@ -23,7 +23,7 @@
         </button>
     <div class = "divider"></div>
         <button *ngIf="!LoggedIn"
-                mat-raised-button color="primary"
+                mat-button
                 class ="registrationButtonButton"
                 routerLink="/Registration"
                 routerLinkActive="active">

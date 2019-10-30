@@ -1,0 +1,28 @@
+<div class = "addService">
+  <h1>Add your Service!</h1>
+  <form class = "f1">
+    <mat-form-field>
+      <mat-label>Service Category</mat-label>
+       <mat-option *ngFor = "let services of services " [value]  = "services"> {{services}} </mat-option>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Where?</mat-label>
+      <mat-option *ngFor = "let locations of locations " [value] = "locations">{{locations}}</mat-option>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>When are you available? </mat-label>
+      <!-- maybe add calendar where you can select your dates? -->
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Tell your customers something about yourself..." >
+    </mat-form-field>
+
+    <button> Save! </button>
+  </form>
+
+
+
+</div>

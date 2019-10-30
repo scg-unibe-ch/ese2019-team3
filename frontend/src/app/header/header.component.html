@@ -1,3 +1,4 @@
+<header id = "header">
 <div class="navigation">
 
 
@@ -11,14 +12,14 @@
   </div>
 
   <!-- main navigation bar -->
+
   <div class = "main">
     <!-- @TODO add routerLink -->
-
     <!--Location Button-->
     <form class = "btn" style="float: left; margin-left: 5%;">
-    <mat-form-field>
+    <mat-form-field >
       <mat-label> All Locations </mat-label>
-        <mat-select>
+        <mat-select id = "location" [(ngModel)] = "filter.l" name="location" >
           <mat-option> None </mat-option>
           <mat-option *ngFor = "let locations of locations " [value]  = "locations"> {{locations}} </mat-option>
         </mat-select>
@@ -29,10 +30,10 @@
     <!-- Events Button-->
     <form class ="btn" style="float: left; margin-left: 2%;">
     <mat-form-field>
-      <mat-label> All Events </mat-label>
-      <mat-select>
+      <mat-label> All Services </mat-label>
+      <mat-select id = "services" [(ngModel)]="filter.s" name="services" >
         <mat-option> None </mat-option>
-        <mat-option *ngFor = "let events of events" [value] = "events"> {{events}}</mat-option>
+        <mat-option *ngFor = "let services of services" [value] = "services"> {{services}}</mat-option>
       </mat-select>
     </mat-form-field>
      </form>
@@ -42,7 +43,7 @@
     <form class ="btn" style="float: left; margin-left: 2%; ">
       <mat-form-field>
         <mat-label> All Dates </mat-label>
-        <mat-select>
+        <mat-select id = "dates" [(ngModel)]= "filter.d" name ="dates">
           <mat-option> None </mat-option>
           <mat-option  *ngFor = "let dates of dates" [value] = "dates"> {{dates}} </mat-option>
         </mat-select>
@@ -52,15 +53,15 @@
 
     <!-- Search Button -->
     <form class = "btn" style="float: left; margin-left: 5%; margin-right: 5%;">
-     <mat-form-field>
-      <input matInput placeholder="Search for Artists and Events">
+     <mat-form-field class = "InputBtn">
+      <input matInput placeholder="Search for anything" >
      </mat-form-field>
     </form>
 
     <br>
-    <button class = "btn" mat-stroked-button style="float:right; margin-right: 10%">Search</button>
+    <button class = "btn" mat-stroked-button style="float:right; margin-right: 10%; margin-top: -0.5%">Search</button>
 
 
   </div> <!-- /main -->
-
 </div>
+</header>
