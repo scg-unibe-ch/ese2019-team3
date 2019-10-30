@@ -1,9 +1,10 @@
 import {Router, Request, Response} from 'express';
 import {User} from '../models/user.model';
 const jwt = require('jsonwebtoken'); //JSON Webtoken
-
+import randomString from 'randomstring';
 const router: Router = Router();
 const bcrypt = require('bcryptjs');  //used to hash passwords
+var contact = require('../contact');
 
 
 /**
@@ -20,24 +21,24 @@ const bcrypt = require('bcryptjs');  //used to hash passwords
  *  }
  */
 router.post('/register', async (req, res) => {
-  const user = new User();
-  user.fromSimplification(req.body);
+    const user = new User();
+    user.fromSimplification(req.body);
 
-  // Check if all necessary information was entered
-  if (user.email == null || user.password == null || user.userGroup == null) {
-    res.statusCode = 400; // Bad Request
-    res.send('Incomplete information!');
-  }
-  if(!validateEmail(user.email)) res.send('Typo in email-address.');
+    // Check if all necessary information was entered
+    if (user.email == null || user.password == null || user.userGroup == null) {
+        res.statusCode = 400; // Bad Request
+        res.send('Incomplete information!');
+    }
+    if (!validateEmail(user.email)) res.send('Typo in email-address.');
 
-  if (await User.findOne({where: {email: user.email}})  !== null) {
-    res.send('E-Mail already registered!');
-  }
-  // hash password
-  user.password = bcrypt.hashSync(user.password, 8);
+    if (await User.findOne({where: {email: user.email}}) !== null) {
+        res.send('E-Mail already registered!');
+    }
+    // hash password
+    user.password = bcrypt.hashSync(user.password, 8);
 
-  // Set default verification status to false
-  user.isVerified = false;
+    // Set default verification status to false
+    user.isVerified = false;
 
   await user.save().then ( async() => {
     const payload = {
@@ -48,6 +49,7 @@ router.post('/register', async (req, res) => {
     res.statusCode = 201; //Status code: created
     res.send({token});
   });
+  contact.sendRegistrationConfirmation(user.email);
 });
 
 /**
@@ -121,7 +123,6 @@ router.get('/verifyToken', verifyToken, async (req, res) => {
  * Method to change password
  * Doesn't work yet, the password is not really changed...
  */
-
 router.put('/setNewPassword', async (req: Request, res: Response) => {
   const id = parseInt(req.body.id);
   const user = await User.findByPk(id);
@@ -139,6 +140,35 @@ router.put('/setNewPassword', async (req: Request, res: Response) => {
   res.statusCode = 200; //status code: OK
   res.send('Password changed!');
   }});
+
+
+
+
+/**
+ * Method to send a new password to a user if he forgot it
+ * Path: ./user/forgotPassword
+ * Request type: PUT
+ *
+ */
+
+router.put('/forgotPassword', async (req: Request, res: Response) => {
+  const email = req.body.email;
+  const user = await User.findOne( {where: {email: email}} );
+  if(user != null) {
+      const newPassword = randomString.generate(8);
+      const newPasswordHash = bcrypt.hashSync(newPassword, 8);
+      user.setPassword(newPasswordHash);
+      console.log(email);
+      console.log(newPassword);
+      contact.sendNewPassword( email, newPassword);
+      console.log(user.email);
+      console.log(newPassword);
+      res.statusCode = 200;
+      res.send(newPassword);
+  } else { console.log('User not found'); }
+  });
+
+
 
 /**
  * Method to show all registered users
@@ -176,7 +206,8 @@ router.put('/verify/:id', async (req: Request, res: Response) => {
       res.statusCode = 200;
       res.send('User verified!');
       await user.save();
-  }
+      contact.sendValidatedEmail(user.email);
+  } else console.log('user not found ' + id);
 });
 
 

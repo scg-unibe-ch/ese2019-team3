@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { ReactiveFormsModule } from '@angular/forms';
 
+
+
 //need to add every module, that you wanna use as a tag
 import {
   MatCardModule,
@@ -12,7 +14,8 @@ import {
   MatToolbarModule,
   MatIconModule,
   MatListModule,
-  MatRadioModule
+  MatRadioModule,
+  MatStepperModule
 } from '@angular/material';
 
 const modules = [
@@ -24,7 +27,8 @@ const modules = [
   MatIconModule,
   MatListModule,
   MatRadioModule,
-  ReactiveFormsModule
+  ReactiveFormsModule,
+  MatStepperModule
 ];
 
 @NgModule({

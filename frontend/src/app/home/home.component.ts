@@ -6,40 +6,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  showLogIn = false;
-  showRegistration = false;
+  LoggedIn = false;
+  innerWidth: any;
 
-  showProfile = false;
-  
   constructor() {
   }
-
-  ngOnInit() {}
-  goToLogin(){
-    this.showLogIn = true;
-    this.showProfile = false;
-    this.showRegistration = false;
-
-
-  }
-  goHome(){
-    this.showLogIn = false;
-    this.showProfile = false;
-    this.showRegistration = false;
-
-
+  ngOnInit() {
+    this.innerWidth = window.innerWidth;
   }
 
-  goToProfile(){
-    this.showProfile = true;
-    this.showLogIn = false;
-    this.showRegistration = false;
+  logOut(){
+    //Test
+    alert('Sie wurden erfolgreich abgemeldet');
+    //ToDO: call authentication method, 
+    this.LoggedIn = false;
+    //for example, if token was set before
+    //localStorage.removeItem('token');
   }
 
-  goToRegistration(){
-    this.showRegistration = true;
-    this.showProfile = false;
-    this.showLogIn = false;
+  logIn(){
+    this.LoggedIn = true;
   }
-  
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HomeComponent } from '../home/home.component';
+
 
 @Component({
   selector: 'app-login',
@@ -7,18 +7,16 @@ import { HomeComponent } from '../home/home.component';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-
-  constructor() { }
-  showLogIn = true;
+  public username: string;
+  public password: string;
   showPasswordForgotten = false;
+
+  /* @ToDO auf Login drücken, dann wird man eingeloggt, Passwort und Username mit Datenbank abgleichen; authentication!*/
+  constructor() { }
   ngOnInit() {}
 
   msg() {
-    alert("Benutzer existiert nicht");
+    alert('Benutzer existiert nicht');
   }
 
-  goToPasswordForgotten(){
-    this.showLogIn = false;
-    this.showPasswordForgotten = true;
-  }
 }
