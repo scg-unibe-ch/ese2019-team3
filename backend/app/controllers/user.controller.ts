@@ -167,11 +167,7 @@ router.put('/forgotPassword', async (req: Request, res: Response) => {
       console.log(newPassword);
       res.statusCode = 200;
       res.send(newPassword);
-<<<<<<< HEAD
   } else { res.send('User not found'); }
-=======
-  } else { res.send('user not found');}
->>>>>>> passwordforgotten
   });
 
 

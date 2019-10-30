@@ -13,7 +13,7 @@ export class RegistrationComponent implements OnInit {
   //Controll over multiple values
   registrationForm = new FormGroup({
     email: new FormControl("", [Validators.required, Validators.email]),
-    password: new FormControl("", Validators.required),
+    password: new FormControl("", [Validators.required,  Validators.minLength(8)]),
     //TODO Validate
     userGroup: new FormControl(""),
     passwordconfirm: new FormControl("", Validators.required),
@@ -21,11 +21,12 @@ export class RegistrationComponent implements OnInit {
     lastName: new FormControl("", Validators.required),
     birthday: new FormControl("", Validators.required),
     adress: new FormControl(""),
-    number: new FormControl("")
+    number: new FormControl(""),
+    company: new FormControl("", Validators.required)
   });
 
   isEditable = true;
-  
+
   //in progress
 
   constructor(
@@ -41,13 +42,12 @@ export class RegistrationComponent implements OnInit {
   // testing
   ngOnInit() {
     this.registrationForm.valueChanges.subscribe(value => console.log(value));
-    console.log(this.validEmail())
+    console.log(this.validEmail());
+    console.log("Password" + this.checkPasswordEqual());
   }
 
   // sends registerUser by submit to the backend
   onSubmit() {
-
-    
     //alternative
     //   const registerUserData = new User(this.registrationForm.get('email').value,
     //                             this.registrationForm.get('password').value,
@@ -60,14 +60,13 @@ export class RegistrationComponent implements OnInit {
     };
 
     console.warn(registerUserData);
-    
+
     //calls method to post the registerUser to the backend
     this.registerUser(registerUserData);
   }
 
-  //not used yet
-  get userGroup() {
-    return this.registrationForm.get("userGroup");
+  isProvider(): boolean {
+    return this.registrationForm.get("userGroup").value == "provider";
   }
 
   //send registered User to backend
@@ -80,24 +79,16 @@ export class RegistrationComponent implements OnInit {
       .subscribe(res => console.log(res), err => console.log(err));
   }
 
-  checkPasswordEqual(): boolean {
-    if (
-      this.registrationForm.get("password").value == "" ||
-      this.registrationForm.get("passwordconfirm").value == ""
-    ) {
-      return true;
-    }
+  validPassword(): boolean {
     
-
-    return (
-      this.registrationForm.get("password").value ==
-      this.registrationForm.get("passwordconfirm").value
-    );
+    return this.registrationForm.get("password").invalid
+      ? false
+      : this.registrationForm.get("password").value ==
+          this.registrationForm.get("passwordconfirm").value;
   }
 
-  validEmail(): boolean{
-    return this.registrationForm.get("email").valid
+  validEmail(): boolean {
+    return this.registrationForm.get("email").valid;
   }
 }
 
-  

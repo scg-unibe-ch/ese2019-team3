@@ -26,6 +26,7 @@
                 type="password"
                 required
               />
+              <mat-hint>Mindestens 8 Zeichen</mat-hint>
             </mat-form-field>
             <br />
             <mat-form-field>
@@ -42,7 +43,7 @@
               <button
                 mat-button
                 matStepperNext
-                [disabled]="!checkPasswordEqual() || !validEmail()"
+                [disabled]="!validPassword() || !validEmail()"
               >
                 Next
               </button>
@@ -112,6 +113,10 @@
                 >
               </p>
             </mat-radio-group>
+
+            <mat-form-field *ngIf="isProvider()">
+              <input matInput placeholder="Firma" formControlName="company" />
+            </mat-form-field>
             <div>
               <button mat-button matStepperPrevious>Back</button>
               <button
@@ -128,8 +133,8 @@
           </form>
         </mat-step>
         <!-- WIP, either all editable or none -->
-        <mat-step  [editable]="false">
-          <ng-template matStepLabel >Done</ng-template>
+        <mat-step [editable]="false">
+          <ng-template matStepLabel>Done</ng-template>
           You are done with the registration. Please wait 5-10 minutes and check
           your email.
         </mat-step>
