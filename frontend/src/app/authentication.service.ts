@@ -8,9 +8,9 @@ import {Observable} from 'rxjs';
 export class AuthenticationService {
 
 
-  private registerUrl = "http://localhost:3000/api/register"
-  private loginUrl = "http://localhost:3000/api/login"
-  private verificationUrl = "http://localhost:3000/api/verifyToken"
+  private registerUrl = "http://localhost:3000/user/register"
+  private loginUrl = "http://localhost:3000/user/login"
+  private verificationUrl = "http://localhost:3000/user/verifyToken"
 
 
   private passwordforgottenUrl = "http://localhost:3000/user/forgotPassword"

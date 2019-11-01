@@ -43,7 +43,7 @@ export class RegistrationComponent implements OnInit {
   ngOnInit() {
     this.registrationForm.valueChanges.subscribe(value => console.log(value));
     console.log(this.validEmail());
-    console.log("Password" + this.checkPasswordEqual());
+    console.log("Password" + this.validPassword());
   }
 
   // sends registerUser by submit to the backend

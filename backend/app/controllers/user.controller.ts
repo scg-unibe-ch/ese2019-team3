@@ -55,11 +55,11 @@ router.post('/register', async (req, res) => {
 /**
  * Method for user login
  * Path: ./user/login
- * Request type: GET
+ * Request type: Post
  *
  */
 
-router.get('/login', async (req: Request, res: Response) => {
+router.post('/login', async (req: Request, res: Response) => {
   const email = await req.body.email;
   const userPassword = await req.body.password;
   const user = await User.findOne({where: {email: email}});
