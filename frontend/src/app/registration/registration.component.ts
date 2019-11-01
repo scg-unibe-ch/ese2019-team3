@@ -13,7 +13,10 @@ export class RegistrationComponent implements OnInit {
   //Controll over multiple values
   registrationForm = new FormGroup({
     email: new FormControl("", [Validators.required, Validators.email]),
-    password: new FormControl("", [Validators.required,  Validators.minLength(8)]),
+    password: new FormControl("", [
+      Validators.required,
+      Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=(.*[dW]){1,})(?!.*s).{8,}$")
+    ]),
     //TODO Validate
     userGroup: new FormControl(""),
     passwordconfirm: new FormControl("", Validators.required),
@@ -80,7 +83,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   validPassword(): boolean {
-    
     return this.registrationForm.get("password").invalid
       ? false
       : this.registrationForm.get("password").value ==
@@ -91,4 +93,3 @@ export class RegistrationComponent implements OnInit {
     return this.registrationForm.get("email").valid;
   }
 }
-
