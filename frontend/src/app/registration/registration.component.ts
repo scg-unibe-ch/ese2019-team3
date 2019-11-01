@@ -25,7 +25,7 @@ export class RegistrationComponent implements OnInit {
     birthday: new FormControl("", Validators.required),
     adress: new FormControl(""),
     number: new FormControl(""),
-    company: new FormControl("", Validators.required)
+    company: new FormControl("")
   });
 
   isEditable = true;
@@ -51,15 +51,16 @@ export class RegistrationComponent implements OnInit {
 
   // sends registerUser by submit to the backend
   onSubmit() {
-    //alternative
-    //   const registerUserData = new User(this.registrationForm.get('email').value,
-    //                             this.registrationForm.get('password').value,
-    //                             this.registrationForm.get('userGroup').value);
-
     const registerUserData = {
       email: this.registrationForm.get("email").value,
       password: this.registrationForm.get("password").value,
-      userGroup: this.registrationForm.get("userGroup").value
+      userGroup: this.registrationForm.get("userGroup").value,
+      firstName: this.registrationForm.get("firstName").value,
+      lastName: this.registrationForm.get("lastName").value,
+      birthday: this.registrationForm.get("birthday").value,
+      adress: this.registrationForm.get("adress").value,
+      number: this.registrationForm.get("number").value,
+      company: this.registrationForm.get("company").value
     };
 
     console.warn(registerUserData);
