@@ -55,7 +55,7 @@ router.post('/register', async (req, res) => {
 /**
  * Method for user login
  * Path: ./user/login
- * Request type: GET
+ * Request type: Post
  *
  */
 
@@ -152,8 +152,10 @@ router.put('/setNewPassword', async (req: Request, res: Response) => {
  *
  */
 
-router.post('/forgotPassword', async (req: Request, res: Response) => {
+router.put('/forgotPassword', async (req: Request, res: Response) => {
+
   const email = req.body.email;
+  console.log(email);
   const user = await User.findOne( {where: {email: email}} );
   if(user != null) {
       const newPassword = randomString.generate(8);
