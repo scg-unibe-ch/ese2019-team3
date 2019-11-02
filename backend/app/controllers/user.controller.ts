@@ -59,7 +59,7 @@ router.post('/register', async (req, res) => {
  *
  */
 
-router.get('/login', async (req: Request, res: Response) => {
+router.post('/login', async (req: Request, res: Response) => {
   const email = await req.body.email;
   const userPassword = await req.body.password;
   const user = await User.findOne({where: {email: email}});
@@ -69,10 +69,12 @@ router.get('/login', async (req: Request, res: Response) => {
     res.statusCode = 401;  //unauthorized
     res.send('Account not found');
   } else {
-   if ( await( bcrypt.compare( userPassword, user.password)) === false) {
-    res.statusCode = 401;
-    res.send('Invalid password!');
+      if (await (bcrypt.compare(userPassword, user.password)) === false) {
+          res.statusCode = 401;
+          res.send('Invalid password!');
+      }
   }
+
   const payload = {
      id: user.id,
     userGroup: user.userGroup
@@ -115,13 +117,12 @@ function verifyToken (req,res,next) {
  */
 
 router.get('/verifyToken', verifyToken, async (req, res) => {
-  //  ....
-
+ // executes verifyToken method
+    res.statusCode = 200;
 });
 
 /**
  * Method to change password
- * Doesn't work yet, the password is not really changed...
  */
 router.put('/setNewPassword', async (req: Request, res: Response) => {
   const id = parseInt(req.body.id);
@@ -151,7 +152,7 @@ router.put('/setNewPassword', async (req: Request, res: Response) => {
  *
  */
 
-router.put('/forgotPassword', async (req: Request, res: Response) => {
+router.post('/forgotPassword', async (req: Request, res: Response) => {
   const email = req.body.email;
   const user = await User.findOne( {where: {email: email}} );
   if(user != null) {
@@ -165,7 +166,7 @@ router.put('/forgotPassword', async (req: Request, res: Response) => {
       console.log(newPassword);
       res.statusCode = 200;
       res.send(newPassword);
-  } else { console.log('User not found'); }
+  } else { res.send('User not found'); }
   });
 
 
@@ -188,6 +189,10 @@ router.get('/', async (req: Request, res: Response) => {
  */
 router.get('/verify', async (req: Request, res: Response) => {
   const user = await User.findAll({where: {isVerified: false}});
+  if (user == null) {
+      res.statusCode = 400;
+      res.send('Account not found');
+  }
   res.statusCode = 200;
   res.send(user.map(e => e.toSimplification()));
 });
@@ -219,7 +224,7 @@ router.put('/verify/:id', async (req: Request, res: Response) => {
 router.get('/:email', async (req: Request, res: Response) => {
   const email = req.params.email;
   console.log(email);
-  const user = await User.find( {where: {email: email}});
+  const user = await User.findAll( {where: {email: email}});
    console.log(user);
   if (user == null) {
     res.statusCode = 404;
@@ -229,7 +234,7 @@ router.get('/:email', async (req: Request, res: Response) => {
     return;
   }
   res.statusCode = 200;
-  res.send(user.toSimplification());
+    res.send(user.map(e => e.toSimplification()));
 });
 
 

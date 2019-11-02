@@ -1,7 +1,5 @@
 import {Table, Column, Model, HasMany, BelongsTo, ForeignKey, Unique} from 'sequelize-typescript';
-import {TodoList} from './todolist.model';
-import {TodoItem} from './todoitem.model';
-
+const bcrypt = require('bcryptjs');  //used to hash passwords
 @Table
 export class User extends Model<User> {
 
@@ -19,16 +17,19 @@ export class User extends Model<User> {
   password!: string;
 
    @Column
-   vorname!: string;
+   firstname!: string;
 
     @Column
-    nachname!: string;
+    lastname!: string;
 
     @Column
-    adresse!: string;
+    adress!: string;
 
     @Column
-    telefon!: string;
+    number!: string;
+
+    @Column!
+    birthday!: string;
 
 
   toSimplification(): any {
@@ -51,7 +52,7 @@ export class User extends Model<User> {
 
   createAdminUser() {
     this.email = 'admin';
-    this.password = 'admin';
+    this.password = bcrypt.hashSync('admin', 8);
     this.userGroup = 'adminGroup';
     this.isVerified = true;
   }

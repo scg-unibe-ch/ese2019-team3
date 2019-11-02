@@ -1,15 +1,19 @@
 // import everything from express and assign it to the express variable
 import express from 'express';
+const https = require('https');
+const fs = require('fs');
 
 
 // import all the controllers. If you add a new controller, make sure to import it here as well.
-import {TodoListController, TodoItemController} from './controllers';
+
 import {Sequelize} from 'sequelize-typescript';
-import {TodoList} from './models/todolist.model';
-import {TodoItem} from './models/todoitem.model';
+
+import {Service} from './models/service.model';
 import {User} from './models/user.model';
 import {UserController} from './controllers';
-
+import {ServiceController} from './controllers';
+import swaggerUi from 'swagger-ui-express';
+import * as swaggerDocument from './swagger.json';
 //cross-origin resource sharing; communcation between different ports
 const cors = require('cors');
 
@@ -20,12 +24,15 @@ const sequelize =  new Sequelize({
   password: '',
   storage: 'db.sqlite'
 });
-sequelize.addModels([TodoList, TodoItem, User]);
+sequelize.addModels([Service, User]);
 
 // create a new express application instance
 const app: express.Application = express();
 app.use(express.json());
 app.use(cors());
+
+//swagger
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // define the port the express app will listen on
 var port: number = 3000;
@@ -41,10 +48,8 @@ app.use(function (req, res, next) {
 });
 
 // Mögliche Routes
-app.use('/todolist', TodoListController);
-app.use('/todoitem', TodoItemController);
 app.use('/user', UserController);
-
+app.use('/service', ServiceController);
 // Set Port
 sequelize.sync().then(() => {
 // start serving the application on the given port
@@ -54,6 +59,8 @@ sequelize.sync().then(() => {
   });
   createAdminUser();
 });
+
+https.createServer(app).listen(3001);
 
 // Start database
 sequelize
