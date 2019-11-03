@@ -14,7 +14,7 @@
         <td>{{user.username}}</td>
         <td>{{user.address}}</td>
         <td>{{user.phone}}</td>
-        <td><button mat-button style="color: #0ec254">Accept</button></td>
+        <td><button mat-button style="color: #0ec254" (click)="validateUser(user)">Accept</button></td>
         <button mat-button style="color: #d33939">Deny</button>
       </tr>
     </table>
