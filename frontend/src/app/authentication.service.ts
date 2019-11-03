@@ -11,6 +11,7 @@ export class AuthenticationService {
   private registerUrl = "http://localhost:3000/api/register"
   private loginUrl = "http://localhost:3000/api/login"
   private verificationUrl = "http://localhost:3000/api/verifyToken"
+  private addServiceUrl = "http://localhost:3000/user/addService"
 
 
   private passwordforgottenUrl = "http://localhost:3000/user/forgotPassword"
@@ -46,5 +47,10 @@ export class AuthenticationService {
    */ 
   passwordForgotten(email: Object){
     return this.http.put<any>(this.passwordforgottenUrl, email)
+  }
+
+  addservice(addService: Object){
+    return this.http.post<any>(this.addServiceUrl, addService)
+
   }
 }
