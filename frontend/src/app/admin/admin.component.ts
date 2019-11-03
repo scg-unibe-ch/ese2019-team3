@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Inject} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {User} from '../user';
+import {User} from '../models/user';
 import {Observable} from 'rxjs';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-admin',
@@ -13,7 +15,7 @@ export class AdminComponent implements OnInit {
   //private Users : Observable<User[]>;
   private Users: any;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, public dialog: MatDialog) {
     //this.Users = this.getRegistrationRequests();
     //-->testing without connection to backend
 
@@ -40,8 +42,13 @@ export class AdminComponent implements OnInit {
   }
 
   validateUser(user: User){
-    return "http://localhost:3000/user/validate/"+user.id;
+    return this.http.get("http://localhost:3000/user/validate/"+user.id);
   }
+
+  deleteUser(user: User){
+    return this.http.delete("http://localhost:3000/user/"+user.id);
+  }
+
 
   ngOnInit() {}
 
