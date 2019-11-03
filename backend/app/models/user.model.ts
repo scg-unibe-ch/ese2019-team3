@@ -28,7 +28,7 @@ export class User extends Model<User> {
     @Column
     number!: string;
 
-    @Column!
+    @Column
     birthday!: string;
 
 
