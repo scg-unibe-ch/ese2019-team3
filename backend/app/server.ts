@@ -1,5 +1,6 @@
 // import everything from express and assign it to the express variable
 import express from 'express';
+const bodyParser = require("body-parser");
 const https = require('https');
 const fs = require('fs');
 
@@ -50,6 +51,8 @@ app.use(function (req, res, next) {
 // Mögliche Routes
 app.use('/user', UserController);
 app.use('/service', ServiceController);
+
+app.use(bodyParser.json());
 // Set Port
 sequelize.sync().then(() => {
 // start serving the application on the given port

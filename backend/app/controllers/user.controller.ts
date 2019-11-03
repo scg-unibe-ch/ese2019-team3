@@ -25,7 +25,7 @@ router.post('/register', async (req, res) => {
     user.fromSimplification(req.body);
 
     // Check if all necessary information was entered
-    if (user.email == null || user.password == null || user.userGroup == null) {
+    if (user.email == null || user.password == null || user.userGroup == null || user.firstname == null || user.lastname == null || user.adress == null || user.birthday == null) {
         res.statusCode = 400; // Bad Request
         res.send('Incomplete information!');
     }
@@ -42,8 +42,16 @@ router.post('/register', async (req, res) => {
 
   await user.save().then ( async() => {
     const payload = {
-      id: user.id,
-      userGroup: user.userGroup
+        id: user.id,
+        isVerified: user.isVerified,
+        email: user.email,
+        userGroup: user.userGroup,
+        password: user.password,
+        firstname: user.firstname,
+        lastname: user.lastname,
+        adress: user.adress,
+        number: user.number,
+        birthday: user.birthday
     }
     const token = jwt.sign(payload, 'key');  // 'key' could be any string
     res.statusCode = 201; //Status code: created
@@ -76,8 +84,16 @@ router.post('/login', async (req: Request, res: Response) => {
   }
 
   const payload = {
-     id: user.id,
-    userGroup: user.userGroup
+    id: user.id,
+    isVerified: user.isVerified,
+    email: user.email,
+    userGroup: user.userGroup,
+    password: user.password,
+    firstname: user.firstname,
+    lastname: user.lastname,
+    adress: user.adress,
+    number: user.number,
+    birthday: user.birthday
   }
   const token = jwt.sign(payload, 'key');
   res.statusCode = 200; //status code: OK

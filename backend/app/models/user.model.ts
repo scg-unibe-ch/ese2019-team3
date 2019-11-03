@@ -39,6 +39,11 @@ export class User extends Model<User> {
       'email': this.email,
       'userGroup': this.userGroup,
       'password': this.password,
+      'firstname': this.firstname,
+      'lastname': this.lastname,
+      'adress': this.adress,
+      'number': this.number,
+      'birthday': this.birthday
     };
   }
 
@@ -47,6 +52,13 @@ export class User extends Model<User> {
     this.email = simplification['email'];
     this.userGroup = simplification['userGroup'];
     this.password = simplification['password'];
+    this.firstname = simplification['firstname'];
+    this.lastname = simplification['lastname'];
+    this.adress = simplification['adress'];
+    this.number = simplification['number'];
+    this.birthday = simplification['birthday'];
+
+
 
   }
 
