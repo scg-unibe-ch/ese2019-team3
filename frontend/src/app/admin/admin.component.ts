@@ -1,8 +1,7 @@
-import { Component, OnInit , Inject} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {User} from '../models/user';
 import {Observable} from 'rxjs';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 
 @Component({
@@ -15,7 +14,7 @@ export class AdminComponent implements OnInit {
   //private Users : Observable<User[]>;
   private Users: any;
 
-  constructor(private http: HttpClient, public dialog: MatDialog) {
+  constructor(private http: HttpClient) {
     //this.Users = this.getRegistrationRequests();
     //-->testing without connection to backend
 
