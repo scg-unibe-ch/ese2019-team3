@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from "../authentication.service";
-import {FormControl} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
+import {ServiceService} from "../service.service";
 
 @Component({
   selector: 'app-header',
@@ -23,13 +24,38 @@ export class HeaderComponent implements OnInit {
     s: '',
     d  : '',
   };
+  searchForm = new FormGroup({
+    services: new FormControl("",),
+    locations: new FormControl(""),
+    dates: new FormControl(""),
+  });
 
 
-  constructor(public authentication : AuthenticationService ) {
+  constructor(public authentication : AuthenticationService,
+              private service: ServiceService) {
 
   }
 
   ngOnInit() {}
+
+  onSubmit(){
+    const searchObject = {
+      services: this.searchForm.get(this.services).value,
+      locations: this.searchForm.get("locations").value,
+      about: this.searchForm.get("about").value
+    };
+    console.log("searching for service");
+    //calls method to post the registerUser to the backend
+    this.searchService(searchObject);
+  }
+
+  searchService (searchObject: Object){
+    console.log(searchObject);
+    this.service
+        .searchService(searchObject)
+        .subscribe(res => console.log(res), err => console.log(err));
+
+  }
 
   logOut(){
     //Test
