@@ -42,15 +42,14 @@ export class AddserviceComponent implements OnInit {
     this.serviceForm.valueChanges.subscribe(value => console.log(value));
   }
 
-  //not in html yet
   onSubmit() {
     const addService = {
       services: this.serviceForm.get("services").value,
       locations: this.serviceForm.get("locations").value,
-      about: this.serviceForm.get("userGroup").value
+      about: this.serviceForm.get("about").value
     };
 
-    console.warn(addService);
+    console.log("Adding new Service", addService);
     //calls method to post the registerUser to the backend
     this.addservice(addService);
   }
