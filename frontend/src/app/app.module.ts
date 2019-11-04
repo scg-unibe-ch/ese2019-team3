@@ -31,6 +31,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {AuthGuard} from './auth.guard';
 import {RoleGuard} from './role.guard';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {DialogWindowDialog} from './admin/admin.component';
 
 
 const appRoutes: Routes = [
@@ -39,10 +40,10 @@ const appRoutes: Routes = [
     { path: 'Registration', component: RegistrationComponent},
     { path: 'Profile', component: ProfileComponent, canActivate: [AuthGuard] },
     { path: 'Profile/ChangePassword', component: ChangePasswordComponent, canActivate: [AuthGuard] },
-    { path: 'Admin', component: AdminComponent, canActivate: [RoleGuard],
+    { path: 'Admin', component: AdminComponent/*, canActivate: [RoleGuard],
         data: {
             expectedRole: 'admin'
-        } },
+        } */},
     { path: '', component: HeaderComponent},
     { path: '**', component: PageNotFoundComponent },
 ];
@@ -59,7 +60,8 @@ const appRoutes: Routes = [
         ChangePasswordComponent,
         AdminComponent,
         HeaderComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
+        DialogWindowDialog,
 
     ],
 
