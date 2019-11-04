@@ -31,7 +31,6 @@ import {MatSelectModule} from "@angular/material/select";
 import {AuthGuard} from './auth.guard';
 import {RoleGuard} from './role.guard';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
-import {DialogWindowDialog} from './admin/admin.component';
 
 
 const appRoutes: Routes = [
@@ -61,7 +60,6 @@ const appRoutes: Routes = [
         AdminComponent,
         HeaderComponent,
         PageNotFoundComponent,
-        DialogWindowDialog,
 
     ],
 
