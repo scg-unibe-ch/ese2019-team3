@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
         };
 
         this.sendUserData(loginData);
+        this.home.logIn();
 
     }
 
