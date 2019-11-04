@@ -1,11 +1,13 @@
 
   <mat-card>
+    <!-- header with title and buttons changing whether logged in or not, always visible-->
   <mat-card-header>
     <mat-card-title routerLink=""
                     routerLinkActive="active">
       Name of your App
     </mat-card-title>
       <div class = "distanceToTitle"></div>
+    <!-- Login Button, only visible when logged out-->
         <button *ngIf="!LoggedIn" 
                 mat-raised-button color="primary"
                 class ="logInButton"
@@ -13,14 +15,15 @@
                 routerLinkActive="active">
           Log In
         </button>
-        <!-- what if on diffrent page? -->
+        <!-- Logout Button, only visible when logged in-->
         <button *ngIf="LoggedIn"
                 mat-raised-button color="primary" (click) = "logOut()"
                 class ="logOutButton"
-                routerLink="/LogIn"
+                routerLink=""
                 routerLinkActive="active">
           Log out
         </button>
+    <!--Registration Button, only visible when logged out-->
     <div class = "divider"></div>
         <button *ngIf="!LoggedIn"
                 mat-raised-button color="primary"
@@ -29,6 +32,7 @@
                 routerLinkActive="active">
           Register
         </button>
+    <!--Profile Button, only visible when logged in-->
         <button *ngIf="LoggedIn"
                 mat-raised-button color="primary"
                 class ="profileButton"
