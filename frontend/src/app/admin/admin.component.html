@@ -1,15 +1,15 @@
 
 <mat-card>
-  <mat-card-title>List of User Register Requests</mat-card-title>
+  <mat-card-title>List of Open User Register Requests</mat-card-title>
   <mat-card-content>
-    <h2>Open Requests:</h2>
     <br>
     <table mat-table>
       <tr>
-        <th mat-row >Username</th>
-        <th mat-row>address</th>
-        <th mat-row>phone</th>
+        <th>Username</th>
+        <th>address</th>
+        <th>phone</th>
       </tr>
+      <!-- lists all users that are being fetched from backend-->
       <tr *ngFor="let user of Users">
         <td>{{user.username}}</td>
         <td>{{user.address}}</td>

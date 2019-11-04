@@ -4,11 +4,6 @@ import {User} from '../models/user';
 import {Observable} from 'rxjs';
 
 
-export interface DialogData {
-  action: string;
-  username: string;
-}
-
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -17,15 +12,13 @@ export interface DialogData {
 
 
 export class AdminComponent implements OnInit {
-  private adminUrl = 'http://localhost:3000/admin';
-  // private Users : Observable<User[]>;
-  private Users: any;
+  private Users: Observable<User[]>;
+  // private Users: any;
 
   constructor(private http: HttpClient) {
-    // this.Users = this.getRegistrationRequests();
+    this.Users = this.getRegistrationRequests();
     // -->testing without connection to backend
-
-    this.Users = [{
+    /*this.Users = [{
       username : 'name1',
       address: 'Beispielweg 1',
       phone : '123798'
@@ -40,24 +33,25 @@ export class AdminComponent implements OnInit {
         address: 'SomeStreet 5',
         phone : '230840984'
       },
-      ];
+      ];*/
   }
-
+// fetches users that need to be validated from backend
   getRegistrationRequests() {
     return this.http.get<User[]>('http://localhost:3000/user/verified');
-
   }
 
+// sends user to backend for validation and tells admin it was validated
   validateUser(user: User) {
     alert('User ' + user.username + ' was validated');
     return this.http.get('http://localhost:3000/user/validate/' + user.id);
     this.getRegistrationRequests();
   }
 
+  // sends user to backend for deletion and tells admin it was deleted
   deleteUser(user: User) {
     alert('User ' + user.username + ' was deleted');
     return this.http.delete('http://localhost:3000/user/' + user.id);
-    this.getRegistrationRequests()
+    this.getRegistrationRequests();
   }
 
 
