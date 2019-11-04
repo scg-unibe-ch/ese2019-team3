@@ -104,7 +104,7 @@ router.post('/login', async (req: Request, res: Response) => {
  * Middleware to verify token
  * Token must be send in the header of a request from the frontend
  */
-function verifyToken (req,res,next) {
+function verifyToken (req: Request,res: Response,next) {
     if (!req.headers.authorization) {   // The word authorization may need to be changed, depends on the naming of the header in the frontend
       res.statusCode = 401;
       res.send('Unauthorized request');

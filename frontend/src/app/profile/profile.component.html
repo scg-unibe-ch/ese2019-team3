@@ -1,94 +1,111 @@
-
 <div class="profile-box">
-
   <mat-card>
-      <mat-card-title>Mein Profil</mat-card-title>
-      <mat-card-content>
+    <mat-card-title>Mein Profil</mat-card-title>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item>
+          <mat-form-field>
+            <input matInput placeholder="Vorname" />
+          </mat-form-field>
+        </mat-list-item>
 
-            <mat-list>
-                <mat-list-item>
-                    <mat-form-field>
-                    <input matInput placeholder="Vorname" >
-                  </mat-form-field>
-                </mat-list-item>
+        <mat-list-item>
+          <mat-form-field>
+            <input matInput placeholder="Nachname" />
+          </mat-form-field>
+        </mat-list-item>
 
-                <mat-list-item>
-                    <mat-form-field>
-                    <input matInput placeholder="Nachname" >
-                  </mat-form-field>
-                </mat-list-item>
+        <mat-list-item>
+          <mat-form-field>
+            <input matInput placeholder="Addresse" />
+          </mat-form-field>
+        </mat-list-item>
 
-                <mat-list-item>
-                    <mat-form-field>
-                    <input matInput placeholder="Addresse" >
-                  </mat-form-field>
-                </mat-list-item>
+        <mat-list-item>
+          <mat-form-field>
+            <input matInput placeholder="Telefonnummer" />
+          </mat-form-field>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
 
-                <mat-list-item>
-                    <mat-form-field>
-                    <input matInput placeholder="Telefonnummer" >
-                  </mat-form-field>
-                </mat-list-item>
+    <button mat-raised-button color="primary">Ändern</button>
+    &nbsp;
+    <button mat-raised-button color="primary">Speichern</button>
+    <br />
+    <br />
 
-           </mat-list>
-           
-      </mat-card-content>  
-      
-      <button mat-raised-button color="primary">Ändern</button>
-      &nbsp;
-      <button mat-raised-button color="primary">Speichern</button>
-      <br>
-      <br>
+    <button
+      routerLink="ChangePassword"
+      mat-button
+      color="primary"
+      type="submit"
+    >
+      Change Password
+    </button>
 
-      <button routerLink="ChangePassword" mat-button color="primary" type="submit">
-          Change Password</button>
-
-      <button mat-button color = "warn"> Profil löschen. </button>
-
-    </mat-card>
-
+    <button mat-button color="warn">Profil löschen.</button>
+  </mat-card>
 </div>
-=======
-    <div [formGroup]="profileForm" (click)="disabled()"> 
-  
-    <mat-card>
-        <mat-card-title>Mein Profile</mat-card-title>
-        <mat-card-content> 
-  
-              <mat-list>
-                  <mat-list-item>
-                      <mat-form-field>
-                      <input matInput placeholder="Vorname" formControlName = "firstName">
-                    </mat-form-field>
-                  </mat-list-item>
-  
-                  <mat-list-item>
-                      <mat-form-field>
-                      <input matInput placeholder="Nachname" formControlName = "lastName">
-                    </mat-form-field>
-                  </mat-list-item>
-  
-                  <mat-list-item>
-                      <mat-form-field>
-                      <input matInput placeholder="Addresse" formControlName = "adress">
-                    </mat-form-field>
-                  </mat-list-item>
-  
-                  <mat-list-item>
-                      <mat-form-field>
-                      <input matInput placeholder="Telefonnummer" formControlName = "number">
-                    </mat-form-field>
-                  </mat-list-item>
-  
-             </mat-list>
-             
-        </mat-card-content>  
-        
-        <button mat-raised-button color="primary" (click) = "disabled()">Ändern</button>
-        &nbsp;
-        <button mat-raised-button color="primary" (click) = "onSubmit()">Speichern</button>
-      </mat-card>
-  
-    </div>
-  
+<div [formGroup]="profileForm" (click)="disabled()">
+  <mat-card>
+    <mat-card-title>Mein Profile</mat-card-title>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item>
+          <mat-form-field>
+            <input matInput placeholder="Vorname" formControlName="firstName" />
+            {{ currentUser.firstname }}
+          </mat-form-field>
+        </mat-list-item>
 
+        <mat-list-item>
+          <mat-form-field>
+            <input matInput placeholder="Nachname" formControlName="lastName" />
+            {{ currentUser.lastname }}
+          </mat-form-field>
+        </mat-list-item>
+
+        <mat-list-item>
+          <mat-form-field>
+            <input matInput placeholder="Addresse" formControlName="adress" />
+            {{ currentUser.adress }}
+          </mat-form-field>
+        </mat-list-item>
+
+        <mat-list-item>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Telefonnummer"
+              formControlName="number"
+            />
+            {{ currentUser.number }}
+          </mat-form-field>
+        </mat-list-item>
+
+        <mat-list-item>
+          <mat-form-field>
+            <input matInput placeholder="Email" formControlName="email" />
+            {{ currentUser.email }}
+          </mat-form-field>
+        </mat-list-item>
+
+        <mat-list-item>
+          <mat-form-field  *ngIf="isProvider()">
+            <input matInput placeholder="Geschäft" formControlName="company" />
+            {{ currentUser.company }}
+          </mat-form-field>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+
+    <button mat-raised-button color="primary" (click)="disabled()">
+      Ändern
+    </button>
+    &nbsp;
+    <button mat-raised-button color="primary" (click)="onSubmit()">
+      Speichern
+    </button>
+  </mat-card>
+</div>
