@@ -10,6 +10,8 @@ import { AuthenticationService } from "../authentication.service";
   styleUrls: ["./passwordforgotten.component.scss"]
 })
 export class PasswordforgottenComponent implements OnInit {
+
+
   email = new FormControl("", [Validators.required]);
 
   passwordforgottenForm = new FormGroup({
@@ -24,7 +26,8 @@ export class PasswordforgottenComponent implements OnInit {
       : "";
   }
 
-  //in progress
+  sendpasswordforgotten = false;
+
   constructor(private http: HttpClient, private authentication: AuthenticationService) {
 
     const url = 'http://localhost:4200/forgotpassword';
@@ -39,6 +42,7 @@ export class PasswordforgottenComponent implements OnInit {
     this.passwordforgottenForm.valueChanges.subscribe(value =>
       console.log(value)
     );
+
   }
 
   onSubmit() {
@@ -48,15 +52,31 @@ export class PasswordforgottenComponent implements OnInit {
     };
     console.warn(this.passwordforgottenForm.value);
     //router.put('/forgotPassword');
+    
+    this.forgotPassword(userMail);
+
+    this.sendpasswordforgotten = true;
+    
+    this.getEmail();
+
   }
 
   forgotPassword(userMail: Object) {
     console.log(userMail);
 
     this.authentication
-        .registerUser(userMail)
+        .passwordForgotten(userMail)
 
         .subscribe(res => console.log(res), err => console.log(err));
   }
 
+  validEmail(): boolean{
+    return this.passwordforgottenForm.get("email").valid
+
+  }
+
+  getEmail(){
+    return this.passwordforgottenForm.get("email")
+
+  }
 }

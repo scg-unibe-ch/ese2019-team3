@@ -1,0 +1,66 @@
+<div class="navigation">
+
+
+
+  <!-- When logged in -- @TODO authentication.loggedIn and authentication.isUser method in authentication service  -->
+
+  <div class = "top">
+    <button class = "navigation"[routerLink] = "['/profile']" *ngIf="authentication.loggedIn && authentication.isUser">
+      Profile
+    </button>
+  </div>
+
+  <!-- main navigation bar -->
+  <div class = "main">
+    <!-- @TODO add routerLink -->
+
+    <!--Location Button-->
+    <form class = "btn" style="float: left; margin-left: 5%;">
+    <mat-form-field>
+      <mat-label> All Locations </mat-label>
+        <mat-select>
+          <mat-option> None </mat-option>
+          <mat-option *ngFor = "let locations of locations " [value]  = "locations"> {{locations}} </mat-option>
+        </mat-select>
+    </mat-form-field>
+    </form>
+
+
+    <!-- Events Button-->
+    <form class ="btn" style="float: left; margin-left: 2%;">
+    <mat-form-field>
+      <mat-label> All Events </mat-label>
+      <mat-select>
+        <mat-option> None </mat-option>
+        <mat-option *ngFor = "let events of events" [value] = "events"> {{events}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+     </form>
+
+
+    <!-- Dates Button-->
+    <form class ="btn" style="float: left; margin-left: 2%; ">
+      <mat-form-field>
+        <mat-label> All Dates </mat-label>
+        <mat-select>
+          <mat-option> None </mat-option>
+          <mat-option  *ngFor = "let dates of dates" [value] = "dates"> {{dates}} </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+
+
+    <!-- Search Button -->
+    <form class = "btn" style="float: left; margin-left: 5%; margin-right: 5%;">
+     <mat-form-field>
+      <input matInput placeholder="Search for Artists and Events">
+     </mat-form-field>
+    </form>
+
+    <br>
+    <button class = "btn" mat-stroked-button style="float:right; margin-right: 10%">Search</button>
+
+
+  </div> <!-- /main -->
+
+</div>

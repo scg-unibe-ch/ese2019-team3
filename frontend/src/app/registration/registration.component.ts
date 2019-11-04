@@ -12,8 +12,11 @@ import { User } from "../user";
 export class RegistrationComponent implements OnInit {
   //Controll over multiple values
   registrationForm = new FormGroup({
-    email: new FormControl("", Validators.required),
-    password: new FormControl("", Validators.required),
+    email: new FormControl("", [Validators.required, Validators.email]),
+    password: new FormControl("", [
+      Validators.required,
+      Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=(.*[dW]){1,})(?!.*s).{8,}$")
+    ]),
     //TODO Validate
     userGroup: new FormControl(""),
     passwordconfirm: new FormControl("", Validators.required),
@@ -21,12 +24,14 @@ export class RegistrationComponent implements OnInit {
     lastName: new FormControl("", Validators.required),
     birthday: new FormControl("", Validators.required),
     adress: new FormControl(""),
-    number: new FormControl("")
+    number: new FormControl(""),
+    company: new FormControl("")
   });
 
   isEditable = true;
 
   //in progress
+
   constructor(
     private http: HttpClient,
     private authentification: AuthenticationService
@@ -40,21 +45,22 @@ export class RegistrationComponent implements OnInit {
   // testing
   ngOnInit() {
     this.registrationForm.valueChanges.subscribe(value => console.log(value));
+    console.log(this.validEmail());
+    console.log("Password" + this.validPassword());
   }
 
   // sends registerUser by submit to the backend
   onSubmit() {
-
-    
-    //alternative
-    //   const registerUserData = new User(this.registrationForm.get('email').value,
-    //                             this.registrationForm.get('password').value,
-    //                             this.registrationForm.get('userGroup').value);
-
     const registerUserData = {
       email: this.registrationForm.get("email").value,
       password: this.registrationForm.get("password").value,
-      userGroup: this.registrationForm.get("userGroup").value
+      userGroup: this.registrationForm.get("userGroup").value,
+      firstName: this.registrationForm.get("firstName").value,
+      lastName: this.registrationForm.get("lastName").value,
+      birthday: this.registrationForm.get("birthday").value,
+      adress: this.registrationForm.get("adress").value,
+      number: this.registrationForm.get("number").value,
+      company: this.registrationForm.get("company").value
     };
 
     console.warn(registerUserData);
@@ -63,9 +69,8 @@ export class RegistrationComponent implements OnInit {
     this.registerUser(registerUserData);
   }
 
-  //not used yet
-  get userGroup() {
-    return this.registrationForm.get("userGroup");
+  isProvider(): boolean {
+    return this.registrationForm.get("userGroup").value == "provider";
   }
 
   //send registered User to backend
@@ -78,17 +83,14 @@ export class RegistrationComponent implements OnInit {
       .subscribe(res => console.log(res), err => console.log(err));
   }
 
-  checkPasswordEqual(): boolean {
-    if (
-      this.registrationForm.get("password").value == "" ||
-      this.registrationForm.get("passwordconfirm").value == ""
-    ) {
-      return true;
-    }
+  validPassword(): boolean {
+    return this.registrationForm.get("password").invalid
+      ? false
+      : this.registrationForm.get("password").value ==
+          this.registrationForm.get("passwordconfirm").value;
+  }
 
-    return (
-      this.registrationForm.get("password").value ==
-      this.registrationForm.get("passwordconfirm").value
-    );
+  validEmail(): boolean {
+    return this.registrationForm.get("email").valid;
   }
 }

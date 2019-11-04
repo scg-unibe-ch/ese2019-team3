@@ -1,0 +1,24 @@
+
+<mat-card>
+  <mat-card-title>List of User Register Requests</mat-card-title>
+  <mat-card-content>
+    <h2>Open Requests:</h2>
+    <br>
+    <table mat-table>
+      <tr>
+        <th mat-row >Username</th>
+        <th mat-row>address</th>
+        <th mat-row>phone</th>
+      </tr>
+      <tr *ngFor="let user of Users">
+        <td>{{user.username}}</td>
+        <td>{{user.address}}</td>
+        <td>{{user.phone}}</td>
+        <td><button mat-button style="color: #0ec254">Accept</button></td>
+        <button mat-button style="color: #d33939">Deny</button>
+      </tr>
+    </table>
+  </mat-card-content>
+
+
+</mat-card>

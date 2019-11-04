@@ -24,14 +24,27 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { RouterModule, Routes } from '@angular/router';
 import {ChangePasswordComponent} from './change-password/change-password.component';
+import {AdminComponent} from './admin/admin.component';
+
+import {HeaderComponent} from "./header/header.component";
+import {MatSelectModule} from "@angular/material/select";
+import {AuthGuard} from './auth.guard';
+import {RoleGuard} from './role.guard';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+
 
 const appRoutes: Routes = [
     { path: 'LogIn', component: LoginComponent },
     { path: 'LogIn/PasswordForgotten', component: PasswordforgottenComponent },
     { path: 'Registration', component: RegistrationComponent},
-    { path: 'Profile', component: ProfileComponent},
-    { path: 'Profile/ChangePassword', component: ChangePasswordComponent},
-    { path: '', component: TodoListComponent},
+    { path: 'Profile', component: ProfileComponent, canActivate: [AuthGuard] },
+    { path: 'Profile/ChangePassword', component: ChangePasswordComponent, canActivate: [AuthGuard] },
+    { path: 'Admin', component: AdminComponent, canActivate: [RoleGuard],
+        data: {
+            expectedRole: 'admin'
+        } },
+    { path: '', component: HeaderComponent},
+    { path: '**', component: PageNotFoundComponent },
 ];
 @NgModule({
     declarations: [
@@ -44,6 +57,9 @@ const appRoutes: Routes = [
         PasswordforgottenComponent,
         RegistrationComponent,
         ChangePasswordComponent,
+        AdminComponent,
+        HeaderComponent,
+        PageNotFoundComponent
 
     ],
 
@@ -58,8 +74,9 @@ const appRoutes: Routes = [
         ReactiveFormsModule,
         RouterModule.forRoot(
             appRoutes,
-            { enableTracing: true } // <-- debugging purposes only
-        )
+            {enableTracing: true} // <-- debugging purposes only
+        ),
+        MatSelectModule
     ],
   providers: [
     StatusBar,

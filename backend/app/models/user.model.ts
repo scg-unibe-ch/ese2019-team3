@@ -1,7 +1,5 @@
 import {Table, Column, Model, HasMany, BelongsTo, ForeignKey, Unique} from 'sequelize-typescript';
-import {TodoList} from './todolist.model';
-import {TodoItem} from './todoitem.model';
-
+const bcrypt = require('bcryptjs');  //used to hash passwords
 @Table
 export class User extends Model<User> {
 
@@ -19,16 +17,19 @@ export class User extends Model<User> {
   password!: string;
 
    @Column
-   vorname!: string;
+   firstname!: string;
 
     @Column
-    nachname!: string;
+    lastname!: string;
 
     @Column
-    adresse!: string;
+    adress!: string;
 
     @Column
-    telefon!: string;
+    number!: string;
+
+    @Column
+    birthday!: string;
 
 
   toSimplification(): any {
@@ -38,6 +39,11 @@ export class User extends Model<User> {
       'email': this.email,
       'userGroup': this.userGroup,
       'password': this.password,
+      'firstname': this.firstname,
+      'lastname': this.lastname,
+      'adress': this.adress,
+      'number': this.number,
+      'birthday': this.birthday
     };
   }
 
@@ -46,12 +52,19 @@ export class User extends Model<User> {
     this.email = simplification['email'];
     this.userGroup = simplification['userGroup'];
     this.password = simplification['password'];
+    this.firstname = simplification['firstname'];
+    this.lastname = simplification['lastname'];
+    this.adress = simplification['adress'];
+    this.number = simplification['number'];
+    this.birthday = simplification['birthday'];
+
+
 
   }
 
   createAdminUser() {
     this.email = 'admin';
-    this.password = 'admin';
+    this.password = bcrypt.hashSync('admin', 8);
     this.userGroup = 'adminGroup';
     this.isVerified = true;
   }
