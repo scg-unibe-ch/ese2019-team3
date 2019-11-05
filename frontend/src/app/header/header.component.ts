@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from "../authentication.service";
 import {FormControl, FormGroup} from '@angular/forms';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import {ServiceService} from "../service.service";
@@ -16,20 +17,26 @@ export class HeaderComponent implements OnInit {
   services : string [] = ['Food & Drink', 'Musik', 'Licht & Bühne', 'Werbung' ];
   locations : string [] = ['Aarau', 'Basel', 'Bern', 'Biel/Bienne', 'Frauenfeld', 'Freiburg', 'Genf', 'Lausanne', 'Lugano','Luzern', 'Neuenburg', 'Schaffhausen',
   'Schwyz', 'Sitten', 'Solothurn', 'St. Gallen', 'Zug', 'Zürich'];
-  dates : string [] = ['Today', 'This Week', 'This Month', 'This Year'];
+
 
   //filter for l = location, s = services and d= dates
-  filter : any = {
+  /*filter : any = {
     l : '',
     s: '',
     d  : '',
-  };
-  searchForm = new FormGroup({
+  };*/
+
+  /*searchForm = new FormGroup({
     services: new FormControl("",),
     locations: new FormControl(""),
     dates: new FormControl(""),
-  });
+  });*/
 
+
+  public s:string;
+  public l:string;
+  d = new Date();
+  public anything: string;
 
   constructor(public authentication : AuthenticationService,
               private service: ServiceService) {
@@ -38,17 +45,20 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {}
 
+  //click on Search Button!
   onSubmit(){
     const searchObject = {
-      services: this.searchForm.get(this.services).value,
-      locations: this.searchForm.get("locations").value,
-      about: this.searchForm.get("about").value
+      services: this.s,
+      locations: this.l,
+      dates: this.d,
+      anything: this.anything,
     };
     console.log("searching for service");
     //calls method to post the registerUser to the backend
     this.searchService(searchObject);
-  }
 
+  }
+//goes to backend
   searchService (searchObject: Object){
     console.log(searchObject);
     this.service

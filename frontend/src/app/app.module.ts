@@ -32,6 +32,8 @@ import {AuthGuard} from './auth.guard';
 import {RoleGuard} from './role.guard';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {AddserviceComponent} from "./addservice/addservice.component";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 
 
 const appRoutes: Routes = [
@@ -79,7 +81,9 @@ const appRoutes: Routes = [
             appRoutes,
             {enableTracing: true} // <-- debugging purposes only
         ),
-        MatSelectModule
+        MatSelectModule,
+        MatDatepickerModule,
+        MatNativeDateModule
     ],
   providers: [
     StatusBar,
