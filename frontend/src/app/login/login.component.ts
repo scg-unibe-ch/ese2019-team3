@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
 // user is required to fill out both username and password fields
    loginForm = new FormGroup({
-        username: new FormControl('', Validators.required),
+        email: new FormControl('', Validators.required),
         password: new FormControl('', Validators.required),
     });
 
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     loginUser() {
 
         const loginData = {
-            username: this.loginForm.get('username').value,
+            email: this.loginForm.get('email').value,
             password: this.loginForm.get('password').value,
         };
 

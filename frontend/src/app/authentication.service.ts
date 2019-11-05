@@ -27,7 +27,7 @@ export class AuthenticationService {
     this.http.post<any>(this.loginUrl, user).subscribe(
         res => {
           console.log(res);
-          if (res.token != null ) {
+          if (res !== ('Account not found' || 'Invalid password!')) {
             localStorage.setItem('token', res.token);
             return true; }
         },
