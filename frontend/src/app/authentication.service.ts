@@ -19,7 +19,7 @@ export class AuthenticationService {
   }
 
   // accepts userObject and returns response of backend, backend responses either with error or registered user
-  registerUser(user: Object) {
+  registerUser(user) {
     return this.http.post<any>(this.registerUrl, user);
   }
 
@@ -27,9 +27,12 @@ export class AuthenticationService {
     this.http.post<any>(this.loginUrl, user).subscribe(
         res => {
           console.log(res);
-          localStorage.setItem('token', res.token);
+          if (res.token != null ) {
+            localStorage.setItem('token', res.token);
+            return true; }
         },
         err => console.log(err));
+    return false;
   }
 
   public isAuthenticated(): Observable<any> {    const token = localStorage.getItem('token');

@@ -47,16 +47,18 @@ export class LoginComponent implements OnInit {
         };
 
         this.sendUserData(loginData);
-        this.home.logIn();
 
     }
 
     // sends Data from login form to backend
     sendUserData(loginData: object) {
         console.log(loginData);
-        this.authentification.loginUser(loginData);
-        this.home.logIn();
-        this.router.navigate(['']);
+        if (this.authentification.loginUser(loginData) === true) {
+            this.home.logIn();
+            this.router.navigate(['']);
+        } else {
+            alert('login failed: wrong username or password');
+        }
 
     }
 }
