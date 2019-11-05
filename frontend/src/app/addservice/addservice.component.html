@@ -10,7 +10,7 @@
       <mat-list-item>
         <mat-form-field>
           <mat-label>Service Category</mat-label>
-          <mat-select id = "service" [(ngModel)]="filter.s" name = "service">
+          <mat-select id = "service" [(ngModel)]="s" name = "service">
             <mat-option> None</mat-option>
             <mat-option *ngFor = "let services of services " [value]  = "services"> {{services}} </mat-option>
           </mat-select>
@@ -22,7 +22,7 @@
       <mat-list-item>
         <mat-form-field>
           <mat-label>Where?</mat-label>
-          <mat-select id = "location" [(ngModel)]="filter.l" name = "location">
+          <mat-select id = "location" [(ngModel)]="l" name = "location">
             <mat-option>None</mat-option>
             <mat-option *ngFor = "let locations of locations " [value] = "locations">{{locations}}</mat-option>
           </mat-select>
@@ -33,7 +33,7 @@
       <div class = "f2">
       <mat-list-item>
         <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="When?">
+            <input [(ngModel)]="d" name = "date" matInput [matDatepicker]="picker" placeholder="When?">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker touchUi #picker></mat-datepicker>
         </mat-form-field>
@@ -43,7 +43,7 @@
       <div class = "f3">
       <mat-list-item>
         <mat-form-field>
-          <input matInput placeholder="Preis (optional)">
+          <input [(ngModel)] = "price" name = "price "matInput placeholder="Preis (optional)">
         </mat-form-field>
       </mat-list-item>
       </div>
@@ -52,7 +52,7 @@
       <mat-list-item>
         <mat-form-field class ="AboutBtn">
           <mat-label>Beschreibung</mat-label>
-          <textarea matInput
+          <textarea matInput [(ngModel)]="about" name = "about"
                     cdkTextareaAutosize
                     #autosize="cdkTextareaAutosize"
                     cdkAutosizeMinRows="1"

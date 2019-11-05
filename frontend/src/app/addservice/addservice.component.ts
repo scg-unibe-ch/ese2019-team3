@@ -16,7 +16,7 @@ export class AddserviceComponent implements OnInit {
     'Schwyz', 'Sitten', 'Solothurn', 'St. Gallen', 'Zug', 'Zürich'];
 
 
-  filter : any = {
+  /*filter : any = {
     l : '',
     s: '',
   };
@@ -25,30 +25,45 @@ export class AddserviceComponent implements OnInit {
     services: new FormControl("",),
     locations: new FormControl(""),
     about: new FormControl(""),
-  });
+  });*/
+
+
+  private l:string;
+  private s: string;
+  d = new Date();
+  private price: string;
+  private about:string; //evt. json file!
+
 
   constructor(private http: HttpClient,
               private authentification: AuthenticationService,
-              private service: ServiceService,
-  ) {
+              private service: ServiceService,) {
     const url = "http://localhost:4200/addService";
+    const serviceForm = {
+      services: this.s,
+      locations: this.l,
+      dates: this.d,
+      price: this.price,
+      about: this.about,
+    }
    this.http
-        .post(url, this.serviceForm.value)
+        .post(url, serviceForm)
         .subscribe(() => {
         }, e => console.error(e));
   }
 
   ngOnInit() {
-    this.serviceForm.valueChanges.subscribe(value => console.log(value));
+    //this.serviceForm.valueChanges.subscribe(value => console.log(value));
   }
 
   onSubmit() {
     const addService = {
-      services: this.serviceForm.get("services").value,
-      locations: this.serviceForm.get("locations").value,
-      about: this.serviceForm.get("about").value
+        services: this.s,
+        locations: this.l,
+        dates: this.d,
+        price: this.price,
+        about: this.about,
     };
-
     console.log("Adding new Service", addService);
     //calls method to post the registerUser to the backend
     this.addservice(addService);
