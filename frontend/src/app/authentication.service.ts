@@ -32,7 +32,8 @@ export class AuthenticationService {
   }
 
   public get loggedIn(): boolean {
-    return;
+    
+    return
   }
   public isUser(): boolean {
     return;
@@ -56,5 +57,10 @@ export class AuthenticationService {
    */
   getUser (email: Object): Observable<User>{
     return this.http.get<any>(this.rootUrl + email);
+  }
+
+  updateUser (user: User): Observable<User>{
+    return this.http.put<any>(this.rootUrl + user.email, user);
+
   }
 }

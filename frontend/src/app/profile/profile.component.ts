@@ -33,10 +33,9 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     console.log("CurrentUser empty: " + this.currentUser);
-    //getEmail of logged in User
-    this.authentification
-      .getUser(this.profileForm.get("email").value)
-      .subscribe(res => this.currentUser = res);
+   
+      //TODO getMail
+    this.displayUser(this.profileForm.get("email").value);
 
     console.log("CurrentUser filled: " + this.currentUser);
   }
@@ -52,6 +51,8 @@ export class ProfileComponent implements OnInit {
     // TODO: Use EventEmitter with form value
     console.warn(this.profileForm.value);
     this.disabled();
+    //update User data
+    this.updateUser();
   }
 
   enabled() {
@@ -60,5 +61,17 @@ export class ProfileComponent implements OnInit {
 
   isProvider() {
     return this.currentUser.userGroup == "provider" ? true : false;
+  }
+
+  displayUser(email){
+    this.authentification
+      .getUser(email)
+      .subscribe(res => this.currentUser = res);
+  }
+
+  updateUser(){
+    this.authentification
+    .updateUser(this.currentUser)
+    .subscribe(res => console.log(res), err=> console.log(err))
   }
 }
