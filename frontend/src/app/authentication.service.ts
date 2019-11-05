@@ -24,16 +24,17 @@ export class AuthenticationService {
   }
 
   loginUser(user) {
-    return this.http.post<any>(this.loginUrl, user);
+    this.http.post<any>(this.loginUrl, user).subscribe(
+        res => {
+          console.log(res);
+          localStorage.setItem('token', res.token);
+        },
+        err => console.log(err));
   }
 
   public isAuthenticated(): Observable<any> {    const token = localStorage.getItem('token');
   // Checks whether the token is expired or not
     return this.http.post<any>(this.verificationUrl, token);
-  }
-
-  public get loggedIn(): boolean {
-    return;
   }
   public isUser(): boolean {
     return;

@@ -54,15 +54,9 @@ export class LoginComponent implements OnInit {
     // sends Data from login form to backend
     sendUserData(loginData: object) {
         console.log(loginData);
-        this.authentification.loginUser(loginData)
-            .subscribe(
-                res => {
-                    console.log(res);
-                    localStorage.setItem('token', res.token);
-                    this.home.logIn();
-                    this.router.navigate(['']);
-                },
-                err => console.log(err));
+        this.authentification.loginUser(loginData);
+        this.home.logIn();
+        this.router.navigate(['']);
 
     }
 }
