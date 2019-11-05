@@ -13,8 +13,9 @@
                 routerLinkActive="active">
           Log In
         </button>
+
         <!-- what if on diffrent page? -->
-        <button *ngIf="LoggedIn"
+       <button *ngIf="LoggedIn"
                 mat-button (click) = "logOut()"
                 class ="logOutButton"
                 routerLink="/LogIn"
