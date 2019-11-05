@@ -98,7 +98,7 @@ router.post('/login', async (req: Request, res: Response) => {
   const token = jwt.sign(payload, 'key');
   res.statusCode = 200; //status code: OK
   res.send({token});
-}});
+});
 
 /**
  * Middleware to verify token
