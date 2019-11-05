@@ -34,6 +34,8 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {AddserviceComponent} from "./addservice/addservice.component";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import {BodyComponent} from "./body/body.component";
+import {FooterComponent} from "./footer/footer.component";
 
 
 const appRoutes: Routes = [
@@ -65,6 +67,8 @@ const appRoutes: Routes = [
         HeaderComponent,
         PageNotFoundComponent,
         AddserviceComponent,
+        BodyComponent,
+        FooterComponent,
 
     ],
 
