@@ -62,16 +62,23 @@ export class User extends Model<User> {
 
   }
 
-  createAdminUser() {
-    this.email = 'admin';
-    this.password = bcrypt.hashSync('admin', 8);
-    this.userGroup = 'adminGroup';
-    this.isVerified = true;
-  }
+    createAdminUser() {
+        this.email = 'admin';
+        this.password = bcrypt.hashSync('admin', 8);
+        this.userGroup = 'adminGroup';
+        this.isVerified = true;
+    }
+
 
   setPassword(newPassword: string) {
       this.password = newPassword;
       this.save();
     }
 
+    createDummyUser() {
+        this.email = 'Peter';
+        this.password = bcrypt.hashSync('test', 8);
+        this.userGroup = 'serviceProvider';
+        this.isVerified = false;
+    }
 }
