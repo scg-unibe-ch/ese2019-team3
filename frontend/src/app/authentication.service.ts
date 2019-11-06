@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +12,9 @@ export class AuthenticationService {
   private registerUrl = 'http://localhost:3000/user/register';
   private loginUrl = 'http://localhost:3000/user/login';
   private verificationUrl = 'http://localhost:3000/user/verifyToken';
-
-
   private passwordforgottenUrl = 'http://localhost:3000/user/forgotPassword';
-  constructor(private http: HttpClient) {
 
+  constructor(private http: HttpClient, private router: Router) {
   }
 
   // accepts userObject and returns response of backend, backend responses either with error or registered user
@@ -27,14 +26,13 @@ export class AuthenticationService {
     this.http.post<any>(this.loginUrl, user).subscribe(
         res => {
           console.log(res);
-          if (res !== ('Account not found' || 'Invalid password!')) {
-            localStorage.setItem('token', res.token);
-            return true; }
+          localStorage.setItem('token', res.token);
+          this.router.navigate(['']);
         },
-        err => console.log(err));
-    return false;
+        err => {console.log(err);
+                alert(err.body); }
+                );
   }
-
   public isAuthenticated(): Observable<any> {    const token = localStorage.getItem('token');
   // Checks whether the token is expired or not
     return this.http.post<any>(this.verificationUrl, token);

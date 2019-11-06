@@ -12,16 +12,9 @@ import {HomeComponent} from '../home/home.component';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-
-    // tslint:disable-next-line:max-line-length
-    constructor(private http: HttpClient, private authentification: AuthenticationService, private router: Router, private home: HomeComponent) {
-
-        const url = 'http://localhost:3000/user/login';
-        this.http.post(url, this.loginForm.value).subscribe(
-            () => {},
-            (e) => console.error(e)
-
-        );
+    private message;
+    constructor(private http: HttpClient, private authentification: AuthenticationService, private router: Router,
+                private home: HomeComponent) {
     }
 
 // user is required to fill out both username and password fields
@@ -52,13 +45,6 @@ export class LoginComponent implements OnInit {
 
     // sends Data from login form to backend
     sendUserData(loginData: object) {
-        console.log(loginData);
-        if (this.authentification.loginUser(loginData) === true) {
-            this.home.logIn();
-            this.router.navigate(['']);
-        } else {
-            alert('login failed: wrong username or password');
-        }
-
+        this.authentification.loginUser(loginData);
     }
 }
