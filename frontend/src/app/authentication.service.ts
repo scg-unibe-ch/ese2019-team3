@@ -30,7 +30,7 @@ export class AuthenticationService {
           this.router.navigate(['']);
         },
         err => {console.log(err);
-                alert(err.body); }
+                alert(err.error); }
                 );
   }
   public isAuthenticated(): Observable<any> {    const token = localStorage.getItem('token');
