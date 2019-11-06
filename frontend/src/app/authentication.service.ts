@@ -13,6 +13,7 @@ export class AuthenticationService {
   private loginUrl = 'http://localhost:3000/user/login';
   private verificationUrl = 'http://localhost:3000/user/verifyToken';
   private passwordforgottenUrl = 'http://localhost:3000/user/forgotPassword';
+  private addServiceUrl = "http://localhost:3000/user/addService";
 
   constructor(private http: HttpClient, private router: Router) {
   }
