@@ -43,7 +43,7 @@ module.exports = {
             console.log('Email sent: ' + info.response);
         }
     });
-}
+},
     sendNewPassword: function sendNewPassword(email: string, newPassword: string) {
     var mailOptions = {
         from: 'cooleseproject@gmail.com',
