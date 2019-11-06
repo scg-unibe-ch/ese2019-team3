@@ -30,6 +30,7 @@
     "typescript": "^3.6.3"
   },
   "devDependencies": {
+    "@types/swagger-ui-express": "^3.0.1",
     "tslint": "^5.20.0"
   },
   "repository": {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService} from '../authentication.service';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  LoggedIn = true;
+  LoggedIn = false;
   innerWidth: any;
 
-  constructor() {
+  constructor(private auth: AuthenticationService) {
+    if (this.auth.isAuthenticated()) {
+      this.LoggedIn = true;
+    } else {
+      this.LoggedIn = false;
+    }
   }
 
   ngOnInit() {
@@ -22,9 +28,5 @@ export class HomeComponent implements OnInit {
     // ToDO: call authentication method,
     this.LoggedIn = false;
     localStorage.removeItem('token');
-  }
-
-  logIn() {
-    this.LoggedIn = true;
   }
 }

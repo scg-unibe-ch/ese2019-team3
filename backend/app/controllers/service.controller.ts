@@ -69,7 +69,7 @@ router.post('/register', async (req, res) => {
 
 
     await service.save().then ( async() => {
-      );
+    });
 
 });
 

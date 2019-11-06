@@ -367,7 +367,7 @@
         }
       }
     }
-  }
+  },
   "securityDefinitions": {
     "petstore_auth": {
       "type": "oauth2",
