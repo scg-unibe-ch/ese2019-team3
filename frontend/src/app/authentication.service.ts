@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { tap } from 'rxjs/operators';
 import { User } from './user';
 
 @Injectable({
@@ -14,15 +15,33 @@ export class AuthenticationService {
   private rootUrl = "http://localhost:3000/user/";
 
   private passwordforgottenUrl = "http://localhost:3000/user/forgotPassword";
+
+  private loggedInUser: User;
+
   constructor(private http: HttpClient) {}
 
   //accepts userObject and returns response of backend, backend responses either with error or registered user
-  registerUser(user: Object) {
+  registerUser(user: User) {
     return this.http.post<any>(this.registerUrl, user);
   }
 
-  loginUser(user) {
-    return this.http.post<any>(this.loginUrl, user);
+  loginUser(user: User) {
+    return this.http.post<any>(this.loginUrl, user).pipe(
+      //getting token parameter, doesn't modify stream only saves the one into the for
+      tap(token => {
+        this.loggedInUser = user;
+      })
+    );
+  }
+
+  getEmail(): string{
+    return this.loggedInUser.email;
+  }
+
+  public logOut(){
+    this.loggedInUser = null;
+    localStorage.removeItem('token');
+
   }
 
   public isAuthenticated(): Observable<any> {
@@ -55,7 +74,7 @@ export class AuthenticationService {
    * @param email of User to identify him
    * @param User saves values into current User
    */
-  getUser (email: Object): Observable<User>{
+  getUser (email: string): Observable<User>{
     return this.http.get<any>(this.rootUrl + email);
   }
 

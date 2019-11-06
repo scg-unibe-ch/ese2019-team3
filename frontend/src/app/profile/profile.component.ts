@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { getQueryPredicate } from "@angular/compiler/src/render3/view/util";
+import { tap } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { AuthenticationService } from "../authentication.service";
@@ -15,10 +16,12 @@ export class ProfileComponent implements OnInit {
   profileForm = new FormGroup({
     firstName: new FormControl("", Validators.required),
     lastName: new FormControl("", Validators.required),
+    email: new FormControl("", [Validators.required, Validators.email]),
+    birthday: new FormControl("", Validators.required),
     adress: new FormControl(""),
-    number: new FormControl("")
+    number: new FormControl(""),
+    company: new FormControl("")
   });
-
   constructor(
     private http: HttpClient,
     private authentification: AuthenticationService
@@ -31,11 +34,17 @@ export class ProfileComponent implements OnInit {
 
   public currentUser: User;
 
+  public email: string 
+
+  getEmail(){
+    this.email = this.authentification.getEmail()
+
+  }
   ngOnInit() {
     console.log("CurrentUser empty: " + this.currentUser);
-   
-      //TODO getMail
-    this.displayUser(this.profileForm.get("email").value);
+
+    //TODO getMail
+    this.displayUser(this.email);
 
     console.log("CurrentUser filled: " + this.currentUser);
   }
@@ -63,15 +72,22 @@ export class ProfileComponent implements OnInit {
     return this.currentUser.userGroup == "provider" ? true : false;
   }
 
-  displayUser(email){
+  displayUser(email: string) {
     this.authentification
       .getUser(email)
-      .subscribe(res => this.currentUser = res);
+      .pipe(
+        tap(user => {
+          //side effect to save user into formgroup as same values
+          this.profileForm.patchValue(user);
+        })
+      )
+      //testing
+      .subscribe(res => (this.currentUser = res), res => console.log(res));
   }
 
-  updateUser(){
+  updateUser() {
     this.authentification
-    .updateUser(this.currentUser)
-    .subscribe(res => console.log(res), err=> console.log(err))
+      .updateUser(this.currentUser)
+      .subscribe(res => console.log(res), err => console.log(err));
   }
 }
