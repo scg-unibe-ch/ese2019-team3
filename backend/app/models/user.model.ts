@@ -76,7 +76,7 @@ export class User extends Model<User> {
     }
 
     createDummyUser() {
-        this.email = 'Peter';
+        this.email = 'Peter@hand.ruedi';
         this.password = bcrypt.hashSync('test', 8);
         this.userGroup = 'serviceProvider';
         this.isVerified = false;
