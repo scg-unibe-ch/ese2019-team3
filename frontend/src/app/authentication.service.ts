@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, pipe } from "rxjs";
 import { tap } from "rxjs/operators";
 import { User } from "./user";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: "root"
@@ -17,21 +18,6 @@ export class AuthenticationService {
   private loggedInUser: User;
 
   private passwordforgottenUrl = "http://localhost:3000/user/forgotPassword";
-  constructor(private http: HttpClient) {}
-
-  //accepts userObject and returns response of backend, backend responses either with error or registered user
-  registerUser(user) {
-    return this.http.post<any>(this.registerUrl, user);
-  }
-
-  loginUser(user) {
-    return this.http.post<any>(this.loginUrl, user).pipe(
-      //getting token parameter, doesn't modify stream only saves the one into the for
-      tap(token => {
-        this.loggedInUser = user;
-      })
-    );
-  }
 
   getEmail(): string {
     return this.loggedInUser.email;
@@ -42,14 +28,47 @@ export class AuthenticationService {
     localStorage.removeItem("token");
   }
 
+  constructor(private http: HttpClient, private router: Router) {}
+
+  // accepts userObject and returns response of backend, backend responses either with error or registered user
+  registerUser(user) {
+    return this.http.post<any>(this.registerUrl, user);
+  }
+
+  loginUser(user) {
+    this.http.post<any>(this.loginUrl, user)
+      .pipe(
+        //getting token parameter, doesn't modify stream only saves the one into the for
+        tap(() => {
+          this.loggedInUser = user;
+        })
+      )
+      .subscribe(
+        res => {
+          console.log(res);
+          localStorage.setItem("token", res.token);
+          this.router.navigate([""]);
+        },
+        err => {
+          console.log(err);
+          alert(err.error);
+        }
+      );
+  }
+
+  // loginUer(user) {
+  //   return this.http.post<any>(this.loginUrl, user).pipe(
+  //     //getting token parameter, doesn't modify stream only saves the one into the for
+  //     tap(token => {
+  //       this.loggedInUser = user;
+  //     })
+  //   );
+  // }
+
   public isAuthenticated(): Observable<any> {
     const token = localStorage.getItem("token");
     // Checks whether the token is expired or not
     return this.http.post<any>(this.verificationUrl, token);
-  }
-
-  public get loggedIn(): boolean {
-    return;
   }
   public isUser(): boolean {
     return;

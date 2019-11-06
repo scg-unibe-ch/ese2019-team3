@@ -37,9 +37,9 @@ export class RegistrationComponent implements OnInit {
     private authentification: AuthenticationService
   ) {
     const url = "http://localhost:4200/registration";
-    this.http
-      .post(url, this.registrationForm.value)
-      .subscribe(() => {}, e => console.error(e));
+    // this.http
+    //   .post(url, this.registrationForm.value)
+    //   .subscribe(() => {}, e => console.error(e));
   }
 
   // testing
