@@ -10,6 +10,7 @@ import { User } from "../user";
   styleUrls: ["./registration.component.scss"]
 })
 export class RegistrationComponent implements OnInit {
+
   //Controll over multiple values
   registrationForm = new FormGroup({
     email: new FormControl("", [Validators.required, Validators.email]),

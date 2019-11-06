@@ -49,4 +49,9 @@ export class AuthenticationService {
   passwordForgotten(email: object) {
     return this.http.put<any>(this.passwordforgottenUrl, email);
   }
+
+  addservice(addService: Object){
+    return this.http.post<any>(this.addServiceUrl, addService)
+
+  }
 }

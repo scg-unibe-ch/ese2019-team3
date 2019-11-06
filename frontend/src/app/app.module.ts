@@ -31,6 +31,11 @@ import {MatSelectModule} from "@angular/material/select";
 import {AuthGuard} from './auth.guard';
 import {RoleGuard} from './role.guard';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {AddserviceComponent} from "./addservice/addservice.component";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+import {BodyComponent} from "./body/body.component";
+import {FooterComponent} from "./footer/footer.component";
 
 
 const appRoutes: Routes = [
@@ -39,6 +44,7 @@ const appRoutes: Routes = [
     { path: 'Registration', component: RegistrationComponent},
     { path: 'Profile', component: ProfileComponent, canActivate: [AuthGuard] },
     { path: 'Profile/ChangePassword', component: ChangePasswordComponent, canActivate: [AuthGuard] },
+    {path: 'addService', component: AddserviceComponent, canActivate: [AuthGuard]},
     { path: 'Admin', component: AdminComponent, canActivate: [RoleGuard],
         data: {
             expectedRole: 'admin'
@@ -59,7 +65,10 @@ const appRoutes: Routes = [
         ChangePasswordComponent,
         AdminComponent,
         HeaderComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
+        AddserviceComponent,
+        BodyComponent,
+        FooterComponent,
 
     ],
 
@@ -76,7 +85,9 @@ const appRoutes: Routes = [
             appRoutes,
             {enableTracing: true} // <-- debugging purposes only
         ),
-        MatSelectModule
+        MatSelectModule,
+        MatDatepickerModule,
+        MatNativeDateModule
     ],
   providers: [
     StatusBar,
