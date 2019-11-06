@@ -12,11 +12,11 @@ import {Observable} from 'rxjs';
 
 
 export class AdminComponent implements OnInit {
-  private Users: Observable<User[]>;
+  private Users;
   // private Users: any;
 
   constructor(private http: HttpClient) {
-    this.Users = this.getRegistrationRequests();
+    this.getRegistrationRequests();
     // -->testing without connection to backend
     /*this.Users = [{
       username : 'name1',
@@ -37,7 +37,9 @@ export class AdminComponent implements OnInit {
   }
 // fetches users that need to be validated from backend
   getRegistrationRequests() {
-    return this.http.get<User[]>('http://localhost:3000/user/verified');
+    this.http.get('http://localhost:3000/user/verified')
+        .subscribe(res => {console.log(res); this.Users = res; alert(res); },
+                err => console.log(err));
   }
 
 // sends user to backend for validation and tells admin it was validated
