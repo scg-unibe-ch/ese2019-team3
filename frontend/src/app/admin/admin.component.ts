@@ -37,8 +37,7 @@ export class AdminComponent implements OnInit {
   }
 // fetches users that need to be validated from backend
   getRegistrationRequests() {
-    this.http.get('http://localhost:3000/user/verified')
-        .subscribe(res => {console.log(res); this.Users = res; alert(res); },
+    this.http.get('http://localhost:3000/user/verified').subscribe(res => {console.log(res); this.Users = res; alert(res); },
                 err => console.log(err));
   }
 
