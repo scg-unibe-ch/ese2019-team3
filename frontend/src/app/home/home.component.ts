@@ -16,16 +16,15 @@ export class HomeComponent implements OnInit {
     this.innerWidth = window.innerWidth;
   }
 
-  logOut(){
-    //Test
+  logOut() {
+    // Test
     alert('Sie wurden erfolgreich abgemeldet');
-    //ToDO: call authentication method, 
+    // ToDO: call authentication method,
     this.LoggedIn = false;
-    //for example, if token was set before
-    //localStorage.removeItem('token');
+    localStorage.removeItem('token');
   }
 
-  logIn(){
+  logIn() {
     this.LoggedIn = true;
   }
 }

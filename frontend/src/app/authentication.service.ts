@@ -1,31 +1,30 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { tap } from 'rxjs/operators';
-import { User } from './user';
+import { tap } from "rxjs/operators";
+import { User } from "./user";
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthenticationService {
+  private rootUrl = "http://localhost:3000/user/";
+
   private registerUrl = "http://localhost:3000/user/register";
   private loginUrl = "http://localhost:3000/user/login";
   private verificationUrl = "http://localhost:3000/user/verifyToken";
 
-  private rootUrl = "http://localhost:3000/user/";
-
-  private passwordforgottenUrl = "http://localhost:3000/user/forgotPassword";
-
   private loggedInUser: User;
 
+  private passwordforgottenUrl = "http://localhost:3000/user/forgotPassword";
   constructor(private http: HttpClient) {}
 
   //accepts userObject and returns response of backend, backend responses either with error or registered user
-  registerUser(user: User) {
+  registerUser(user) {
     return this.http.post<any>(this.registerUrl, user);
   }
 
-  loginUser(user: User) {
+  loginUser(user) {
     return this.http.post<any>(this.loginUrl, user).pipe(
       //getting token parameter, doesn't modify stream only saves the one into the for
       tap(token => {
@@ -34,14 +33,13 @@ export class AuthenticationService {
     );
   }
 
-  getEmail(): string{
+  getEmail(): string {
     return this.loggedInUser.email;
   }
 
-  public logOut(){
+  public logOut() {
     this.loggedInUser = null;
-    localStorage.removeItem('token');
-
+    localStorage.removeItem("token");
   }
 
   public isAuthenticated(): Observable<any> {
@@ -51,14 +49,13 @@ export class AuthenticationService {
   }
 
   public get loggedIn(): boolean {
-    
-    return
+    return;
   }
   public isUser(): boolean {
     return;
   }
-  /**
-   * Initiate the passwordforgotten
+  /*
+   *Initiate the passwordforgotten
    * sends put request to the backend
    * to replace old password
    * @param email email of the user
@@ -68,18 +65,16 @@ export class AuthenticationService {
     return this.http.put<any>(this.passwordforgottenUrl, email);
   }
 
-  
   /**
    *
    * @param email of User to identify him
    * @param User saves values into current User
    */
-  getUser (email: string): Observable<User>{
+  getUser(email: string): Observable<User> {
     return this.http.get<any>(this.rootUrl + email);
   }
 
-  updateUser (user: User): Observable<User>{
+  updateUser(user: User): Observable<User> {
     return this.http.put<any>(this.rootUrl + user.email, user);
-
   }
 }

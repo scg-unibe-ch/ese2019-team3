@@ -259,7 +259,7 @@ router.get('/:email', async (req: Request, res: Response) => {
 
 /**
  *  Method to update userdata in the database
- * Path: ./user/:id
+ * Path: ./user/:email
  * Request type: PUT
  */
 router.put('/:id', async (req: Request, res: Response) => {
@@ -280,7 +280,7 @@ router.put('/:id', async (req: Request, res: Response) => {
 
 /**
  * Method to  delete a user from the database
- * Path: ./user/:id
+ * Path: ./user/:email
  * Request type: DELETE
  */
 router.delete('/:id', async (req: Request, res: Response) => {

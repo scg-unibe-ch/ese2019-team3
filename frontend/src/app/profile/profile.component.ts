@@ -43,7 +43,6 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     console.log("CurrentUser empty: " + this.currentUser);
 
-    //TODO getMail
     this.displayUser(this.email);
 
     console.log("CurrentUser filled: " + this.currentUser);
@@ -55,6 +54,8 @@ export class ProfileComponent implements OnInit {
     // this.profileForm.disable();
     this.profileForm.enable();
   }
+
+  
   // testing
   onSubmit() {
     // TODO: Use EventEmitter with form value
