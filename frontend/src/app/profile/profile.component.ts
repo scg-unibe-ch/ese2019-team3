@@ -42,6 +42,7 @@ export class ProfileComponent implements OnInit {
   }
   ngOnInit() {
     console.log("CurrentUser empty: " + this.currentUser);
+    console.log(this.email);
 
     this.displayUser(this.email);
 
@@ -70,7 +71,7 @@ export class ProfileComponent implements OnInit {
   }
 
   isProvider() {
-    return this.currentUser.userGroup == "provider" ? true : false;
+    return this.profileForm.get("usergroup").value == "provider" ? true : false;
   }
 
   displayUser(email: string) {
@@ -90,5 +91,6 @@ export class ProfileComponent implements OnInit {
     this.authentification
       .updateUser(this.currentUser)
       .subscribe(res => console.log(res), err => console.log(err));
+      
   }
 }
