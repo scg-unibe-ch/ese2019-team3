@@ -49,8 +49,15 @@ export class Service extends Model<Service> {
     this.price = simplification['price'];
     this.description = simplification['description'];
     this.city = simplification['city'];
-
-
   }
 
+  createDummyService() {
+    this.provider = 'peter';
+    this.serviceTitle = 'essen';
+    this.description = 'Sehr feines Essen';
+    this.providerId = 2;
+    this.price = 50;
+    this.city= 'Bern';
+  }
 }
+

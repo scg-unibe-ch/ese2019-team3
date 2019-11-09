@@ -63,15 +63,24 @@ router.get('/', async (req: Request, res: Response) => {
  *  }
  */
 router.post('/register', async (req, res) => {
-    console.log(req.params.serviceTitle);
     const service = new Service();
     service.fromSimplification(req.body);
 
 
     await service.save().then ( async() => {
     });
+    res.send('service registered');
+    res.status = 200;
 
 });
+
+
+router.get('/', async (req, res) => {
+    const service = await Service.findAll();
+    res.statusCode = 200;
+    res.send(service.map(e => e.toSimplification()));
+    });
+
 
 
 export const ServiceController: Router = router;

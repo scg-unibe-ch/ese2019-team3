@@ -57,9 +57,11 @@ sequelize.sync().then(() => {
     // success callback, log something to console as soon as the application has started
     console.log(`Listening at http://localhost:${port}/`);
   });
-  createAdminUser();
+  createDummyUser().then();
+  createDummyService().then();
+  createAdminUser().then();
 
-  createDummyUser();
+
 });
 
 https.createServer(app).listen(3001);
@@ -93,14 +95,27 @@ async function createAdminUser() {
   }
 }
 
+
+
+}
+
+async function createDummyService() {
+    const services = await User.findAll();
+    if (services.length === 0) {
+        const service = new Service();
+        service.createDummyService();
+        await service.save();
+        console.log('Dummy Service created!');
+    }
+}
+
+
 async function createDummyUser() {
   const users = await User.findAll();
-  if (users.length === 1) {
+  if (users.length === 0) {
     const user = new User();
     user.createDummyUser();
     await user.save();
     console.log('Dummy User created!');
   }
-
 }
-
