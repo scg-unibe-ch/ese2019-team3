@@ -5,6 +5,8 @@ import randomString from 'randomstring';
 const router: Router = Router();
 const bcrypt = require('bcryptjs');  //used to hash passwords
 var contact = require('../contact');
+const fullTextSearch = require('full-text-search');
+const search = new fullTextSearch();
 
 
 /**
@@ -297,6 +299,23 @@ router.delete('/:id', async (req: Request, res: Response) => {
   await user.destroy();
   res.statusCode = 204;
   res.send('user deleted');
+});
+
+router.post('/search', async (req: Request, res: Response) => {
+    const searchTerm = await req.body.searchTerm;
+    search.drop();
+    const searchBody = await User.findAll();
+
+    console.log(searchBody.length);
+    let i;
+    for (i = 0; i < searchBody.length; i++) {
+        const user = searchBody[i].dataValues;
+        delete user['password'];
+        console.log(user);
+        search.add(user);
+    }
+     const result = search.search(searchTerm.toString());
+     res.send(result);
 });
 
 export const UserController: Router = router;

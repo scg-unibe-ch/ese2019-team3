@@ -24,14 +24,6 @@
     {
       "name": "Services",
       "description": "API's for services"
-    },
-    {
-      "name": "user",
-      "description": "Operations about user",
-      "externalDocs": {
-        "description": "Find out more about our store",
-        "url": "http://swagger.io"
-      }
     }
   ],
   "schemes": [
@@ -429,6 +421,94 @@
           }
         ]
       }
+    },
+    "/user/search": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Full text search in all user data",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Search Term",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/search"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string",
+              "items": {
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/service/search": {
+      "post": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "Full text search in all service data",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Search Term",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/search"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string",
+              "items": {
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
     }
   },
   "securityDefinitions": {
@@ -473,9 +553,14 @@
         "email": {
           "type": "string"
         }
-      },
-      "xml": {
-        "name": "Order"
+      }
+    },
+    "search": {
+      "type": "object",
+      "properties": {
+        "searchTerm": {
+          "type": "string"
+        }
       }
     },
     "User": {
@@ -534,8 +619,7 @@
         },
         "price": {
           "type": "integer",
-          "format": "int32",
-          "description": "User Status"
+          "format": "int32"
         },
         "city": {
           "type": "string"

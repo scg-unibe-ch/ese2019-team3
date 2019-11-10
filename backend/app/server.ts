@@ -2,7 +2,7 @@
 import express from 'express';
 const https = require('https');
 const fs = require('fs');
-
+const openssl = require('https')
 
 // import all the controllers. If you add a new controller, make sure to import it here as well.
 
@@ -14,6 +14,7 @@ import {UserController} from './controllers';
 import {ServiceController} from './controllers';
 import swaggerUi from 'swagger-ui-express';
 import * as swaggerDocument from './swagger.json';
+import * as path from 'path';
 //cross-origin resource sharing; communcation between different ports
 const cors = require('cors');
 
@@ -63,8 +64,6 @@ sequelize.sync().then(() => {
 
 
 });
-
-https.createServer(app).listen(3001);
 
 // Start database
 sequelize

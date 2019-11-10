@@ -1,7 +1,8 @@
 import {Router, Request, Response} from 'express';
 import {User} from '../models/user.model';
 import {Service} from '../models/service.model';
-
+const fullTextSearch = require('full-text-search');
+const search = new fullTextSearch();
 
 
 const router: Router = Router();
@@ -80,6 +81,18 @@ router.get('/', async (req, res) => {
     res.statusCode = 200;
     res.send(service.map(e => e.toSimplification()));
     });
+
+router.post('/search', async (req: Request, res: Response) => {
+    const searchTerm = await req.body.searchTerm;
+    search.drop();
+    const searchBody = await Service.findAll();
+    let i;
+    for (i = 0; i < searchBody.length; i++) {
+        search.add(searchBody[i].dataValues);
+    }
+    const result = search.search(searchTerm.toString());
+    res.send(result);
+});
 
 
 
