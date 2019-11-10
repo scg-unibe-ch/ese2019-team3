@@ -1,8 +1,9 @@
 // import everything from express and assign it to the express variable
 import express from 'express';
+const bodyParser = require('body-parser');
 const https = require('https');
 const fs = require('fs');
-
+const swaggerUi = require('swagger-ui-express');
 
 // import all the controllers. If you add a new controller, make sure to import it here as well.
 
@@ -12,7 +13,7 @@ import {Service} from './models/service.model';
 import {User} from './models/user.model';
 import {UserController} from './controllers';
 import {ServiceController} from './controllers';
-import swaggerUi from 'swagger-ui-express';
+
 import * as swaggerDocument from './swagger.json';
 //cross-origin resource sharing; communcation between different ports
 const cors = require('cors');
@@ -50,6 +51,8 @@ app.use(function (req, res, next) {
 // Mögliche Routes
 app.use('/user', UserController);
 app.use('/service', ServiceController);
+
+app.use(bodyParser.json());
 // Set Port
 sequelize.sync().then(() => {
 // start serving the application on the given port

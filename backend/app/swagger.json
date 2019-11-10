@@ -110,7 +110,6 @@
             "schema": {
               "type": "string",
               "items": {
-                "token": "string"
               }
             }
           },
@@ -177,7 +176,6 @@
             "schema": {
               "type": "string",
               "items": {
-                "token": "string"
               }
             }
           },
@@ -217,7 +215,6 @@
             "schema": {
               "$ref": "#/definitions/forgotPassword"
             },
-            "type":"string"
           }
 
         ],
@@ -370,7 +367,7 @@
         }
       }
     }
-  }
+  },
   "securityDefinitions": {
     "petstore_auth": {
       "type": "oauth2",
@@ -466,26 +463,6 @@
         }},
 
       },
-      "xml": {
-        "name": "Pet"
-      }
-    },
-    "ApiResponse": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "type": {
-          "type": "string"
-        },
-        "message": {
-          "type": "string"
-        }
-      }
-    }
-  },
   "externalDocs": {
     "description": "Find out more about Swagger",
     "url": "http://swagger.io"
