@@ -13,7 +13,8 @@ import {User} from '../models/user';
 
 export class AdminComponent implements OnInit {
    Users: User[];
-   private user: User;
+  // tslint:disable-next-line:ban-types
+   private user: any;
   // private Users: any;
 
   constructor(private http: HttpClient) {
@@ -38,8 +39,7 @@ export class AdminComponent implements OnInit {
   }
 // fetches users that need to be validated from backend
   getRegistrationRequests() {
-    this.http.get('http://localhost:3000/user/verify').subscribe(res => {alert(res[0].isVerified); this.user = res[0]; this.Users.push(this.user); },
-                err => console.log(err));
+    this.http.get('http://localhost:3000/user/verify').subscribe((data: User[]) =>{this.Users = data});
   }
 
 // sends user to backend for validation and tells admin it was validated
@@ -63,7 +63,10 @@ sendUserToDelete(user: User){
 sendUserToValidate(user: User) {
   return this.http.get('http://localhost:3000/user/validate/' + user.id);
 }
-  ngOnInit() {}
+  ngOnInit() {
+    this.getRegistrationRequests();
+
+  }
 
 
 }

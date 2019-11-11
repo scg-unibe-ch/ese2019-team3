@@ -10,10 +10,10 @@
         <th>phone</th>
       </tr>
       <!-- lists all users that are being fetched from backend-->
-      <tr ng-repeat="user in Users">
+      <tr *ngFor="let user of Users">
         <td>{{user.email}}</td>
-        <td>{{user.userGroup}}</td>
-        <td>{{user.number}}</td>
+        <td>{{user.firstname}}</td>
+        <td>{{user.lastname}}</td>
         <td><button mat-button style="color: #0ec254" (click)="validateUser(user)">Accept</button></td>
         <td><button mat-button style="color: #d33939" (click)="deleteUser(user)" >Deny</button></td>
       </tr>
