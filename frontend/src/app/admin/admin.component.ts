@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {User} from '../models/user';
 
 
@@ -57,11 +57,13 @@ export class AdminComponent implements OnInit {
   }
 
 sendUserToDelete(user: User){
-  return this.http.delete('http://localhost:3000/user/' + user.id);
+  return this.http.delete('http://localhost:3000/user/' + user).subscribe();
 }
 
 sendUserToValidate(user: User) {
-  return this.http.get('http://localhost:3000/user/validate/' + user.id);
+    alert(user.id);
+    this.http.put('http://localhost:3000/user/verify/'+user.id, user).subscribe();
+
 }
   ngOnInit() {
     this.getRegistrationRequests();
