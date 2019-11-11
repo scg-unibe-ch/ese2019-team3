@@ -46,6 +46,7 @@ const appRoutes: Routes = [
     { path: 'Profile/ChangePassword', component: ChangePasswordComponent, canActivate: [AuthGuard] },
     {path: 'addService', component: AddserviceComponent, canActivate: [AuthGuard]},
     {path: 'essenundtrinken', component: BodyComponent, canActivate: [AuthGuard]},
+    {path: 'searchresults', component:HeaderComponent, canActivate: [AuthGuard]},
     { path: 'Admin', component: AdminComponent, canActivate: [RoleGuard],
         data: {
             expectedRole: 'admin'

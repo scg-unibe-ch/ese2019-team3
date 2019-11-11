@@ -1,8 +1,5 @@
-<header id = "header">
+<div class = "body">
 <div class="navigation">
-
-
-
   <!-- When logged in -- @TODO authentication.loggedIn and authentication.isUser method in authentication service  -->
 
  <div class = "top">
@@ -11,8 +8,7 @@
     </button>
   </div>
 
-  <!-- main navigation bar -->
-
+  <!--search form -->
    <div class = "main">
        <mat-card class = "searchfield">
            <mat-card-content>
@@ -64,7 +60,14 @@
  </mat-list-item>
                    <br>
   <mat-list-item>
-    <button class = "btn" mat-stroked-button style="float:right; margin-right: 10%; margin-top: -0.5%" (click) = onSubmit()>Search</button>
+    <button
+            class = "btn"
+            routerLink = "/searchresults"
+            routerLinkActive="active"
+            mat-stroked-button
+            style="float:right; margin-right: 10%; margin-top: -0.5%"
+            (click) = onSubmit()>
+        Search</button>
   </mat-list-item>
 
                </mat-list>
@@ -72,9 +75,48 @@
        </mat-card>
   </div> <!--/main -->
 
+
+<div class = "categories">
+    <div class = "row1">
+    <div class="left">
+        <div class="content">
+            <h4>Food&Drink</h4>
+            <p>Lorem ipsum dolor..</p>
+        </div>
+    </div>
+    <div class="right">
+        <div class="content">
+            <h4>Musik</h4>
+            <p>Lorem ipsum dolor..</p>
+        </div>
+    </div>
+    </div>
+
+    <div class = "row2">
+    <div class="left">
+        <div class="content">
+            <h4>Licht&Bühne</h4>
+            <p>Lorem ipsum dolor..</p>
+        </div>
+    </div>
+    <div class="right">
+        <div class="content">
+            <h4>Werbung</h4>
+            <p>Lorem ipsum dolor..</p>
+        </div>
+    </div>
+    </div>
 </div>
-</header>
 
 
 
 
+</div>
+</div>
+
+
+
+
+
+
+<!-- Haupt -->

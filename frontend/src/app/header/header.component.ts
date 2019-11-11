@@ -5,6 +5,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import {ServiceService} from "../service.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -37,9 +38,9 @@ export class HeaderComponent implements OnInit {
   public l:string;
   d = new Date();
   public anything: string;
-
+  searchresults: [] = [];
   constructor(public authentication : AuthenticationService,
-              private service: ServiceService) {
+              private service: ServiceService, private router: Router) {
 
   }
 
@@ -55,15 +56,15 @@ export class HeaderComponent implements OnInit {
     };
     console.log("searching for service");
     //calls method to post the registerUser to the backend
+    this.router.navigate(['/searchresults']);
     this.searchService(searchObject);
 
   }
 //goes to backend
   searchService (searchObject: Object){
     console.log(searchObject);
-    this.service
-        .searchService(searchObject)
-        .subscribe(res => console.log(res), err => console.log(err));
+    this.service.searchService(searchObject).subscribe (res => console.log(res),
+                    err => console.log(err));
 
   }
 
