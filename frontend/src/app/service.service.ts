@@ -6,9 +6,9 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class ServiceService {
-  private addserviceurl = "http://localhost:3000/user/addservice"
+  private addserviceurl = "http://localhost:3000/service/register"
   private verificationUrl = "http://localhost:3000/user/verifyToken"
-  private searchserviceurl = "http://localhost:3000/user/searchservice"
+  private searchserviceurl = "http://localhost:3000/"
   constructor(private http: HttpClient) { }
 
   //accepts serviceObject and returns response of backend, backend responses with registered service

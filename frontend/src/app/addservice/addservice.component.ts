@@ -40,11 +40,11 @@ export class AddserviceComponent implements OnInit {
               private service: ServiceService,) {
     const url = "http://localhost:4200/addService";
     const serviceForm = {
-      services: this.s,
-      locations: this.l,
+      serviceTitle: this.s,
+      city: this.l,
       dates: this.d,
       price: this.price,
-      about: this.about,
+      description: this.about,
     }
    this.http
         .post(url, serviceForm)
@@ -58,11 +58,11 @@ export class AddserviceComponent implements OnInit {
 
   onSubmit() {
     const addService = {
-        services: this.s,
-        locations: this.l,
+        serviceTitle: this.s,
+        city: this.l,
         dates: this.d,
         price: this.price,
-        about: this.about,
+        description: this.about,
     };
     console.log("Adding new Service", addService);
     //calls method to post the registerUser to the backend
