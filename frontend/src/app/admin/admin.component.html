@@ -5,17 +5,17 @@
     <br>
     <table mat-table>
       <tr>
-        <th>Username</th>
-        <th>address</th>
+        <th>email</th>
+        <th>User group</th>
         <th>phone</th>
       </tr>
       <!-- lists all users that are being fetched from backend-->
-      <tr *ngFor="let user of Users">
-        <td>{{user.username}}</td>
-        <td>{{user.address}}</td>
-        <td>{{user.phone}}</td>
+      <tr ng-repeat="user in Users">
+        <td>{{user.email}}</td>
+        <td>{{user.userGroup}}</td>
+        <td>{{user.number}}</td>
         <td><button mat-button style="color: #0ec254" (click)="validateUser(user)">Accept</button></td>
-        <button mat-button style="color: #d33939" (click)="deleteUser(user)" >Deny</button>
+        <td><button mat-button style="color: #d33939" (click)="deleteUser(user)" >Deny</button></td>
       </tr>
     </table>
   </mat-card-content>
