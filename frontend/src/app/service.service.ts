@@ -8,10 +8,14 @@ import {Observable} from 'rxjs';
 export class ServiceService {
   private addserviceurl = "http://localhost:3000/service/register"
   private verificationUrl = "http://localhost:3000/user/verifyToken"
-  private searchserviceurl = "http://localhost:3000/"
-  constructor(private http: HttpClient) { }
+  private searchserviceurl = "http://localhost:3000/service"
 
+
+  constructor(private http: HttpClient) {
+
+  }
   //accepts serviceObject and returns response of backend, backend responses with registered service
+
   addService(service: Object): Observable <any> {
     return this.http.post<any>(this.addserviceurl, service)
   }

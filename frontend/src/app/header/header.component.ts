@@ -6,6 +6,7 @@ import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import {ServiceService} from "../service.service";
 import { Router } from '@angular/router';
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-header',
@@ -38,9 +39,9 @@ export class HeaderComponent implements OnInit {
   public l:string;
   d = new Date();
   public anything: string;
-  searchresults: [] = [];
+  searchresults: Searchresult [] = [];
   constructor(public authentication : AuthenticationService,
-              private service: ServiceService, private router: Router) {
+              private service: ServiceService, private router: Router, public httpClient: HttpClient) {
 
   }
 
@@ -63,10 +64,13 @@ export class HeaderComponent implements OnInit {
 //goes to backend
   searchService (searchObject: Object){
     console.log(searchObject);
-    this.service.searchService(searchObject).subscribe (res => console.log(res),
-                    err => console.log(err));
+    this.service.searchService(searchObject).subscribe (
+        res => {console.log(res), this.searchresults = res as search },
+
+        err => console.log(err));
 
   }
+
 
   logOut(){
     //Test
