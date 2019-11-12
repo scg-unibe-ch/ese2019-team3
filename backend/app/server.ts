@@ -65,7 +65,7 @@ sequelize.sync().then(() => {
 https.createServer(app).listen(3001);
 
 // Start database
-sequelize
+sequelize 
   .authenticate()
   .then(() => {
     console.log('Database connection has been established successfully.');

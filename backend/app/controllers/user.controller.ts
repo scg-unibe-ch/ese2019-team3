@@ -1,4 +1,4 @@
-import {Request, Response, Router} from 'express';
+import {Router, Request, Response} from 'express';
 import {User} from '../models/user.model';
 import randomString from 'randomstring';
 
@@ -83,6 +83,7 @@ router.post('/login', async (req: Request, res: Response) => {
           res.send('Invalid password!');
       }
   }
+
     const payload = {
         id: user!.id,
         isVerified: user!.isVerified,
@@ -105,7 +106,7 @@ router.post('/login', async (req: Request, res: Response) => {
  * Middleware to verify token
  * Token must be send in the header of a request from the frontend
  */
-function verifyToken (req: { headers: { authorization: any; }; id: any; }, res: { statusCode: number; send: { (arg0: string): void; (arg0: string): void; (arg0: string): void; }; }, next: () => void) {
+function verifyToken (req: Request,res: Response,next) {
     if (!req.headers.authorization) {   // The word authorization may need to be changed, depends on the naming of the header in the frontend
       res.statusCode = 401;
       res.send('Unauthorized request');
@@ -126,17 +127,17 @@ function verifyToken (req: { headers: { authorization: any; }; id: any; }, res: 
     next();
 }
 
-/**TODO: put it back
+/**
  * Template Method
  *  => VerifyToken wird aufgerufen
  *  Wenn dieser Pfad aufgerufen wird, wird der Token überprüft
  *  Für Seiten nach dem Login zu nutzen
  */
 
-//router.get('/verifyToken', verifyToken, async (req, res) => {
+router.get('/verifyToken', verifyToken, async (req, res) => {
  // executes verifyToken method
-//    res.statusCode = 200;
-//});
+    res.statusCode = 200;
+});
 
 /**
  * Method to change password

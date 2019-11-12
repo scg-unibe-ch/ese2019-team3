@@ -1,38 +1,38 @@
 <div class = login-box>
 
-    <mat-card>
-        <mat-card-title>Login</mat-card-title>
-        <mat-card-content>
+  <mat-card>
+      <mat-card-title>Login</mat-card-title>
+      <mat-card-content>
 
-          <form [formGroup]="loginForm">
+        <form [formGroup]="loginForm">
 
               <mat-form-field>
                   <input formControlName="email" type="email" matInput placeholder="email">
               </mat-form-field>
 
-                <br>
+              <br>
 
-              <mat-form-field>
-                  <input formControlName="password" type="password" matInput placeholder="Password">
-              </mat-form-field>
+            <mat-form-field>
+                <input formControlName="password" type="password" matInput placeholder="Password">
+            </mat-form-field>
 
-          </form>
+        </form>
 
-        </mat-card-content>
-        <p>
+      </mat-card-content>
+      <p>
 
-        <button mat-raised-button color="primary" (click)="loginUser()" >Log In</button>
+      <button mat-raised-button color="primary" (click)="loginUser()" >Log In</button>
 
-        <button mat-button  routerLink="PasswordForgotten"
-                routerLinkActive="active" >Forgot password ? </button>
-        </p>
-        <br>
-        <p>You do not have an account yet?
-            <button routerLink="/Registration" mat-button color="primary" type="submit">
-                Register here</button>
-        </p>
+      <button mat-button  routerLink="PasswordForgotten"
+              routerLinkActive="active" >Forgot password ? </button>
+      </p>
+      <br>
+      <p>You do not have an account yet?
+          <button routerLink="/Registration" mat-button color="primary" type="submit">
+              Register here</button>
+      </p>
 
-    
-      </mat-card>
+  
+    </mat-card>
 
 </div>
