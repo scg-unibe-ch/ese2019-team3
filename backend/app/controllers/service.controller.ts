@@ -1,6 +1,7 @@
-import {Router, Request, Response} from 'express';
-import {User} from '../models/user.model';
+import {Request, Response, Router} from 'express';
 import {Service} from '../models/service.model';
+import {filter} from '../serviceFilter';
+import bodyParser = require("body-parser");
 
 
 
@@ -73,7 +74,23 @@ router.post('/register', async (req, res) => {
 
 });
 
+/**
+ * Method for filtering Services by location or servicetype
+ * Request type: GET
+ * Request Body:
+ * {
+ *     "queries":         string,
+ *     "searchType":    string
+ * }
+ */
+router.get('/filter', async (req: Request, res: Response) => {
+    const service = await Service.findAll();
 
+    let q1 = req.body.queries.toString();
+    let q2 = req.body.searchType.toString();
+    if(q1 != null && q2 != null && q2 != ""){
+    res.status(200);
+    res.send(filter(q1, q2, service));}
+    else res.status(400);
+});
 export const ServiceController: Router = router;
-
-

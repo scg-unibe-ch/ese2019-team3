@@ -1,4 +1,4 @@
-import {Table, Column, Model, HasMany, BelongsTo, ForeignKey, Unique} from 'sequelize-typescript';
+import {Column, ForeignKey, Model, Table} from 'sequelize-typescript';
 import {User} from './User.model';
 
 
@@ -14,7 +14,7 @@ export class Service extends Model<Service> {
   @Column
   description!: string;
 
-  @ForeignKey((user: User) => user.id)
+//  @ForeignKey((user: User) => user.id)
   @Column
   providerId!: number;
 
@@ -27,17 +27,20 @@ export class Service extends Model<Service> {
    @Column
   city!: string;
 
+//   @Column
+//   availableDates!: Date[];
+
 
   toSimplification(): any {
     return {
-      'id': this.id,
       'serviceTitle': this.serviceTitle,
       'serviceType': this.serviceType,
       'provider': this.provider,
       'providerId': this.providerId,
       'price': this.price,
       'description': this.description,
-      'city': this.city
+      'city': this.city,
+ //     'availableDates': this.availableDates
     };
   }
 
@@ -49,7 +52,7 @@ export class Service extends Model<Service> {
     this.price = simplification['price'];
     this.description = simplification['description'];
     this.city = simplification['city'];
-
+//    this.availableDates = simplification['availableDates']
 
   }
 

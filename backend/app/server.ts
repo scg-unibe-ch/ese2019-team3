@@ -1,20 +1,19 @@
 // import everything from express and assign it to the express variable
 import express from 'express';
+import {Sequelize} from 'sequelize-typescript';
+
+import {Service} from './models/service.model';
+import {User} from './models/user.model';
+import {ServiceController, UserController} from './controllers';
+
+import * as swaggerDocument from './swagger.json';
+
 const bodyParser = require('body-parser');
 const https = require('https');
 const fs = require('fs');
 const swaggerUi = require('swagger-ui-express');
 
 // import all the controllers. If you add a new controller, make sure to import it here as well.
-
-import {Sequelize} from 'sequelize-typescript';
-
-import {Service} from './models/service.model';
-import {User} from './models/user.model';
-import {UserController} from './controllers';
-import {ServiceController} from './controllers';
-
-import * as swaggerDocument from './swagger.json';
 //cross-origin resource sharing; communcation between different ports
 const cors = require('cors');
 
@@ -71,7 +70,7 @@ sequelize
   .then(() => {
     console.log('Database connection has been established successfully.');
   })
-  .catch(err => {
+  .catch((err: any) => {
     console.error('Unable to connect to the database:', err);
   });
 
