@@ -25,9 +25,6 @@ export class LoginComponent implements OnInit {
 
 
     ngOnInit() {
-       /* this.loginForm.valueChanges.subscribe(
-            (value) => console.log(value),
-        )*/
     }
 
 
@@ -46,5 +43,6 @@ export class LoginComponent implements OnInit {
     // sends Data from login form to backend
     sendUserData(loginData: object) {
         this.authentification.loginUser(loginData);
+        this.home.logIn();
     }
 }

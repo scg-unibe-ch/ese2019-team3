@@ -11,15 +11,14 @@ export class HomeComponent implements OnInit {
   innerWidth: any;
 
   constructor(private auth: AuthenticationService) {
-    if (this.auth.isAuthenticated()) {
-      this.LoggedIn = true;
-    } else {
-      this.LoggedIn = false;
-    }
   }
 
   ngOnInit() {
     this.innerWidth = window.innerWidth;
+  }
+
+  logIn() {
+    this.LoggedIn = this.auth.isAuthenticated();
   }
 
   logOut() {
@@ -27,6 +26,6 @@ export class HomeComponent implements OnInit {
     alert('Sie wurden erfolgreich abgemeldet');
     // ToDO: call authentication method,
     this.LoggedIn = false;
-    localStorage.removeItem('token');
+    this.auth.logOutUser();
   }
 }

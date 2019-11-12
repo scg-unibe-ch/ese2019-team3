@@ -33,9 +33,16 @@ export class AuthenticationService {
                 alert(err.error); }
                 );
   }
-  public isAuthenticated(): Observable<any> {    const token = localStorage.getItem('token');
+
+  logOutUser() {
+      localStorage.removeItem('token');
+  }
+  public isAuthenticated(): Observable<any> {
+      const token = localStorage.getItem('token');
   // Checks whether the token is expired or not
-    return this.http.post<any>(this.verificationUrl, token);
+    if(this.http.post<any>(this.verificationUrl, token) === '200')
+        return true;
+            else return false;;
   }
   public isUser(): boolean {
     return;
