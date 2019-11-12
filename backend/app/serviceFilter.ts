@@ -19,6 +19,7 @@ export function filter(input: string, searchType: string, services: Service[]): 
 }
 
 /**
+ * TODO: implementieren
  * Erwartet ein String von Daten (13.10.1995, 14.10.1995,...)
  * filtert jene Services, welche in diesem Zeitraum zur Verfügung stehen.
  * @param input
