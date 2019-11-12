@@ -3,6 +3,8 @@ import {Service} from '../models/service.model';
 import {filter} from '../serviceFilter';
 import bodyParser = require("body-parser");
 
+const fullTextSearch = require('full-text-search');
+const search = new fullTextSearch();
 
 
 const router: Router = Router();
@@ -64,15 +66,36 @@ router.get('/', async (req: Request, res: Response) => {
  *  }
  */
 router.post('/register', async (req, res) => {
-    console.log(req.params.serviceTitle);
     const service = new Service();
     service.fromSimplification(req.body);
 
 
     await service.save().then ( async() => {
     });
+    res.send('service registered');
+    res.status = 200;
 
 });
+
+
+router.get('/', async (req, res) => {
+    const service = await Service.findAll();
+    res.statusCode = 200;
+    res.send(service.map(e => e.toSimplification()));
+    });
+
+router.post('/search', async (req: Request, res: Response) => {
+    const searchTerm = await req.body.searchTerm;
+    search.drop();
+    const searchBody = await Service.findAll();
+    let i;
+    for (i = 0; i < searchBody.length; i++) {
+        search.add(searchBody[i].dataValues);
+    }
+    const result = search.search(searchTerm.toString());
+    res.send(result);
+});
+
 
 /**
  * Method for filtering Services by location or servicetype
@@ -94,3 +117,5 @@ router.get('/filter', async (req: Request, res: Response) => {
     else res.status(400);
 });
 export const ServiceController: Router = router;
+
+

@@ -23,15 +23,7 @@
     },
     {
       "name": "Services",
-      "description": "API's for adding new services"
-    },
-    {
-      "name": "user",
-      "description": "Operations about user",
-      "externalDocs": {
-        "description": "Find out more about our store",
-        "url": "http://swagger.io"
-      }
+      "description": "API's for services"
     }
   ],
   "schemes": [
@@ -242,10 +234,10 @@
         ],
         "parameters": [
           {
-            "name":"searchText",
+            "name": "searchText",
             "in": "body",
-            "description":"E-Mail to identify user and send a new password",
-            "required":true,
+            "description": "E-Mail to identify user and send a new password",
+            "required": true,
             "schema": {
               "$ref": "#/definitions/forgotPassword"
             }
@@ -400,6 +392,158 @@
           }
         }
       }
+    },
+    "/service": {
+      "get": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "Show all registered services)",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "401": {
+            "description": "unauthorized request"
+          }
+        }
+      }
+    },
+    "/service/register": {
+      "post": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "Register a new service",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User object that needs to be sent",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Service"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string",
+              "items": {
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/user/search": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Full text search in all user data",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Search Term",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/search"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string",
+              "items": {
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/service/search": {
+      "post": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "Full text search in all service data",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Search Term",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/search"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string",
+              "items": {
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
     }
   },
   "securityDefinitions": {
@@ -454,36 +598,76 @@
         "email": {
           "type": "string"
         }
-      },
-      "xml": {
-        "name": "Order"
       }
     },
-       "User": {
+    "search": {
       "type": "object",
       "properties": {
-        "username": {
+        "searchTerm": {
           "type": "string"
-        },
-        "vorname": {
-          "type": "string"
-        },
-        "nachname": {
-          "type": "string"
-        },
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
         "email": {
+          "type": "string"
+        },
+        "userGroup": {
           "type": "string"
         },
         "password": {
           "type": "string"
         },
-        "phone": {
+        "firstname": {
           "type": "string"
         },
-        "userGroup": {
+        "lastname": {
+          "type": "string"
+        },
+        "adress": {
+          "type": "string"
+        },
+        "number": {
           "type": "integer",
-          "format": "int32",
-          "description": "User Status"
+          "format": "int32"
+        },
+        "birthday": {
+          "type": "string"
+        },
+
+      },
+      "xml": {
+        "name": "Order"
+      }
+    },
+       "Service": {
+      "type": "object",
+      "properties": {
+
+        "provider": {
+          "type": "string"
+        },
+        "serviceTitle": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "providerId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "serviceType": {
+          "type": "string"
+        },
+        "price": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "city": {
+          "type": "string"
         }
       },
       "xml": {

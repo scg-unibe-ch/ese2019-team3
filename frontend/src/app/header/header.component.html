@@ -1,66 +1,80 @@
+<header id = "header">
 <div class="navigation">
 
 
 
   <!-- When logged in -- @TODO authentication.loggedIn and authentication.isUser method in authentication service  -->
 
-  <div class = "top">
+ <div class = "top">
     <button class = "navigation"[routerLink] = "['/profile']" *ngIf="authentication.loggedIn && authentication.isUser">
       Profile
     </button>
   </div>
 
   <!-- main navigation bar -->
-  <div class = "main">
-    <!-- @TODO add routerLink -->
 
+   <div class = "main">
+       <mat-card class = "searchfield">
+           <mat-card-content>
+               <mat-list>
+
+ <!-- @TODO add routerLink -->
     <!--Location Button-->
-    <form class = "btn" style="float: left; margin-left: 5%;">
-    <mat-form-field>
+  <mat-list-item>
+   <form class = "btn" style="float: left;margin-left: 2%">
+    <mat-form-field >
       <mat-label> All Locations </mat-label>
-        <mat-select>
+        <mat-select id = "location" [(ngModel)] = "l" name="location" >
           <mat-option> None </mat-option>
           <mat-option *ngFor = "let locations of locations " [value]  = "locations"> {{locations}} </mat-option>
         </mat-select>
     </mat-form-field>
     </form>
-
-
+  </mat-list-item>
     <!-- Events Button-->
-    <form class ="btn" style="float: left; margin-left: 2%;">
+  <mat-list-item>
+   <form class ="btn" style="float: left; margin-left: 2%; margin-bottom: 1%; ">
     <mat-form-field>
-      <mat-label> All Events </mat-label>
-      <mat-select>
+      <mat-label> All Services </mat-label>
+      <mat-select id = "services" [(ngModel)]="s" name="services" >
         <mat-option> None </mat-option>
-        <mat-option *ngFor = "let events of events" [value] = "events"> {{events}}</mat-option>
+        <mat-option *ngFor = "let services of services" [value] = "services"> {{services}}</mat-option>
       </mat-select>
     </mat-form-field>
      </form>
-
-
-    <!-- Dates Button-->
-    <form class ="btn" style="float: left; margin-left: 2%; ">
-      <mat-form-field>
-        <mat-label> All Dates </mat-label>
-        <mat-select>
-          <mat-option> None </mat-option>
-          <mat-option  *ngFor = "let dates of dates" [value] = "dates"> {{dates}} </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </form>
-
-
-    <!-- Search Button -->
-    <form class = "btn" style="float: left; margin-left: 5%; margin-right: 5%;">
+  </mat-list-item>
+                   <!-- Date Picker -->
+  <mat-list-item>
+    <form class = "btn" style = "float: left; margin-left: 2%; margin-right: 5%;">
      <mat-form-field>
-      <input matInput placeholder="Search for Artists and Events">
+       <input [(ngModel)]="d" name = "dates" matInput [matDatepicker]="picker" placeholder="Choose a Date" >
+       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+       <mat-datepicker #picker ></mat-datepicker>
+
+     </mat-form-field>
+     </form>
+  </mat-list-item>
+                   <!-- Search Button -->
+ <mat-list-item>
+   <form class = "btn" style="float: left; margin-left: 2%; margin-right: 5%;">
+     <mat-form-field class = "InputBtn">
+      <input [(ngModel)] = "anything" name = "anything" matInput placeholder="Search for anything" >
      </mat-form-field>
     </form>
+ </mat-list-item>
+                   <br>
+  <mat-list-item>
+    <button class = "btn" mat-stroked-button style="float:right; margin-right: 10%; margin-top: -0.5%" (click) = onSubmit()>Search</button>
+  </mat-list-item>
 
-    <br>
-    <button class = "btn" mat-stroked-button style="float:right; margin-right: 10%">Search</button>
-
-
-  </div> <!-- /main -->
+               </mat-list>
+           </mat-card-content>
+       </mat-card>
+  </div> <!--/main -->
 
 </div>
+</header>
+
+
+
+

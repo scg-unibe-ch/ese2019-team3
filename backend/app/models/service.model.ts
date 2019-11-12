@@ -14,7 +14,7 @@ export class Service extends Model<Service> {
   @Column
   description!: string;
 
-//  @ForeignKey((user: User) => user.id)
+  @ForeignKey((user: User) => user.id)
   @Column
   providerId!: number;
 
@@ -27,20 +27,17 @@ export class Service extends Model<Service> {
    @Column
   city!: string;
 
-//   @Column
-//   availableDates!: Date[];
-
 
   toSimplification(): any {
     return {
+      'id': this.id,
       'serviceTitle': this.serviceTitle,
       'serviceType': this.serviceType,
       'provider': this.provider,
       'providerId': this.providerId,
       'price': this.price,
       'description': this.description,
-      'city': this.city,
- //     'availableDates': this.availableDates
+      'city': this.city
     };
   }
 
@@ -52,8 +49,17 @@ export class Service extends Model<Service> {
     this.price = simplification['price'];
     this.description = simplification['description'];
     this.city = simplification['city'];
-//    this.availableDates = simplification['availableDates']
+
 
   }
 
+  createDummyService() {
+    this.provider = 'peter';
+    this.serviceTitle = 'essen';
+    this.description = 'Sehr feines Essen';
+    this.providerId = 2;
+    this.price = 50;
+    this.city= 'Bern';
+  }
 }
+
