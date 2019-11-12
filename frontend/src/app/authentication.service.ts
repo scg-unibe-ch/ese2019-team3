@@ -4,6 +4,7 @@ import { Observable, pipe } from "rxjs";
 import { tap } from "rxjs/operators";
 import { User } from "./user";
 import { Router } from "@angular/router";
+import * as jwt_decode from "jwt-decode";
 
 @Injectable({
   providedIn: "root"
@@ -16,17 +17,10 @@ export class AuthenticationService {
   private verificationUrl = "http://localhost:3000/user/verifyToken";
 
   private loggedInUser: User;
+  private email: string;
+  private emailtoken: string;
 
   private passwordforgottenUrl = "http://localhost:3000/user/forgotPassword";
-
-  getEmail(): string {
-    return this.loggedInUser.email;
-  }
-
-  public logOut() {
-    this.loggedInUser = null;
-    localStorage.removeItem("token");
-  }
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -35,25 +29,54 @@ export class AuthenticationService {
     return this.http.post<any>(this.registerUrl, user);
   }
 
-  loginUser(user) {
-    this.http.post<any>(this.loginUrl, user)
-      .pipe(
-        //getting token parameter, doesn't modify stream only saves the one into the for
-        tap(() => {
-          this.loggedInUser = user;
-        })
-      )
+  loginUser(user: User) {
+    this.http
+      .post<any>(this.loginUrl, user)
+      // .pipe(
+      //   //getting token parameter, doesn't modify stream only saves the one into the for
+      //   tap(() => {
+      //     console.log("Empty User: " + user.email);
+      //     // this.loggedInUser = this.getDecodedAccessToken("token");
+      //     // console.log("Logged in User: " + user.email);
+
+      //   })
+      // )
       .subscribe(
         res => {
-          console.log(res);
+          console.warn(res);
           localStorage.setItem("token", res.token);
           this.router.navigate([""]);
+
+          this.email = user.email;
+
+          console.warn("Logged in User: " + JSON.stringify(user.email));
+          console.warn("Email token " + this.emailtoken);
+
+          console.warn("THIS User value to send to get method: " + this.email);
+
+          console.warn("Logged in User Method: " + this.getEmail());
         },
         err => {
           console.log(err);
           alert(err.error);
         }
       );
+  }
+
+  getEmail(): string {
+    //usage
+
+    const token = localStorage.getItem("token");
+    this.emailtoken = this.getDecodedAccessToken(token).email;
+
+    this.loggedInUser = this.getDecodedAccessToken(token);
+    //localStorage.getItem("token")
+    return this.emailtoken;
+  }
+
+  public logOut() {
+    this.loggedInUser = null;
+    localStorage.removeItem("token");
   }
 
   // loginUer(user) {
@@ -70,6 +93,7 @@ export class AuthenticationService {
     // Checks whether the token is expired or not
     return this.http.post<any>(this.verificationUrl, token);
   }
+
   public isUser(): boolean {
     return;
   }
@@ -89,11 +113,22 @@ export class AuthenticationService {
    * @param email of User to identify him
    * @param User saves values into current User
    */
-  getUser(email: string): Observable<User> {
+  getUser(email: string): Observable<any> {
     return this.http.get<any>(this.rootUrl + email);
   }
 
-  updateUser(user: User): Observable<User> {
-    return this.http.put<any>(this.rootUrl + user.email, user);
+  updateUser(email: string, user: any): Observable<any> {
+    return this.http.put<any>(this.rootUrl + email, user);
+  }
+
+  /**
+   * @param token of loggedIn User
+   */
+  getDecodedAccessToken(token: string): any {
+    try {
+      return jwt_decode(token);
+    } catch (Error) {
+      return null;
+    }
   }
 }

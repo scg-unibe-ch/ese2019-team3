@@ -20,8 +20,8 @@ export class RegistrationComponent implements OnInit {
     //TODO Validate
     userGroup: new FormControl(""),
     passwordconfirm: new FormControl("", Validators.required),
-    firstName: new FormControl("", Validators.required),
-    lastName: new FormControl("", Validators.required),
+    firstname: new FormControl("", Validators.required),
+    lastname: new FormControl("", Validators.required),
     birthday: new FormControl("", Validators.required),
     adress: new FormControl(""),
     number: new FormControl(""),

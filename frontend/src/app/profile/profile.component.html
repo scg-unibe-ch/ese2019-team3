@@ -9,6 +9,7 @@
                 matInput
                 placeholder="Vorname"
                 formControlName="firstname"
+                [disabled]="!editable"
               />
             </mat-form-field>
           </mat-list-item>
@@ -18,7 +19,7 @@
               <input
                 matInput
                 placeholder="Nachname"
-                formControlName="lastName"
+                formControlName="lastname"
               />
             </mat-form-field>
           </mat-list-item>
@@ -49,6 +50,7 @@
                 matInput
                 placeholder="Email"
                 formControlName="email"
+                disabled =  "true"
               />
             </mat-form-field>
           </mat-list-item>
@@ -65,11 +67,11 @@
         </mat-list>
       </mat-card-content>
 
-      <button mat-raised-button color="primary" (click)="disabled()">
+      <button mat-raised-button color="primary" (click)="enableForm()">
         Ändern
       </button>
       &nbsp;
-      <button mat-raised-button color="primary" (click)="onSubmit()">
+      <button mat-raised-button color="primary" (click)="onSubmit()" (click)="disableForm()">
         Speichern
       </button>
       <br />
