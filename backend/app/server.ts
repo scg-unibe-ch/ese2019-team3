@@ -1,8 +1,9 @@
 // import everything from express and assign it to the express variable
 import express from 'express';
+const bodyParser = require('body-parser');
 const https = require('https');
 const fs = require('fs');
-const openssl = require('https')
+const swaggerUi = require('swagger-ui-express');
 
 // import all the controllers. If you add a new controller, make sure to import it here as well.
 

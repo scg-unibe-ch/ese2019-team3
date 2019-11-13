@@ -1,4 +1,5 @@
-import {Table, Column, Model, HasMany, BelongsTo, ForeignKey, Unique} from 'sequelize-typescript';
+import {Column, Model, Table, Unique} from 'sequelize-typescript';
+
 const bcrypt = require('bcryptjs');  //used to hash passwords
 @Table
 export class User extends Model<User> {
@@ -16,25 +17,25 @@ export class User extends Model<User> {
   @Column
   password!: string;
 
-   @Column
-   firstname!: string;
+  @Column
+  firstname!: string;
 
-    @Column
-    lastname!: string;
+  @Column
+  lastname!: string;
 
-    @Column
-    adress!: string;
+  @Column
+  adress!: string;
 
-    @Column
-    number!: string;
+  @Column
+  number!: string;
 
-    @Column
-    birthday!: string;
+  @Column
+  birthday!: string;
 
 
   toSimplification(): any {
     return {
-      'id': this.id,
+      //'id': this.id,
       'isVerified': this.isVerified,
       'email': this.email,
       'userGroup': this.userGroup,

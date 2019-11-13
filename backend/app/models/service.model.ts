@@ -1,4 +1,4 @@
-import {Table, Column, Model, HasMany, BelongsTo, ForeignKey, Unique} from 'sequelize-typescript';
+import {Column, ForeignKey, Model, Table} from 'sequelize-typescript';
 import {User} from './User.model';
 
 
@@ -49,6 +49,8 @@ export class Service extends Model<Service> {
     this.price = simplification['price'];
     this.description = simplification['description'];
     this.city = simplification['city'];
+
+
   }
 
   createDummyService() {

@@ -20,7 +20,7 @@ module.exports = {
         subject: 'Registration Confirmation',
         text: 'Your Registration has been sent to us for Confirmation, you will hear from us shortly. \n best regards \n your Ese Team'
     };
-    transporter.sendMail(mailOptions, function (error, info) {
+    transporter.sendMail(mailOptions, function (error: any, info: { response: string; }) {
         if (error) {
             console.log(error);
         } else {
@@ -36,7 +36,7 @@ module.exports = {
         subject: 'Account confirmed',
         text: 'Your Account has been sent confirmed, you can now use our Website freely. \n best regards \n your Ese Team'
     };
-    transporter.sendMail(mailOptions, function (error, info) {
+    transporter.sendMail(mailOptions, function (error: any, info: { response: string; }) {
         if (error) {
             console.log(error);
         } else {
@@ -51,7 +51,7 @@ module.exports = {
         subject: 'Reset Password',
         text: 'Your Password has been reset, your new Password is: \n' + newPassword +'\n best regards \n your Ese Team'
     };
-    transporter.sendMail(mailOptions, function (error, info) {
+    transporter.sendMail(mailOptions, function (error: any, info: { response: string; }) {
         if (error) {
             console.log(error);
         } else {

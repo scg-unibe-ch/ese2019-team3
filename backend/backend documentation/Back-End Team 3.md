@@ -18,7 +18,8 @@ Password: admin
 2. Use the terminal and run the following commands:
 	```npm run tsc -- --watch``` and
 	```nodemon build/server.js```
-	(It is possible that after cloinung running ```npm install``` is necessary).
+	(Additionally when ever new packages are included in the package.json file it is necessary to ```npm install``` 
+	so these new packages will be installed).
 
 
 If this doesn't work, you are most likely missing some packages. Below you can find a list of all packages included.
@@ -32,9 +33,7 @@ Swagger documentation can be changed by edition the swagger.json file (in the ro
 <br /><br />
 ## Packages used
 
-Packages can be installed by typing "npm install [package name] in the terminal
-
-The following packages are used and needed for runnung the backend:
+Additonally to the scaffolding packages, these packages are included automatically by running the ```npm install``` command
 
 1. jsonwebtoken
 2. bcrypt

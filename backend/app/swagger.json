@@ -31,6 +31,40 @@
     "https"
   ],
   "paths": {
+    "/service/filter": {
+      "get": {
+        "tags": [
+          "Service"
+        ],
+        "summary": "Filter all services for a Special query",
+        "operationId": "filterService",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "required": true,
+            "name": "body",
+            "in": "body",
+            "schema": { "$ref": "#/definitions/filter"}
+          }
+          ],
+        "responses": {
+          "201": {
+            "description": "Filter successful",
+            "schema": {
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Not correctly filtered"
+          }
+        }
+      }
+    },
     "/user/register": {
       "post": {
         "tags": [
@@ -191,7 +225,7 @@
           "User"
         ],
         "summary": "Reset password",
-        "description": "Rests the password of a user, generates a new one and sends an email",
+        "description": "Resets the password of a user, generates a new one and sends an email",
         "consumes": [
           "application/json"
         ],
@@ -208,6 +242,7 @@
               "$ref": "#/definitions/forgotPassword"
             }
           }
+
         ],
         "responses": {
           "200": {
@@ -546,7 +581,17 @@
         "name": "Order"
       }
     },
-
+    "filter": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string"
+        },
+        "searchType": {
+          "type": "string"
+        }
+      }
+    },
     "forgotPassword": {
       "type": "object",
       "properties": {
@@ -643,7 +688,8 @@
         "password": {
           "type": "string"
         }
-        }}
+        }
+    }
 
       },
   "externalDocs": {

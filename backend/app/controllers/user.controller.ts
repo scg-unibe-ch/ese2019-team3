@@ -1,7 +1,8 @@
 import {Router, Request, Response} from 'express';
 import {User} from '../models/user.model';
-const jwt = require('jsonwebtoken'); //JSON Webtoken
 import randomString from 'randomstring';
+
+const jwt = require('jsonwebtoken'); //JSON Webtoken
 const router: Router = Router();
 const bcrypt = require('bcryptjs');  //used to hash passwords
 var contact = require('../contact');
@@ -85,18 +86,19 @@ router.post('/login', async (req: Request, res: Response) => {
       }
   }
 
-  const payload = {
-    id: user.id,
-    isVerified: user.isVerified,
-    email: user.email,
-    userGroup: user.userGroup,
-    password: user.password,
-    firstname: user.firstname,
-    lastname: user.lastname,
-    adress: user.adress,
-    number: user.number,
-    birthday: user.birthday
-  }
+    const payload = {
+        id: user!.id,
+        isVerified: user!.isVerified,
+        email: user!.email,
+        userGroup: user!.userGroup,
+        password: user!.password,
+        firstname: user!.firstname,
+        lastname: user!.lastname,
+        adress: user!.adress,
+        number: user!.number,
+        birthday: user!.birthday
+    }
+
   const token = jwt.sign(payload, 'key');
   res.statusCode = 200; //status code: OK
   res.send({token});
@@ -106,7 +108,7 @@ router.post('/login', async (req: Request, res: Response) => {
  * Middleware to verify token
  * Token must be send in the header of a request from the frontend
  */
-function verifyToken (req,res,next) {
+function verifyToken (req: Request,res: Response,next) {
     if (!req.headers.authorization) {   // The word authorization may need to be changed, depends on the naming of the header in the frontend
       res.statusCode = 401;
       res.send('Unauthorized request');
@@ -324,7 +326,6 @@ export const UserController: Router = router;
  * Validates the form of an email-address
  * @param email email-address to vaildate
  * @return true if email is correct
- * @author rbu
  */
 function validateEmail(email : string): boolean {
   let reg = /@/;
