@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
   public l:string;
   d = new Date();
   public anything: string;
-  searchresults: Searchresult [] = [];
+  //searchresults: Searchresult [] = [];
   constructor(public authentication : AuthenticationService,
               private service: ServiceService, private router: Router, public httpClient: HttpClient) {
 
@@ -65,7 +65,7 @@ export class HeaderComponent implements OnInit {
   searchService (searchObject: Object){
     console.log(searchObject);
     this.service.searchService(searchObject).subscribe (
-        res => {console.log(res), this.searchresults = res as search },
+        res => {console.log(res) /*this.searchresults = res as search */},
 
         err => console.log(err));
 
