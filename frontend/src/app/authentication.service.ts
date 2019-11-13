@@ -22,6 +22,9 @@ export class AuthenticationService {
   private loginUrl = "http://localhost:3000/user/login";
   private verificationUrl = "http://localhost:3000/user/verifyToken";
   private addServiceUrl = "http://localhost:3000/user/addService";
+  
+  private newPasswordUrl = "http://localhost:3000//user/setNewPassword";
+
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -125,6 +128,10 @@ export class AuthenticationService {
     return this.http.put<any>(this.rootUrl + email, user);
   }
 
+  //id is int, but the url is a string, so change it to string
+  updatePassword(user: any): Observable<any> {
+    return this.http.put<any>(this.newPasswordUrl, user);
+  }
   /**
    * @param token of loggedIn User
    * returns decoded token
