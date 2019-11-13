@@ -10,6 +10,7 @@ import { User } from "../user";
   styleUrls: ["./registration.component.scss"]
 })
 export class RegistrationComponent implements OnInit {
+
   //Controll over multiple values
   registrationForm = new FormGroup({
     email: new FormControl("", [Validators.required, Validators.email]),
@@ -55,8 +56,8 @@ export class RegistrationComponent implements OnInit {
       email: this.registrationForm.get("email").value,
       password: this.registrationForm.get("password").value,
       userGroup: this.registrationForm.get("userGroup").value,
-      firstName: this.registrationForm.get("firstName").value,
-      lastName: this.registrationForm.get("lastName").value,
+      firstname: this.registrationForm.get("firstName").value,
+      lastname: this.registrationForm.get("lastName").value,
       birthday: this.registrationForm.get("birthday").value,
       adress: this.registrationForm.get("adress").value,
       number: this.registrationForm.get("number").value,

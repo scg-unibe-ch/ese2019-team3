@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from "../authentication.service";
-import {FormControl} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
+import {ServiceService} from "../service.service";
 
 @Component({
   selector: 'app-header',
@@ -12,18 +14,58 @@ import {MatSelectModule} from "@angular/material/select";
 export class HeaderComponent implements OnInit {
   LoggedIn = false;
 
-  events : string [] = ['Concert', 'Opera', 'Poetry Slam', 'Festival', 'Museum', 'Comedy'];
-
+  services : string [] = ['Food & Drink', 'Musik', 'Licht & Bühne', 'Werbung' ];
   locations : string [] = ['Aarau', 'Basel', 'Bern', 'Biel/Bienne', 'Frauenfeld', 'Freiburg', 'Genf', 'Lausanne', 'Lugano','Luzern', 'Neuenburg', 'Schaffhausen',
   'Schwyz', 'Sitten', 'Solothurn', 'St. Gallen', 'Zug', 'Zürich'];
 
-  dates : string [] = ['Today', 'This Week', 'This Month', 'This Year'];
 
-  constructor(public authentication : AuthenticationService ) {
+  //filter for l = location, s = services and d= dates
+  /*filter : any = {
+    l : '',
+    s: '',
+    d  : '',
+  };*/
+
+  /*searchForm = new FormGroup({
+    services: new FormControl("",),
+    locations: new FormControl(""),
+    dates: new FormControl(""),
+  });*/
+
+
+  public s:string;
+  public l:string;
+  d = new Date();
+  public anything: string;
+
+  constructor(public authentication : AuthenticationService,
+              private service: ServiceService) {
 
   }
 
   ngOnInit() {}
+
+  //click on Search Button!
+  onSubmit(){
+    const searchObject = {
+      services: this.s,
+      locations: this.l,
+      dates: this.d,
+      anything: this.anything,
+    };
+    console.log("searching for service");
+    //calls method to post the registerUser to the backend
+    this.searchService(searchObject);
+
+  }
+//goes to backend
+  searchService (searchObject: Object){
+    console.log(searchObject);
+    this.service
+        .searchService(searchObject)
+        .subscribe(res => console.log(res), err => console.log(err));
+
+  }
 
   logOut(){
     //Test

@@ -10,17 +10,18 @@ import * as jwt_decode from "jwt-decode";
   providedIn: "root"
 })
 export class AuthenticationService {
-  private rootUrl = "http://localhost:3000/user/";
-
-  private registerUrl = "http://localhost:3000/user/register";
-  private loginUrl = "http://localhost:3000/user/login";
-  private verificationUrl = "http://localhost:3000/user/verifyToken";
-
   private loggedInUser: User;
   private email: string;
   private emailtoken: string;
 
   private passwordforgottenUrl = "http://localhost:3000/user/forgotPassword";
+
+  private rootUrl = "http://localhost:3000/user/";
+
+  private registerUrl = "http://localhost:3000/user/register";
+  private loginUrl = "http://localhost:3000/user/login";
+  private verificationUrl = "http://localhost:3000/user/verifyToken";
+  private addServiceUrl = "http://localhost:3000/user/addService";
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -54,7 +55,6 @@ export class AuthenticationService {
 
           console.warn("THIS User value to send to get method: " + this.email);
 
-          console.warn("Logged in User Method: " + this.getEmail());
         },
         err => {
           console.log(err);
@@ -63,15 +63,20 @@ export class AuthenticationService {
       );
   }
 
-  getEmail(): string {
-    //usage
+  // getEmail(): string {
+  //   //usage
 
-    const token = localStorage.getItem("token");
-    this.emailtoken = this.getDecodedAccessToken(token).email;
+  //   const token = localStorage.getItem("token");    
+  //   this.emailtoken = this.getDecodedAccessToken(token).email;
 
-    this.loggedInUser = this.getDecodedAccessToken(token);
-    //localStorage.getItem("token")
-    return this.emailtoken;
+  //   this.loggedInUser = this.getDecodedAccessToken(token);
+  //   //localStorage.getItem("token")
+  //   return this.emailtoken;
+  // }
+  
+  getCurrentUser(): any {
+    const token = localStorage.getItem("token");    
+    return this.getDecodedAccessToken(token)
   }
 
   public logOut() {
@@ -103,8 +108,7 @@ export class AuthenticationService {
    * to replace old password
    * @param email email of the user
    */
-
-  passwordForgotten(email: Object) {
+  passwordForgotten(email: object) {
     return this.http.put<any>(this.passwordforgottenUrl, email);
   }
 
@@ -123,6 +127,7 @@ export class AuthenticationService {
 
   /**
    * @param token of loggedIn User
+   * returns decoded token
    */
   getDecodedAccessToken(token: string): any {
     try {
@@ -130,5 +135,8 @@ export class AuthenticationService {
     } catch (Error) {
       return null;
     }
+  }
+  addservice(addService: Object) {
+    return this.http.post<any>(this.addServiceUrl, addService);
   }
 }

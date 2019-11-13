@@ -1,4 +1,5 @@
-import {Table, Column, Model, HasMany, BelongsTo, ForeignKey, Unique} from 'sequelize-typescript';
+import {Column, Model, Table, Unique} from 'sequelize-typescript';
+
 const bcrypt = require('bcryptjs');  //used to hash passwords
 @Table
 export class User extends Model<User> {
@@ -16,25 +17,25 @@ export class User extends Model<User> {
   @Column
   password!: string;
 
-   @Column
-   firstname!: string;
+  @Column
+  firstname!: string;
 
-    @Column
-    lastname!: string;
+  @Column
+  lastname!: string;
 
-    @Column
-    adress!: string;
+  @Column
+  adress!: string;
 
-    @Column
-    number!: string;
+  @Column
+  number!: string;
 
-    @Column
-    birthday!: string;
+  @Column
+  birthday!: string;
 
 
   toSimplification(): any {
     return {
-      'id': this.id,
+      //'id': this.id,
       'isVerified': this.isVerified,
       'email': this.email,
       'userGroup': this.userGroup,
@@ -62,16 +63,23 @@ export class User extends Model<User> {
 
   }
 
-  createAdminUser() {
-    this.email = 'admin';
-    this.password = bcrypt.hashSync('admin', 8);
-    this.userGroup = 'adminGroup';
-    this.isVerified = true;
-  }
+    createAdminUser() {
+        this.email = 'admin';
+        this.password = bcrypt.hashSync('admin', 8);
+        this.userGroup = 'adminGroup';
+        this.isVerified = true;
+    }
+
 
   setPassword(newPassword: string) {
       this.password = newPassword;
       this.save();
     }
 
+    createDummyUser() {
+        this.email = 'Peter@hand.ruedi';
+        this.password = bcrypt.hashSync('test', 8);
+        this.userGroup = 'serviceProvider';
+        this.isVerified = false;
+    }
 }

@@ -13,8 +13,9 @@ import {Service} from './models/service.model';
 import {User} from './models/user.model';
 import {UserController} from './controllers';
 import {ServiceController} from './controllers';
-
+import swaggerUi from 'swagger-ui-express';
 import * as swaggerDocument from './swagger.json';
+import * as path from 'path';
 //cross-origin resource sharing; communcation between different ports
 const cors = require('cors');
 
@@ -51,8 +52,6 @@ app.use(function (req, res, next) {
 // Mögliche Routes
 app.use('/user', UserController);
 app.use('/service', ServiceController);
-
-app.use(bodyParser.json());
 // Set Port
 sequelize.sync().then(() => {
 // start serving the application on the given port
@@ -60,13 +59,15 @@ sequelize.sync().then(() => {
     // success callback, log something to console as soon as the application has started
     console.log(`Listening at http://localhost:${port}/`);
   });
-  createAdminUser();
+  createDummyUser().then();
+  createDummyService().then();
+  createAdminUser().then();
+
+
 });
 
-https.createServer(app).listen(3001);
-
 // Start database
-sequelize 
+sequelize
   .authenticate()
   .then(() => {
     console.log('Database connection has been established successfully.');
@@ -94,3 +95,27 @@ async function createAdminUser() {
   }
 }
 
+
+
+}
+
+async function createDummyService() {
+    const services = await User.findAll();
+    if (services.length === 0) {
+        const service = new Service();
+        service.createDummyService();
+        await service.save();
+        console.log('Dummy Service created!');
+    }
+}
+
+
+async function createDummyUser() {
+  const users = await User.findAll();
+  if (users.length === 0) {
+    const user = new User();
+    user.createDummyUser();
+    await user.save();
+    console.log('Dummy User created!');
+  }
+}

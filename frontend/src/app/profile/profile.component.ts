@@ -39,16 +39,24 @@ export class ProfileComponent implements OnInit {
   public currentUser: User;
 
   public email: string;
-
+  public id: any;
   editable: boolean;
 
   getEmail() {
-    this.email = this.authentification.getEmail();
+    this.email = this.authentification.getCurrentUser().email;
   }
+
+  getId() {
+    this.id = this.authentification.getCurrentUser().id;
+  }
+
   ngOnInit() {
     this.getEmail();
+    this.getId();
 
     console.log("auth CurrentUser empty: " + this.email);
+    console.log("auth CurrentUser ID: " + this.id);
+
     console.log(this.email);
 
     this.displayUser(this.email);
@@ -113,7 +121,7 @@ export class ProfileComponent implements OnInit {
 
   updateUser() {
     this.authentification
-      .updateUser(this.email, this.profileForm.value)
+      .updateUser(this.id, this.profileForm.value)
       .subscribe(
         res => console.log("Updated User: " + JSON.stringify(res)),
         err => console.log(err)
