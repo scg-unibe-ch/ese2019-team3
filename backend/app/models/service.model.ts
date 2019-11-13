@@ -1,5 +1,4 @@
-import {Column, ForeignKey, Model, Table} from 'sequelize-typescript';
-import {User} from './User.model';
+import {Column, Model, Table} from 'sequelize-typescript';
 
 
 @Table
@@ -14,7 +13,7 @@ export class Service extends Model<Service> {
   @Column
   description!: string;
 
-  @ForeignKey((user: User) => user.id)
+  //<s@ForeignKey((user: User) => user.id)
   @Column
   providerId!: number;
 
