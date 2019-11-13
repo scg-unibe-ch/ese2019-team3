@@ -55,20 +55,19 @@ export class HeaderComponent implements OnInit {
       dates: this.d,
       anything: this.anything,
     };
+    this.searchService(searchObject);
     console.log("searching for service");
     //calls method to post the registerUser to the backend
     this.router.navigate(['/searchresults']);
-    this.searchService(searchObject);
+
 
   }
 //goes to backend
   searchService (searchObject: Object){
     console.log(searchObject);
-    this.service.searchService(searchObject).subscribe (
-        res => {console.log(res) /*this.searchresults = res as search */},
-
+    this.service.searchService(searchObject).subscribe(
+        res => console.log(res),
         err => console.log(err));
-
   }
 
 

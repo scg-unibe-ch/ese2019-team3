@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {Service} from "./models/service";
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +9,9 @@ import {Observable} from 'rxjs';
 export class ServiceService {
   private addserviceurl = "http://localhost:3000/service/register"
   private verificationUrl = "http://localhost:3000/user/verifyToken"
-  private searchserviceurl = "http://localhost:3000/service"
+  private searchserviceurl = "http://localhost:3000/service/search"
 
+  Services : Service[];
 
   constructor(private http: HttpClient) {
 
@@ -17,12 +19,14 @@ export class ServiceService {
   //accepts serviceObject and returns response of backend, backend responses with registered service
 
   addService(service: Object): Observable <any> {
-    return this.http.post<any>(this.addserviceurl, service)
+    return this.http.post<any>(this.addserviceurl, service);
   }
 
   searchService(search:Object){
-    return this.http.post<any>(this.searchserviceurl, search)
+    return this.http.post<any>(this.searchserviceurl, search);
+  //.subscribe((data : Service[]) => {this.Services = data}
   }
+
 
   // Checks whether the token is expired or not
   //public isAuthenticated(): Observable<any> {    const token = localStorage.getItem('token');
