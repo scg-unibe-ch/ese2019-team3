@@ -1,6 +1,6 @@
 import {Request, Response, Router} from 'express';
 import {Service} from '../models/service.model';
-import {filter} from '../serviceFilter';
+import {filterFunction} from '../serviceFilter';
 
 const fullTextSearch = require('full-text-search');
 const search = new fullTextSearch();
@@ -102,17 +102,20 @@ router.post('/search', async (req: Request, res: Response) => {
  * Request Body:
  * {
  *     queries:       string,
- *     searchType:    string
  * }
  */
 router.post('/filter', async (req: Request, res: Response) => {
     const service = await Service.findAll();
 
     const q1 = await req.body.queries;
-    const q2 = await req.body.searchType;
-
-    if(q1 != null && (q2 != null || q2 != "")){
-    res.send(filter(q1, q2, service).toString());
+    const result = new fullTextSearch;
+    if(q1 != null){
+        const f = filterFunction(q1, service);
+        result.drop();
+        for(let i = 0; i < f.length; i++){
+            result.add(f[i].dataValues);
+        }
+    res.send(result);
     res.status(200);
     } else res.status(400);
 });
