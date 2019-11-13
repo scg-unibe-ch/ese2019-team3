@@ -93,7 +93,7 @@ async function createAdminUser() {
 }
 
 async function createDummyService() {
-    const services = await User.findAll();
+    const services = await Service.findAll();
     if (services.length === 0) {
         const service = new Service();
         service.createDummyService();

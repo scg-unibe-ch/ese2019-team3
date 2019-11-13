@@ -284,7 +284,7 @@ router.put('/:id', async (req: Request, res: Response) => {
 
 /**
  * Method to  delete a user from the database
- * Path: ./user/:email
+ * Path: ./user/:id
  * Request type: DELETE
  */
 router.delete('/:id', async (req: Request, res: Response) => {
