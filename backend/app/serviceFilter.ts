@@ -1,21 +1,33 @@
 import {Service} from "./models/service.model";
 
+const fullTextSearch = require('full-text-search');
 
+const search = new fullTextSearch();
 /** Wird gebraucht um Services zu filtern.
  * @param input
- * @param searchType
  * @param services Array of all the Services in the database
  */
-export function filter(input: string, searchType: string, services: Service[]): Service[]{
-    if(searchType != null && searchType.length > 0){
-//        if(searchType == 'date')                                    return dateFilter(input, services);
-        if(searchType == 'location' || searchType == 'city')        return locationFilter(input, services);
-        if(searchType == 'services' || searchType == 'serviceType') return servicesFilter(input, services);
-    }
-    console.log("Couldn't understand the Query");
-    var A: Service[];
-    A = [];
-    return A;
+export function filterFunction(input: string, services: Service[]): Service[]{
+    let inp = input.split(',');
+
+        while (inp.length > 0) {
+            if(inp.length > 1) {
+                let query = inp.pop();
+                let searchType = inp.pop();
+                if (query != null && searchType != null) {
+                    query = query.trim();
+                    searchType = searchType.trim();
+                    if (searchType == 'date')                                     services = dateFilter(<string>query, services);
+                    if (searchType == 'location' || searchType == 'city')        services = locationFilter(<string>query, services);
+                    if (searchType == 'services' || searchType == 'serviceType') services = servicesFilter(<string>query, services);
+                } else console.log("Couldn't understand the Query")
+            } else if(inp.length == 1){
+                let re = new RegExp(<string>inp.pop());
+                services = services.filter(service => re.test(service.toSimplification().toString));
+            }
+        }
+
+    return services;
 }
 
 /**
@@ -23,10 +35,11 @@ export function filter(input: string, searchType: string, services: Service[]): 
  * Erwartet ein String von Daten (13.10.1995, 14.10.1995,...)
  * filtert jene Services, welche in diesem Zeitraum zur Verfügung stehen.
  * @param input
+ * @param services
  */
-/*
+
 function dateFilter(input: string, services: Service[]): Service[] {
-    var dates: Date[] = ([]);
+    /*var dates: Date[] = ([]);
     try{
         let days = input.split(/,/);
         for(var i = 0; i < days.length; i++){
@@ -37,16 +50,15 @@ function dateFilter(input: string, services: Service[]): Service[] {
         }
     } catch(Error){ throw new Error("Somethings wrong with the Date Filter."); }
     let s = services.filter(service => service.availableDates.forEach(date => dates.includes(date)));
-    return s;
+    return s; */
+    return services;
 }
-*/
+
 
 function servicesFilter(input: string,services: Service[]): Service[]{
-    let s = services.filter(service => service.serviceType == input);
-    return s;
+    return services.filter(service => service.serviceType == input);
 }
 
 function locationFilter(input: string,services: Service[]): Service[]{
-    let s = services.filter(service => service.city == input);
-    return s;
+    return services.filter(service => service.city == input);
 }

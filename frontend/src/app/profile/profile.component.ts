@@ -14,46 +14,57 @@ import { User } from "../user";
 export class ProfileComponent implements OnInit {
   //Controll over multiple values
   profileForm = new FormGroup({
-    firstName: new FormControl("", Validators.required),
-    lastName: new FormControl("", Validators.required),
     email: new FormControl("", [Validators.required, Validators.email]),
-    birthday: new FormControl("", Validators.required),
+    userGroup: new FormControl(""),
+    firstname: new FormControl("", Validators.required),
+    lastname: new FormControl("", Validators.required),
     adress: new FormControl(""),
     number: new FormControl(""),
+    birthday: new FormControl("", Validators.required),
+    //add in response
     company: new FormControl("")
   });
+
+
   constructor(
     private http: HttpClient,
     private authentification: AuthenticationService
   ) {
     const url = "http://localhost:4200/profile";
-    this.http
+    /*this.http
       .post(url, this.profileForm.value)
-      .subscribe(() => {}, e => console.error(e));
+      .subscribe(() => {}, e => console.error(e));*/
   }
 
   public currentUser: User;
 
-  public email: string 
+  public email: string;
+  public id: any;
+  editable: boolean;
 
-  getEmail(){
-    this.email = this.authentification.getEmail()
-
+  getEmail() {
+    this.email = this.authentification.getCurrentUser().email;
   }
+
+  getId() {
+    this.id = this.authentification.getCurrentUser().id;
+  }
+
   ngOnInit() {
-    console.log("CurrentUser empty: " + this.currentUser);
+    this.getEmail();
+    this.getId();
+
+    console.log("auth CurrentUser empty: " + this.email);
+    console.log("auth CurrentUser ID: " + this.id);
+
     console.log(this.email);
 
     this.displayUser(this.email);
 
-    console.log("CurrentUser filled: " + this.currentUser);
-  }
+    //first disabled
+    this.disableForm();
 
-  //TODO
-  disabled() {
-    //doesn't work yet, so took it out
-    // this.profileForm.disable();
-    this.profileForm.enable();
+    //console.log("CurrentUser filled: " + this.currentUser);
   }
 
   
@@ -61,36 +72,59 @@ export class ProfileComponent implements OnInit {
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.warn(this.profileForm.value);
-    this.disabled();
     //update User data
     this.updateUser();
   }
 
-  enabled() {
+  enableForm(){
     this.profileForm.enable();
+    this.profileForm.get("email").disable();
+
+  }
+
+  disableForm(){
+    this.profileForm.disable();
   }
 
   isProvider() {
-    return this.profileForm.get("usergroup").value == "provider" ? true : false;
+    //testing, change to provider
+    return this.profileForm.get("userGroup").value == "adminGroup"
+      ? true
+      : false;
   }
 
   displayUser(email: string) {
     this.authentification
       .getUser(email)
       .pipe(
-        tap(user => {
+        tap(() => {
           //side effect to save user into formgroup as same values
-          this.profileForm.patchValue(user);
+          console.log("Input email " + email);
         })
       )
       //testing
-      .subscribe(res => (this.currentUser = res), res => console.log(res));
+      .subscribe(
+        res => (
+          console.log("Service: " + JSON.stringify(res)),
+          console.log(
+            "FormControl empty: " + JSON.stringify(this.profileForm.value)
+          ),
+          this.profileForm.patchValue(res[0]),
+          console.log(
+            "FormControl filled: " + JSON.stringify(this.profileForm.value)
+          )
+          //(this.currentUser = res)
+        ),
+        err => console.log(err)
+      );
   }
 
   updateUser() {
     this.authentification
-      .updateUser(this.currentUser)
-      .subscribe(res => console.log(res), err => console.log(err));
-      
+      .updateUser(this.id, this.profileForm.value)
+      .subscribe(
+        res => console.log("Updated User: " + JSON.stringify(res)),
+        err => console.log(err)
+      );
   }
 }

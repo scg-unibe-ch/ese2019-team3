@@ -582,10 +582,8 @@
       "type": "object",
       "properties": {
         "queries": {
-          "type": "string"
-        },
-        "searchType": {
-          "type": "string"
+          "type": "string",
+          "description": "All queries in a single string seperated by commas (query, searchType, query,..) with the general search query at the end"
         }
       }
     },
