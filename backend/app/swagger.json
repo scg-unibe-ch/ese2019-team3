@@ -32,9 +32,9 @@
   ],
   "paths": {
     "/service/filter": {
-      "get": {
+      "post": {
         "tags": [
-          "Service"
+          "Services"
         ],
         "summary": "Filter all services for a Special query",
         "operationId": "filterService",
@@ -53,11 +53,8 @@
           }
           ],
         "responses": {
-          "201": {
-            "description": "Filter successful",
-            "schema": {
-              "type": "array"
-            }
+          "200": {
+            "description": "Filter successful"
           },
           "400": {
             "description": "Not correctly filtered"
@@ -91,7 +88,7 @@
           }
         ],
         "responses": {
-          "201": {
+          "200": {
             "description": "User created"
           },
           "400": {
@@ -398,7 +395,7 @@
         "tags": [
           "Services"
         ],
-        "summary": "Show all registered services)",
+        "summary": "Show all registered services",
         "description": "",
         "produces": [
           "application/json"
@@ -584,7 +581,7 @@
     "filter": {
       "type": "object",
       "properties": {
-        "query": {
+        "queries": {
           "type": "string"
         },
         "searchType": {
@@ -635,7 +632,7 @@
         },
         "birthday": {
           "type": "string"
-        },
+        }
 
       },
       "xml": {

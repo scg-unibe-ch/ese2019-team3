@@ -1,4 +1,4 @@
-import {Router, Request, Response} from 'express';
+import {Request, Response, Router} from 'express';
 import {User} from '../models/user.model';
 import randomString from 'randomstring';
 
@@ -108,7 +108,7 @@ router.post('/login', async (req: Request, res: Response) => {
  * Middleware to verify token
  * Token must be send in the header of a request from the frontend
  */
-function verifyToken (req: Request,res: Response,next) {
+function verifyToken (req: Request,res: Response,next: () => void) {
     if (!req.headers.authorization) {   // The word authorization may need to be changed, depends on the naming of the header in the frontend
       res.statusCode = 401;
       res.send('Unauthorized request');
@@ -125,7 +125,7 @@ function verifyToken (req: Request,res: Response,next) {
       res.statusCode = 401;
       res.send('Unauthorized request');
     }
-    req.id = payload.id;
+    //req.id = payload.id;
     next();
 }
 

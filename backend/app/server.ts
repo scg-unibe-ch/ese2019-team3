@@ -1,21 +1,18 @@
 // import everything from express and assign it to the express variable
 import express from 'express';
+
+import {Service} from './models/service.model';
+import {User} from './models/user.model';
+import {ServiceController, UserController} from './controllers';
+import * as swaggerDocument from './swagger.json';
+import {Sequelize} from "sequelize-typescript";
+
 const bodyParser = require('body-parser');
 const https = require('https');
 const fs = require('fs');
 const swaggerUi = require('swagger-ui-express');
 
 // import all the controllers. If you add a new controller, make sure to import it here as well.
-
-import {Sequelize} from 'sequelize-typescript';
-
-import {Service} from './models/service.model';
-import {User} from './models/user.model';
-import {UserController} from './controllers';
-import {ServiceController} from './controllers';
-import swaggerUi from 'swagger-ui-express';
-import * as swaggerDocument from './swagger.json';
-import * as path from 'path';
 //cross-origin resource sharing; communcation between different ports
 const cors = require('cors');
 
@@ -72,7 +69,7 @@ sequelize
   .then(() => {
     console.log('Database connection has been established successfully.');
   })
-  .catch(err => {
+  .catch((err: any) => {
     console.error('Unable to connect to the database:', err);
   });
 
@@ -81,7 +78,7 @@ sequelize
 app.use('/dbtest', async  (req, res) =>{
   res.statusCode = 200;
   return res.json({Status: 'Connection successful'});
-})
+});
 
 // Create admin user as entry in the database
 async function createAdminUser() {
@@ -93,10 +90,6 @@ async function createAdminUser() {
     await user.save();
     console.log('Admin User created!');
   }
-}
-
-
-
 }
 
 async function createDummyService() {

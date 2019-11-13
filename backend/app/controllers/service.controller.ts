@@ -1,7 +1,6 @@
 import {Request, Response, Router} from 'express';
 import {Service} from '../models/service.model';
 import {filter} from '../serviceFilter';
-import bodyParser = require("body-parser");
 
 const fullTextSearch = require('full-text-search');
 const search = new fullTextSearch();
@@ -73,7 +72,7 @@ router.post('/register', async (req, res) => {
     await service.save().then ( async() => {
     });
     res.send('service registered');
-    res.status = 200;
+    res.status(200);
 
 });
 
@@ -99,22 +98,23 @@ router.post('/search', async (req: Request, res: Response) => {
 
 /**
  * Method for filtering Services by location or servicetype
- * Request type: GET
+ * Request type: POST
  * Request Body:
  * {
- *     "queries":         string,
- *     "searchType":    string
+ *     queries:       string,
+ *     searchType:    string
  * }
  */
-router.get('/filter', async (req: Request, res: Response) => {
+router.post('/filter', async (req: Request, res: Response) => {
     const service = await Service.findAll();
 
-    let q1 = req.body.queries.toString();
-    let q2 = req.body.searchType.toString();
-    if(q1 != null && q2 != null && q2 != ""){
+    const q1 = await req.body.queries;
+    const q2 = await req.body.searchType;
+
+    if(q1 != null && (q2 != null || q2 != "")){
+    res.send(filter(q1, q2, service).toString());
     res.status(200);
-    res.send(filter(q1, q2, service));}
-    else res.status(400);
+    } else res.status(400);
 });
 export const ServiceController: Router = router;
 
