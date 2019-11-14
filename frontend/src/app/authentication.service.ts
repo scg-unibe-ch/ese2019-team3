@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
+import {User} from './models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class AuthenticationService {
 
   private registerUrl = 'http://localhost:3000/user/register';
   private loginUrl = 'http://localhost:3000/user/login';
-  private verificationUrl = 'http://localhost:3000/user/verifyToken';
+  private verificationUrl = 'http://localhost:3000/verifyToken/';
   private passwordforgottenUrl = 'http://localhost:3000/user/forgotPassword';
 
   constructor(private http: HttpClient, private router: Router) {
@@ -37,12 +38,12 @@ export class AuthenticationService {
   logOutUser() {
       localStorage.removeItem('token');
   }
-  public isAuthenticated(): Observable<any> {
+  public isAuthenticated(): boolean {
       const token = localStorage.getItem('token');
   // Checks whether the token is expired or not
-    if(this.http.post<any>(this.verificationUrl, token) === '200')
-        return true;
-            else return false;;
+      this.http.get<any>(this.verificationUrl + token).subscribe((data: boolean) => { alert(data + ' hallo'); return data; });
+      return false;
+  // alert(this.http.get<any>(this.verificationUrl, token).subscribe(res => console.log(res), err => console.log(err)));
   }
   public isUser(): boolean {
     return;

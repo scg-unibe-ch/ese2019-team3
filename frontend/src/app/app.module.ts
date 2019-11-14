@@ -39,10 +39,7 @@ const appRoutes: Routes = [
     { path: 'Registration', component: RegistrationComponent},
     { path: 'Profile', component: ProfileComponent, canActivate: [AuthGuard] },
     { path: 'Profile/ChangePassword', component: ChangePasswordComponent, canActivate: [AuthGuard] },
-    { path: 'Admin', component: AdminComponent/*, canActivate: [RoleGuard],
-        data: {
-            expectedRole: 'admin'
-        } */},
+    { path: 'Admin', component: AdminComponent, canActivate: [RoleGuard] },
     { path: '', component: HeaderComponent},
     { path: '**', component: PageNotFoundComponent },
 ];

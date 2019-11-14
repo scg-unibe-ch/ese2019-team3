@@ -17,9 +17,9 @@ export class RoleGuard implements CanActivate {
     const tokenPayload = decode(token);
     if (
         !this.auth.isAuthenticated() ||
-        tokenPayload.userGroup !== expectedGroup
+        tokenPayload.userGroup !== 'adminGroup'
     ) {
-      this.router.navigate(['login']);
+      this.router.navigate(['LogIn']);
       return false;
     }
     return true;
