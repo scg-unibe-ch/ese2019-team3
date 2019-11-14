@@ -1,9 +1,13 @@
 export class Service {
-   public  id : number;
-   public title: string;
-   public services : string;
-   public  locations : string;
-   public  dates : string ;
-    public  anything : string;
+   public provider : string;
+   public serviceTitle : string;
+   public description: string;
+   public providerId : number;
+   public serviceType  : string;
+   public  price : number;
+   public city  : string;
+
+
 
 }
+

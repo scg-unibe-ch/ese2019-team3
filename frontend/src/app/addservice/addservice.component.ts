@@ -38,7 +38,7 @@ export class AddserviceComponent implements OnInit {
   constructor(private http: HttpClient,
               private authentification: AuthenticationService,
               private service: ServiceService,) {
-    const url = "http://localhost:4200/addService";
+    const url = "http://localhost:4200/Profile/addService";
     const serviceForm = {
       serviceTitle: this.s,
       city: this.l,

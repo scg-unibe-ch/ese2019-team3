@@ -20,7 +20,7 @@
    <form class = "btn" style="float: left;margin-left: 2%">
     <mat-form-field >
       <mat-label> All Locations </mat-label>
-        <mat-select id = "location" [(ngModel)] = "l" name="location" >
+        <mat-select id = "location" [(ngModel)] = "city" name="location" >
           <mat-option> None </mat-option>
           <mat-option *ngFor = "let locations of locations " [value]  = "locations"> {{locations}} </mat-option>
         </mat-select>
@@ -32,7 +32,7 @@
    <form class ="btn" style="float: left; margin-left: 2%; margin-bottom: 1%; ">
     <mat-form-field>
       <mat-label> All Services </mat-label>
-      <mat-select id = "services" [(ngModel)]="s" name="services" >
+      <mat-select id = "services" [(ngModel)]="categorie" name="services" >
         <mat-option> None </mat-option>
         <mat-option *ngFor = "let services of services" [value] = "services"> {{services}}</mat-option>
       </mat-select>
@@ -69,6 +69,7 @@
             (click) = onSubmit()>
         Search</button>
   </mat-list-item>
+                   <button (click) = fetchAll()>test</button>
 
                </mat-list>
            </mat-card-content>

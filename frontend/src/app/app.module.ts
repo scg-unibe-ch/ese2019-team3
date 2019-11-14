@@ -36,6 +36,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {BodyComponent} from "./body/body.component";
 import {FooterComponent} from "./footer/footer.component";
+import {ServiceService} from "./service.service";
 
 
 const appRoutes: Routes = [
@@ -44,7 +45,7 @@ const appRoutes: Routes = [
     { path: 'Registration', component: RegistrationComponent},
     { path: 'Profile', component: ProfileComponent, canActivate: [AuthGuard] },
     { path: 'Profile/ChangePassword', component: ChangePasswordComponent, canActivate: [AuthGuard] },
-    {path: 'addService', component: AddserviceComponent, canActivate: [AuthGuard]},
+    {path: 'Profile/addService', component: AddserviceComponent, canActivate: [AuthGuard]},
     {path: 'essenundtrinken', component: BodyComponent, canActivate: [AuthGuard]},
     {path: 'searchresults', component:HeaderComponent, canActivate: [AuthGuard]},
     { path: 'Admin', component: AdminComponent, canActivate: [RoleGuard],
@@ -95,6 +96,7 @@ const appRoutes: Routes = [
     StatusBar,
     SplashScreen,
       AuthenticationService,
+      ServiceService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
