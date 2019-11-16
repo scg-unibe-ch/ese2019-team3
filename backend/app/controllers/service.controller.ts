@@ -103,33 +103,11 @@ router.post('/filter', async (req: Request, res: Response) => {
     const service = await Service.findAll();
 
     const q1 = await req.body.queries;
-    const result = new fullTextSearch;
     if(q1 != null){
         const f = filterFunction(q1, service);
-        result.drop();
-        for(let i = 0; i < f.length; i++){
-            result.add(f[i].dataValues);
-        }
-    res.send(result);
-    res.status(200);
-    } else res.status(400);
-});
-
-
-router.put('/filter', async (req: Request, res: Response) => {
-    const service = await Service.findAll();
-
-    const q1 = await req.body.queries;
-    const result = new fullTextSearch;
-    if(q1 != null){
-        const f = filterFunction(q1, service);
-        result.drop();
-        for(let i = 0; i < f.length; i++){
-            result.add(f[i].dataValues);
-        }
-        res.send(result);
+        res.send(f);
         res.status(200);
-    } else res.status(400);
+    } else res.status(500);
 });
 
 
