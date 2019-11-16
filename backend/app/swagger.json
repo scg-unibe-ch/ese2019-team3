@@ -498,7 +498,7 @@
         ]
       }
     },
-    "/service/search": {
+,    "/service/search": {
       "post": {
         "tags": [
           "Services"
@@ -516,6 +516,50 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/search"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string",
+              "items": {
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/user/checkPassword": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "verify if password is correct",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/login"
             }
           }
         ],
