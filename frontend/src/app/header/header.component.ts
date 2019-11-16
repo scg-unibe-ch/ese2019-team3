@@ -79,6 +79,8 @@ export class HeaderComponent implements OnInit {
   async searchService (searchObject){
     console.log(searchObject);
     await this.service.searchService(searchObject).subscribe((data: Service[]) =>{this.Services = data});
+    console.log('Response from backend:');
+    console.log(this.Services);
   }
 
   fetchAll(){
