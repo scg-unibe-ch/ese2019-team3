@@ -47,6 +47,7 @@ export class HeaderComponent implements OnInit {
   public anything: string;
   public city: string;
   private Services: Service[];
+  private dataTest: string;
   //searchresults: Searchresult [] = [];
   constructor(public authentication: AuthenticationService,
               private service: ServiceService, private router: Router, public httpClient: HttpClient) {
@@ -81,6 +82,7 @@ export class HeaderComponent implements OnInit {
     await this.service.searchService(searchObject).subscribe((data: Service[]) =>{this.Services = data});
     console.log('Response from backend:');
     console.log(this.Services);
+    this.dataTest = JSON.stringify(this.Services);
   }
 
   fetchAll(){
