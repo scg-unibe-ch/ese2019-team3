@@ -7,6 +7,8 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {ServiceService} from "../service.service";
 import { Router } from '@angular/router';
 import {HttpClient} from "@angular/common/http";
+import {User} from "../user";
+import {Service} from "../models/service";
 //import {Service} from "../models/service";
 
 @Component({
@@ -44,8 +46,9 @@ export class HeaderComponent implements OnInit {
   d = new Date();
   public anything: string;
   public city: string;
+  private Services: Service[];
   //searchresults: Searchresult [] = [];
-  constructor(public authentication : AuthenticationService,
+  constructor(public authentication: AuthenticationService,
               private service: ServiceService, private router: Router, public httpClient: HttpClient) {
 
   }
@@ -73,12 +76,9 @@ export class HeaderComponent implements OnInit {
 
   }
 //goes to backend
-  searchService (searchObject: Object){
+  searchService (searchObject){
     console.log(searchObject);
-    this.service.searchService(searchObject).subscribe(
-        res => console.log(res),
-        err => console.log(err));
-
+    this.service.searchService(searchObject).subscribe((data: Service[]) =>{this.Services = data});
   }
 
   fetchAll(){

@@ -104,21 +104,63 @@ router.post('/search', async (req: Request, res: Response) => {
  *     queries:       string,
  * }
  */
+/*
 router.post('/filter', async (req: Request, res: Response) => {
     const service = await Service.findAll();
 
-    const q1 = await req.body.queries;
-    const result = new fullTextSearch;
+    const q1 = await JSON.stringify(req.body);
     if(q1 != null){
         const f = filterFunction(q1, service);
-        result.drop();
-        for(let i = 0; i < f.length; i++){
-            result.add(f[i].dataValues);
-        }
-    res.send(result);
-    res.status(200);
-    } else res.status(400);
+        res.send(f);
+        res.status(200);
+    } else res.status(500);
 });
+*/
+
+
+/**
+ * Method for filtering Services by location or servicetype
+ * Request type: POST
+ * Request Body:
+ * {
+ *     city:       string,
+ *     serviceType: string,
+ *     se
+ * }
+*/
+
+router.post('/filter', async (req: Request, res: Response) => {
+    let searchResult = [];
+    //serach for serviceType and Location
+    if (req.body.serviceType == undefined && req.body.city == undefined) {
+        searchResult = searchResult = await Service.findAll();
+    } else if (req.body.city === undefined || req.body.city === '') {
+        searchResult = await Service.findAll({where: {serviceType: req.body.serviceType}});
+    } else if (req.body.serviceType === undefined || req.params.serviceType === '') {
+        searchResult = await Service.findAll({where: {city: req.body.city}});
+    } else {
+        searchResult = await Service.findAll({where: {city: req.body.city, serviceType: req.body.serviceType}});
+    }
+
+    // add results for fulltextsearch if needed
+    if (req.body.description !== undefined && req.body.description !== null) {
+        const description = await req.body.description;
+        search.drop();
+        const searchBody = await Service.findAll();
+        let i;
+        for (i = 0; i < searchBody.length; i++) {
+            search.add(searchBody[i].dataValues);
+        }
+        const anySearch = search.search(description.toString());
+        const searchResultAny = searchResult.concat(anySearch);
+        res.send(searchResultAny);
+    } else {
+    res.statusCode = 200;
+    res.send(searchResult);
+    }
+
+});
+
 export const ServiceController: Router = router;
 
 

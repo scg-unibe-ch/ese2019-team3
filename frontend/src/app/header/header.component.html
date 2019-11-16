@@ -74,7 +74,23 @@
                </mat-list>
            </mat-card-content>
        </mat-card>
+
   </div> <!--/main -->
+    <div>
+        <table mat-table>
+            <tr>
+                <th>Service</th>
+                <th>Location</th>
+                <th>Price</th>
+            </tr>
+            <!-- lists all users that are being fetched from backend-->
+            <tr *ngFor="let service of Services">
+                <td>{{service.serviceTitle}}</td>
+                <td>{{service.city}}</td>
+                <td>{{service.price}}</td>
+            </tr>
+        </table>
+    </div>
 
 <!--
 <div class = "categories">

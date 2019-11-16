@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Service} from "./models/service";
+import {Service} from './models/service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServiceService {
-  private addserviceurl = "http://localhost:3000/service/register";
-  private verificationUrl = "http://localhost:3000/user/verifyToken";
-  private searchserviceurl = "http://localhost:3000/service/filter";
-  private allservices = "http://localhost:3000/service";
+  private addserviceurl = 'http://localhost:3000/service/register';
+  private verificationUrl = 'http://localhost:3000/user/verifyToken';
+  private searchserviceurl = 'http://localhost:3000/service/filter';
+  private allservices = 'http://localhost:3000/service';
 
   constructor(private http: HttpClient) {
 

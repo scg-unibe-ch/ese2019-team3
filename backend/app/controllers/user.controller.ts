@@ -210,6 +210,7 @@ router.get('/', async (req: Request, res: Response) => {
  * Request type: GET
  */
 router.get('/verify', async (req: Request, res: Response) => {
+
   const user = await User.findAll({where: {isVerified: false}});
   if (user == null) {
       res.statusCode = 400;

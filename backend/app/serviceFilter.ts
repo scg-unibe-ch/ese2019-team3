@@ -8,8 +8,10 @@ const search = new fullTextSearch();
  * @param services Array of all the Services in the database
  */
 export function filterFunction(input: string, services: Service[]): Service[]{
-    let inp = input.split(',');
-
+    console.log('asd');
+    console.log(input);
+    const inp = input.split(',');
+    console.log(inp[0]);
         while (inp.length > 0) {
             if(inp.length > 1) {
                 let query = inp.pop();
