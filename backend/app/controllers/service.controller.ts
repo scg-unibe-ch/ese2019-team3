@@ -133,7 +133,7 @@ router.post('/filter', async (req: Request, res: Response) => {
     let searchResult = [];
     //serach for serviceType and Location
     if (req.body.serviceType == undefined && req.body.city == undefined) {
-        searchResult = searchResult = await Service.findAll();
+        searchResult = await Service.findAll();
     } else if (req.body.city === undefined || req.body.city === '') {
         searchResult = await Service.findAll({where: {serviceType: req.body.serviceType}});
     } else if (req.body.serviceType === undefined || req.params.serviceType === '') {
