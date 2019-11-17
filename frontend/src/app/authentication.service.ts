@@ -12,7 +12,7 @@ export class AuthenticationService {
 
   private registerUrl = 'http://localhost:3000/user/register';
   private loginUrl = 'http://localhost:3000/user/login';
-  private verificationUrl = 'http://localhost:3000/verifyToken/';
+  private verificationUrl = 'http://localhost:3000/user/verifyToken/';
   private passwordforgottenUrl = 'http://localhost:3000/user/forgotPassword';
 
   constructor(private http: HttpClient, private router: Router) {
@@ -41,8 +41,9 @@ export class AuthenticationService {
   public isAuthenticated(): boolean {
       const token = localStorage.getItem('token');
   // Checks whether the token is expired or not
-      this.http.get<any>(this.verificationUrl + token).subscribe((data: boolean) => { alert(data + ' hallo'); return data; });
-      return false;
+      this.http.get<any>(this.verificationUrl + token)
+          .subscribe((data: string) => { alert (data); return false; } );
+      return true;
   // alert(this.http.get<any>(this.verificationUrl, token).subscribe(res => console.log(res), err => console.log(err)));
   }
   public isUser(): boolean {

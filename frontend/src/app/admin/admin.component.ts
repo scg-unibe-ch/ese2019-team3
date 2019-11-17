@@ -39,7 +39,7 @@ export class AdminComponent implements OnInit {
   }
 // fetches users that need to be validated from backend
   getRegistrationRequests() {
-    this.http.get('http://localhost:3000/user/verify').subscribe((data: User[]) =>{this.Users = data});
+    this.http.get('http://localhost:3000/user/verify').subscribe((data: User[]) => {this.Users = data; });
   }
 
 // sends user to backend for validation and tells admin it was validated
@@ -56,13 +56,13 @@ export class AdminComponent implements OnInit {
     this.getRegistrationRequests();
   }
 
-sendUserToDelete(user: User){
+sendUserToDelete(user: User) {
   this.http.delete('http://localhost:3000/user/' + user.id).subscribe();
 }
 
 sendUserToValidate(user: User) {
     alert(user.id);
-    this.http.put('http://localhost:3000/user/'+ user.id, user).subscribe();
+    this.http.put('http://localhost:3000/user/' + user.id, user).subscribe();
 
 }
   ngOnInit() {

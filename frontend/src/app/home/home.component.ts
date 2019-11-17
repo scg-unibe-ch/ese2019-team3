@@ -7,7 +7,7 @@ import { AuthenticationService} from '../authentication.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  LoggedIn = false;
+  LoggedIn = this.auth.isAuthenticated();
   innerWidth: any;
 
   constructor(private auth: AuthenticationService) {
@@ -24,7 +24,6 @@ export class HomeComponent implements OnInit {
   logOut() {
     // Test
     alert('Sie wurden erfolgreich abgemeldet');
-    // ToDO: call authentication method,
     this.LoggedIn = false;
     this.auth.logOutUser();
   }
