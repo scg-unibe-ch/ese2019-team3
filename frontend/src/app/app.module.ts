@@ -18,6 +18,7 @@ import {HomeComponent} from './home/home.component';
 import {ProfileComponent} from './profile/profile.component';
 import {RegistrationComponent} from './registration/registration.component';
 import {PasswordforgottenComponent} from './passwordforgotten/passwordforgotten.component';
+import {MyservicesComponent} from "./myservices/myservices.component";
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -37,6 +38,9 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {BodyComponent} from "./body/body.component";
 import {FooterComponent} from "./footer/footer.component";
 import {ServiceService} from "./service.service";
+import {MatMenuModule} from "@angular/material/menu";
+import {MatTableModule} from "@angular/material/table";
+
 
 
 const appRoutes: Routes = [
@@ -48,6 +52,7 @@ const appRoutes: Routes = [
     {path: 'Profile/addService', component: AddserviceComponent, canActivate: [AuthGuard]},
     {path: 'essenundtrinken', component: BodyComponent, canActivate: [AuthGuard]},
     {path: 'searchresults', component:HeaderComponent, canActivate: [AuthGuard]},
+    {path: 'Profile/myservices', component: MyservicesComponent, canActivate: [AuthGuard]},
     { path: 'Admin', component: AdminComponent, canActivate: [RoleGuard],
         data: {
             expectedRole: 'admin'
@@ -72,6 +77,7 @@ const appRoutes: Routes = [
         AddserviceComponent,
         BodyComponent,
         FooterComponent,
+        MyservicesComponent,
 
     ],
 
@@ -90,7 +96,9 @@ const appRoutes: Routes = [
         ),
         MatSelectModule,
         MatDatepickerModule,
-        MatNativeDateModule
+        MatNativeDateModule,
+        MatMenuModule,
+        MatTableModule
     ],
   providers: [
     StatusBar,

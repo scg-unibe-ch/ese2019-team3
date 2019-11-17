@@ -76,14 +76,18 @@
        </mat-card>
 
   </div> <!--/main -->
+
+
     <div>
-        <table mat-table>
+        <table>
             <tr>
                 <th>Service</th>
                 <th>Location</th>
                 <th>Price</th>
             </tr>
+
             <!-- lists all users that are being fetched from backend-->
+
             <tr *ngFor="let service of Services">
                 <td>{{service.serviceTitle}}</td>
                 <td>{{service.city}}</td>
