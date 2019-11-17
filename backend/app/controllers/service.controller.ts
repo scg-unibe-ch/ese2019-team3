@@ -5,7 +5,7 @@ import {filterFunction} from '../serviceFilter';
 const fullTextSearch = require('full-text-search');
 const search = new fullTextSearch();
 
-
+let searchResult = [];
 const router: Router = Router();
 
 const contact = require('../contact');
@@ -130,7 +130,7 @@ router.post('/filter', async (req: Request, res: Response) => {
 */
 
 router.post('/filter', async (req: Request, res: Response) => {
-    let searchResult = [];
+    searchResult.length = 0;
     //serach for serviceType and Location
     if (req.body.serviceType == undefined && req.body.city == undefined) {
         searchResult = await Service.findAll();

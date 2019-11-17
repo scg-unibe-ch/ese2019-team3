@@ -58,7 +58,8 @@ export class HeaderComponent implements OnInit {
 
   //click on Search Button!
   onSubmit(){
-    const searchObject = {
+
+    let searchObject = {
       provider : this.p,
       serviceTitle : this.serviceTitle,
       description: this.anything,
@@ -70,10 +71,11 @@ export class HeaderComponent implements OnInit {
 
     };
     this.searchService(searchObject);
+
     console.log("searching for service");
     //calls method to post the registerUser to the backend
     //this.router.navigate(['/searchresults']);
-
+    delete searchObject[0];
 
   }
 //goes to backend
