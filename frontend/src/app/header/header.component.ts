@@ -75,16 +75,15 @@ export class HeaderComponent implements OnInit {
     console.log("searching for service");
     //calls method to post the registerUser to the backend
     //this.router.navigate(['/searchresults']);
+    JSON.stringify(searchObject);
     delete searchObject[0];
+
 
   }
 //goes to backend
   async searchService (searchObject){
     console.log(searchObject);
     await this.service.searchService(searchObject).subscribe((data: Service[]) =>{this.Services = data});
-    console.log('Response from backend:');
-    console.log(this.Services);
-    this.dataTest = JSON.stringify(this.Services);
   }
 
   fetchAll(){
