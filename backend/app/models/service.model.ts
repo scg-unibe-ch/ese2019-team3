@@ -29,7 +29,7 @@ export class Service extends Model<Service> {
 
   toSimplification(): any {
     return {
-      'id': this.id,
+       'id': this.id,
       'serviceTitle': this.serviceTitle,
       'serviceType': this.serviceType,
       'provider': this.provider,

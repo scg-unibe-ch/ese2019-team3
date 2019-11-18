@@ -671,6 +671,103 @@
           }
         ]
       }
+    },
+    "/booking": {
+      "get": {
+        "tags": [
+          "Booking"
+        ],
+        "summary": "get all bookings",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string",
+              "items": {
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+      }
+    },
+,    "/booking/register": {
+      "post": {
+        "tags": [
+          "Booking"
+        ],
+        "summary": "register a new booking",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Booking"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string",
+              "items": {
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+      }
+    },
+    "/booking/rate": {
+      "put": {
+        "tags": [
+          "Booking"
+        ],
+        "summary": "rate a past booking",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Rating"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string",
+              "items": {
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+      }
     }
   },
   "securityDefinitions": {
@@ -795,9 +892,6 @@
           "type": "string"
         }
       },
-      "xml": {
-        "name": "User"
-      }
     },
 
     "login": {
@@ -814,9 +908,50 @@
           "type": "string"
         }
         }
-    }
+    },
+    "Booking": {
+      "type": "object",
+      "properties": {
 
+        "clientId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "providerId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "serviceId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "date": {
+          "type": "string",
+        },
       },
+
+    },
+    "Rating": {
+      "type": "object",
+      "properties": {
+
+        "bookingId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "providerId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "rating": {
+          "type": "integer",
+          "format": "int32"
+        },
+      },
+
+    }
+  },
+
   "externalDocs": {
     "description": "Find out more about Swagger",
     "url": "http://swagger.io"

@@ -1,11 +1,13 @@
 // import everything from express and assign it to the express variable
 import express from 'express';
-
+import {Sequelize} from 'sequelize-typescript';
 import {Service} from './models/service.model';
 import {User} from './models/user.model';
-import {ServiceController, UserController} from './controllers';
+import {Booking} from './models/booking.model';
+import {ServiceController, UserController, BookingController} from './controllers';
 import * as swaggerDocument from './swagger.json';
-import {Sequelize} from "sequelize-typescript";
+
+
 
 const bodyParser = require('body-parser');
 const https = require('https');
@@ -23,12 +25,16 @@ const sequelize =  new Sequelize({
   password: '',
   storage: 'db.sqlite'
 });
-sequelize.addModels([Service, User]);
+sequelize.addModels([Service, User, Booking]);
 
 // create a new express application instance
 const app: express.Application = express();
 app.use(express.json());
 app.use(cors());
+// Mögliche Routes
+app.use('/booking', BookingController);
+app.use('/user', UserController);
+app.use('/service', ServiceController);
 
 //swagger
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
@@ -46,9 +52,9 @@ app.use(function (req, res, next) {
   next();
 });
 
-// Mögliche Routes
-app.use('/user', UserController);
-app.use('/service', ServiceController);
+
+
+
 // Set Port
 sequelize.sync().then(() => {
 // start serving the application on the given port
@@ -59,6 +65,7 @@ sequelize.sync().then(() => {
   createDummyUser().then();
   createDummyService().then();
   createAdminUser().then();
+  createDummyBooking().then();
 
 
 });
@@ -110,5 +117,15 @@ async function createDummyUser() {
     user.createDummyUser();
     await user.save();
     console.log('Dummy User created!');
+  }
+}
+
+async function createDummyBooking() {
+  const booking = await Booking.findAll();
+  if (booking.length === 0) {
+    const booking = new Booking();
+    booking.createDummyBooking();
+    await booking.save();
+    console.log('Dummy booking created!');
   }
 }

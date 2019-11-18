@@ -1,4 +1,5 @@
 import {Column, Model, Table, Unique} from 'sequelize-typescript';
+import {Decimal} from 'decimal.js-light'
 
 const bcrypt = require('bcryptjs');  //used to hash passwords
 @Table
@@ -32,10 +33,12 @@ export class User extends Model<User> {
   @Column
   birthday!: string;
 
+  @Column
+  rating!: number;
 
   toSimplification(): any {
     return {
-      //'id': this.id,
+       'id': this.id,
       'isVerified': this.isVerified,
       'email': this.email,
       'userGroup': this.userGroup,
@@ -44,7 +47,8 @@ export class User extends Model<User> {
       'lastname': this.lastname,
       'adress': this.adress,
       'number': this.number,
-      'birthday': this.birthday
+      'birthday': this.birthday,
+      'rating': this.rating;
     };
   }
 
@@ -58,8 +62,7 @@ export class User extends Model<User> {
     this.adress = simplification['adress'];
     this.number = simplification['number'];
     this.birthday = simplification['birthday'];
-
-
+    this.rating = simplification['rating'];
 
   }
 
@@ -82,4 +85,6 @@ export class User extends Model<User> {
         this.userGroup = 'serviceProvider';
         this.isVerified = false;
     }
+
+
 }

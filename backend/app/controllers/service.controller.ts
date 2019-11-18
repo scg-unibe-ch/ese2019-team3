@@ -16,9 +16,21 @@ const contact = require('../contact');
  * Request type: GET
  */
 router.get('/', async (req: Request, res: Response) => {
-    const user = await Service.findAll();
+    const service = await Service.findAll();
     res.statusCode = 200;
-    res.send(user.map(e => e.toSimplification()));
+    res.send(service.map(e => e.toSimplification()));
+});
+
+/**
+ * Method to show all information about a specific service
+ * Path: ./service/:id
+ * Request type: GET
+ */
+router.get('/:id', async (req: Request, res: Response) => {
+    const id = req.params.id;
+    const service = await Service.findOne({where: {id: id}});
+    res.statusCode = 200;
+    res.send(service.map(e => e.toSimplification()));
 });
 
 
