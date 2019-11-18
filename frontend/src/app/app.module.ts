@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule, HttpInterceptor} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthenticationService} from './authentication.service';
+import {TokenInterceptorService} from './token-interceptor.service';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -31,6 +32,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {AuthGuard} from './auth.guard';
 import {RoleGuard} from './role.guard';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+
 
 
 const appRoutes: Routes = [
@@ -79,8 +81,11 @@ const appRoutes: Routes = [
     StatusBar,
     SplashScreen,
       AuthenticationService,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
-  ],
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+      { provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+      }],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

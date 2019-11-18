@@ -38,11 +38,10 @@ export class AuthenticationService {
   logOutUser() {
       localStorage.removeItem('token');
   }
+  getToken(){
+      return localStorage.getItem('token');
+  }
   public isAuthenticated(): boolean {
-      const token = localStorage.getItem('token');
-  // Checks whether the token is expired or not
-      this.http.get<any>(this.verificationUrl + token)
-          .subscribe((data: string) => { alert (data); return false; } );
       return true;
   // alert(this.http.get<any>(this.verificationUrl, token).subscribe(res => console.log(res), err => console.log(err)));
   }
