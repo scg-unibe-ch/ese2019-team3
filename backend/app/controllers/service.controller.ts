@@ -77,6 +77,8 @@ router.post('/register', async (req, res) => {
 });
 
 
+
+
 router.get('/', async (req, res) => {
     const service = await Service.findAll();
     res.statusCode = 200;
@@ -159,6 +161,18 @@ router.post('/filter', async (req: Request, res: Response) => {
     res.send(searchResult);
     }
 
+});
+
+/**
+ * Method to show all services provided by a specific user
+ * Path: ./service/user/ :id
+ * Request type: GET
+ */
+router.get('user/:id', async (req: Request, res: Response) => {
+    const userId = parseInt(req.params.id);
+    const user = await Service.findAll({where: {providerId: userId}});
+    res.statusCode = 200;
+    res.send(user.map(e => e.toSimplification()));
 });
 
 export const ServiceController: Router = router;
