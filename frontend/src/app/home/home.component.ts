@@ -9,6 +9,7 @@ import { AuthenticationService} from '../authentication.service';
 export class HomeComponent implements OnInit {
   LoggedIn = false;
   innerWidth: any;
+  public firstname :string;
 
   constructor(private auth: AuthenticationService) {
     if (this.auth.isAuthenticated()) {
@@ -20,6 +21,11 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.innerWidth = window.innerWidth;
+    this.getUsername();
+  }
+
+  getUsername(){
+      this.firstname = this.auth.getCurrentUser().firstname;
   }
 
   logOut() {

@@ -11,6 +11,7 @@ export class ServiceService {
   private verificationUrl = 'http://localhost:3000/user/verifyToken';
   private searchserviceurl = 'http://localhost:3000/service/filter';
   private allservices = 'http://localhost:3000/service';
+  private myServices = "http://localhost:3000/service/filter"
 
   constructor(private http: HttpClient) {
 
@@ -28,6 +29,10 @@ export class ServiceService {
 
   getAll(){
   return this.http.get<Service[]>(this.allservices);
+  }
+
+  getMyServices(id: number) : Observable <any>{
+    return this.http.post<any>(this.myServices, id);
   }
 
   // Checks whether the token is expired or not

@@ -42,6 +42,7 @@
       </button>
 
       <mat-menu #menu>
+        <mat-list-item> Hello, {{firstname}}</mat-list-item>
         <button *ngIf = "LoggedIn"
                 mat-menu-item
                 class ="profileButton"
