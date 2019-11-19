@@ -165,10 +165,10 @@ router.post('/filter', async (req: Request, res: Response) => {
 
 /**
  * Method to show all services provided by a specific user
- * Path: ./service/:id
+ * Path: ./service/user/ :id
  * Request type: GET
  */
-router.get('/:id', async (req: Request, res: Response) => {
+router.get('user/:id', async (req: Request, res: Response) => {
     const userId = parseInt(req.params.id);
     const user = await Service.findAll({where: {providerId: userId}});
     res.statusCode = 200;
