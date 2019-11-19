@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService} from '../authentication.service';
+import { RoleGuard} from '../role.guard';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,10 +9,11 @@ import { AuthenticationService} from '../authentication.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  LoggedIn = this.auth.isAuthenticated();
+  loggedIn = this.auth.loggedIn();
+  isAdmin = this.guard.isAdmin()
   innerWidth: any;
 
-  constructor(private auth: AuthenticationService) {
+  constructor(private auth: AuthenticationService, private guard: RoleGuard, private router: Router) {
   }
 
   ngOnInit() {
@@ -18,13 +21,16 @@ export class HomeComponent implements OnInit {
   }
 
   logIn() {
-    this.LoggedIn = this.auth.isAuthenticated();
+    this.loggedIn = this.auth.loggedIn();
+    this.isAdmin = this.guard.isAdmin();
   }
 
   logOut() {
     // Test
     alert('Sie wurden erfolgreich abgemeldet');
-    this.LoggedIn = false;
     this.auth.logOutUser();
+    this.isAdmin = this.guard.isAdmin();
+    this.loggedIn = this.auth.loggedIn();
+    this.router.navigate(['']);
   }
 }

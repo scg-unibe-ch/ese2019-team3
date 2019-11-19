@@ -12,7 +12,6 @@ import {HomeComponent} from '../home/home.component';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-    private message;
     constructor(private http: HttpClient, private authentification: AuthenticationService, private router: Router,
                 private home: HomeComponent) {
     }
@@ -37,12 +36,11 @@ export class LoginComponent implements OnInit {
         };
 
         this.sendUserData(loginData);
-
+        setTimeout(() => { this.home.logIn(); }, 50);
     }
 
     // sends Data from login form to backend
     sendUserData(loginData: object) {
         this.authentification.loginUser(loginData);
-        this.home.logIn();
     }
 }

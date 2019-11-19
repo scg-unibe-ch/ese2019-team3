@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-import {HTTP_INTERCEPTORS, HttpClientModule, HttpInterceptor} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthenticationService} from './authentication.service';
 import {TokenInterceptorService} from './token-interceptor.service';
@@ -27,8 +27,8 @@ import { RouterModule, Routes } from '@angular/router';
 import {ChangePasswordComponent} from './change-password/change-password.component';
 import {AdminComponent} from './admin/admin.component';
 
-import {HeaderComponent} from "./header/header.component";
-import {MatSelectModule} from "@angular/material/select";
+import {HeaderComponent} from './header/header.component';
+import {MatSelectModule} from '@angular/material/select';
 import {AuthGuard} from './auth.guard';
 import {RoleGuard} from './role.guard';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';

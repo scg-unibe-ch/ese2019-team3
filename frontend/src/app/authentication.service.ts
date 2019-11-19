@@ -38,12 +38,11 @@ export class AuthenticationService {
   logOutUser() {
       localStorage.removeItem('token');
   }
-  getToken(){
+  getToken() {
       return localStorage.getItem('token');
   }
-  public isAuthenticated(): boolean {
-      return true;
-  // alert(this.http.get<any>(this.verificationUrl, token).subscribe(res => console.log(res), err => console.log(err)));
+  loggedIn() {
+      return localStorage.getItem('token') != null;
   }
   public isUser(): boolean {
     return;

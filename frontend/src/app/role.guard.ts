@@ -10,19 +10,22 @@ export class RoleGuard implements CanActivate {
   constructor(public auth: AuthenticationService, public router: Router) {
   }
 
-  canActivate(route: ActivatedRouteSnapshot): boolean {    // this will be passed from the route config
-    // on the data property
-    const expectedGroup = route.data.expectedGroup;
-    const token = localStorage.getItem('token');    // decode the token to get its payload
-    const tokenPayload = decode(token);
-    if (
-        !this.auth.isAuthenticated() ||
-        tokenPayload.userGroup !== 'adminGroup'
-    ) {
+  canActivate(route: ActivatedRouteSnapshot): boolean {
+    if (!this.isAdmin()) {
+      alert('Access not permitted');
       this.router.navigate(['LogIn']);
       return false;
     }
     return true;
+  }
+  isAdmin() {
+    const token = this.auth.getToken();  // get token from authentication service & checks whether not null
+    if (token == null) {
+      return false;
+    } else {
+      const tokenPayload = decode(token); // decode the token to get its payload, checks if user belongs to admin group
+      return tokenPayload.userGroup === 'adminGroup';
+    }
   }
 
 }

@@ -8,7 +8,7 @@
     </mat-card-title>
       <div class = "distanceToTitle"></div>
     <!-- Login Button, only visible when logged out-->
-        <button *ngIf="!LoggedIn" 
+        <button *ngIf="!loggedIn"
                 mat-raised-button color="primary"
                 class ="logInButton"
                 routerLink="/LogIn"
@@ -16,7 +16,7 @@
           Log In
         </button>
         <!-- Logout Button, only visible when logged in-->
-        <button *ngIf="LoggedIn"
+        <button *ngIf="loggedIn"
                 mat-raised-button color="primary" (click) = "logOut()"
                 class ="logOutButton"
                 routerLink=""
@@ -25,7 +25,7 @@
         </button>
     <!--Registration Button, only visible when logged out-->
     <div class = "divider"></div>
-        <button *ngIf="!LoggedIn"
+        <button *ngIf="!loggedIn"
                 mat-raised-button color="primary"
                 class ="registrationButtonButton"
                 routerLink="/Registration"
@@ -33,13 +33,21 @@
           Register
         </button>
     <!--Profile Button, only visible when logged in-->
-        <button *ngIf="LoggedIn"
+        <button *ngIf="loggedIn"
                 mat-raised-button color="primary"
                 class ="profileButton"
                 routerLink="/Profile"
                 routerLinkActive="active">
           Profile
         </button>
+    <!--Admin Button, only visible when logged in as Admin-->
+    <button *ngIf="isAdmin"
+            mat-raised-button color="primary"
+            class ="adminButton"
+            routerLink="/Admin"
+            routerLinkActive="active">
+      Admin
+    </button>
   </mat-card-header>
     <div class="routerBox">
   <router-outlet></router-outlet>

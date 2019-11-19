@@ -61,13 +61,10 @@ sendUserToDelete(user: User) {
 }
 
 sendUserToValidate(user: User) {
-    alert(user.id);
-    this.http.put('http://localhost:3000/user/' + user.id, user).subscribe();
-
+    this.http.put('http://localhost:3000/user/verify/' + user.id, user).subscribe();
 }
   ngOnInit() {
     this.getRegistrationRequests();
-
   }
 
 
