@@ -138,6 +138,7 @@ function verifyToken (req: Request,res: Response,next: () => void) {
 
 router.get('/verifyToken', verifyToken, async (req, res) => {
  // executes verifyToken method
+    res.send(true);
     res.statusCode = 200;
 });
 
