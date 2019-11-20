@@ -1,3 +1,41 @@
 #title {
   align: left;
 }
+.column1 {
+  position: relative;
+  display: inline-block;
+  padding: 2%;
+  width: 25%;
+  height: 400px;
+  overflow: hidden;
+  padding-bottom: 7%;
+}
+.row {
+  text-align: center;
+}
+.review {
+  display: block;
+  width: 65%;
+  margin: auto;
+  overflow: hidden;
+  padding-top: 10%;
+}
+
+.column1 .btn {
+  position: absolute;
+  top : 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: whitesmoke;
+  color: black;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.column1 .btn:hover {
+  background-color: black;
+  color: whitesmoke;
+}

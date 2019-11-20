@@ -18,6 +18,7 @@ import {HomeComponent} from './home/home.component';
 import {ProfileComponent} from './profile/profile.component';
 import {RegistrationComponent} from './registration/registration.component';
 import {PasswordforgottenComponent} from './passwordforgotten/passwordforgotten.component';
+import {MyservicesComponent} from "./myservices/myservices.component";
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -36,6 +37,11 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {BodyComponent} from "./body/body.component";
 import {FooterComponent} from "./footer/footer.component";
+import {ServiceService} from "./service.service";
+import {MatMenuModule} from "@angular/material/menu";
+import {MatTableModule} from "@angular/material/table";
+import {FoodAndDrinkComponent} from "./food-and-drink/food-and-drink.component";
+
 
 
 const appRoutes: Routes = [
@@ -44,7 +50,10 @@ const appRoutes: Routes = [
     { path: 'Registration', component: RegistrationComponent},
     { path: 'Profile', component: ProfileComponent, canActivate: [AuthGuard] },
     { path: 'Profile/ChangePassword', component: ChangePasswordComponent, canActivate: [AuthGuard] },
-    {path: 'addService', component: AddserviceComponent, canActivate: [AuthGuard]},
+    {path: 'Profile/addService', component: AddserviceComponent, canActivate: [AuthGuard]},
+    {path: 'foodanddrink', component: FoodAndDrinkComponent, canActivate: [AuthGuard]},
+    {path: 'searchresults', component:HeaderComponent, canActivate: [AuthGuard]},
+    {path: 'Profile/myservices', component: MyservicesComponent, canActivate: [AuthGuard]},
     { path: 'Admin', component: AdminComponent, canActivate: [RoleGuard],
         data: {
             expectedRole: 'admin'
@@ -69,6 +78,8 @@ const appRoutes: Routes = [
         AddserviceComponent,
         BodyComponent,
         FooterComponent,
+        MyservicesComponent,
+        FoodAndDrinkComponent,
 
     ],
 
@@ -87,12 +98,15 @@ const appRoutes: Routes = [
         ),
         MatSelectModule,
         MatDatepickerModule,
-        MatNativeDateModule
+        MatNativeDateModule,
+        MatMenuModule,
+        MatTableModule
     ],
   providers: [
     StatusBar,
     SplashScreen,
       AuthenticationService,
+      ServiceService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

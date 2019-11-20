@@ -1,0 +1,27 @@
+<table>
+    <tr>
+        <th> Service-Type </th>
+        <th> Location </th>
+        <th> Price </th>
+    </tr>
+    <tr *ngFor="let service of Services">
+        <td> {{service.serviceTitle}}</td>
+        <td> {{service.city}}</td>
+        <td> {{service.price}} </td>
+
+</table>
+<!-- need to add DATA SOURCE WITH FILTER FUNCTION
+<table mat-table>
+  <tr>
+    <th mat-header-cell *matHeaderCellDef> Service-Type </th>
+    <th mat-header-cell *matHeaderCellDef> Location </th>
+    <th mat-header-cell *matHeaderCellDef> Price </th>
+  </tr>
+  <tr *ngFor="let service of Services">
+    <td mat-cell> {{service.serviceTitle}}</td>
+    <td mat-cell> {{service.city}}</td>
+    <td mat-cell> {{service.price}} </td>
+
+</table>
+
+-->

@@ -7,6 +7,8 @@
       Name of your App
     </mat-card-title>
       <div class = "distanceToTitle"></div>
+      <button id = "search" mat-button>Search</button>
+
       <!-- Login Button, only visible when logged out-->
         <button *ngIf="!LoggedIn"
                 mat-button
@@ -34,16 +36,31 @@
           Register
         </button>
     <!--Profile Button, only visible when logged in-->
-        <button *ngIf="LoggedIn"
-                mat-button
+
+      <button mat-button [matMenuTriggerFor]="menu" *ngIf = "LoggedIn">
+          <mat-icon>more_vert</mat-icon>
+      </button>
+
+      <mat-menu #menu>
+        <mat-list-item> Hello, {{firstname}}</mat-list-item>
+        <button *ngIf = "LoggedIn"
+                mat-menu-item
                 class ="profileButton"
                 routerLink="/Profile"
                 routerLinkActive="active">
           Profile
         </button>
+        <button mat-menu-item *ngIf = "LoggedIn" routerLink = "/Profile/myservices" routerLinkActive="active">My Services</button>
+        <button mat-menu-item *ngIf ="LoggedIn" routerLink = "/Profile/addService" routerLinkActive = "active">Add Service</button>
+      </mat-menu>
+
+
   </mat-card-header>
+  </mat-card>
+
     <div class="routerBox">
   <router-outlet></router-outlet>
     </div>
-  </mat-card>
+
+
 
