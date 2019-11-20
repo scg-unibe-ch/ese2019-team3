@@ -1,6 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthenticationService } from "../authentication.service";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  CheckboxControlValueAccessor
+} from "@angular/forms";
 
 @Component({
   selector: "app-change-password",
@@ -10,11 +15,12 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 export class ChangePasswordComponent implements OnInit {
   passwordChanged = false;
 
+  checkUser: any;
+
   changePasswordForm = new FormGroup({
-    //?
     id: new FormControl("", Validators.required),
     password: new FormControl("", Validators.required),
-    newpassword: new FormControl("", [
+    newPassword: new FormControl("", [
       Validators.required,
       Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=(.*[dW]){1,})(?!.*s).{8,}$")
     ]),
@@ -33,12 +39,14 @@ export class ChangePasswordComponent implements OnInit {
       id: this.authentification.getCurrentUser().id
     });
   }
+
   ngOnInit() {
     this.setId();
     console.log(
       "Password value" + this.authentification.getCurrentUser().password
     );
 
+    //just for testing
     this.changePasswordForm.valueChanges.subscribe((res: string) =>
       console.log(
         "Value changes" +
@@ -54,13 +62,13 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   getErrorMessage() {
-    return this.changePasswordForm.get("newpassword").hasError("pattern")
+    return this.changePasswordForm.get("newPassword").hasError("pattern")
       ? "At least 8 letters, capital and small letters and special Characters"
       : !this.validPassword()
       ? "Passwords do not match!"
       : "";
   }
-  //go to next page, problem works every time, change to disable
+
   passwordChange() {
     this.passwordChanged = true;
   }
@@ -81,16 +89,38 @@ export class ChangePasswordComponent implements OnInit {
 
   validPassword(): boolean {
     //this.changePasswordForm.get("newpassword").invalid? false  :
-    return this.changePasswordForm.get("newpassword").value == ""
+    return this.changePasswordForm.get("newPassword").value == ""
       ? true
       : this.changePasswordForm.get("checkpassword").value ==
-          this.changePasswordForm.get("newpassword").value;
+          this.changePasswordForm.get("newPassword").value;
   }
 
-  //boolean?
-  wrongpassword(): any {
-    return this.authentification.getPassword(
-      this.authentification.getCurrentUser().email
-    );
+  //called by clicking the change password button
+  checkspassword(): any {
+    this.authentification
+      .checkPassword(
+        //send username and passowrd to backend to check if they match
+        (this.checkUser = {
+          email: this.authentification.getCurrentUser().email,
+          userPassword: this.changePasswordForm.get("password").value
+        })
+      )
+      .subscribe(res => {
+        //testing
+        console.log(
+          "Updated User: " + res,
+          console.log("Check User" + this.checkUser)
+        );
+
+        //if the res is true, he the user entered the right password, so the password will be updated
+        //and call passwordchange so the user will be linked to the next page
+        if (res == true) {
+          this.updatePassword();
+          this.passwordChange();
+        } else if (res == false) {
+          alert("Your current Password does not match your account");
+        }
+        (err: any) => console.log(err);
+      });
   }
 }

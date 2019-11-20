@@ -25,6 +25,9 @@ export class AuthenticationService {
   
   private newPasswordUrl = "http://localhost:3000/user/setNewPassword";
 
+  private checkPasswordUrl = "http://localhost:3000/user/setNewPassword";
+
+
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -148,7 +151,7 @@ export class AuthenticationService {
   }
 
   //Mocking
-  getPassword(email: string): Observable<boolean> {
-    return this.http.get<any>(this.rootUrl + email);
+  checkPassword(_checkUser: Object): Observable<boolean> {
+    return this.http.get<any>(this.checkPasswordUrl);
   }
 }

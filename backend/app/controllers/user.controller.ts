@@ -104,6 +104,25 @@ router.post('/login', async (req: Request, res: Response) => {
   res.send({token});
 });
 
+
+router.post('/checkPassword', async (req: Request, res: Response) => {
+    const email = await req.body.email;
+    const userPassword = await req.body.password;
+    const user = await User.findOne({where: {email: email}});
+    if (user == null) {
+        res.statusCode = 401;  //unauthorized
+        res.send('Account not found');
+    } else {
+        if (await (bcrypt.compare(userPassword, user.password)) === false) {
+            res.statusCode = 401;
+            res.send(false);
+        } res.statusCode = 200;
+        res.send(true);
+    }
+
+});
+
+
 /**
  * Middleware to verify token
  * Token must be send in the header of a request from the frontend
