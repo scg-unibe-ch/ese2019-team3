@@ -45,7 +45,7 @@ export class MyservicesComponent implements OnInit {
 
     getMyServices(id){
     console.log(id);
-    this.http.get('http://localhost3000/service/user/'+ id).subscribe((data:Service[]) => {this.Services =  data});
+    this.http.get('http://localhost:3000/service/user/'+ id).subscribe((data:Service[]) => {this.Services =  data});
     }
     /*
 //doesn't get myServices yet -- just all registered services as I cannot filter for a service with one userID.

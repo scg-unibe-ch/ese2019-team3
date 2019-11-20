@@ -23,21 +23,6 @@ export class HeaderComponent implements OnInit {
   locations : string [] = ['Aarau', 'Basel', 'Bern', 'Biel/Bienne', 'Frauenfeld', 'Freiburg', 'Genf', 'Lausanne', 'Lugano','Luzern', 'Neuenburg', 'Schaffhausen',
   'Schwyz', 'Sitten', 'Solothurn', 'St. Gallen', 'Zug', 'Zürich'];
 
-
-  //filter for l = location, s = services and d= dates
-  /*filter : any = {
-    l : '',
-    s: '',
-    d  : '',
-  };*/
-
-  /*searchForm = new FormGroup({
-    services: new FormControl("",),
-    locations: new FormControl(""),
-    dates: new FormControl(""),
-  });*/
-
-
   public categorie:string;
   public p: string;
   public serviceTitle : string;
@@ -46,9 +31,10 @@ export class HeaderComponent implements OnInit {
   d = new Date();
   public anything: string;
   public city: string;
+
   private Services: Service[];
   private dataTest: string;
-  //searchresults: Searchresult [] = [];
+
   constructor(public authentication: AuthenticationService,
               private service: ServiceService, private router: Router, public httpClient: HttpClient) {
 
@@ -77,8 +63,6 @@ export class HeaderComponent implements OnInit {
     //this.router.navigate(['/searchresults']);
     JSON.stringify(searchObject);
     delete searchObject[0];
-
-
   }
 //goes to backend
   async searchService (searchObject){

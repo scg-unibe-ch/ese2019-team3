@@ -40,6 +40,7 @@ import {FooterComponent} from "./footer/footer.component";
 import {ServiceService} from "./service.service";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatTableModule} from "@angular/material/table";
+import {FoodAndDrinkComponent} from "./food-and-drink/food-and-drink.component";
 
 
 
@@ -50,7 +51,7 @@ const appRoutes: Routes = [
     { path: 'Profile', component: ProfileComponent, canActivate: [AuthGuard] },
     { path: 'Profile/ChangePassword', component: ChangePasswordComponent, canActivate: [AuthGuard] },
     {path: 'Profile/addService', component: AddserviceComponent, canActivate: [AuthGuard]},
-    {path: 'essenundtrinken', component: BodyComponent, canActivate: [AuthGuard]},
+    {path: 'foodanddrink', component: FoodAndDrinkComponent, canActivate: [AuthGuard]},
     {path: 'searchresults', component:HeaderComponent, canActivate: [AuthGuard]},
     {path: 'Profile/myservices', component: MyservicesComponent, canActivate: [AuthGuard]},
     { path: 'Admin', component: AdminComponent, canActivate: [RoleGuard],
@@ -78,6 +79,7 @@ const appRoutes: Routes = [
         BodyComponent,
         FooterComponent,
         MyservicesComponent,
+        FoodAndDrinkComponent,
 
     ],
 

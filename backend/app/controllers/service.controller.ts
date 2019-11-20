@@ -168,7 +168,7 @@ router.post('/filter', async (req: Request, res: Response) => {
  * Path: ./service/user/ :id
  * Request type: GET
  */
-router.get('user/:id', async (req: Request, res: Response) => {
+router.get('/user/:id', async (req: Request, res: Response) => {
     const userId = parseInt(req.params.id);
     const user = await Service.findAll({where: {providerId: userId}});
     res.statusCode = 200;
