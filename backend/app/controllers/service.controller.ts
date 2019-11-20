@@ -21,49 +21,14 @@ router.get('/', async (req: Request, res: Response) => {
     res.send(user.map(e => e.toSimplification()));
 });
 
-
 /**
  * Method for creating a new service in the database
  * Path: ./service/register,
  * The registration form needs to send the following request:
  * Request type: POST
  * Request Body:
- *  {
- *
- * @Column
- * provider!: string;
- *
- * @Column
- * serviceTitle!: string;
- *
- *  @ForeignKey(() => User)
- *  @Column
- * providerId!: number;
- *
- * @Column
- *serviceType!: string;
- *
- * @Column
- * price!: number;
- *
- *  @Column
- *city!: string;
- *
- *  }
  */
-/**
- * Method for creating a new user in the database after registration
- * Path: ./user/register,
- * The registration form needs to send the following request:
- * Request type: POST
- * Request Body:
- *  {
- *
- *      "password": string,
- *      "email": string,
- *      "userGroup": string
- *  }
- */
+
 router.post('/register', async (req, res) => {
     const service = new Service();
     service.fromSimplification(req.body);
@@ -116,7 +81,47 @@ router.post('/filter', async (req: Request, res: Response) => {
     } else res.status(500);
 });
 */
+/**
+ *  Method to update service data in the database
+ * Path: ./service/:id
+ * Request type: PUT
+ */
+router.put('/:id', async (req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
+    const service = await Service.findByPk(id);
+    if (service == null) {
+        res.statusCode = 404;
+        res.json({
+            'message': 'service not found'
+        });
+        return;
+    }
+    service.fromSimplification(req.body);
+    await service.save();
+    res.statusCode = 200;
+    res.send(service.toSimplification());
+});
 
+/**
+ *  Method to delete service data in the database
+ * Path: ./service/:id
+ * Request type: DELETE
+ */
+router.delete('/:id', async (req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
+    const service = await Service.findByPk(id);
+    if (service == null) {
+        res.statusCode = 404;
+        res.json({
+            'message': 'service not found'
+        });
+        return;
+    }
+    service.fromSimplification(req.body);
+    await service.destroy();
+    res.statusCode = 204;
+    res.send('service deleted');
+});
 
 /**
  * Method for filtering Services by location or servicetype
@@ -125,7 +130,7 @@ router.post('/filter', async (req: Request, res: Response) => {
  * {
  *     city:       string,
  *     serviceType: string,
- *     se
+ *
  * }
 */
 
