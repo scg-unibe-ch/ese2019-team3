@@ -16,9 +16,21 @@ const contact = require('../contact');
  * Request type: GET
  */
 router.get('/', async (req: Request, res: Response) => {
-    const user = await Service.findAll();
+    const service = await Service.findAll();
     res.statusCode = 200;
-    res.send(user.map(e => e.toSimplification()));
+    res.send(service.map(e => e.toSimplification()));
+});
+
+/**
+ * Method to show all information about a specific service
+ * Path: ./service/:id
+ * Request type: GET
+ */
+router.get('/:id', async (req: Request, res: Response) => {
+    const id = req.params.id;
+    const service = await Service.findOne({where: {id: id}});
+    res.statusCode = 200;
+    res.send(service.map(e => e.toSimplification()));
 });
 
 
@@ -52,17 +64,12 @@ router.get('/', async (req: Request, res: Response) => {
  *  }
  */
 /**
- * Method for creating a new user in the database after registration
- * Path: ./user/register,
+ * Method for creating a new service in the database
+ * Path: ./service/register,
  * The registration form needs to send the following request:
  * Request type: POST
  * Request Body:
- *  {
- *
- *      "password": string,
- *      "email": string,
- *      "userGroup": string
- *  }
+
  */
 router.post('/register', async (req, res) => {
     const service = new Service();
@@ -108,16 +115,54 @@ router.post('/filter', async (req: Request, res: Response) => {
     const service = await Service.findAll();
 
     const q1 = await req.body.queries;
-    const result = new fullTextSearch;
     if(q1 != null){
         const f = filterFunction(q1, service);
-        result.drop();
-        for(let i = 0; i < f.length; i++){
-            result.add(f[i].dataValues);
-        }
-    res.send(result);
-    res.status(200);
-    } else res.status(400);
+        res.send(f);
+        res.status(200);
+    } else res.status(500);
+});
+
+
+/**
+ *  Method to update userdata in the database
+ * Path: ./service/:id
+ * Request type: PUT
+ */
+router.put('/:id', async (req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
+    const service = await Service.findByPk(id);
+    if (service == null) {
+        res.statusCode = 404;
+        res.json({
+            'message': 'service not found'
+        });
+        return;
+    }
+    service.fromSimplification(req.body);
+    await service.save();
+    res.statusCode = 200;
+    res.send(service.toSimplification());
+});
+
+/**
+ * Method to  delete a user from the database
+ * Path: ./service/:id
+ * Request type: DELETE
+ */
+router.delete('/:id', async (req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
+    const service = await Service.findByPk(id);
+    if (service == null) {
+        res.statusCode = 404;
+        res.json({
+            'message': 'service not found'
+        });
+        return;
+    }
+    service.fromSimplification(req.body);
+    await service.destroy();
+    res.statusCode = 204;
+    res.send('service deleted');
 });
 export const ServiceController: Router = router;
 

@@ -56,8 +56,8 @@
           "200": {
             "description": "Filter successful"
           },
-          "400": {
-            "description": "Not correctly filtered"
+          "500": {
+            "description": "Bad Request"
           }
         }
       }
@@ -454,6 +454,92 @@
         ]
       }
     },
+    "/service/{id}": {
+      "delete": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "Delete a service",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id of the users needs to be sent",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string",
+              "items": {
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/service/update/{id}": {
+      "put": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "Update a service",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Service object that needs to be sent",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Service"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string",
+              "items": {
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
     "/user/search": {
       "post": {
         "tags": [
@@ -498,7 +584,7 @@
         ]
       }
     },
-    "/service/search": {
+,    "/service/search": {
       "post": {
         "tags": [
           "Services"
@@ -540,6 +626,147 @@
             ]
           }
         ]
+      }
+    },
+    "/user/checkPassword": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "verify if password is correct",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/login"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string",
+              "items": {
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/booking": {
+      "get": {
+        "tags": [
+          "Booking"
+        ],
+        "summary": "get all bookings",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string",
+              "items": {
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+      }
+    },
+,    "/booking/register": {
+      "post": {
+        "tags": [
+          "Booking"
+        ],
+        "summary": "register a new booking",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Booking"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string",
+              "items": {
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+      }
+    },
+    "/booking/rate": {
+      "put": {
+        "tags": [
+          "Booking"
+        ],
+        "summary": "rate a past booking",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Rating"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string",
+              "items": {
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
       }
     }
   },
@@ -665,9 +892,6 @@
           "type": "string"
         }
       },
-      "xml": {
-        "name": "User"
-      }
     },
 
     "login": {
@@ -684,9 +908,50 @@
           "type": "string"
         }
         }
-    }
+    },
+    "Booking": {
+      "type": "object",
+      "properties": {
 
+        "clientId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "providerId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "serviceId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "date": {
+          "type": "string",
+        },
       },
+
+    },
+    "Rating": {
+      "type": "object",
+      "properties": {
+
+        "bookingId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "providerId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "rating": {
+          "type": "integer",
+          "format": "int32"
+        },
+      },
+
+    }
+  },
+
   "externalDocs": {
     "description": "Find out more about Swagger",
     "url": "http://swagger.io"
