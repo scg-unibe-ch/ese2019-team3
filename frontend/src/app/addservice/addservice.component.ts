@@ -27,7 +27,7 @@ export class AddserviceComponent implements OnInit {
     about: new FormControl(""),
   });*/
 
-
+  private id : number;
   private l:string;
   private s: string;
   d = new Date();
@@ -63,6 +63,8 @@ export class AddserviceComponent implements OnInit {
         dates: this.d,
         price: this.price,
         description: this.about,
+        providerId :  this.authentification.getCurrentUser().id,
+        provider : this.authentification.getCurrentUser().lastname,
     };
     console.log("Adding new Service", addService);
     //calls method to post the registerUser to the backend
