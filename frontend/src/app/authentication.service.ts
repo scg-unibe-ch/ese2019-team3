@@ -23,7 +23,7 @@ export class AuthenticationService {
   private verificationUrl = "http://localhost:3000/user/verifyToken";
   private addServiceUrl = "http://localhost:3000/user/addService";
   
-  private newPasswordUrl = "http://localhost:3000//user/setNewPassword";
+  private newPasswordUrl = "http://localhost:3000/user/setNewPassword";
 
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -145,5 +145,10 @@ export class AuthenticationService {
   }
   addservice(addService: Object) {
     return this.http.post<any>(this.addServiceUrl, addService);
+  }
+
+  //Mocking
+  getPassword(email: string): Observable<boolean> {
+    return this.http.get<any>(this.rootUrl + email);
   }
 }
