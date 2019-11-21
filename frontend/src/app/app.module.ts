@@ -30,7 +30,7 @@ import {AdminComponent} from './admin/admin.component';
 import {HeaderComponent} from './header/header.component';
 import {MatSelectModule} from '@angular/material/select';
 import {AuthGuard} from './auth.guard';
-import {RoleGuard} from './role.guard';
+import {AdminGuard} from './admin.guard';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 
 
@@ -41,7 +41,7 @@ const appRoutes: Routes = [
     { path: 'Registration', component: RegistrationComponent},
     { path: 'Profile', component: ProfileComponent, canActivate: [AuthGuard] },
     { path: 'Profile/ChangePassword', component: ChangePasswordComponent, canActivate: [AuthGuard] },
-    { path: 'Admin', component: AdminComponent, canActivate: [RoleGuard] },
+    { path: 'Admin', component: AdminComponent, canActivate: [AdminGuard] },
     { path: '', component: HeaderComponent},
     { path: '**', component: PageNotFoundComponent },
 ];

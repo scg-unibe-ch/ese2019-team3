@@ -25,17 +25,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {}
 
-  logOut(){
-    //Test
-    alert('Sie wurden erfolgreich abgemeldet');
-    //ToDO: call authentication method,
-    this.LoggedIn = false;
-    //for example, if token was set before
-    //localStorage.removeItem('token');
-  }
 
-  logIn(){
-    this.LoggedIn = true;
-  }
 
 }

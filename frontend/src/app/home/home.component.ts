@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService} from '../authentication.service';
-import { RoleGuard} from '../role.guard';
+import { AdminGuard} from '../admin.guard';
 import { Router} from '@angular/router';
 
 @Component({
@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   isAdmin = this.guard.isAdmin()
   innerWidth: any;
 
-  constructor(private auth: AuthenticationService, private guard: RoleGuard, private router: Router) {
+  constructor(private auth: AuthenticationService, private guard: AdminGuard, private router: Router) {
   }
 
   ngOnInit() {
