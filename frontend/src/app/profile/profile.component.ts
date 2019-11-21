@@ -1,28 +1,28 @@
-import { Component, OnInit } from "@angular/core";
-import { getQueryPredicate } from "@angular/compiler/src/render3/view/util";
-import { tap } from "rxjs/operators";
-import { HttpClient } from "@angular/common/http";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { AuthenticationService } from "../authentication.service";
-import { User } from "../user";
+import { Component, OnInit } from '@angular/core';
+import { getQueryPredicate } from '@angular/compiler/src/render3/view/util';
+import { tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthenticationService } from '../authentication.service';
+import {User} from '../models/user';
 
 @Component({
-  selector: "app-profile",
-  templateUrl: "./profile.component.html",
-  styleUrls: ["./profile.component.scss"]
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  //Controll over multiple values
+  // Controll over multiple values
   profileForm = new FormGroup({
-    email: new FormControl("", [Validators.required, Validators.email]),
-    userGroup: new FormControl(""),
-    firstname: new FormControl("", Validators.required),
-    lastname: new FormControl("", Validators.required),
-    adress: new FormControl(""),
-    number: new FormControl(""),
-    birthday: new FormControl("", Validators.required),
-    //add in response
-    company: new FormControl("")
+    email: new FormControl('', [Validators.required, Validators.email]),
+    userGroup: new FormControl(''),
+    firstname: new FormControl('', Validators.required),
+    lastname: new FormControl('', Validators.required),
+    adress: new FormControl(''),
+    number: new FormControl(''),
+    birthday: new FormControl('', Validators.required),
+    // add in response
+    company: new FormControl('')
   });
 
 
@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit {
     private http: HttpClient,
     private authentification: AuthenticationService
   ) {
-    const url = "http://localhost:4200/profile";
+    const url = 'http://localhost:4200/profile';
     /*this.http
       .post(url, this.profileForm.value)
       .subscribe(() => {}, e => console.error(e));*/
@@ -54,41 +54,41 @@ export class ProfileComponent implements OnInit {
     this.getEmail();
     this.getId();
 
-    console.log("auth CurrentUser empty: " + this.email);
-    console.log("auth CurrentUser ID: " + this.id);
+    console.log('auth CurrentUser empty: ' + this.email);
+    console.log('auth CurrentUser ID: ' + this.id);
 
     console.log(this.email);
 
     this.displayUser(this.email);
 
-    //first disabled
+    // first disabled
     this.disableForm();
 
-    //console.log("CurrentUser filled: " + this.currentUser);
+    // console.log("CurrentUser filled: " + this.currentUser);
   }
 
-  
+
   // testing
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.warn(this.profileForm.value);
-    //update User data
+    // update User data
     this.updateUser();
   }
 
-  enableForm(){
+  enableForm() {
     this.profileForm.enable();
-    this.profileForm.get("email").disable();
+    this.profileForm.get('email').disable();
 
   }
 
-  disableForm(){
+  disableForm() {
     this.profileForm.disable();
   }
 
   isProvider() {
-    //testing, change to provider
-    return this.profileForm.get("userGroup").value == "adminGroup"
+    // testing, change to provider
+    return this.profileForm.get('userGroup').value == 'adminGroup'
       ? true
       : false;
   }
@@ -98,22 +98,22 @@ export class ProfileComponent implements OnInit {
       .getUser(email)
       .pipe(
         tap(() => {
-          //side effect to save user into formgroup as same values
-          console.log("Input email " + email);
+          // side effect to save user into formgroup as same values
+          console.log('Input email ' + email);
         })
       )
-      //testing
+      // testing
       .subscribe(
         res => (
-          console.log("Service: " + JSON.stringify(res)),
+          console.log('Service: ' + JSON.stringify(res)),
           console.log(
-            "FormControl empty: " + JSON.stringify(this.profileForm.value)
+            'FormControl empty: ' + JSON.stringify(this.profileForm.value)
           ),
           this.profileForm.patchValue(res[0]),
           console.log(
-            "FormControl filled: " + JSON.stringify(this.profileForm.value)
+            'FormControl filled: ' + JSON.stringify(this.profileForm.value)
           )
-          //(this.currentUser = res)
+          // (this.currentUser = res)
         ),
         err => console.log(err)
       );
@@ -123,7 +123,7 @@ export class ProfileComponent implements OnInit {
     this.authentification
       .updateUser(this.id, this.profileForm.value)
       .subscribe(
-        res => console.log("Updated User: " + JSON.stringify(res)),
+        res => console.log('Updated User: ' + JSON.stringify(res)),
         err => console.log(err)
       );
   }

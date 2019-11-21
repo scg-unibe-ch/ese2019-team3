@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from "../authentication.service";
+import { AuthenticationService } from '../authentication.service';
 import {FormControl, FormGroup} from '@angular/forms';
-//import {MatDatepickerModule} from '@angular/material/datepicker';
-//import {MatOptionModule} from "@angular/material/core";
-//import {MatSelectModule} from "@angular/material/select";
-import {ServiceService} from "../service.service";
+// import {MatDatepickerModule} from '@angular/material/datepicker';
+// import {MatOptionModule} from "@angular/material/core";
+// import {MatSelectModule} from "@angular/material/select";
+import {ServiceService} from '../service.service';
 import { Router } from '@angular/router';
-import {HttpClient} from "@angular/common/http";
-import {User} from "../user";
-import {Service} from "../models/service";
-//import {Service} from "../models/service";
+import {HttpClient} from '@angular/common/http';
+import {Service} from '../models/service';
+// import {Service} from "../models/service";
 
 @Component({
   selector: 'app-header',
@@ -19,15 +18,15 @@ import {Service} from "../models/service";
 export class HeaderComponent implements OnInit {
   LoggedIn = false;
 
-  services : string [] = ['Food & Drink', 'Musik', 'Licht & Bühne', 'Werbung' ];
-  locations : string [] = ['Aarau', 'Basel', 'Bern', 'Biel/Bienne', 'Frauenfeld', 'Freiburg', 'Genf', 'Lausanne', 'Lugano','Luzern', 'Neuenburg', 'Schaffhausen',
+  services: string [] = ['Food & Drink', 'Musik', 'Licht & Bühne', 'Werbung' ];
+  locations: string [] = ['Aarau', 'Basel', 'Bern', 'Biel/Bienne', 'Frauenfeld', 'Freiburg', 'Genf', 'Lausanne', 'Lugano', 'Luzern', 'Neuenburg', 'Schaffhausen',
   'Schwyz', 'Sitten', 'Solothurn', 'St. Gallen', 'Zug', 'Zürich'];
 
-  public categorie:string;
+  public categorie: string;
   public p: string;
-  public serviceTitle : string;
-  public id : number;
-  public price : number;
+  public serviceTitle: string;
+  public id: number;
+  public price: number;
   d = new Date();
   public anything: string;
   public city: string;
@@ -41,11 +40,10 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {}
+  // click on Search Button!
+  onSubmit() {
 
-  //click on Search Button!
-  onSubmit(){
-
-    let searchObject = {
+    const searchObject = {
       provider : this.p,
       serviceTitle : this.serviceTitle,
       description: this.anything,
@@ -58,33 +56,22 @@ export class HeaderComponent implements OnInit {
     };
     this.searchService(searchObject);
 
-    console.log("searching for service");
-    //calls method to post the registerUser to the backend
-    //this.router.navigate(['/searchresults']);
+    console.log('searching for service');
+    // calls method to post the registerUser to the backend
+    // this.router.navigate(['/searchresults']);
     JSON.stringify(searchObject);
     delete searchObject[0];
   }
-//goes to backend
-  async searchService (searchObject){
+// goes to backend
+  async searchService(searchObject) {
     console.log(searchObject);
-    await this.service.searchService(searchObject).subscribe((data: Service[]) =>{this.Services = data});
+    await this.service.searchService(searchObject).subscribe((data: Service[]) => {this.Services = data; });
   }
 
-  fetchAll(){
-    this.service.getAll().subscribe(res => console.log(res), err => console.log(err))
+  fetchAll() {
+    this.service.getAll().subscribe(res => console.log(res), err => console.log(err));
   }
 
-  logOut(){
-    //Test
-    alert('Sie wurden erfolgreich abgemeldet');
-    //ToDO: call authentication method,
-    this.LoggedIn = false;
-    //for example, if token was set before
-    //localStorage.removeItem('token');
-  }
 
-  logIn(){
-    this.LoggedIn = true;
-  }
 
 }

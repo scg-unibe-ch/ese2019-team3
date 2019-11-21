@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService} from '../authentication.service';
+import { AdminGuard} from '../admin.guard';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,16 +9,12 @@ import { AuthenticationService} from '../authentication.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  LoggedIn = false;
+  loggedIn = this.auth.loggedIn();
+  isAdmin = this.guard.isAdmin()
   innerWidth: any;
   public firstname :string;
 
-  constructor(private auth: AuthenticationService) {
-    if (this.auth.isAuthenticated()) {
-      this.LoggedIn = true;
-    } else {
-      this.LoggedIn = false;
-    }
+  constructor(private auth: AuthenticationService, private guard: AdminGuard, private router: Router) {
   }
 
   ngOnInit() {
@@ -28,11 +26,17 @@ export class HomeComponent implements OnInit {
       this.firstname = this.auth.getCurrentUser().firstname;
   }
 
+  logIn() {
+    this.loggedIn = this.auth.loggedIn();
+    this.isAdmin = this.guard.isAdmin();
+  }
+
   logOut() {
     // Test
     alert('Sie wurden erfolgreich abgemeldet');
-    // ToDO: call authentication method,
-    this.LoggedIn = false;
-    localStorage.removeItem('token');
+    this.auth.logOutUser();
+    this.isAdmin = this.guard.isAdmin();
+    this.loggedIn = this.auth.loggedIn();
+    this.router.navigate(['']);
   }
 }

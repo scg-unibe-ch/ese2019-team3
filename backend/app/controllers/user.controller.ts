@@ -248,6 +248,7 @@ router.get('/verify', async (req: Request, res: Response) => {
  */
 router.put('/verify/:id', async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
+  console.log(req.params.id);
   const user = await User.findByPk(id);
   if(user != null) {
       user.isVerified = true;
