@@ -48,7 +48,7 @@ export class User extends Model<User> {
       'adress': this.adress,
       'number': this.number,
       'birthday': this.birthday,
-      'rating': this.rating;
+      'rating': this.rating
     };
   }
 

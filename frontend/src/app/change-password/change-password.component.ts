@@ -55,6 +55,8 @@ export class ChangePasswordComponent implements OnInit {
           this.validPassword() +
           "Valid Form? " +
           this.changePasswordForm.valid +
+          +"Current User Email " +
+          this.authentification.getCurrentUser().email +
           "Error Message " +
           this.getErrorMessage()
       )
@@ -102,23 +104,26 @@ export class ChangePasswordComponent implements OnInit {
         //send username and passowrd to backend to check if they match
         (this.checkUser = {
           email: this.authentification.getCurrentUser().email,
-          userPassword: this.changePasswordForm.get("password").value
+          password: this.changePasswordForm.get("password").value
         })
       )
       .subscribe(res => {
         //testing
         console.log(
-          "Updated User: " + res,
-          console.log("Check User" + this.checkUser)
+          "Check Password response " + res + "Check User" + JSON.stringify(this.checkUser)
         );
 
-        //if the res is true, he the user entered the right password, so the password will be updated
+        //if the res is true, he the user entered the right password, only then the password will be updated
         //and call passwordchange so the user will be linked to the next page
         if (res == true) {
           this.updatePassword();
           this.passwordChange();
         } else if (res == false) {
           alert("Your current Password does not match your account");
+          //make password field empty, as it is wrong
+          this.changePasswordForm.patchValue({
+            passowrd: ""
+          });
         }
         (err: any) => console.log(err);
       });
