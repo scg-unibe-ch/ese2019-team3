@@ -42,24 +42,8 @@ export class ChangePasswordComponent implements OnInit {
 
   ngOnInit() {
     this.setId();
-    console.log(
-      "Password value" + this.authentification.getCurrentUser().password
-    );
-
-    //just for testing
     this.changePasswordForm.valueChanges.subscribe((res: string) =>
-      console.log(
-        "Value changes" +
-          JSON.stringify(res) +
-          "Valid Password? " +
-          this.validPassword() +
-          "Valid Form? " +
-          this.changePasswordForm.valid +
-          +"Current User Email " +
-          this.authentification.getCurrentUser().email +
-          "Error Message " +
-          this.getErrorMessage()
-      )
+      console.log("Value changes" + JSON.stringify(res))
     );
   }
 
@@ -84,13 +68,11 @@ export class ChangePasswordComponent implements OnInit {
             "Updated User: " + JSON.stringify(res),
             console.log(this.changePasswordForm.value)
           ),
-
         err => console.log(err)
       );
   }
 
   validPassword(): boolean {
-    //this.changePasswordForm.get("newpassword").invalid? false  :
     return this.changePasswordForm.get("newPassword").value == ""
       ? true
       : this.changePasswordForm.get("checkpassword").value ==
@@ -108,21 +90,16 @@ export class ChangePasswordComponent implements OnInit {
         })
       )
       .subscribe(res => {
-        //testing
-        console.log(
-          "Check Password response " + res + "Check User" + JSON.stringify(this.checkUser)
-        );
-
         //if the res is true, he the user entered the right password, only then the password will be updated
         //and call passwordchange so the user will be linked to the next page
         if (res == true) {
           this.updatePassword();
           this.passwordChange();
         } else if (res == false) {
-          alert("Your current Password does not match your account");
+          alert("Your old Password does not match your account");
           //make password field empty, as it is wrong
           this.changePasswordForm.patchValue({
-            passowrd: ""
+            password: ""
           });
         }
         (err: any) => console.log(err);
