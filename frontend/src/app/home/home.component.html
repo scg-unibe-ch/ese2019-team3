@@ -7,18 +7,21 @@
       Name of your App
     </mat-card-title>
       <div class = "distanceToTitle"></div>
-      <!-- Login Button, only visible when logged out-->
-        <button *ngIf="!LoggedIn"
-                mat-button
+
+      <button id = "search" mat-button>Search</button>
+    <!-- Login Button, only visible when logged out-->
+        <button *ngIf="!loggedIn"
+                mat-raised-button color="primary"
+>
                 class ="logInButton"
                 routerLink="/LogIn"
                 routerLinkActive="active">
           Log In
         </button>
-      <!-- Logout Button, only visible when logged in-->
-        <!-- what if on diffrent page? -->
-       <button *ngIf="LoggedIn"
-                mat-button (click) = "logOut()"
+        <!-- Logout Button, only visible when logged in-->
+        <button *ngIf="loggedIn"
+                mat-raised-button color="primary" (click) = "logOut()"
+>
                 class ="logOutButton"
                 routerLink=""
                 routerLinkActive="active">
@@ -26,24 +29,41 @@
         </button>
     <!--Registration Button, only visible when logged out-->
     <div class = "divider"></div>
-        <button *ngIf="!LoggedIn"
-                mat-button
+        <button *ngIf="!loggedIn"
+                mat-raised-button color="primary"
+>
                 class ="registrationButtonButton"
                 routerLink="/Registration"
                 routerLinkActive="active">
           Register
         </button>
     <!--Profile Button, only visible when logged in-->
-        <button *ngIf="LoggedIn"
-                mat-button
+
+      <button mat-button [matMenuTriggerFor]="menu" *ngIf = "loggedIn">
+          <mat-icon>more_vert</mat-icon>
+      </button>
+
+      <mat-menu #menu>
+        <mat-list-item> Hello, {{firstname}}</mat-list-item>
+        <button *ngIf = "loggedIn"
+                mat-menu-item
+>
                 class ="profileButton"
                 routerLink="/Profile"
                 routerLinkActive="active">
           Profile
         </button>
+        <button mat-menu-item *ngIf = "loggedIn" routerLink = "/Profile/myservices" routerLinkActive="active">My Services</button>
+        <button mat-menu-item *ngIf ="loggedIn" routerLink = "/Profile/addService" routerLinkActive = "active">Add Service</button>
+          <!--Admin Button, only visible when logged in as Admin-->
+          <button mat-menu-item *ngIf = "isAdmin" routerLink = "/Admin" routerLinkActive="active">Admin</button>
+      </mat-menu>
   </mat-card-header>
+  </mat-card>
+
     <div class="routerBox">
   <router-outlet></router-outlet>
     </div>
-  </mat-card>
+
+
 

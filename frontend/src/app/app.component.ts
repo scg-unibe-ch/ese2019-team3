@@ -33,9 +33,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.httpClient.get('http://localhost:4200/todolist').subscribe((instances: any) => {
+    /*this.httpClient.get('http://localhost:4200/todolist').subscribe((instances: any) => {
       this.todoLists = instances.map((instance) => new TodoList(instance.id, instance.name));
-    });
+    });*/
   }
 
   onTodoListCreate() {

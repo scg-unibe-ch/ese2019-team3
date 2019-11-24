@@ -1,24 +1,23 @@
 
 <mat-card>
-  <mat-card-title>List of User Register Requests</mat-card-title>
+  <mat-card-title>List of Open Registration Requests</mat-card-title>
   <mat-card-content>
-    <h2>Open Requests:</h2>
     <br>
     <table mat-table>
       <tr>
-        <th mat-row >Username</th>
-        <th mat-row>address</th>
-        <th mat-row>phone</th>
+        <th>email</th>
+        <th>User group</th>
+        <th>phone</th>
       </tr>
+      <!-- lists all users that are being fetched from backend-->
       <tr *ngFor="let user of Users">
-        <td>{{user.username}}</td>
-        <td>{{user.address}}</td>
-        <td>{{user.phone}}</td>
-        <td><button mat-button style="color: #0ec254">Accept</button></td>
-        <button mat-button style="color: #d33939">Deny</button>
+        <td>{{user.email}}</td>
+        <td>{{user.userGroup}}</td>
+        <td>{{user.number}}</td>
+        <td><button mat-button style="color: #0ec254" (click)="validateUser(user)">Accept</button></td>
+        <td><button mat-button style="color: #d33939" (click)="deleteUser(user)" >Deny</button></td>
       </tr>
     </table>
   </mat-card-content>
-
 
 </mat-card>

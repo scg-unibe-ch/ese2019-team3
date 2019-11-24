@@ -158,6 +158,7 @@ function verifyToken (req: Request,res: Response,next: () => void) {
 
 router.get('/verifyToken', verifyToken, async (req, res) => {
  // executes verifyToken method
+    res.send(true);
     res.statusCode = 200;
 });
 
@@ -230,6 +231,7 @@ router.get('/', async (req: Request, res: Response) => {
  * Request type: GET
  */
 router.get('/verify', async (req: Request, res: Response) => {
+
   const user = await User.findAll({where: {isVerified: false}});
   if (user == null) {
       res.statusCode = 400;
@@ -247,6 +249,7 @@ router.get('/verify', async (req: Request, res: Response) => {
  */
 router.put('/verify/:id', async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
+  console.log(req.params.id);
   const user = await User.findByPk(id);
   if(user != null) {
       user.isVerified = true;

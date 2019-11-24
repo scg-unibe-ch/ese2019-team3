@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from "../authentication.service";
+import { AuthenticationService } from '../authentication.service';
 import {FormControl, FormGroup} from '@angular/forms';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatOptionModule} from "@angular/material/core";
-import {MatSelectModule} from "@angular/material/select";
-import {ServiceService} from "../service.service";
+// import {MatDatepickerModule} from '@angular/material/datepicker';
+// import {MatOptionModule} from "@angular/material/core";
+// import {MatSelectModule} from "@angular/material/select";
+import {ServiceService} from '../service.service';
+import { Router } from '@angular/router';
+import {HttpClient} from '@angular/common/http';
+import {Service} from '../models/service';
+// import {Service} from "../models/service";
 
 @Component({
   selector: 'app-header',
@@ -14,70 +18,60 @@ import {ServiceService} from "../service.service";
 export class HeaderComponent implements OnInit {
   LoggedIn = false;
 
-  services : string [] = ['Food & Drink', 'Musik', 'Licht & Bühne', 'Werbung' ];
-  locations : string [] = ['Aarau', 'Basel', 'Bern', 'Biel/Bienne', 'Frauenfeld', 'Freiburg', 'Genf', 'Lausanne', 'Lugano','Luzern', 'Neuenburg', 'Schaffhausen',
+  services: string [] = ['Food & Drink', 'Musik', 'Licht & Bühne', 'Werbung' ];
+  locations: string [] = ['Aarau', 'Basel', 'Bern', 'Biel/Bienne', 'Frauenfeld', 'Freiburg', 'Genf', 'Lausanne', 'Lugano', 'Luzern', 'Neuenburg', 'Schaffhausen',
   'Schwyz', 'Sitten', 'Solothurn', 'St. Gallen', 'Zug', 'Zürich'];
 
-
-  //filter for l = location, s = services and d= dates
-  /*filter : any = {
-    l : '',
-    s: '',
-    d  : '',
-  };*/
-
-  /*searchForm = new FormGroup({
-    services: new FormControl("",),
-    locations: new FormControl(""),
-    dates: new FormControl(""),
-  });*/
-
-
-  public s:string;
-  public l:string;
+  public categorie: string;
+  public p: string;
+  public serviceTitle: string;
+  public id: number;
+  public price: number;
   d = new Date();
   public anything: string;
+  public city: string;
 
-  constructor(public authentication : AuthenticationService,
-              private service: ServiceService) {
+  private Services: Service[];
+  private dataTest: string;
+
+  constructor(public authentication: AuthenticationService,
+              private service: ServiceService, private router: Router, public httpClient: HttpClient) {
 
   }
 
   ngOnInit() {}
+  // click on Search Button!
+  onSubmit() {
 
-  //click on Search Button!
-  onSubmit(){
     const searchObject = {
-      services: this.s,
-      locations: this.l,
+      provider : this.p,
+      serviceTitle : this.serviceTitle,
+      description: this.anything,
+      providerId : this.id,
+      serviceType : this.categorie,
+      price : this.price,
       dates: this.d,
-      anything: this.anything,
+      city : this.city,
+
     };
-    console.log("searching for service");
-    //calls method to post the registerUser to the backend
     this.searchService(searchObject);
 
+    console.log('searching for service');
+    // calls method to post the registerUser to the backend
+    // this.router.navigate(['/searchresults']);
+    JSON.stringify(searchObject);
+    delete searchObject[0];
   }
-//goes to backend
-  searchService (searchObject: Object){
+// goes to backend
+  async searchService(searchObject) {
     console.log(searchObject);
-    this.service
-        .searchService(searchObject)
-        .subscribe(res => console.log(res), err => console.log(err));
-
+    await this.service.searchService(searchObject).subscribe((data: Service[]) => {this.Services = data; });
   }
 
-  logOut(){
-    //Test
-    alert('Sie wurden erfolgreich abgemeldet');
-    //ToDO: call authentication method,
-    this.LoggedIn = false;
-    //for example, if token was set before
-    //localStorage.removeItem('token');
+  fetchAll() {
+    this.service.getAll().subscribe(res => console.log(res), err => console.log(err));
   }
 
-  logIn(){
-    this.LoggedIn = true;
-  }
+
 
 }
