@@ -28,6 +28,7 @@ export class AddserviceComponent implements OnInit {
   });*/
 
   private id : number;
+  private serviceTitle: string;
   private l:string;
   private s: string;
   d = new Date();
@@ -40,7 +41,8 @@ export class AddserviceComponent implements OnInit {
               private service: ServiceService,) {
     const url = "http://localhost:4200/Profile/addService";
     const serviceForm = {
-      serviceTitle: this.s,
+      serviceTitle: this.serviceTitle,
+      serviceType: this.s,
       city: this.l,
       dates: this.d,
       price: this.price,
@@ -58,7 +60,8 @@ export class AddserviceComponent implements OnInit {
 
   onSubmit() {
     const addService = {
-        serviceTitle: this.s,
+        serviceTitle: this.serviceTitle,
+        serviceType: this.s,
         city: this.l,
         dates: this.d,
         price: this.price,
