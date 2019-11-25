@@ -10,8 +10,7 @@
     <!-- Login Button, only visible when logged out-->
     <button
       *ngIf="!loggedIn"
-      mat-raised-button
-      color="primary"
+      mat-button
       class="logInButton"
       routerLink="/LogIn"
       routerLinkActive="active"
@@ -21,8 +20,7 @@
     <!-- Logout Button, only visible when logged in-->
     <button
       *ngIf="loggedIn"
-      mat-raised-button
-      color="primary"
+      mat-button
       (click)="logOut()"
       class="logOutButton"
       routerLink=""
@@ -32,7 +30,7 @@
     </button>
     <!--Registration Button, only visible when logged out-->
     <div class="divider"></div>
-    <button *ngIf="!loggedIn" mat-raised-button color="primary"
+    <button *ngIf="!loggedIn" mat-button
       class ="registrationButtonButton" routerLink="/Registration"
       routerLinkActive="active"> Register
     </button>
@@ -44,8 +42,8 @@
 
     <mat-menu #menu>
       <mat-list-item> Hello, {{ firstname }}</mat-list-item>
-      <button *ngIf="loggedIn" mat-menu-item>
-        class ="profileButton" routerLink="/Profile" routerLinkActive="active">
+      <button *ngIf="loggedIn" mat-menu-item
+        class = "profileButton" routerLink="/Profile" routerLinkActive="active">
         Profile
       </button>
       <button
