@@ -584,7 +584,7 @@
         ]
       }
     },
-,    "/service/search": {
+    "/service/search": {
       "post": {
         "tags": [
           "Services"
