@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8394b164-4097-4fdf-99af-be196611d7f8" name="Default Changelist" comment="">
+    <list default="true" id="8704b63c-4c20-4746-872b-9573fee9748e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/controllers/service.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/controllers/service.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/serviceFilter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/serviceFilter.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/swagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/swagger.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/db.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/backend/db.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/addservice/addservice.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/addservice/addservice.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/addservice/addservice.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/addservice/addservice.component.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,6 +14,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Filter" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
@@ -27,7 +31,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectId" id="1TjvZLLMQsCDqXyLVvNBeDCNY17" />
+  <component name="ProjectId" id="1Tut0LErTSYtg0WIi2552Ls8ld5" />
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
       <profile-state>
@@ -62,12 +66,18 @@
       </profile-state>
     </entry>
   </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/backend/package.json" />
-    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="Errors" />
-    <property name="ts.external.directory.path" value="C:\Users\rafae\WebstormProjects\ese2019-team3\backend\node_modules\typescript\lib" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/backend/node_modules/typescript/lib" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -162,62 +172,38 @@
       <option name="PROGRAM_PARAMETERS" />
       <predefined_log_file id="idea.log" enabled="true" />
     </configuration>
-    <configuration default="true" type="NodeJSConfigurationType" path-to-js-file="build/server.js" working-dir="$PROJECT_DIR$/backend">
-      <method v="2" />
-    </configuration>
-    <configuration name="backend" type="NodeJSConfigurationType" path-to-js-file="build/server.js" working-dir="$PROJECT_DIR$/backend">
-      <method v="2">
-        <option name="NpmBeforeRunTask" enabled="true">
-          <package-json value="$PROJECT_DIR$/backend/package.json" />
-          <command value="run" />
-          <scripts>
-            <script value="tsc" />
-          </scripts>
-          <node-interpreter value="project" />
-          <envs />
-        </option>
-      </method>
-    </configuration>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8394b164-4097-4fdf-99af-be196611d7f8" name="Default Changelist" comment="" />
+      <changelist id="8704b63c-4c20-4746-872b-9573fee9748e" name="Default" comment="" />
       <created>1573294063590</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1573294063590</updated>
-      <workItem from="1573986378158" duration="6686000" />
+      <workItem from="1574716833320" duration="2117000" />
     </task>
-    <task id="LOCAL-00001" summary="test">
-      <created>1574268203608</created>
+    <task id="LOCAL-00001" summary="-">
+      <created>1573655861690</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1574268203609</updated>
+      <updated>1573655861690</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="db.sqlite updated">
+      <created>1574323772663</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1574323772663</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-    <option name="exactExcludedFiles">
-      <list>
-        <option value="$PROJECT_DIR$/frontend/node_modules/karma/config.tpl.js" />
-      </list>
-    </option>
-  </component>
-  <component name="Vcs.Log.History.Properties">
-    <option name="COLUMN_ORDER">
-      <list>
-        <option value="0" />
-        <option value="2" />
-        <option value="3" />
-        <option value="1" />
-      </list>
-    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -233,8 +219,8 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+    <MESSAGE value="slight changes home component" />
+    <option name="LAST_COMMIT_MESSAGE" value="slight changes home component" />
   </component>
   <component name="masterDetails">
     <states>

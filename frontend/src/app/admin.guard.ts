@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Router, CanActivate, ActivatedRouteSnapshot} from '@angular/router';
 import { AuthenticationService } from './authentication.service';
-import decode from 'jwt-decode';
+import * as decode from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +24,7 @@ export class AdminGuard implements CanActivate {
       return false;
     } else {
       const tokenPayload = decode(token); // decode the token to get its payload, checks if user belongs to admin group
-      return tokenPayload.userGroup === 'adminGroup';
+      return tokenPayload === 'adminGroup';
     }
   }
 

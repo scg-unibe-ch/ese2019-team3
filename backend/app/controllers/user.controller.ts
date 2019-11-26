@@ -114,8 +114,9 @@ router.post('/checkPassword', async (req: Request, res: Response) => {
         res.send('Account not found');
     } else {
         if (await (bcrypt.compare(userPassword, user.password)) === false) {
-            res.statusCode = 401;
-            res.send(false);
+          res.send(false);
+          res.statusCode = 200;
+           
         } res.statusCode = 200;
         res.send(true);
     }

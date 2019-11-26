@@ -35,7 +35,7 @@ export class Booking extends Model<Booking> {
       'serviceId': this.serviceId,
       'date': this.date,
       'rating': this.rating,
-      'bookingStatus': this.bookingStatus;
+      'bookingStatus': this.bookingStatus
     };
   }
 
