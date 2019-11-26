@@ -9,6 +9,8 @@ import {ServiceService} from "../service.service";
   styleUrls: ['./food-and-drink.component.scss'],
 })
 export class FoodAndDrinkComponent implements OnInit {
+  services: string [] = ['Food & Drink', 'Musik', 'Licht & Bühne', 'Werbung' ];
+
   private Services: Service[];
   public id: any;
   public categorie:string;
@@ -25,7 +27,6 @@ export class FoodAndDrinkComponent implements OnInit {
     this.clickFoodAnDrink();
 
   }
-
   clickFoodAnDrink() {
     let fObject = {
       provider: this.p,

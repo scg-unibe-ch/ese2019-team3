@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8704b63c-4c20-4746-872b-9573fee9748e" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/home/foodanddrink2.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/db.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/backend/db.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/addservice/addservice.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/addservice/addservice.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/addservice/addservice.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/addservice/addservice.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/body/body.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/body/body.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/food-and-drink/food-and-drink.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/food-and-drink/food-and-drink.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/food-and-drink/food-and-drink.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/food-and-drink/food-and-drink.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/food-and-drink/food-and-drink.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/food-and-drink/food-and-drink.component.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -78,6 +82,11 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="Errors" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/backend/node_modules/typescript/lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/src/assets/home" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">

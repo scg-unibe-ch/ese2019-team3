@@ -1,5 +1,68 @@
-<h1 align="center">Food and Drink</h1>
-<p align = "center"> Find your perfect restaurant, catering, fingerfood provider in just a couple of seconds! </p>
+<div class="image">
+
+  <div class="text">
+    <h1 style="font-weight: bold; font-size: 70px">Food & Drink</h1>
+    <p>Find your perfect restaurant, catering, fingerfood provider in just a couple of seconds!</p>
+  </div>
+
+</div>
+
+
+<div class = "main">
+  <mat-card class = "searchfield">
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item>
+          <form class ="btn" style="float: left; margin-left: 2%; margin-bottom: 1%; ">
+            <mat-form-field>
+              <mat-label> All Services </mat-label>
+              <mat-select id = "service" [(ngModel)]="categorie" name="services" >
+                <mat-option> None </mat-option>
+                <mat-option *ngFor = "let services of services" [value] = "services"> {{services}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </form>
+        </mat-list-item>
+
+        <!-- Search Button -->
+        <mat-list-item>
+          <form class = "btn" style="float: left; margin-left: 2%; margin-right: 5%;">
+            <mat-form-field class = "InputBtn">
+              <input [(ngModel)] = "price" name = "price" matInput placeholder="Price" >
+            </mat-form-field>
+          </form>
+        </mat-list-item>
+        <br>
+        <mat-list-item>
+          <button
+                  class = "btn"
+                  routerLinkActive="active"
+                  mat-stroked-button
+                  style="float:right; margin-right: 10%; margin-top: -0.5%"
+                  (click) = onSubmit()>
+            Search</button>
+        </mat-list-item>
+
+
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+
+<mat-card class = "searchresults" *ngFor = "let service of Services">
+  <mat-card-header id = "title">{{service.serviceTitle}}</mat-card-header>
+  <mat-card-subtitle id = "subtitle">{{service.provider}}</mat-card-subtitle>
+  <mat-card-content>
+    <p> {{service.description}}</p>
+    <br>
+    <h4>{{service.price}}</h4>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>Book Me!</button>
+  </mat-card-actions>
+</mat-card>
+
+<!--
+
 <div>
   <table>
     <tr>
@@ -7,7 +70,7 @@
       <th>Location</th>
       <th>Price</th>
     </tr>
-    <!-- lists all users that are being fetched from backend-->
+
 
     <tr *ngFor="let service of Services">
       <td>{{service.serviceTitle}}</td>
@@ -16,3 +79,5 @@
     </tr>
   </table>
 </div>
+-->
+

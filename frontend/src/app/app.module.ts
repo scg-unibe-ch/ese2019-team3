@@ -42,6 +42,7 @@ import {ServiceService} from './service.service';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatTableModule} from '@angular/material/table';
 import {FoodAndDrinkComponent} from './food-and-drink/food-and-drink.component';
+import {MatExpansionModule} from "@angular/material/expansion";
 
 
 
@@ -99,7 +100,8 @@ const appRoutes: Routes = [
         MatDatepickerModule,
         MatNativeDateModule,
         MatMenuModule,
-        MatTableModule
+        MatTableModule,
+        MatExpansionModule
     ],
   providers: [
     StatusBar,
