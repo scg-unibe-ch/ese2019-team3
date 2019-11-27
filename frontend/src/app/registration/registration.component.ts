@@ -25,8 +25,8 @@ export class RegistrationComponent implements OnInit {
     firstname: new FormControl('', Validators.required),
     lastname: new FormControl('', Validators.required),
     birthday: new FormControl('', Validators.required),
-    adress: new FormControl(''),
-    number: new FormControl(''),
+    adress: new FormControl('', Validators.required),
+    number: new FormControl('', Validators.required),
     company: new FormControl('')
   });
 
@@ -57,12 +57,12 @@ export class RegistrationComponent implements OnInit {
       email: this.registrationForm.get('email').value,
       password: this.registrationForm.get('password').value,
       userGroup: this.registrationForm.get('userGroup').value,
-      firstname: this.registrationForm.get('firstName').value,
-      lastname: this.registrationForm.get('lastName').value,
+      firstname: this.registrationForm.get('firstname').value,
+      lastname: this.registrationForm.get('lastname').value,
       birthday: this.registrationForm.get('birthday').value,
       adress: this.registrationForm.get('adress').value,
       number: this.registrationForm.get('number').value,
-      company: this.registrationForm.get('company').value
+      //company: this.registrationForm.get('company').value
     };
 
     console.warn(registerUserData);
