@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
         };
 
         this.sendUserData(loginData);
-        setTimeout(() => { this.home.logIn(); }, 70);
+        setTimeout(() => { this.home.logIn(); }, 100);
     }
 
     // sends Data from login form to backend
