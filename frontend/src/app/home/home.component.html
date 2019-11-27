@@ -2,7 +2,7 @@
   <!-- header with title and buttons changing whether logged in or not, always visible-->
   <mat-card-header>
     <mat-card-title routerLink="" routerLinkActive="active">
-      Name of your App
+      <button mat-button>Event4U</button>
     </mat-card-title>
     <div class="distanceToTitle"></div>
 
@@ -36,8 +36,8 @@
     </button>
     <!--Profile Button, only visible when logged in-->
 
-    <button mat-button [matMenuTriggerFor]="menu" *ngIf="loggedIn">
-      <mat-icon>more_vert</mat-icon>
+    <button mat-mini-fab color="primary" mat-button [matMenuTriggerFor]="menu" *ngIf="loggedIn">
+      {{ profileId }}
     </button>
 
     <mat-menu #menu>
