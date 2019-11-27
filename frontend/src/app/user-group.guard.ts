@@ -25,7 +25,7 @@ export class UserGroupGuard implements CanActivate {
       return false;
     } else {
       const tokenPayload: User = decode(token); // decode the token to get its payload, checks if user belongs to admin group
-      return tokenPayload.userGroup === 'provider';
+      return tokenPayload.userGroup === 'serviceProvider';
     }
   }
 
