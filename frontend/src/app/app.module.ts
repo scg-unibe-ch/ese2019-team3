@@ -43,6 +43,14 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatTableModule} from '@angular/material/table';
 import {FoodAndDrinkComponent} from './food-and-drink/food-and-drink.component';
 import {UserGroupGuard} from './user-group.guard';
+import {FoodAndDrinkComponent} from './Categories/food-and-drink/food-and-drink.component';
+import {MatExpansionModule} from "@angular/material/expansion";
+import {LightAndStageComponent} from "./Categories/light-and-stage/ligth-and-stage.component";
+import {AdvertisementComponent} from "./Categories/advertisement/advertisement.component";
+import {MusicComponent} from "./Categories/music/music.component";
+import {SearchresultsComponent} from "./Categories/searchresults/searchresults.component";
+
+
 
 
 const appRoutes: Routes = [
@@ -53,6 +61,11 @@ const appRoutes: Routes = [
     { path: 'Profile/ChangePassword', component: ChangePasswordComponent, canActivate: [AuthGuard] },
     {path: 'Profile/addService', component: AddserviceComponent, canActivate: [UserGroupGuard]},
     {path: 'foodanddrink', component: FoodAndDrinkComponent, canActivate: [AuthGuard]},
+    {path: 'lightandstage', component: LightAndStageComponent, canActivate: [AuthGuard]},
+    {path: 'advertisement', component: AdvertisementComponent, canActivate: [AuthGuard]},
+    {path: 'music', component: MusicComponent, canActivate: [AuthGuard]},
+    {path: 'searchresults', component: SearchresultsComponent, canActivate: [AuthGuard]},
+    {path: 'Profile/myservices', component: MyservicesComponent, canActivate: [AuthGuard]},
     {path: 'searchresults', component: HeaderComponent, canActivate: [AuthGuard]},
     {path: 'Profile/myservices', component: MyservicesComponent, canActivate: [UserGroupGuard]},
     { path: 'Admin', component: AdminComponent, canActivate: [AdminGuard] },
@@ -78,6 +91,10 @@ const appRoutes: Routes = [
         FooterComponent,
         MyservicesComponent,
         FoodAndDrinkComponent,
+        LightAndStageComponent,
+        AdvertisementComponent,
+        MusicComponent,
+        SearchresultsComponent,
 
     ],
 
@@ -98,7 +115,8 @@ const appRoutes: Routes = [
         MatDatepickerModule,
         MatNativeDateModule,
         MatMenuModule,
-        MatTableModule
+        MatTableModule,
+        MatExpansionModule
     ],
   providers: [
     StatusBar,
