@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {Service} from './models/service';
 
 @Injectable({
@@ -13,10 +13,16 @@ export class ServiceService {
   private allservices = 'http://localhost:3000/service';
   private myServices = "http://localhost:3000/service/filter"
 
-  constructor(private http: HttpClient) {
+
+  private Services: Service[];
+  /*s = {city: '', serviceType: '', description: ''};
+  private selectedStrings = new BehaviorSubject(this.s);
+  currentS = this.selectedStrings.asObservable();
+*/
+  constructor(private http: HttpClient ) {
 
   }
-  //accepts serviceObject and returns response of backend, backend responses with registered service
+
 
   addService(service: Object): Observable <any> {
     return this.http.post<any>(this.addserviceurl, service);
