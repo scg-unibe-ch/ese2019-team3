@@ -41,7 +41,6 @@ import {FooterComponent} from './footer/footer.component';
 import {ServiceService} from './service.service';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatTableModule} from '@angular/material/table';
-import {FoodAndDrinkComponent} from './food-and-drink/food-and-drink.component';
 import {UserGroupGuard} from './user-group.guard';
 import {FoodAndDrinkComponent} from './Categories/food-and-drink/food-and-drink.component';
 import {MatExpansionModule} from "@angular/material/expansion";
@@ -65,8 +64,6 @@ const appRoutes: Routes = [
     {path: 'advertisement', component: AdvertisementComponent, canActivate: [AuthGuard]},
     {path: 'music', component: MusicComponent, canActivate: [AuthGuard]},
     {path: 'searchresults', component: SearchresultsComponent, canActivate: [AuthGuard]},
-    {path: 'Profile/myservices', component: MyservicesComponent, canActivate: [AuthGuard]},
-    {path: 'searchresults', component: HeaderComponent, canActivate: [AuthGuard]},
     {path: 'Profile/myservices', component: MyservicesComponent, canActivate: [UserGroupGuard]},
     { path: 'Admin', component: AdminComponent, canActivate: [AdminGuard] },
     { path: '', component: HeaderComponent},
