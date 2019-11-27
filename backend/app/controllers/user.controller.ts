@@ -96,7 +96,9 @@ router.post('/login', async (req: Request, res: Response) => {
         lastname: user!.lastname,
         adress: user!.adress,
         number: user!.number,
-        birthday: user!.birthday
+        birthday: user!.birthday,
+        iss : getTime(),
+        exp : getTime()+3000000;
     }
 
   const token = jwt.sign(payload, 'key');
@@ -104,6 +106,10 @@ router.post('/login', async (req: Request, res: Response) => {
   res.send({token});
 });
 
+function getTime () {
+    const time = new Date().getTime();
+    return time;
+}
 
 router.post('/checkPassword', async (req: Request, res: Response) => {
     const email = await req.body.email;

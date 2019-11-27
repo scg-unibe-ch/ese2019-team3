@@ -8,7 +8,7 @@ import {User} from './models/user';
   providedIn: 'root'
 })
 export class UserGroupGuard implements CanActivate {
-  constructor(public auth: AuthenticationService, public router: Router) {
+  constructor(public auth: AuthenticationService, public router: Router, private providerGuard: UserGroupGuard) {
   }
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
@@ -25,8 +25,24 @@ export class UserGroupGuard implements CanActivate {
       return false;
     } else {
       const tokenPayload: User = decode(token); // decode the token to get its payload, checks if user belongs to admin group
+      this.assertAlive(tokenPayload)
       return tokenPayload.userGroup === 'serviceProvider';
     }
   }
 
+ assertAlive(tokenPayload) {
+    const now = Date.now()
+    if (typeof tokenPayload.exp !== 'undefined' && tokenPayload.exp < now) {
+      alert('Your Session expired, you will be logged out');
+      this.logOut();
+      throw new Error(`token expired: ${JSON.stringify(tokenPayload)}`)
+    }
+  }
+
+  logOut() {
+    // Test
+    alert('Sie wurden erfolgreich abgemeldet');
+    this.auth.logOutUser();
+    this.router.navigate(['']);
+  }
 }
