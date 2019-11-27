@@ -65,6 +65,7 @@
       <!--Admin Button, only visible when logged in as Admin-->
       <button
         mat-menu-item
+        *ngIf="isAdmin"
         routerLink="/Admin"
         routerLinkActive="active"
       >
