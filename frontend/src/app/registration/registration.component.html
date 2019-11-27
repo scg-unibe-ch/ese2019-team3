@@ -3,6 +3,7 @@
     <mat-card-title>Registrierung</mat-card-title>
     <mat-card-content>
       <mat-vertical-stepper #stepper>
+
         <mat-step [stepControl]="registrationForm" [editable]="isEditable">
           <form [formGroup]="registrationForm">
             <ng-template matStepLabel
@@ -60,7 +61,7 @@
               <input
                 matInput
                 placeholder="Vorname"
-                formControlName="firstName"
+                formControlName="firstname"
                 required
               />
             </mat-form-field>
@@ -69,7 +70,7 @@
               <input
                 matInput
                 placeholder="Nachname"
-                formControlName="lastName"
+                formControlName="lastname"
                 required
               />
             </mat-form-field>
@@ -116,9 +117,9 @@
               </p>
             </mat-radio-group>
 
-            <mat-form-field *ngIf="isProvider()">
+            <!-- <mat-form-field *ngIf="isProvider()">
               <input matInput placeholder="Firma" formControlName="company" />
-            </mat-form-field>
+            </mat-form-field> -->
             <div>
               <button mat-button matStepperPrevious>Back</button>
               <button

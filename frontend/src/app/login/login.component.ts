@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   private message;
   constructor(
     private http: HttpClient,
-    private authentification: AuthenticationService,
+    private authentication: AuthenticationService,
     private router: Router,
     private home: HomeComponent
   ) {}
@@ -42,11 +42,11 @@ export class LoginComponent implements OnInit {
         };
 
         this.sendUserData(loginData);
-        setTimeout(() => { this.home.logIn(); }, 60);
+        setTimeout(() => { this.home.logIn(); }, 70);
     }
 
     // sends Data from login form to backend
     sendUserData(loginData: object) {
-        this.authentification.loginUser(loginData);
+        this.authentication.loginUser(loginData);
     }
 }

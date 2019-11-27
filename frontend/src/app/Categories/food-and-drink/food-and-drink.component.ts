@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Service} from "../models/service";
-import {ServiceService} from "../service.service";
+import {Service} from "../../models/service";
+import {ServiceService} from "../../service.service";
 
 
 @Component({
@@ -9,6 +9,9 @@ import {ServiceService} from "../service.service";
   styleUrls: ['./food-and-drink.component.scss'],
 })
 export class FoodAndDrinkComponent implements OnInit {
+  location: string [] = ['Aarau', 'Basel', 'Bern', 'Biel/Bienne', 'Frauenfeld', 'Freiburg', 'Genf', 'Lausanne', 'Lugano', 'Luzern', 'Neuenburg', 'Schaffhausen',
+    'Schwyz', 'Sitten', 'Solothurn', 'St. Gallen', 'Zug', 'Zürich'];
+
   private Services: Service[];
   public id: any;
   public categorie:string;
@@ -25,7 +28,6 @@ export class FoodAndDrinkComponent implements OnInit {
     this.clickFoodAnDrink();
 
   }
-
   clickFoodAnDrink() {
     let fObject = {
       provider: this.p,
@@ -45,4 +47,10 @@ export class FoodAndDrinkComponent implements OnInit {
     console.log(object);
     await this.service.searchService(object).subscribe((data: Service[]) => {this.Services = data});
   }
+
+  updateResults() {
+      this.clickFoodAnDrink();
+  }
+
 }
+

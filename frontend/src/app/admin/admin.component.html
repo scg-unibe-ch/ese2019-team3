@@ -3,21 +3,32 @@
   <mat-card-title>List of Open Registration Requests</mat-card-title>
   <mat-card-content>
     <br>
-    <table mat-table>
+    <table mdbTable>
+      <thead>
       <tr>
-        <th>email</th>
-        <th>User group</th>
-        <th>phone</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>E-Mail</th>
+        <th>Address</th>
+        <th>User Group</th>
+        <th>Phone</th>
       </tr>
-      <!-- lists all users that are being fetched from backend-->
-      <tr *ngFor="let user of Users">
+      </thead>
+      <!-- lists all unverified users that are being fetched from backend-->
+      <tbody>
+      <tr mdbTableCol *ngFor="let user of Users">
+        <td>{{user.firstname}}</td>
+        <td>{{user.lastname}}</td>
         <td>{{user.email}}</td>
+        <td>{{user.adress}}</td>
         <td>{{user.userGroup}}</td>
         <td>{{user.number}}</td>
         <td><button mat-button style="color: #0ec254" (click)="validateUser(user)">Accept</button></td>
         <td><button mat-button style="color: #d33939" (click)="deleteUser(user)" >Deny</button></td>
       </tr>
+      </tbody>
     </table>
   </mat-card-content>
-
 </mat-card>
+
+
