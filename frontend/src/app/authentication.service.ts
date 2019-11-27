@@ -1,31 +1,31 @@
-import { tap } from "rxjs/operators";
-import * as jwt_decode from "jwt-decode";
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable, pipe } from "rxjs";
-import { Router } from "@angular/router";
-import { User } from "./models/user";
+import { tap } from 'rxjs/operators';
+import * as jwt_decode from 'jwt-decode';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, pipe } from 'rxjs';
+import { Router } from '@angular/router';
+import { User } from './models/user';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class AuthenticationService {
   private loggedInUser: User;
   private email: string;
   private emailtoken: string;
 
-  private passwordforgottenUrl = "http://localhost:3000/user/forgotPassword";
+  private passwordforgottenUrl = 'http://localhost:3000/user/forgotPassword';
 
-  private rootUrl = "http://localhost:3000/user/";
+  private rootUrl = 'http://localhost:3000/user/';
 
-  private registerUrl = "http://localhost:3000/user/register";
-  private loginUrl = "http://localhost:3000/user/login";
-  private verificationUrl = "http://localhost:3000/user/verifyToken";
-  private addServiceUrl = "http://localhost:3000/user/addService";
+  private registerUrl = 'http://localhost:3000/user/register';
+  private loginUrl = 'http://localhost:3000/user/login';
+  private verificationUrl = 'http://localhost:3000/user/verifyToken';
+  private addServiceUrl = 'http://localhost:3000/user/addService';
 
-  private newPasswordUrl = "http://localhost:3000/user/setNewPassword";
+  private newPasswordUrl = 'http://localhost:3000/user/setNewPassword';
 
-  private checkPasswordUrl = "http://localhost:3000/user/checkPassword";
+  private checkPasswordUrl = 'http://localhost:3000/user/checkPassword';
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -38,8 +38,8 @@ export class AuthenticationService {
     this.http.post<any>(this.loginUrl, user).subscribe(
       res => {
         console.log(res);
-        localStorage.setItem("token", res.token);
-        this.router.navigate([""]);
+        localStorage.setItem('token', res.token);
+        this.router.navigate(['']);
       },
       err => {
         console.log(err);
@@ -59,7 +59,7 @@ export class AuthenticationService {
   //   return this.emailtoken;
   // }
   getCurrentUser(): any {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     return this.getDecodedAccessToken(token);
   }
   // loginUer(user) {
@@ -71,13 +71,13 @@ export class AuthenticationService {
   //   );
   // }
   logOutUser() {
-    localStorage.removeItem("token");
+    localStorage.removeItem('token');
   }
   getToken() {
-    return localStorage.getItem("token");
+    return localStorage.getItem('token');
   }
   loggedIn() {
-    return localStorage.getItem("token") != null;
+    return localStorage.getItem('token') != null;
   }
 
   // Todo fix or deleted

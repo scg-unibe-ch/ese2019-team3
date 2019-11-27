@@ -42,8 +42,7 @@ import {ServiceService} from './service.service';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatTableModule} from '@angular/material/table';
 import {FoodAndDrinkComponent} from './food-and-drink/food-and-drink.component';
-
-
+import {UserGroupGuard} from './user-group.guard';
 
 
 const appRoutes: Routes = [
@@ -52,10 +51,10 @@ const appRoutes: Routes = [
     { path: 'Registration', component: RegistrationComponent},
     { path: 'Profile', component: ProfileComponent, canActivate: [AuthGuard] },
     { path: 'Profile/ChangePassword', component: ChangePasswordComponent, canActivate: [AuthGuard] },
-    {path: 'Profile/addService', component: AddserviceComponent, canActivate: [AuthGuard]},
+    {path: 'Profile/addService', component: AddserviceComponent, canActivate: [UserGroupGuard]},
     {path: 'foodanddrink', component: FoodAndDrinkComponent, canActivate: [AuthGuard]},
     {path: 'searchresults', component: HeaderComponent, canActivate: [AuthGuard]},
-    {path: 'Profile/myservices', component: MyservicesComponent, canActivate: [AuthGuard]},
+    {path: 'Profile/myservices', component: MyservicesComponent, canActivate: [UserGroupGuard]},
     { path: 'Admin', component: AdminComponent, canActivate: [AdminGuard] },
     { path: '', component: HeaderComponent},
     { path: '**', component: PageNotFoundComponent },
