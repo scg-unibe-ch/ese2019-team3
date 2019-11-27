@@ -33,6 +33,9 @@ router.post('/register', async (req, res) => {
     const service = new Service();
     service.fromSimplification(req.body);
 
+    if (req.body.price == null) {
+        service.price = "Auf Anfrage"
+    }
 
     await service.save().then ( async() => {
     });
@@ -148,7 +151,7 @@ router.post('/filter', async (req: Request, res: Response) => {
     }
 
     // add results for fulltextsearch if needed
-    if (req.body.description !== undefined && req.body.description !== null) {
+    if (req.body.description !== undefined && req.body.description !== null) {  //description is the term used in the frontend for the "Search for anything" field
         const description = await req.body.description;
         search.drop();
         const searchBody = await Service.findAll();
@@ -158,7 +161,12 @@ router.post('/filter', async (req: Request, res: Response) => {
         }
         const anySearch = search.search(description.toString());
         const searchResultAny = searchResult.concat(anySearch);
+        console.log(req.body.description);
+        if (req.body.serviceType == undefined && req.body.city == undefined && req.body.description !== "") {
+            res.send(anySearch);
+        } else {
         res.send(searchResultAny);
+        }
     } else {
     res.statusCode = 200;
     res.send(searchResult);
