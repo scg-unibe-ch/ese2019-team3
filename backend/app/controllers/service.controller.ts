@@ -33,6 +33,9 @@ router.post('/register', async (req, res) => {
     const service = new Service();
     service.fromSimplification(req.body);
 
+    if (req.body.price == null) {
+        service.price = "Auf Anfrage"
+    }
 
     await service.save().then ( async() => {
     });

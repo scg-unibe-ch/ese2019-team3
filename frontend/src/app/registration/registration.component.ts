@@ -77,6 +77,7 @@ export class RegistrationComponent implements OnInit {
 
   // send registered User to backend
   registerUser(registerUserData: object) {
+    console.log('hallo');
     console.log(registerUserData);
 
     this.authentification
