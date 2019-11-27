@@ -15,10 +15,10 @@
         <mat-list-item>
           <form class ="btn" style="float: left; margin-left: 2%; margin-bottom: 1%; ">
             <mat-form-field>
-              <mat-label> All Services </mat-label>
-              <mat-select id = "service" [(ngModel)]="categorie" name="services" >
+              <mat-label> Locations </mat-label>
+              <mat-select id = "location" [(ngModel)]="city" name="city" >
                 <mat-option> None </mat-option>
-                <mat-option *ngFor = "let services of services" [value] = "services"> {{services}}</mat-option>
+                <mat-option *ngFor = "let city of location" [value] = "city"> {{city}}</mat-option>
               </mat-select>
             </mat-form-field>
           </form>
@@ -36,11 +36,9 @@
         <mat-list-item>
           <button
                   class = "btn"
-                  routerLinkActive="active"
                   mat-stroked-button
                   style="float:right; margin-right: 10%; margin-top: -0.5%"
-                  (click) = onSubmit()>
-            Search</button>
+                  (click) = updateResults()>Search</button>
         </mat-list-item>
 
 
@@ -49,16 +47,18 @@
   </mat-card>
 
 <mat-card class = "searchresults" *ngFor = "let service of Services">
-  <mat-card-header id = "title">{{service.serviceTitle}}</mat-card-header>
-  <mat-card-subtitle id = "subtitle">{{service.provider}}</mat-card-subtitle>
+  <mat-card-title id = "title">{{service.serviceTitle}}</mat-card-title>
+  <mat-card-subtitle id = "subtitle">{{service.city}}</mat-card-subtitle>
   <mat-card-content>
     <p> {{service.description}}</p>
     <br>
-    <h4>{{service.price}}</h4>
+    <h4>{{service.price}} CHF </h4>
   </mat-card-content>
+
   <mat-card-actions>
     <button mat-button>Book Me!</button>
   </mat-card-actions>
+
 </mat-card>
 
 <!--

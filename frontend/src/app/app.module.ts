@@ -41,8 +41,11 @@ import {FooterComponent} from './footer/footer.component';
 import {ServiceService} from './service.service';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatTableModule} from '@angular/material/table';
-import {FoodAndDrinkComponent} from './food-and-drink/food-and-drink.component';
+import {FoodAndDrinkComponent} from './Categories/food-and-drink/food-and-drink.component';
 import {MatExpansionModule} from "@angular/material/expansion";
+import {LightAndStageComponent} from "./Categories/light-and-stage/ligth-and-stage.component";
+import {AdvertisementComponent} from "./Categories/advertisement/advertisement.component";
+import {MusicComponent} from "./Categories/music/music.component";
 
 
 
@@ -80,6 +83,9 @@ const appRoutes: Routes = [
         FooterComponent,
         MyservicesComponent,
         FoodAndDrinkComponent,
+        LightAndStageComponent,
+        AdvertisementComponent,
+        MusicComponent,
 
     ],
 
