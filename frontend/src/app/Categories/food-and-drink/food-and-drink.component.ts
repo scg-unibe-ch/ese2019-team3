@@ -48,25 +48,8 @@ export class FoodAndDrinkComponent implements OnInit {
     await this.service.searchService(object).subscribe((data: Service[]) => {this.Services = data});
   }
 
-  updateResults(){
-
-    let Object = {
-      provider: this.p,
-      serviceTitle: this.serviceTitle,
-      description: this.anything,
-      providerId: this.id,
-      serviceType: this.categorie,
-      price: this.price,
-      city: this.city,
-    };
-    this.search(Object);
-    JSON.stringify(Object);
-    delete Object[0];
-  }
-
-  async search(object) {
-    console.log(object);
-    await this.service.searchService(object).subscribe((data: Service[]) => {this.Services = data});
+  updateResults() {
+      this.clickFoodAnDrink();
   }
 
 }

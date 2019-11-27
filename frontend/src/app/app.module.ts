@@ -46,6 +46,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import {LightAndStageComponent} from "./Categories/light-and-stage/ligth-and-stage.component";
 import {AdvertisementComponent} from "./Categories/advertisement/advertisement.component";
 import {MusicComponent} from "./Categories/music/music.component";
+import {SearchresultsComponent} from "./Categories/searchresults/searchresults.component";
 
 
 
@@ -58,7 +59,10 @@ const appRoutes: Routes = [
     { path: 'Profile/ChangePassword', component: ChangePasswordComponent, canActivate: [AuthGuard] },
     {path: 'Profile/addService', component: AddserviceComponent, canActivate: [AuthGuard]},
     {path: 'foodanddrink', component: FoodAndDrinkComponent, canActivate: [AuthGuard]},
-    {path: 'searchresults', component: HeaderComponent, canActivate: [AuthGuard]},
+    {path: 'lightandstage', component: LightAndStageComponent, canActivate: [AuthGuard]},
+    {path: 'advertisement', component: AdvertisementComponent, canActivate: [AuthGuard]},
+    {path: 'music', component: MusicComponent, canActivate: [AuthGuard]},
+    {path: 'searchresults', component: SearchresultsComponent, canActivate: [AuthGuard]},
     {path: 'Profile/myservices', component: MyservicesComponent, canActivate: [AuthGuard]},
     { path: 'Admin', component: AdminComponent, canActivate: [AdminGuard] },
     { path: '', component: HeaderComponent},
@@ -86,6 +90,7 @@ const appRoutes: Routes = [
         LightAndStageComponent,
         AdvertisementComponent,
         MusicComponent,
+        SearchresultsComponent,
 
     ],
 
