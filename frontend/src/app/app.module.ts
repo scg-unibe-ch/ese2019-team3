@@ -41,13 +41,14 @@ import {FooterComponent} from './footer/footer.component';
 import {ServiceService} from './service.service';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatTableModule} from '@angular/material/table';
-import {UserGroupGuard} from './user-group.guard';
+import {ProviderGuard} from './provider.guard';
 import {FoodAndDrinkComponent} from './Categories/food-and-drink/food-and-drink.component';
-import {MatExpansionModule} from "@angular/material/expansion";
-import {LightAndStageComponent} from "./Categories/light-and-stage/ligth-and-stage.component";
-import {AdvertisementComponent} from "./Categories/advertisement/advertisement.component";
-import {MusicComponent} from "./Categories/music/music.component";
-import {SearchresultsComponent} from "./Categories/searchresults/searchresults.component";
+import {MatExpansionModule} from '@angular/material/expansion';
+import {LightAndStageComponent} from './Categories/light-and-stage/ligth-and-stage.component';
+import {AdvertisementComponent} from './Categories/advertisement/advertisement.component';
+import {MusicComponent} from './Categories/music/music.component';
+import {SearchresultsComponent} from './Categories/searchresults/searchresults.component';
+import {MyServicesGuard} from './myServices.guard';
 
 
 
@@ -58,13 +59,13 @@ const appRoutes: Routes = [
     { path: 'Registration', component: RegistrationComponent},
     { path: 'Profile', component: ProfileComponent, canActivate: [AuthGuard] },
     { path: 'Profile/ChangePassword', component: ChangePasswordComponent, canActivate: [AuthGuard] },
-    {path: 'Profile/addService', component: AddserviceComponent, canActivate: [UserGroupGuard]},
-    {path: 'foodanddrink', component: FoodAndDrinkComponent, canActivate: [AuthGuard]},
-    {path: 'lightandstage', component: LightAndStageComponent, canActivate: [AuthGuard]},
-    {path: 'advertisement', component: AdvertisementComponent, canActivate: [AuthGuard]},
+    {path: 'Profile/addService', component: AddserviceComponent, canActivate: [ProviderGuard]},
+    {path: 'foodanddrink', component: FoodAndDrinkComponent},
+    {path: 'lightandstage', component: LightAndStageComponent},
+    {path: 'advertisement', component: AdvertisementComponent},
     {path: 'music', component: MusicComponent, canActivate: [AuthGuard]},
-    {path: 'searchresults', component: SearchresultsComponent, canActivate: [AuthGuard]},
-    {path: 'Profile/myservices', component: MyservicesComponent, canActivate: [UserGroupGuard]},
+    {path: 'searchresults', component: SearchresultsComponent},
+    {path: 'Profile/myservices', component: MyservicesComponent, canActivate: [MyServicesGuard]},
     { path: 'Admin', component: AdminComponent, canActivate: [AdminGuard] },
     { path: '', component: HeaderComponent},
     { path: '**', component: PageNotFoundComponent },
