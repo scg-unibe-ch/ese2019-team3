@@ -697,6 +697,176 @@
         },
       }
     },
+    "/booking/client/{id}": {
+      "get": {
+        "tags": [
+          "Booking"
+        ],
+        "summary": "give a client an overview of all his bookings",
+        "description": "Get all bookings a specific client made (including accepted and declined one, past and future ones",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id of the client needs to be sent",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string",
+              "items": {
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+      }
+    },
+    "/booking/provider/{id}": {
+      "get": {
+        "tags": [
+          "Booking"
+        ],
+        "summary": "give a provider an overview of all his bookings",
+        "description": "Get all bookings a specific provider had (including accepted and declined one, past and future ones",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id of the provider needs to be sent",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string",
+              "items": {
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+      }
+    },
+    "/booking/provider/requests/{id}": {
+      "get": {
+        "tags": [
+          "Booking"
+        ],
+        "summary": "Get all bookings a specific provider has not answered yet",
+        "description": "needed to notify a provider when he has unanswered booking requests",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id of the provider needs to be sent",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string",
+              "items": {
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+      }
+    },
+    "/booking/client/rate/{id}": {
+      "get": {
+        "tags": [
+          "Booking"
+        ],
+        "summary": "Get all bookings a specific client made, that have been accepted, and that are in the past (the service has already been done) and that have not been rated yet",
+        "description": "Needed for ratings -> show all bookings a client should be able to rate (must be past and must have been accepted).",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id of the client needs to be sent",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string",
+              "items": {
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+      }
+    },
+    "/booking/accept/{id}": {
+      "put": {
+        "tags": [
+          "Booking"
+        ],
+        "summary": "accept a booking request",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id of the booking needs to be sent",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string",
+              "items": {
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+      }
+    },
     "/booking/register": {
       "post": {
         "tags": [

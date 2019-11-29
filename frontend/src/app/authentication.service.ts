@@ -80,10 +80,6 @@ export class AuthenticationService {
     return localStorage.getItem('token') != null;
   }
 
-  // Todo fix or deleted
-  public isUser(): boolean {
-    return;
-  }
   /*
    *Initiate the passwordforgotten
    * sends put request to the backend

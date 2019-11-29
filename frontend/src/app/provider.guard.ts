@@ -7,8 +7,8 @@ import {User} from './models/user';
 @Injectable({
   providedIn: 'root'
 })
-export class UserGroupGuard implements CanActivate {
-  constructor(public auth: AuthenticationService, public router: Router, private providerGuard: UserGroupGuard) {
+export class ProviderGuard implements CanActivate {
+  constructor(public auth: AuthenticationService, public router: Router, private providerGuard: ProviderGuard) {
   }
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
@@ -24,9 +24,9 @@ export class UserGroupGuard implements CanActivate {
     if (token == null) {
       return false;
     } else {
-      const tokenPayload: User = decode(token); // decode the token to get its payload, checks if user belongs to admin group
+      const tokenPayload: User = decode(token); // decode the token to get its payload, checks if user belongs to provider group
       this.assertAlive(tokenPayload)
-      return tokenPayload.userGroup === 'serviceProvider';
+      return tokenPayload.userGroup === 'provider';
     }
   }
 

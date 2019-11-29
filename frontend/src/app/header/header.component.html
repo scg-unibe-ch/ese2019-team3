@@ -3,7 +3,7 @@
   <!-- When logged in -- @TODO authentication.loggedIn and authentication.isUser method in authentication service  -->
 
  <div class = "top">
-    <button class = "navigation"[routerLink] = "['/profile']" *ngIf="authentication.LoggedIn && authentication.isUser">
+    <button class = "navigation"[routerLink] = "['/profile']" *ngIf="authentication.loggedIn()">
       Profile
     </button>
   </div>
