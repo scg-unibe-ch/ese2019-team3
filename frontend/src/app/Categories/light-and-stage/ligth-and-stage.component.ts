@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ServiceService} from "../../service.service";
 import {Service} from "../../models/service";
+import {MatDialog} from "@angular/material"
+import { BookmedialogComponent } from 'src/app/bookmedialog/bookmedialog.component';
 
 @Component({
   selector: 'app-ligth-and-stage',
@@ -20,7 +22,15 @@ export class LightAndStageComponent implements OnInit {
   public anything: string;
   public city: string;
 
-  constructor(private service: ServiceService) {
+  constructor(private service: ServiceService, public bookMeDialog: MatDialog) {
+  }
+
+  openDialog(service: Service){
+    this.bookMeDialog.open(BookmedialogComponent);
+    this.bookService(service);
+  }
+  bookService(service: Service) {
+    throw new Error("Method not implemented.");
   }
 
   ngOnInit() {

@@ -48,8 +48,8 @@ import {LightAndStageComponent} from "./Categories/light-and-stage/ligth-and-sta
 import {AdvertisementComponent} from "./Categories/advertisement/advertisement.component";
 import {MusicComponent} from "./Categories/music/music.component";
 import {SearchresultsComponent} from "./Categories/searchresults/searchresults.component";
-
-
+import {MatDialogModule} from '@angular/material/dialog';
+import { BookmedialogComponent } from './bookmedialog/bookmedialog.component';
 
 
 const appRoutes: Routes = [
@@ -92,10 +92,10 @@ const appRoutes: Routes = [
         AdvertisementComponent,
         MusicComponent,
         SearchresultsComponent,
-
+        BookmedialogComponent
     ],
-
-  entryComponents: [],
+//so it can be used as an dialog
+  entryComponents: [BookmedialogComponent],
     imports: [
         BrowserModule,
         IonicModule.forRoot(),
@@ -113,7 +113,8 @@ const appRoutes: Routes = [
         MatNativeDateModule,
         MatMenuModule,
         MatTableModule,
-        MatExpansionModule
+        MatExpansionModule,
+        MatDialogModule
     ],
   providers: [
     StatusBar,
