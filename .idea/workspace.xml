@@ -2,8 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8704b63c-4c20-4746-872b-9573fee9748e" name="Default" comment="-">
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/body/advert.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/body/band.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/body/behind-the-scnes.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/body/cooking-food.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/header/blury bokeh.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/header/wine-glasses.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/login/background.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/db.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/backend/db.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/body/body.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/body/body.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/header/header.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/header/header.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/login/login.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/login/login.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/login/login.component.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -80,6 +90,9 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/src/app/login" />
+      <recent name="$PROJECT_DIR$/frontend/src/app/body" />
+      <recent name="$PROJECT_DIR$/frontend/src/app/header" />
       <recent name="$PROJECT_DIR$/frontend/src/assets/home" />
       <recent name="$PROJECT_DIR$/frontend/src/app/Categories" />
     </key>
@@ -191,6 +204,7 @@
       <workItem from="1574716833320" duration="2117000" />
       <workItem from="1574842766665" duration="1941000" />
       <workItem from="1574856559416" duration="8203000" />
+      <workItem from="1575208743748" duration="6043000" />
     </task>
     <task id="LOCAL-00001" summary="-">
       <created>1573655861690</created>
