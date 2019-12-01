@@ -7,6 +7,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class TokenInterceptorService implements HttpInterceptor {
+  constructor(private auth: AuthenticationService) {}
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('token');
     // check if there is token
@@ -14,20 +15,20 @@ export class TokenInterceptorService implements HttpInterceptor {
       const tokenizedReq = req.clone({
         headers: req.headers.set('Authorization', 'Bearer ' + token)
       });
+      this.assertAlive(token);
       return next.handle(tokenizedReq);
     } else {
       return next.handle(req);
     }
   }
 
-  /*constructor(private injector: Injector) { }
-  intercept(req, next) {
-    const authService = this.injector.get(AuthenticationService);
-    const tokenizedReq = req.clone({
-      setHeaders: {
-        Authorization: 'Bearer' + authService.getToken()
-      }
-    });
-    return next.handle(tokenizedReq);
-  }*/
+  assertAlive(tokenPayload) {
+    const now = Date.now();
+    alert('in function')
+    if (typeof tokenPayload.exp !== 'undefined' && tokenPayload.exp < now) {
+      alert('Your Session expired, you will be logged out');
+      this.auth.logOutUser();
+      throw new Error(`token expired: ${JSON.stringify(tokenPayload)}`);
+    }
+  }
 }
