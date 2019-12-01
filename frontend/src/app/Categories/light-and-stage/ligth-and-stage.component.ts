@@ -26,12 +26,12 @@ export class LightAndStageComponent implements OnInit {
   }
 
   openDialog(service: Service){
-    this.bookMeDialog.open(BookmedialogComponent);
-    this.bookService(service);
+
+    //calling the dialog and sending him the specific input service data, on which the button has been clicked
+    this.bookMeDialog.open(BookmedialogComponent, {data: service});
+    //this.bookService(service);
   }
-  bookService(service: Service) {
-    throw new Error("Method not implemented.");
-  }
+  
 
   ngOnInit() {
     this.clickLight();
