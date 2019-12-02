@@ -37,12 +37,4 @@ export class ServiceService {
     return this.http.post<any>(this.myServices, id);
   }
 
-<<<<<<< HEAD
-
-=======
-  // Checks whether the token is expired or not
-  //public isAuthenticated(): Observable<any> {    const token = localStorage.getItem('token');
-  //return this.http.post<any>(this.verificationUrl, token)
-  // }
->>>>>>> origin/Dialog
 }

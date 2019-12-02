@@ -68,6 +68,5 @@ export class HomeComponent implements OnInit {
     this.isAdmin = this.adminGuard.isAdmin();
     this.isProvider = this.providerGuard.isProvider();
     this.isCustomer = this.customerGuard.isCustomerOrProvider();
-    this.router.navigate(['']);
   }
 }
