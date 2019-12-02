@@ -25,8 +25,19 @@ export class ProviderGuard implements CanActivate {
       return false;
     } else {
       const tokenPayload: User = decode(token); // decode the token to get its payload, checks if user belongs to provider group
-      // this.assertAlive(tokenPayload);
-      return tokenPayload.userGroup === 'provider';
+      this.assertAlive(tokenPayload);
+      return tokenPayload.userGroup === 'serviceProvider';
+    }
+  }
+
+  assertAlive(tokenPayload) {
+    const now = Date.now();
+    alert('in function');
+    if (typeof tokenPayload.exp !== 'undefined' && tokenPayload.exp < now) {
+      alert('Your Session expired, you will be logged out');
+      this.auth.logOutUser();
+      this.router.navigate(['']);
+      throw new Error(`token expired: ${JSON.stringify(tokenPayload)}`);
     }
   }
 

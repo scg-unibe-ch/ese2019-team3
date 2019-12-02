@@ -122,7 +122,24 @@ export class AuthenticationService {
     return this.http.post<any>(this.addServiceUrl, addService);
   }
 
-  checkPassword(checkUser: Object) /*: Observable<boolean> */ {
+  checkPassword(checkUser: object) /*: Observable<boolean> */ {
     return this.http.post<any>(this.checkPasswordUrl, checkUser);
   }
+
+
+  /*getTokenExpirationDate(token: string): Date {
+    const decoded = jwt_decode(token);
+
+    if (decoded.exp === undefined) { return null; }
+
+    const date = new Date(0);
+    date.setUTCSeconds(decoded.exp);
+    return date;
+  }
+
+  isTokenExpired(token: string): boolean {
+    const date = this.getTokenExpirationDate(token);
+    if (date === undefined) { return false; }
+    return !(date.valueOf() > new Date().valueOf());
+  }*/
 }

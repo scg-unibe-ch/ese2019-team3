@@ -49,6 +49,7 @@ import {AdvertisementComponent} from './Categories/advertisement/advertisement.c
 import {MusicComponent} from './Categories/music/music.component';
 import {SearchresultsComponent} from './Categories/searchresults/searchresults.component';
 import {MyServicesGuard} from './myServices.guard';
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 
 

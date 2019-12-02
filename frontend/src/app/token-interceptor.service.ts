@@ -15,14 +15,14 @@ export class TokenInterceptorService implements HttpInterceptor {
       const tokenizedReq = req.clone({
         headers: req.headers.set('Authorization', 'Bearer ' + token)
       });
-      this.assertAlive(token);
+      // this.assertAlive(token);
       return next.handle(tokenizedReq);
     } else {
       return next.handle(req);
     }
   }
 
-  assertAlive(tokenPayload) {
+  /*assertAlive(tokenPayload) {
     const now = Date.now();
     alert('in function')
     if (typeof tokenPayload.exp !== 'undefined' && tokenPayload.exp < now) {
@@ -30,5 +30,5 @@ export class TokenInterceptorService implements HttpInterceptor {
       this.auth.logOutUser();
       throw new Error(`token expired: ${JSON.stringify(tokenPayload)}`);
     }
-  }
+  }*/
 }
