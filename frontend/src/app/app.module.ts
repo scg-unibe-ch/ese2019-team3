@@ -65,7 +65,7 @@ const appRoutes: Routes = [
     {path: 'advertisement', component: AdvertisementComponent},
     {path: 'music', component: MusicComponent, canActivate: [AuthGuard]},
     {path: 'searchresults', component: SearchresultsComponent},
-    {path: 'Profile/myservices', component: MyservicesComponent, canActivate: [MyServicesGuard]},
+    {path: 'Profile/myservices', component: MyservicesComponent, canActivate: [ProviderGuard]},
     { path: 'Admin', component: AdminComponent, canActivate: [AdminGuard] },
     { path: 'bookingRequests', component: BookingRequestsComponent, canActivate: [ProviderGuard]},
     { path: '', component: HeaderComponent},

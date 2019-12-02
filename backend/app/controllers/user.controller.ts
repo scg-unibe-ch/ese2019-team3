@@ -2,10 +2,10 @@ import {Request, Response, Router} from 'express';
 import {User} from '../models/user.model';
 import randomString from 'randomstring';
 
-const jwt = require('jsonwebtoken'); //JSON Webtoken
+const jwt = require('jsonwebtoken'); // JSON Webtoken
 const router: Router = Router();
-const bcrypt = require('bcryptjs');  //used to hash passwords
-var contact = require('../contact');
+const bcrypt = require('bcryptjs');  // used to hash passwords
+const contact = require('../contact');
 const fullTextSearch = require('full-text-search');
 const search = new fullTextSearch();
 
@@ -32,7 +32,7 @@ router.post('/register', async (req, res) => {
         res.statusCode = 400; // Bad Request
         res.send('Incomplete information!');
     }
-    if (!validateEmail(user.email)) res.send('Typo in email-address.');
+    if (!validateEmail(user.email)) { res.send('Typo in email-address.'); }
 
     if (await User.findOne({where: {email: user.email}}) !== null) {
         res.send('E-Mail already registered!');
@@ -54,10 +54,12 @@ router.post('/register', async (req, res) => {
         lastname: user.lastname,
         adress: user.adress,
         number: user.number,
-        birthday: user.birthday
-    }
+        birthday: user.birthday,
+        iss : getTime(),
+        exp : getTime() + 60000,
+    };
     const token = jwt.sign(payload, 'key');  // 'key' could be any string
-    res.statusCode = 201; //Status code: created
+    res.statusCode = 201; // Status code: created
     res.send({token});
   });
   contact.sendRegistrationConfirmation(user.email);
@@ -77,7 +79,7 @@ router.post('/login', async (req: Request, res: Response) => {
   console.log(email);
   console.log(userPassword);
   if (user == null) {
-    res.statusCode = 401;  //unauthorized
+    res.statusCode = 401;  // unauthorized
     res.send('Account not found');
   } else {
       if (await (bcrypt.compare(userPassword, user.password)) === false) {
@@ -98,11 +100,11 @@ router.post('/login', async (req: Request, res: Response) => {
         number: user!.number,
         birthday: user!.birthday,
         iss : getTime(),
-        exp : getTime()+3000000;
-    }
+        exp : getTime() + 3000000;
+    };
 
   const token = jwt.sign(payload, 'key');
-  res.statusCode = 200; //status code: OK
+  res.statusCode = 200; // status code: OK
   res.send({token});
 });
 
@@ -116,13 +118,13 @@ router.post('/checkPassword', async (req: Request, res: Response) => {
     const userPassword = await req.body.password;
     const user = await User.findOne({where: {email: email}});
     if (user == null) {
-        res.statusCode = 401;  //unauthorized
+        res.statusCode = 401;  // unauthorized
         res.send('Account not found');
     } else {
         if (await (bcrypt.compare(userPassword, user.password)) === false) {
           res.send(false);
           res.statusCode = 200;
-           
+
         } res.statusCode = 200;
         res.send(true);
     }
@@ -134,24 +136,24 @@ router.post('/checkPassword', async (req: Request, res: Response) => {
  * Middleware to verify token
  * Token must be send in the header of a request from the frontend
  */
-function verifyToken (req: Request,res: Response,next: () => void) {
+function verifyToken (req: Request, res: Response, next: () => void) {
     if (!req.headers.authorization) {   // The word authorization may need to be changed, depends on the naming of the header in the frontend
       res.statusCode = 401;
       res.send('Unauthorized request');
     }
-    let token = req.headers.authorization;
+    const token = req.headers.authorization;
 
-    if (token ==='null') {
+    if (token === 'null') {
       res.statusCode = 401;
       res.send('Unauthorized request');
     }
 
-    let payload = jwt.verify(token, 'key');
+    const payload = jwt.verify(token, 'key');
     if (!payload) {
       res.statusCode = 401;
       res.send('Unauthorized request');
     }
-    //req.id = payload.id;
+    req.id = payload.id;
     next();
 }
 
@@ -177,7 +179,7 @@ router.put('/setNewPassword', async (req: Request, res: Response) => {
   const userPassword = await req.body.password;
   const newPassword = await req.body.newPassword;
   const newPasswordHash = bcrypt.hashSync(newPassword, 8);
-  if(user != null){
+  if (user != null) {
   if ( await( bcrypt.compare( userPassword, user.password)) === false) {
     res.statusCode = 401;
     res.send('Incorrect Password');
@@ -185,7 +187,7 @@ router.put('/setNewPassword', async (req: Request, res: Response) => {
     console.log(newPasswordHash);
   }
   user.setPassword(newPasswordHash);
-  res.statusCode = 200; //status code: OK
+  res.statusCode = 200; // status code: OK
   res.send('Password changed!');
   }});
 
@@ -204,7 +206,7 @@ router.put('/forgotPassword', async (req: Request, res: Response) => {
   const email = req.body.email;
   console.log(email);
   const user = await User.findOne( {where: {email: email}} );
-  if(user != null) {
+  if (user != null) {
       const newPassword = randomString.generate(8);
       const newPasswordHash = bcrypt.hashSync(newPassword, 8);
       user.setPassword(newPasswordHash);
@@ -257,13 +259,13 @@ router.put('/verify/:id', async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
   console.log(req.params.id);
   const user = await User.findByPk(id);
-  if(user != null) {
+  if (user != null) {
       user.isVerified = true;
       res.statusCode = 200;
       res.send('User verified!');
       await user.save();
       contact.sendValidatedEmail(user.email);
-  } else console.log('user not found ' + id);
+  } else { console.log('user not found ' + id); }
 });
 
 
@@ -356,11 +358,11 @@ export const UserController: Router = router;
  * @param email email-address to vaildate
  * @return true if email is correct
  */
-function validateEmail(email : string): boolean {
-  let reg = /@/;
-  if(reg.test(email)) {
-    let domain = email.split("@");
-    let regDom = /./;
+function validateEmail(email: string): boolean {
+  const reg = /@/;
+  if (reg.test(email)) {
+    const domain = email.split('@');
+    const regDom = /./;
     return regDom.test(domain[1]);
   }
   return false;

@@ -6,24 +6,18 @@
     <table mdbTable>
       <thead>
       <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>E-Mail</th>
-        <th>Address</th>
-        <th>User Group</th>
-        <th>Phone</th>
+        <th>Title</th>
+        <th>Service Type</th>
+        <th>Description</th>
       </tr>
       </thead>
       <!-- lists all unverified users that are being fetched from backend-->
       <tbody>
-      <tr mdbTableCol *ngFor="let user of Users">
-        <td>{{user.firstname}}</td>
-        <td>{{user.lastname}}</td>
-        <td>{{user.email}}</td>
-        <td>{{user.adress}}</td>
-        <td>{{user.userGroup}}</td>
-        <td>{{user.number}}</td>
-        <td><button mat-button style="color: #0ec254" (click)="validateUser(user)">Accept</button></td>
+      <tr mdbTableCol *ngFor="let request of Requests">
+        <td>{{request.serviceTitle}}</td>
+        <td>{{request.serviceType}}</td>
+        <td>{{request.description}}</td>
+        <td><button mat-button style="color: #0ec254" (click)="acceptBooking(request)">Accept</button></td>
         <td><button mat-button style="color: #d33939" (click)="deleteUser(user)" >Deny</button></td>
       </tr>
       </tbody>

@@ -3,6 +3,7 @@ import {User} from '../models/user';
 import {HttpClient} from '@angular/common/http';
 import {Service} from '../models/service';
 import {AuthenticationService} from '../authentication.service';
+import {Booking} from '../models/booking';
 
 @Component({
   selector: 'app-booking-requests',
@@ -15,32 +16,33 @@ export class BookingRequestsComponent implements OnInit {
   constructor(private http: HttpClient, private auth: AuthenticationService) {
     this.getBookingRequests();
   }
-// fetches users that need to be validated from backend
+// fetches booking requests from backend
   getBookingRequests() {
-    this.http.get('http://localhost:3000/service/user/' + this.auth.getCurrentUser().id)
+    this.http.get('http://localhost:3000/booking/provider/requests/' + this.auth.getCurrentUser().id)
         .subscribe((data: Service[]) => {this.Requests = data; });
   }
-// calls function for verification and refreshes users to be verified
-  validateUser(user: User) {
-    this.sendUserToValidate(user);
+// calls function for accepting booking and refreshes booking requests
+  acceptBooking(booking: Booking) {
+    this.sendBookingToAccept(booking);
     setTimeout(() => { this.getBookingRequests(); }, 50);
   }
 
-  // calls function for deletion and refreshes users to be verified
+// calls function for denying booking and refreshes booking requests
   deleteUser(user: User) {
-    this.sendUserToDelete(user);
+    // this.sendUserToDelete(user);
     setTimeout(() => { this.getBookingRequests(); }, 50);
   }
-// sends user to backend for deletion and tells admin it was deleted
-  sendUserToDelete(user: User) {
+
+  /*sendUserToDelete(user: User) {
     this.http.delete('http://localhost:3000/user/' + user.id)
         .subscribe(res => alert('User was deleted'), err => alert(err));
-  }
-// sends user to backend for validation and tells admin it was validated
-  sendUserToValidate(user: User) {
-    this.http.put('http://localhost:3000/user/verify/' + user.id, user, {responseType: 'text'})
+  }*/
+
+  sendBookingToAccept(booking: Booking) {
+    this.http.put('http://localhost:3000/booking/accept/', booking.serviceId)
         .subscribe(res => alert(res), err => console.log(err));
   }
+
   ngOnInit() {
     this.getBookingRequests();
   }

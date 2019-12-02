@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ServiceService} from "../service.service";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {HttpClient} from "@angular/common/http";
-import {AuthenticationService} from "../authentication.service";
+import {ServiceService} from '../service.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {HttpClient} from '@angular/common/http';
+import {AuthenticationService} from '../authentication.service';
 
 @Component({
   selector: 'app-addservice',
@@ -27,19 +27,19 @@ export class AddserviceComponent implements OnInit {
     about: new FormControl(""),
   });*/
 
-  private id : number;
+  private id: number;
   private serviceTitle: string;
-  private l:string;
+  private l: string;
   private s: string;
   d = new Date();
   private price: string;
-  private about:string; //evt. json file!
+  private about: string; // evt. json file!
 
 
   constructor(private http: HttpClient,
               private authentification: AuthenticationService,
-              private service: ServiceService,) {
-    const url = "http://localhost:4200/Profile/addService";
+              private service: ServiceService, ) {
+    const url = 'http://localhost:4200/Profile/addService';
     const serviceForm = {
       serviceTitle: this.serviceTitle,
       serviceType: this.s,
@@ -47,15 +47,11 @@ export class AddserviceComponent implements OnInit {
       dates: this.d,
       price: this.price,
       description: this.about,
-    }
-   this.http
-        .post(url, serviceForm)
-        .subscribe(() => {
-        }, e => console.error(e));
+    };
   }
 
   ngOnInit() {
-    //this.serviceForm.valueChanges.subscribe(value => console.log(value));
+    // this.serviceForm.valueChanges.subscribe(value => console.log(value));
   }
 
   onSubmit() {
@@ -69,13 +65,13 @@ export class AddserviceComponent implements OnInit {
         providerId :  this.authentification.getCurrentUser().id,
         provider : this.authentification.getCurrentUser().lastname,
     };
-    console.log("Adding new Service", addService);
-    //calls method to post the registerUser to the backend
+    console.log('Adding new Service', addService);
+    // calls method to post the registerUser to the backend
     this.addservice(addService);
   }
 
-  //sends service to backend
-  addservice (addService: Object){
+  // sends service to backend
+  addservice(addService: object) {
     console.log(addService);
     this.service
         .addService(addService)
