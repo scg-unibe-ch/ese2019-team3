@@ -6,17 +6,17 @@
     <table mdbTable>
       <thead>
       <tr>
-        <th>Title</th>
-        <th>Service Type</th>
-        <th>Description</th>
+        <th>Date</th>
+        <th>Service ID</th>
+        <th>Client ID</th>
       </tr>
       </thead>
       <!-- lists all unverified users that are being fetched from backend-->
       <tbody>
       <tr mdbTableCol *ngFor="let request of Requests">
-        <td>{{request.serviceTitle}}</td>
-        <td>{{request.serviceType}}</td>
-        <td>{{request.description}}</td>
+        <td>{{request.date}}</td>
+        <td>{{request.serviceId}}</td>
+        <td>{{request.clientId}}</td>
         <td><button mat-button style="color: #0ec254" (click)="acceptBooking(request)">Accept</button></td>
         <td><button mat-button style="color: #d33939" (click)="denyBooking(request)" >Deny</button></td>
       </tr>
