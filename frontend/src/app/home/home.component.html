@@ -48,7 +48,7 @@
       </button>
       <button
         mat-menu-item
-        *ngIf="isProvider"
+        *ngIf="isProvider || isCustomer"
         routerLink="/Profile/myservices"
         routerLinkActive="active"
       >
@@ -65,6 +65,7 @@
       <!--Admin Button, only visible when logged in as Admin-->
       <button
         mat-menu-item
+        *ngIf="isAdmin"
         routerLink="/Admin"
         routerLinkActive="active"
       >

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8704b63c-4c20-4746-872b-9573fee9748e" name="Default" comment="WIP results in componenet. created a component for each category.">
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.module.ts" afterDir="false" />
+    <list default="true" id="8704b63c-4c20-4746-872b-9573fee9748e" name="Default" comment="-">
+      <change beforePath="$PROJECT_DIR$/backend/db.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/backend/db.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/user-group.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/user-group.guard.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -219,7 +220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574844736925</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="-">
+      <created>1574870168158</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1574870168158</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,7 +251,8 @@
     <MESSAGE value="slight changes home component" />
     <MESSAGE value="styled search results in one component" />
     <MESSAGE value="WIP results in componenet. created a component for each category." />
-    <option name="LAST_COMMIT_MESSAGE" value="WIP results in componenet. created a component for each category." />
+    <MESSAGE value="-" />
+    <option name="LAST_COMMIT_MESSAGE" value="-" />
   </component>
   <component name="masterDetails">
     <states>

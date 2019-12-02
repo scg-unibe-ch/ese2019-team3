@@ -24,7 +24,7 @@ export class AdminGuard implements CanActivate {
     if (token == null) {
       return false;
     } else {
-      const tokenPayload: User = decode(token); // decode the token to get its payload, checks if user belongs to admin group
+      const tokenPayload: User = decode(token); // gets currentUser, checks if user belongs to admin group
       return tokenPayload.userGroup === 'adminGroup';
     }
   }

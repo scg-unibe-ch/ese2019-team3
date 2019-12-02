@@ -1,31 +1,32 @@
 import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router} from '@angular/router';
 import {AuthenticationService} from './authentication.service';
-import {decode} from 'querystring';
+import * as decode from 'jwt-decode';
+import {User} from './models/user';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserGroupGuard implements CanActivate {
+export class MyServicesGuard implements CanActivate {
   constructor(public auth: AuthenticationService, public router: Router) {
   }
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
-    if (!this.isProvider()) {
+    if (!this.isCustomerOrProvider()) {
       alert('Access not permitted');
       this.router.navigate(['']);
       return false;
     }
     return true;
   }
-  isProvider() {
+
+  isCustomerOrProvider() {
     const token = this.auth.getToken();  // get token from authentication service & checks whether not null
     if (token == null) {
       return false;
     } else {
-      const tokenPayload = decode(token); // decode the token to get its payload, checks if user belongs to admin group
-      return tokenPayload.userGroup === 'provider';
+      const tokenPayload: User = decode(token); // gets currentUser, checks if user belongs to customer group
+      return (tokenPayload.userGroup === 'customer') || (tokenPayload.userGroup === 'provider');
     }
   }
-
 }

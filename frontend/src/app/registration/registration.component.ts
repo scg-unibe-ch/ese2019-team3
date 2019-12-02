@@ -16,7 +16,7 @@ export class RegistrationComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
       Validators.required,
-      Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=(.*[dW]){1,})(?!.*s).{8,}$')
+      //Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=(.*[dW]){1,})(?!.*s).{8,}$')
     ]),
 
     // TODO Validate
@@ -77,6 +77,7 @@ export class RegistrationComponent implements OnInit {
 
   // send registered User to backend
   registerUser(registerUserData: object) {
+    console.log('hallo');
     console.log(registerUserData);
 
     this.authentification
