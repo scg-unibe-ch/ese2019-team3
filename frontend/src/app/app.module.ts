@@ -43,6 +43,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatTableModule} from '@angular/material/table';
 import {ProviderGuard} from './provider.guard';
 import {FoodAndDrinkComponent} from './Categories/food-and-drink/food-and-drink.component';
+
 import {MatExpansionModule} from '@angular/material/expansion';
 import {LightAndStageComponent} from './Categories/light-and-stage/ligth-and-stage.component';
 import {AdvertisementComponent} from './Categories/advertisement/advertisement.component';
@@ -51,6 +52,9 @@ import {SearchresultsComponent} from './Categories/searchresults/searchresults.c
 import {MyServicesGuard} from './myServices.guard';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import {BookingRequestsComponent} from './booking-requests/booking-requests.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { BookmedialogComponent } from './bookmedialog/bookmedialog.component';
+
 
 
 const appRoutes: Routes = [
@@ -65,7 +69,7 @@ const appRoutes: Routes = [
     {path: 'advertisement', component: AdvertisementComponent},
     {path: 'music', component: MusicComponent, canActivate: [AuthGuard]},
     {path: 'searchresults', component: SearchresultsComponent},
-    {path: 'Profile/myservices', component: MyservicesComponent, canActivate: [ProviderGuard]},
+    {path: 'Profile/myservices', component: MyservicesComponent, canActivate: [MyServicesGuard]},
     { path: 'Admin', component: AdminComponent, canActivate: [AdminGuard] },
     { path: 'bookingRequests', component: BookingRequestsComponent, canActivate: [ProviderGuard]},
     { path: '', component: HeaderComponent},
@@ -95,10 +99,10 @@ const appRoutes: Routes = [
         MusicComponent,
         SearchresultsComponent,
         BookingRequestsComponent,
-
+        BookmedialogComponent
     ],
-
-  entryComponents: [],
+// so it can be used as an dialog
+  entryComponents: [BookmedialogComponent],
     imports: [
         BrowserModule,
         IonicModule.forRoot(),
@@ -116,7 +120,8 @@ const appRoutes: Routes = [
         MatNativeDateModule,
         MatMenuModule,
         MatTableModule,
-        MatExpansionModule
+        MatExpansionModule,
+        MatDialogModule
     ],
   providers: [
     StatusBar,
