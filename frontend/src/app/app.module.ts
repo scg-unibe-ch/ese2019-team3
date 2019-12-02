@@ -49,9 +49,8 @@ import {AdvertisementComponent} from './Categories/advertisement/advertisement.c
 import {MusicComponent} from './Categories/music/music.component';
 import {SearchresultsComponent} from './Categories/searchresults/searchresults.component';
 import {MyServicesGuard} from './myServices.guard';
-import { JwtHelperService } from "@auth0/angular-jwt";
-
-
+import { JwtHelperService } from '@auth0/angular-jwt';
+import {BookingRequestsComponent} from './booking-requests/booking-requests.component';
 
 
 const appRoutes: Routes = [
@@ -68,6 +67,7 @@ const appRoutes: Routes = [
     {path: 'searchresults', component: SearchresultsComponent},
     {path: 'Profile/myservices', component: MyservicesComponent, canActivate: [MyServicesGuard]},
     { path: 'Admin', component: AdminComponent, canActivate: [AdminGuard] },
+    { path: 'bookingRequests', component: BookingRequestsComponent, canActivate: [ProviderGuard]},
     { path: '', component: HeaderComponent},
     { path: '**', component: PageNotFoundComponent },
 ];
@@ -94,6 +94,7 @@ const appRoutes: Routes = [
         AdvertisementComponent,
         MusicComponent,
         SearchresultsComponent,
+        BookingRequestsComponent,
 
     ],
 

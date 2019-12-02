@@ -13,28 +13,9 @@ import {User} from '../models/user';
 
 export class AdminComponent implements OnInit {
    Users: User[];
-   private user: any;
-  // private Users: any;
 
   constructor(private http: HttpClient) {
     this.getRegistrationRequests();
-    // -->testing without connection to backend
-    /*this.Users = [{
-      username : 'name1',
-      address: 'Beispielweg 1',
-      phone : '123798'
-    },
-      {
-        username : 'blubb',
-        address: 'Gasse 4',
-        phone : '132423'
-      },
-      {
-        username : 'SomeName',
-        address: 'SomeStreet 5',
-        phone : '230840984'
-      },
-      ];*/
   }
 // fetches users that need to be validated from backend
   getRegistrationRequests() {
