@@ -133,5 +133,21 @@ router.put('/accept/:id', async (req: Request, res: Response) => {
 
 });
 
+router.put('/decline/:id', async (req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
+    const booking = await Booking.findOne({where: {id: id}});
+    if (booking!=null){
+        booking.bookingStatus = 'declined';
+        await booking.save().then ( async() => {
+        });
+        res.send('booking declined');
+        res.status(200);
+    } else {
+        res.statusCode = 400;
+        res.send('Booking not found');
+    }
+
+});
+
 export const BookingController: Router = router;
 
