@@ -25,18 +25,9 @@ export class AdminGuard implements CanActivate {
     if (token == null) {
       return false;
     } else {
-      alert(this.isTokenExpired(token));
-      if (this.isTokenExpired(token)) {
-        alert('expired');
-        return false; }
       const tokenPayload: User = decode(token); // gets currentUser, checks if user belongs to admin group
       return tokenPayload.userGroup === 'adminGroup';
     }
-  }
-isTokenExpired(token): boolean{
-  const helper = new JwtHelperService();
-  const isExpired = helper.isTokenExpired(token);
-  return isExpired;
   }
 
 }

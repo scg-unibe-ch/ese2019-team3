@@ -25,12 +25,12 @@ export class ProviderGuard implements CanActivate {
       return false;
     } else {
       const tokenPayload: User = decode(token); // decode the token to get its payload, checks if user belongs to provider group
-      this.assertAlive(tokenPayload);
+      // this.assertAlive(tokenPayload);
       return tokenPayload.userGroup === 'serviceProvider';
     }
   }
 
-  assertAlive(tokenPayload) {
+ /* assertAlive(tokenPayload) {
     const now = Date.now();
     alert('in function');
     if (typeof tokenPayload.exp !== 'undefined' && tokenPayload.exp < now) {
@@ -39,6 +39,6 @@ export class ProviderGuard implements CanActivate {
       this.router.navigate(['']);
       throw new Error(`token expired: ${JSON.stringify(tokenPayload)}`);
     }
-  }
+  }*/
 
 }

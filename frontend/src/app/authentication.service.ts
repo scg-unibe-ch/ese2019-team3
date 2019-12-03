@@ -110,19 +110,4 @@ export class AuthenticationService {
   }
 
 
-  /*getTokenExpirationDate(token: string): Date {
-    const decoded = jwt_decode(token);
-
-    if (decoded.exp === undefined) { return null; }
-
-    const date = new Date(0);
-    date.setUTCSeconds(decoded.exp);
-    return date;
-  }
-
-  isTokenExpired(token: string): boolean {
-    const date = this.getTokenExpirationDate(token);
-    if (date === undefined) { return false; }
-    return !(date.valueOf() > new Date().valueOf());
-  }*/
 }

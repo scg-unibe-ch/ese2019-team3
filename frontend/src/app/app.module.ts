@@ -54,26 +54,27 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import {BookingRequestsComponent} from './booking-requests/booking-requests.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { BookmedialogComponent } from './bookmedialog/bookmedialog.component';
+import {TokenExpirationGuard} from './token-expiration.guard';
 
 
 
 const appRoutes: Routes = [
-    { path: 'LogIn', component: LoginComponent },
-    { path: 'LogIn/PasswordForgotten', component: PasswordforgottenComponent },
-    { path: 'Registration', component: RegistrationComponent},
-    { path: 'Profile', component: ProfileComponent, canActivate: [AuthGuard] },
-    { path: 'Profile/ChangePassword', component: ChangePasswordComponent, canActivate: [AuthGuard] },
-    {path: 'Profile/addService', component: AddserviceComponent, canActivate: [ProviderGuard]},
-    {path: 'foodanddrink', component: FoodAndDrinkComponent},
-    {path: 'lightandstage', component: LightAndStageComponent},
-    {path: 'advertisement', component: AdvertisementComponent},
-    {path: 'music', component: MusicComponent, canActivate: [AuthGuard]},
-    {path: 'searchresults', component: SearchresultsComponent},
-    {path: 'Profile/myservices', component: MyservicesComponent, canActivate: [MyServicesGuard]},
-    { path: 'Admin', component: AdminComponent, canActivate: [AdminGuard] },
-    { path: 'bookingRequests', component: BookingRequestsComponent, canActivate: [ProviderGuard]},
-    { path: '', component: HeaderComponent},
-    { path: '**', component: PageNotFoundComponent },
+    { path: 'LogIn', component: LoginComponent, canActivate: [TokenExpirationGuard] },
+    { path: 'LogIn/PasswordForgotten', component: PasswordforgottenComponent, canActivate: [TokenExpirationGuard] },
+    { path: 'Registration', component: RegistrationComponent, canActivate: [TokenExpirationGuard]},
+    { path: 'Profile', component: ProfileComponent, canActivate: [AuthGuard, TokenExpirationGuard] },
+    { path: 'Profile/ChangePassword', component: ChangePasswordComponent, canActivate: [AuthGuard, TokenExpirationGuard] },
+    {path: 'Profile/addService', component: AddserviceComponent, canActivate: [ProviderGuard, TokenExpirationGuard]},
+    {path: 'foodanddrink', component: FoodAndDrinkComponent, canActivate: [TokenExpirationGuard]},
+    {path: 'lightandstage', component: LightAndStageComponent, canActivate: [TokenExpirationGuard]},
+    {path: 'advertisement', component: AdvertisementComponent, canActivate: [TokenExpirationGuard]},
+    {path: 'music', component: MusicComponent, canActivate: [AuthGuard, TokenExpirationGuard]},
+    {path: 'searchresults', component: SearchresultsComponent, canActivate: [TokenExpirationGuard]},
+    {path: 'Profile/myservices', component: MyservicesComponent, canActivate: [MyServicesGuard, TokenExpirationGuard]},
+    { path: 'Admin', component: AdminComponent, canActivate: [AdminGuard, TokenExpirationGuard] },
+    { path: 'bookingRequests', component: BookingRequestsComponent, canActivate: [ProviderGuard, TokenExpirationGuard]},
+    { path: '', component: HeaderComponent, canActivate: [TokenExpirationGuard]},
+    { path: '**', component: PageNotFoundComponent, canActivate: [TokenExpirationGuard] },
 ];
 @NgModule({
     declarations: [
