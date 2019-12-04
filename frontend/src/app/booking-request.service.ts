@@ -7,17 +7,20 @@ import {User} from './models/user';
   providedIn: 'root'
 })
 export class BookingRequestService {
+  private getBookingRequestsUrl = 'http://localhost:3000/booking/provider/requests/';
+  private acceptBookingRequestsUrl = 'http://localhost:3000/booking/accept';
+  private denyBookingRequestsUrl = 'http://localhost:3000/booking/decline/';
 
   constructor(private http: HttpClient) { }
   denyBooking(booking: Booking) {
-    return this.http.delete('http://localhost:3000/booking/decline/' + booking.serviceId);
+    return this.http.delete(this.denyBookingRequestsUrl + booking.serviceId);
   }
 
   acceptBooking(booking: Booking) {
-    return this.http.put('http://localhost:3000/booking/accept/', booking.serviceId);
+    return this.http.put(this.acceptBookingRequestsUrl, booking.serviceId);
   }
 
   getBookingRequests(user: User) {
-    return  this.http.get('http://localhost:3000/booking/provider/requests/' + user.id)
+    return  this.http.get(this.getBookingRequestsUrl + user.id);
   }
 }

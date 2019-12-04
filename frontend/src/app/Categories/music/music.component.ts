@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ServiceService} from "../../service.service";
 import {Service} from "../../models/service";
+import {BookmedialogComponent} from '../../bookmedialog/bookmedialog.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-music',
@@ -20,7 +22,7 @@ export class MusicComponent implements OnInit {
   public anything: string;
   public city: string;
 
-  constructor(private service: ServiceService) {
+  constructor(private service: ServiceService, public bookMeDialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -49,6 +51,12 @@ export class MusicComponent implements OnInit {
 
   updateResults() {
     this.clickMusic();
+  }
+  openDialog(service: Service){
+
+    // calling the dialog and sending him the specific input service data, on which the button has been clicked
+    this.bookMeDialog.open(BookmedialogComponent, {data: service});
+    // this.bookService(service);
   }
 
 }
