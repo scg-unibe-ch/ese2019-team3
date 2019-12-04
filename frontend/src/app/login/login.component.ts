@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthenticationService } from '../authentication.service';
 import { Router } from '@angular/router';
 import { HomeComponent } from '../home/home.component';
+import {delay} from 'rxjs/operators';
 
 
 @Component({
@@ -31,6 +32,8 @@ export class LoginComponent implements OnInit {
 
 
     ngOnInit() {
+        delay(0),
+        this.home.updateUserStatus();
     }
 
 

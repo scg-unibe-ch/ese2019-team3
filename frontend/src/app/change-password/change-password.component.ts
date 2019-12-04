@@ -33,7 +33,7 @@ export class ChangePasswordComponent implements OnInit {
 
   constructor(private authentification: AuthenticationService) {}
 
-  //patch the user ID to the FormGroup
+  // patch the user ID to the FormGroup
   setId() {
     this.changePasswordForm.patchValue({
       id: this.authentification.getCurrentUser().id
@@ -79,25 +79,25 @@ export class ChangePasswordComponent implements OnInit {
           this.changePasswordForm.get("newPassword").value;
   }
 
-  //called by clicking the change password button
+  // called by clicking the change password button
   checkspassword(): any {
     this.authentification
       .checkPassword(
-        //send username and passowrd to backend to check if they match
+        // send username and passowrd to backend to check if they match
         (this.checkUser = {
           email: this.authentification.getCurrentUser().email,
           password: this.changePasswordForm.get("password").value
         })
       )
       .subscribe(res => {
-        //if the res is true, he the user entered the right password, only then the password will be updated
-        //and call passwordchange so the user will be linked to the next page
+        // if the res is true, he the user entered the right password, only then the password will be updated
+        // and call passwordchange so the user will be linked to the next page
         if (res == true) {
           this.updatePassword();
           this.passwordChange();
         } else if (res == false) {
           alert("Your old Password does not match your account");
-          //make password field empty, as it is wrong
+          // make password field empty, as it is wrong
           this.changePasswordForm.patchValue({
             password: ""
           });

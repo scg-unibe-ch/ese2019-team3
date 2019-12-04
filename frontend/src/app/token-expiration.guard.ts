@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import {AuthenticationService} from './authentication.service';
 import {User} from './models/user';
 import * as decode from 'jwt-decode';
-import {HomeComponent} from './home/home.component';
+import {LoginComponent} from './login/login.component';
 
 @Injectable({
   providedIn: 'root'
