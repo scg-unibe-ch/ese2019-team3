@@ -26,7 +26,7 @@ import { MaterialModule } from "./material.module";
 import { RouterModule, Routes } from "@angular/router";
 import { ChangePasswordComponent } from "./change-password/change-password.component";
 import { AdminComponent } from "./admin/admin.component";
-
+import { DeleteProfileComponent } from "./delete-profile/delete-profile.component";
 import { HeaderComponent } from "./header/header.component";
 import { MatSelectModule } from "@angular/material/select";
 import { AuthGuard } from "./auth.guard";
@@ -67,6 +67,12 @@ const appRoutes: Routes = [
     canActivate: [UserGroupGuard]
   },
   {
+    path: "Profile/DeleteProfile",
+    component: DeleteProfileComponent,
+    //TODO, only for serviceProvider and customer
+    canActivate: [AuthGuard]
+  },
+  {
     path: "foodanddrink",
     component: FoodAndDrinkComponent,
     canActivate: [AuthGuard]
@@ -95,6 +101,7 @@ const appRoutes: Routes = [
   { path: "Admin", component: AdminComponent, canActivate: [AdminGuard] },
   { path: "", component: HeaderComponent },
   { path: "**", component: PageNotFoundComponent }
+
 ];
 @NgModule({
   declarations: [
@@ -119,7 +126,8 @@ const appRoutes: Routes = [
     AdvertisementComponent,
     MusicComponent,
     SearchresultsComponent,
-    BookmedialogComponent
+    BookmedialogComponent,
+    DeleteProfileComponent
   ],
   //so it can be used as an dialog
   entryComponents: [BookmedialogComponent],
