@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     private authentication: AuthenticationService,
     private router: Router,
     private home: HomeComponent
-  ) {}
+  ) {this.home.updateUserStatus();}
 
 
 

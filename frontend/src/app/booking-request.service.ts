@@ -17,7 +17,7 @@ export class BookingRequestService {
     return this.http.put('http://localhost:3000/booking/accept/', booking.serviceId);
   }
 
-  getBookingRequests(user: User){
+  getBookingRequests(user: User) {
     return  this.http.get('http://localhost:3000/booking/provider/requests/' + user.id)
   }
 }

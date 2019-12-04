@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 })
 export class BookingService {
 
-  private bookServiceUrl = "http://localhost:3000/booking/register"
+  private bookServiceUrl = 'http://localhost:3000/booking/register'
   constructor( private http: HttpClient) { }
 
   addService(bookingservice: Object): Observable <any> {
