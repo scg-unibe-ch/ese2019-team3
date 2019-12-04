@@ -27,7 +27,6 @@ export class TokenExpirationGuard implements CanActivate{
   }
   isExpired(tokenPayload): boolean {
     const now = Date.now();
-    alert('in function');
     if (typeof tokenPayload.exp !== 'undefined' && tokenPayload.exp < now) {
       alert('Your Session expired, you will be logged out');
       return true;
