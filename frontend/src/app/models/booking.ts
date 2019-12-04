@@ -5,4 +5,5 @@ export class Booking {
     date: string;
     rating: number;
     bookingStatus: string;
+    id: number;
 }
