@@ -55,13 +55,14 @@ import {BookingRequestsComponent} from './booking-requests/booking-requests.comp
 import {MatDialogModule} from '@angular/material/dialog';
 import { BookmedialogComponent } from './bookmedialog/bookmedialog.component';
 import {TokenExpirationGuard} from './token-expiration.guard';
+import {LoggedInGuard} from './loggedIn.guard';
 
 
 
 const appRoutes: Routes = [
-    { path: 'LogIn', component: LoginComponent, canActivate: [TokenExpirationGuard] },
-    { path: 'LogIn/PasswordForgotten', component: PasswordforgottenComponent, canActivate: [TokenExpirationGuard] },
-    { path: 'Registration', component: RegistrationComponent, canActivate: [TokenExpirationGuard]},
+    { path: 'LogIn', component: LoginComponent, canActivate: [TokenExpirationGuard, LoggedInGuard] },
+    { path: 'LogIn/PasswordForgotten', component: PasswordforgottenComponent, canActivate: [TokenExpirationGuard, LoggedInGuard] },
+    { path: 'Registration', component: RegistrationComponent, canActivate: [TokenExpirationGuard, LoggedInGuard]},
     { path: 'Profile', component: ProfileComponent, canActivate: [AuthGuard, TokenExpirationGuard] },
     { path: 'Profile/ChangePassword', component: ChangePasswordComponent, canActivate: [AuthGuard, TokenExpirationGuard] },
     {path: 'Profile/addService', component: AddserviceComponent, canActivate: [ProviderGuard, TokenExpirationGuard]},
