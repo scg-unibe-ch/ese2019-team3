@@ -1,5 +1,5 @@
 import {Column, Model, Table, Unique} from 'sequelize-typescript';
-import {Decimal} from 'decimal.js-light'
+//import {Decimal} from 'decimal.js-light'
 
 const bcrypt = require('bcryptjs');  //used to hash passwords
 @Table

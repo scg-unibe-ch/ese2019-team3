@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8704b63c-4c20-4746-872b-9573fee9748e" name="Default" comment="-">
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/body/advert.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/body/band.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/body/behind-the-scnes.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/body/cooking-food.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/header/blury bokeh.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/header/wine-glasses.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/login/background.jpg" afterDir="false" />
+    <list default="true" id="8704b63c-4c20-4746-872b-9573fee9748e" name="Default" comment="added styling to login and home">
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/header/bokeh.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/myservices/myservices.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/myservices/service.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/body/body.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/body/body.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/models/user.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/models/user.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/db.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/backend/db.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/addservice/addservice.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/addservice/addservice.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/addservice/addservice.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/addservice/addservice.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/footer/footer.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/footer/footer.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/header/header.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/header/header.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/header/header.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/header/header.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/header/wine-glasses.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/registration/wine-glasses.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/login/login.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/login/login.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/login/login.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/models/service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/models/service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/myServices.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/myServices.guard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/myservices/myservices.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/myservices/myservices.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/myservices/myservices.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/myservices/myservices.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/myservices/myservices.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/myservices/myservices.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/provider.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/provider.guard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/registration/registration.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/registration/registration.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/registration/registration.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/registration/registration.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/service.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/service.service.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -90,11 +102,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/src/app/myservices" />
+      <recent name="$PROJECT_DIR$/frontend/src/app/registration" />
+      <recent name="$PROJECT_DIR$/frontend/src/app/header" />
       <recent name="$PROJECT_DIR$/frontend/src/app/login" />
       <recent name="$PROJECT_DIR$/frontend/src/app/body" />
-      <recent name="$PROJECT_DIR$/frontend/src/app/header" />
-      <recent name="$PROJECT_DIR$/frontend/src/assets/home" />
-      <recent name="$PROJECT_DIR$/frontend/src/app/Categories" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -204,7 +216,8 @@
       <workItem from="1574716833320" duration="2117000" />
       <workItem from="1574842766665" duration="1941000" />
       <workItem from="1574856559416" duration="8203000" />
-      <workItem from="1575208743748" duration="6043000" />
+      <workItem from="1575208743748" duration="17840000" />
+      <workItem from="1575413368397" duration="23166000" />
     </task>
     <task id="LOCAL-00001" summary="-">
       <created>1573655861690</created>
@@ -241,7 +254,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574870168158</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added styling to login and home">
+      <created>1575225845875</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1575225845875</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -266,7 +286,8 @@
     <MESSAGE value="styled search results in one component" />
     <MESSAGE value="WIP results in componenet. created a component for each category." />
     <MESSAGE value="-" />
-    <option name="LAST_COMMIT_MESSAGE" value="-" />
+    <MESSAGE value="added styling to login and home" />
+    <option name="LAST_COMMIT_MESSAGE" value="added styling to login and home" />
   </component>
   <component name="masterDetails">
     <states>

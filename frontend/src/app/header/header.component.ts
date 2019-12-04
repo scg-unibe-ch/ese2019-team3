@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 // import {MatDatepickerModule} from '@angular/material/datepicker';
 // import {MatOptionModule} from "@angular/material/core";
 // import {MatSelectModule} from "@angular/material/select";
@@ -38,9 +38,11 @@ export class HeaderComponent implements OnInit {
               private service: ServiceService, private router: Router, public httpClient: HttpClient) {
 
   }
+  
 
   ngOnInit() {}
   // click on Search Button!
+
   onSubmit() {
 
     const searchObject = {
@@ -58,7 +60,7 @@ export class HeaderComponent implements OnInit {
 
     console.log('searching for service');
     // calls method to post the registerUser to the backend
-    // this.router.navigate(['/searchresults']);
+    this.router.navigate(['/searchresults']);
     JSON.stringify(searchObject);
     delete searchObject[0];
   }

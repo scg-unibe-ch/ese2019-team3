@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Service} from './models/service';
+import {AuthenticationService} from "./authentication.service";
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +14,25 @@ export class ServiceService {
   private searchserviceurl = 'http://localhost:3000/service/filter';
   private allservices = 'http://localhost:3000/service';
   private myServices = "http://localhost:3000/service/filter"
+  private deleteService = "http://localhost:3000/service/"
 
 
   private Services: Service[];
-  /*s = {city: '', serviceType: '', description: ''};
-  private selectedStrings = new BehaviorSubject(this.s);
+
+  s = {
+    provider: '',
+    serviceTitle: '',
+    description: '',
+    providerId: '',
+    serviceType: '',
+    price: '',
+    dates:'',
+    city: '',
+  };
+  /*private selectedStrings = new BehaviorSubject(this.s);
   currentS = this.selectedStrings.asObservable();
 */
-  constructor(private http: HttpClient ) {
+  constructor(private http: HttpClient, private authentication : AuthenticationService ) {
 
   }
 
@@ -40,10 +53,19 @@ export class ServiceService {
   getMyServices(id: number) : Observable <any>{
     return this.http.post<any>(this.myServices, id);
   }
-
+  save(Object: any){
+    this.s = Object;
+  }
+  retrieve() {
+    return this.s;
+  }
   // Checks whether the token is expired or not
   //public isAuthenticated(): Observable<any> {    const token = localStorage.getItem('token');
     //return this.http.post<any>(this.verificationUrl, token)
  // }
+  deleteMyService(service: Service) {
+   this.http.delete(this.deleteService + service.id).subscribe(res => alert('Dein Angebot wurde gelöscht.'), err => alert(err));
+
+  }
 
 }

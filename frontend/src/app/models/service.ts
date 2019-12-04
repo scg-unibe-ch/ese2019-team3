@@ -1,4 +1,5 @@
 export class Service {
+   public id : number;
    public provider : string;
    public serviceTitle : string;
    public description: string;
