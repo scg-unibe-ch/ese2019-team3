@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from "@angular/core";
-import { MAT_DIALOG_DATA } from "@angular/material";
+import { MAT_DIALOG_DATA, MatSnackBar } from "@angular/material";
 import { BookingService } from "../booking.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { AuthenticationService } from "../authentication.service";
@@ -19,13 +19,17 @@ export class BookmedialogComponent implements OnInit {
   constructor(
     private bookingService: BookingService,
     private auth: AuthenticationService,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private _snackBar: MatSnackBar
+    ) {}
 
-  ngOnInit() {}
+  ngOnInit() {  }
 
+  
   booking: any;
-
+  message: string;
+  action: string;
+  
   book() {
     this.booking = {
       clientId: this.auth.getCurrentUser().id,
@@ -46,8 +50,13 @@ export class BookmedialogComponent implements OnInit {
       err => console.log(err)
     );
 
-    alert(
-      "Vielen Dank für ihre Buchung, ihre 'Anfrage' wurde erfolgreich an den Eventanbieter ermittelt. Name wird sich in kürze bei Ihnen melden"
-    );
+    this.message = "Vielen Dank für ihre Buchung, ihre Anfrage wurde erfolgreich übermittelt."
+    this.action ="";
+    this._snackBar.open(this.message, this.action, {
+      duration: 4000,
+    });
+    // alert(
+    //   "Vielen Dank für ihre Buchung, ihre 'Anfrage' wurde erfolgreich an den Eventanbieter ermittelt. Name wird sich in kürze bei Ihnen melden"
+    // );
   }
 }
