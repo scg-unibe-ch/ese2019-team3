@@ -4,7 +4,7 @@ import { AuthenticationService} from '../authentication.service';
 import { AdminGuard} from '../admin.guard';
 import { Router} from '@angular/router';
 import {ProviderGuard} from '../provider.guard';
-import {MyServicesGuard} from '../myServices.guard';
+import {CustomerOrProviderGuard} from '../customerOrProvider.guard';
 
 
 @Component({
@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
       private adminGuard: AdminGuard,
       private router: Router,
       private providerGuard: ProviderGuard,
-      private customerGuard: MyServicesGuard) {
+      private customerGuard: CustomerOrProviderGuard) {
   }
 
   ngOnInit() {

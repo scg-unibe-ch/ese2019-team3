@@ -35,7 +35,6 @@ export class BookmedialogComponent implements OnInit {
       // add to the backend
       comment: this.bookingForm.get('comment').value
     };
-
     console.log('Current Service Object ' + JSON.stringify(this.data));
     console.log('Booking Object ' + JSON.stringify(this.booking));
 

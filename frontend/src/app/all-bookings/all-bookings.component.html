@@ -1,0 +1,35 @@
+
+<mat-card>
+  <mat-card-title>Buchungsanfragen</mat-card-title>
+  <mat-card-content>
+    <br>
+    <table mdbTable>
+      <thead>
+      <tr>
+        <th>Datum</th>
+        <th>Buchungsstauts</th>
+        <th>Bewertung</th>
+          <!--th *ngIf="isCustomer(this.user)">Provider Name</th>
+          <th *ngIf="isProvider(this.user)">Customer Name</th>-->
+      </tr>
+      </thead>
+      <!-- lists all unverified users that are being fetched from backend-->
+      <tbody>
+      <tr mdbTableCol *ngFor="let booking of Bookings">
+        <td>{{booking.date}}</td>
+        <td>{{booking.bookingStatus}}</td>
+          <td *ngIf="showRating(booking)">
+            <ngb-rating
+                  [(rate)]="booking.rating" (hover)="hovered=$event" (leave)="hovered=0" [readonly]="readonly"
+                  max="5" (click)="readonly = !readonly" (click)="this.rateBooking(selected, booking)">
+            </ngb-rating>
+            <p *ngIf="booking.rating == ''">
+              Noch nicht bewertet
+            </p>
+          </td>
+          <td *ngIf="isProvider(this.user)"></td>
+      </tr>
+      </tbody>
+    </table>
+  </mat-card-content>
+</mat-card>

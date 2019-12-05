@@ -74,6 +74,15 @@
       >
         Booking Requests
       </button>
+      <!--All Bookings Button, visible if customer or provider-->
+      <button
+              mat-menu-item
+              *ngIf="isProvider || isCustomer"
+              routerLink="/allBookings"
+              routerLinkActive="active"
+      >
+        All Bookings
+      </button>
       <!--Admin Button, only visible when logged in as Admin-->
       <button
         mat-menu-item

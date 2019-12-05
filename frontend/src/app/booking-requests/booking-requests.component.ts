@@ -23,7 +23,7 @@ export class BookingRequestsComponent implements OnInit {
 // calls function for accepting booking and refreshes booking requests
   acceptBooking(booking: Booking) {
     this.bookingReq.acceptBooking(booking)
-        .subscribe(res => alert('Booking was accepted!'), err => alert(err.err));
+        .subscribe(res => alert('Booking was accepted!'), err => alert(err));
     setTimeout(() => { this.getBookingRequests(); }, 50);
   }
 

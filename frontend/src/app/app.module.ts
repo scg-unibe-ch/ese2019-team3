@@ -49,14 +49,17 @@ import {LightAndStageComponent} from './Categories/light-and-stage/ligth-and-sta
 import {AdvertisementComponent} from './Categories/advertisement/advertisement.component';
 import {MusicComponent} from './Categories/music/music.component';
 import {SearchresultsComponent} from './Categories/searchresults/searchresults.component';
-import {MyServicesGuard} from './myServices.guard';
+import {CustomerOrProviderGuard} from './customerOrProvider.guard';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import {BookingRequestsComponent} from './booking-requests/booking-requests.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { BookmedialogComponent } from './bookmedialog/bookmedialog.component';
 import {TokenExpirationGuard} from './token-expiration.guard';
 import {LoggedInGuard} from './loggedIn.guard';
-
+import {AllBookingsComponent} from './all-bookings/all-bookings.component';
+import {RatingComponent} from './rating/rating.component';
+import {NgbRatingModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 const appRoutes: Routes = [
@@ -71,10 +74,12 @@ const appRoutes: Routes = [
     {path: 'advertisement', component: AdvertisementComponent, canActivate: [TokenExpirationGuard]},
     {path: 'music', component: MusicComponent, canActivate: [AuthGuard, TokenExpirationGuard]},
     {path: 'searchresults', component: SearchresultsComponent, canActivate: [TokenExpirationGuard]},
-    {path: 'Profile/myservices', component: MyservicesComponent, canActivate: [MyServicesGuard, TokenExpirationGuard]},
+    {path: 'Profile/myservices', component: MyservicesComponent, canActivate: [CustomerOrProviderGuard, TokenExpirationGuard]},
     { path: 'Admin', component: AdminComponent, canActivate: [AdminGuard, TokenExpirationGuard] },
     { path: 'bookingRequests', component: BookingRequestsComponent, canActivate: [ProviderGuard, TokenExpirationGuard]},
+    { path: 'allBookings', component: AllBookingsComponent, canActivate: [CustomerOrProviderGuard]},
     { path: '', component: HeaderComponent, canActivate: [TokenExpirationGuard]},
+    { path: 'rating', component: RatingComponent},
     { path: '**', component: PageNotFoundComponent, canActivate: [TokenExpirationGuard] },
 ];
 @NgModule({
@@ -101,7 +106,9 @@ const appRoutes: Routes = [
         MusicComponent,
         SearchresultsComponent,
         BookingRequestsComponent,
-        BookmedialogComponent
+        BookmedialogComponent,
+        AllBookingsComponent,
+        RatingComponent,
     ],
 // so it can be used as an dialog
   entryComponents: [BookmedialogComponent],
@@ -123,7 +130,9 @@ const appRoutes: Routes = [
         MatMenuModule,
         MatTableModule,
         MatExpansionModule,
-        MatDialogModule
+        MatDialogModule,
+        NgbRatingModule,
+        NgbModule,
     ],
   providers: [
     StatusBar,
