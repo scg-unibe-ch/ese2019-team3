@@ -1,8 +1,8 @@
 <div class="image">
 
   <div class="text">
-    <h1 style="font-weight: bold; font-size: 70px">My Search</h1>
-    <p>Found what you searched for?</p>
+    <h1 style="font-weight: bold; font-size: 70px">Meine Suche</h1>
+    <p>Haben Sie gefunden, was Sie gesucht haben?</p>
   </div>
 
 </div>
@@ -15,9 +15,9 @@
         <mat-list-item>
           <form class ="btn" style="float: left; margin-left: 2%; margin-bottom: 1%; ">
             <mat-form-field>
-              <mat-label> Locations </mat-label>
+              <mat-label> Ort </mat-label>
               <mat-select id = "location" [(ngModel)]="city" name="city" >
-                <mat-option> None </mat-option>
+                <mat-option> - </mat-option>
                 <mat-option *ngFor = "let city of location" [value] = "city"> {{city}}</mat-option>
               </mat-select>
             </mat-form-field>
@@ -28,7 +28,7 @@
         <mat-list-item>
           <form class = "btn" style="float: left; margin-left: 2%; margin-right: 5%;">
             <mat-form-field class = "InputBtn">
-              <input [(ngModel)] = "price" name = "price" matInput placeholder="Price" >
+              <input [(ngModel)] = "price" name = "price" matInput placeholder="Preis" >
             </mat-form-field>
           </form>
         </mat-list-item>
@@ -52,11 +52,11 @@
     <mat-card-content>
       <p> {{service.description}}</p>
       <br>
-      <h4>{{service.price}} CHF </h4>
+      <h4>{{service.price}}</h4>
     </mat-card-content>
 
     <mat-card-actions>
-      <button mat-button>Book Me!</button>
+      <button mat-button>Buchen</button>
     </mat-card-actions>
 
   </mat-card>

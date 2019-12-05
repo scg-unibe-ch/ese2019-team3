@@ -1,6 +1,6 @@
 <div class = "image">
 <div class="text">
-    <h1 style="font-weight: bold; font-size: 70px">My Services</h1>
+    <h1 style="font-weight: bold; font-size: 70px">Meine Services</h1>
 </div>
 </div>
 <button id = "button" mat-button routerLink= "/Profile/addService" routerLinkActive="active">Service hinzufügen</button>
@@ -11,7 +11,7 @@
     <mat-card-content>
         <p> {{service.description}}</p>
         <br>
-        <h4>{{service.price}} CHF </h4>
+        <h4>{{service.price}}</h4>
     </mat-card-content>
 
     <mat-card-actions>
@@ -21,20 +21,3 @@
 </mat-card>
 
 
-
-
-<!-- need to add DATA SOURCE WITH FILTER FUNCTION
-<table mat-table>
-  <tr>
-    <th mat-header-cell *matHeaderCellDef> Service-Type </th>
-    <th mat-header-cell *matHeaderCellDef> Location </th>
-    <th mat-header-cell *matHeaderCellDef> Price </th>
-  </tr>
-  <tr *ngFor="let service of Services">
-    <td mat-cell> {{service.serviceTitle}}</td>
-    <td mat-cell> {{service.city}}</td>
-    <td mat-cell> {{service.price}} </td>
-
-</table>
-
--->

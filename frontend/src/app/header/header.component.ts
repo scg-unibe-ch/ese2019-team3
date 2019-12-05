@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
               private service: ServiceService, private router: Router, public httpClient: HttpClient) {
 
   }
-  
+
 
   ngOnInit() {}
   // click on Search Button!
