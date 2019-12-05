@@ -127,7 +127,7 @@ router.put('/accept/:id', async (req: Request, res: Response) => {
     res.send('booking accepted');
     res.status(200);
     } else {
-        res.statusCode = 400;
+        res.statusCode = 401;
         res.send('Booking not found');
     }
 

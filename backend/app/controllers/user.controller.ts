@@ -100,7 +100,7 @@ router.post('/login', async (req: Request, res: Response) => {
         number: user!.number,
         birthday: user!.birthday,
         iss : getTime(),
-        exp : getTime() + 3000000;
+        exp : getTime() + 120000,
     };
 
   const token = jwt.sign(payload, 'key');
