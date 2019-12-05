@@ -57,9 +57,12 @@ import { BookmedialogComponent } from './bookmedialog/bookmedialog.component';
 import {TokenExpirationGuard} from './token-expiration.guard';
 import {LoggedInGuard} from './loggedIn.guard';
 import {AllBookingsComponent} from './all-bookings/all-bookings.component';
-import {RatingComponent} from './rating/rating.component';
 import {NgbRatingModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {AdminService} from './admin.service';
+import {ALL} from 'tslint/lib/rules/completedDocsRule';
+import {AllBookingsService} from './all-bookings.service';
+import {BookingRequestService} from './booking-request.service';
 
 
 const appRoutes: Routes = [
@@ -79,7 +82,6 @@ const appRoutes: Routes = [
     { path: 'bookingRequests', component: BookingRequestsComponent, canActivate: [ProviderGuard, TokenExpirationGuard]},
     { path: 'allBookings', component: AllBookingsComponent, canActivate: [CustomerOrProviderGuard]},
     { path: '', component: HeaderComponent, canActivate: [TokenExpirationGuard]},
-    { path: 'rating', component: RatingComponent},
     { path: '**', component: PageNotFoundComponent, canActivate: [TokenExpirationGuard] },
 ];
 @NgModule({
@@ -108,7 +110,6 @@ const appRoutes: Routes = [
         BookingRequestsComponent,
         BookmedialogComponent,
         AllBookingsComponent,
-        RatingComponent,
     ],
 // so it can be used as an dialog
   entryComponents: [BookmedialogComponent],
@@ -139,6 +140,9 @@ const appRoutes: Routes = [
     SplashScreen,
       AuthenticationService,
       ServiceService,
+      AdminService,
+      AllBookingsService,
+      BookingRequestService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
       { provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

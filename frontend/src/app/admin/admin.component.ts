@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {User} from '../models/user';
+import {AdminService} from '../admin.service';
 
 
 
@@ -14,12 +15,12 @@ import {User} from '../models/user';
 export class AdminComponent implements OnInit {
    Users: User[];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private adminService: AdminService) {
     this.getRegistrationRequests();
   }
 // fetches users that need to be validated from backend
   getRegistrationRequests() {
-    this.http.get('http://localhost:3000/user/verify').subscribe((data: User[]) => {this.Users = data; });
+    this.adminService.getRegistrationRequests().subscribe((data: User[]) => {this.Users = data; });
   }
 // calls function for verification and refreshes users to be verified
   validateUser(user: User) {
@@ -34,12 +35,12 @@ export class AdminComponent implements OnInit {
   }
 // sends user to backend for deletion and tells admin it was deleted
 sendUserToDelete(user: User) {
-  this.http.delete('http://localhost:3000/user/' + user.id)
+  this.adminService.deleteUser(user)
       .subscribe(res => alert('User was deleted'), err => alert(err));
 }
 // sends user to backend for validation and tells admin it was validated
 sendUserToValidate(user: User) {
-    this.http.put('http://localhost:3000/user/verify/' + user.id, user, {responseType: 'text'})
+    this.adminService.validateUser(user)
         .subscribe(res => alert(res), err => console.log(err));
 }
   ngOnInit() {
