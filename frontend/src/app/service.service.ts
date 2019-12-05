@@ -16,19 +16,28 @@ export class ServiceService {
   private myServices = "http://localhost:3000/service/filter"
   private deleteService = "http://localhost:3000/service/"
 
-
+  public p : string; 
+  public serviceTitle: string; 
+  public anything: string; 
+  public id : number; 
+  public categorie:string; 
+  public price: number; 
+   d = new Date();
+  public city :string; 
+   
   private Services: Service[];
 
-  s = {
-    provider: '',
-    serviceTitle: '',
-    description: '',
-    providerId: '',
-    serviceType: '',
-    price: '',
-    dates:'',
-    city: '',
+  s: Object = {
+    provider : this.p,
+    serviceTitle : this.serviceTitle,
+    description: this.anything,
+    providerId : this.id,
+    serviceType : this.categorie,
+    price : this.price,
+    dates: this.d,
+    city : this.city,
   };
+
   /*private selectedStrings = new BehaviorSubject(this.s);
   currentS = this.selectedStrings.asObservable();
 */
@@ -53,12 +62,7 @@ export class ServiceService {
   getMyServices(id: number) : Observable <any>{
     return this.http.post<any>(this.myServices, id);
   }
-  save(Object: any){
-    this.s = Object;
-  }
-  retrieve() {
-    return this.s;
-  }
+
   // Checks whether the token is expired or not
   //public isAuthenticated(): Observable<any> {    const token = localStorage.getItem('token');
     //return this.http.post<any>(this.verificationUrl, token)

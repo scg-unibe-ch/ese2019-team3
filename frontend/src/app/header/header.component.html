@@ -14,7 +14,7 @@
     <mat-form-field >
       <mat-label> Alle Orte</mat-label>
         <mat-select id = "location" [(ngModel)] = "city" name="location" >
-          <mat-option> - </mat-option>
+          <mat-option> Nichts </mat-option>
           <mat-option *ngFor = "let locations of locations " [value]  = "locations"> {{locations}} </mat-option>
         </mat-select>
     </mat-form-field>
@@ -26,7 +26,7 @@
     <mat-form-field>
       <mat-label> Alle Angebote </mat-label>
       <mat-select id = "services" [(ngModel)]="categorie" name="services" >
-        <mat-option> - </mat-option>
+        <mat-option> Nichts </mat-option>
         <mat-option *ngFor = "let services of services" [value] = "services"> {{services}}</mat-option>
       </mat-select>
     </mat-form-field>
@@ -69,7 +69,7 @@
 
   </div> <!--/main -->
 
-
+<!--
     <div>
         <table>
             <tr>
@@ -78,7 +78,7 @@
                 <th>Price</th>
             </tr>
 
-            <!-- lists all users that are being fetched from backend-->
+
 
             <tr *ngFor="let service of Services">
                 <td>{{service.serviceTitle}}</td>
@@ -87,6 +87,42 @@
             </tr>
         </table>
     </div>
+-->
+<!--
+<div class = "categories">
+    <div class = "row1">
+    <div class="left">
+        <div class="content">
+            <h4>Food&Drink</h4>
+            <p>Lorem ipsum dolor..</p>
+        </div>
+    </div>
+    <div class="right">
+        <div class="content">
+            <h4>Musik</h4>
+            <p>Lorem ipsum dolor..</p>
+        </div>
+    </div>
+    </div>
+
+    <div class = "row2">
+    <div class="left">
+        <div class="content">
+            <h4>Licht&Bühne</h4>
+            <p>Lorem ipsum dolor..</p>
+        </div>
+    </div>
+    <div class="right">
+        <div class="content">
+            <h4>Werbung</h4>
+            <p>Lorem ipsum dolor..</p>
+        </div>
+    </div>
+    </div>
+</div>
+-->
+
+
 
 </div>
 </div>

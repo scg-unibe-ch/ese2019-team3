@@ -14,7 +14,7 @@ export class BodyComponent implements OnInit {
   constructor(private service: ServiceService, public httpClient: HttpClient, private router: Router) {
 
   }
-
+/*@TODO make a slideshow with pictures. style body component with more html. */
   ngOnInit() {
   }
 

@@ -8,6 +8,9 @@ export class Service {
    public  price : number;
    public city  : string;
 
+   constructor(){
+
+   };
 
 
 }
