@@ -18,7 +18,7 @@
       <tr mdbTableCol *ngFor="let booking of Bookings">
         <td>{{booking.date}}</td>
         <td>{{booking.bookingStatus}}</td>
-          <td *ngIf="showRating(booking)">
+          <td *ngIf="ratingPossibleIfCustomer(booking)">
             <ngb-rating
                   [(rate)]="booking.rating" (hover)="hovered=$event" (leave)="hovered=0" [readonly]="readonly"
                   max="5" (click)="readonly = !readonly" (click)="this.rateBooking(selected, booking)">
@@ -27,7 +27,7 @@
               Noch nicht bewertet
             </p>
           </td>
-          <td *ngIf="isProvider(this.user)"></td>
+          <td *ngIf="isProvider(this.user)">{{showRatingForProvider(booking)}}</td>
       </tr>
       </tbody>
     </table>

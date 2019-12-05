@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {AuthenticationService} from '../authentication.service';
 import {User} from '../models/user';
 import {AllBookingsService} from '../all-bookings.service';
+import {stringify} from 'querystring';
 
 @Component({
   selector: 'app-all-bookings',
@@ -52,7 +53,7 @@ export class AllBookingsComponent implements OnInit {
     booking.clientId;
   }
 */
-  showRating(booking: Booking) {
+  ratingPossibleIfCustomer(booking: Booking) {
     return this.isCustomer(this.user) /*&& this.pastEvent(booking)*/;
   }
   // Todo only allow rating for past events
@@ -63,6 +64,13 @@ export class AllBookingsComponent implements OnInit {
   rateBooking(rating: number, booking: Booking) {
     booking.rating = rating;
     this.allBookings.rateBooking(booking);
+  }
+  showRatingForProvider(booking: Booking) {
+    if (stringify(booking.rating) === '') {
+      return 'Service wurde nicht bewertet';
+    } else {
+      return booking.rating;
+    }
   }
   ngOnInit() {}
 
