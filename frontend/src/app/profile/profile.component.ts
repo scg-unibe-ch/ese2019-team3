@@ -88,7 +88,7 @@ export class ProfileComponent implements OnInit {
 
   isProvider() {
     // testing, change to provider
-    return this.profileForm.get('userGroup').value == 'adminGroup'
+    return this.profileForm.get('userGroup').value == 'serviceProvider'
       ? true
       : false;
   }

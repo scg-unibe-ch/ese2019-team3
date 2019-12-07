@@ -28,6 +28,10 @@ export class HomeComponent implements OnInit {
     this.innerWidth = window.innerWidth;
     this.getUsername();
     this.getProfileId();
+
+    console.warn("Your ProfileId"+this.profileId);
+    console.warn("Your Profile Name"+JSON.stringify(this.auth.getCurrentUser()));
+
   }
 
   getUsername() {
