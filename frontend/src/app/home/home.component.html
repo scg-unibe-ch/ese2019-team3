@@ -48,7 +48,7 @@
       </button>
       <button
         mat-menu-item
-        *ngIf="isProvider"
+        *ngIf="isProvider || isCustomer"
         routerLink="/Profile/myservices"
         routerLinkActive="active"
       >
