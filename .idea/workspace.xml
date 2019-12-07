@@ -1,18 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8704b63c-4c20-4746-872b-9573fee9748e" name="Default" comment="changed language">
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/data-service.service.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/data-service.service.ts" afterDir="false" />
+    <list default="true" id="8704b63c-4c20-4746-872b-9573fee9748e" name="Default" comment="filter works">
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/footer/aboutus/aboutus.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/footer/aboutus/aboutus.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/footer/aboutus/aboutus.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/footer/aboutus/aboutus.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/footer/agb/agb.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/footer/agb/agb.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/footer/agb/agb.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/footer/agb/agb.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/footer/faq/faq.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/footer/faq/faq.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/footer/faq/faq.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/footer/faq/faq.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/home/advert2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/home/band2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/home/blue.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/home/cake2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/home/catering2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/home/green.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/home/red.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/home/stage2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/home/white.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/home/yellow.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/Categories/searchresults/searchresults.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/Categories/searchresults/searchresults.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/body/body.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/body/body.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/body/body.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/body/body.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/body/body.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/body/body.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/header/header.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/header/header.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/home/home.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/models/service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/models/service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/profile/profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/profile/profile.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/service.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/service.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/footer/footer.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/footer/footer.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/footer/footer.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/footer/footer.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/header/header.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/header/header.component.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -85,15 +104,15 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="Errors" />
-    <property name="ts.external.directory.path" value="$PROJECT_DIR$/frontend/node_modules/typescript/lib" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/backend/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/frontend/src/app/myservices" />
-      <recent name="$PROJECT_DIR$/frontend/src/app/registration" />
-      <recent name="$PROJECT_DIR$/frontend/src/app/header" />
-      <recent name="$PROJECT_DIR$/frontend/src/app/login" />
+      <recent name="$PROJECT_DIR$/frontend/src/assets/home" />
+      <recent name="$PROJECT_DIR$/frontend/src/app/footer/aboutus" />
+      <recent name="$PROJECT_DIR$/frontend/src/app/footer/aboutus/about us" />
       <recent name="$PROJECT_DIR$/frontend/src/app/body" />
+      <recent name="$PROJECT_DIR$/frontend/src/app/body/slideshow" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -205,7 +224,9 @@
       <workItem from="1574856559416" duration="8203000" />
       <workItem from="1575208743748" duration="17840000" />
       <workItem from="1575413368397" duration="23251000" />
-      <workItem from="1575485302260" duration="15691000" />
+      <workItem from="1575485302260" duration="16954000" />
+      <workItem from="1575619984868" duration="7041000" />
+      <workItem from="1575713497968" duration="4404000" />
     </task>
     <task id="LOCAL-00001" summary="-">
       <created>1573655861690</created>
@@ -263,7 +284,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575533751053</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="filter works">
+      <created>1575566810200</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1575566810200</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -291,7 +319,8 @@
     <MESSAGE value="added styling to login and home" />
     <MESSAGE value="myservices component and WIP search services, display on new site" />
     <MESSAGE value="changed language" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed language" />
+    <MESSAGE value="filter works" />
+    <option name="LAST_COMMIT_MESSAGE" value="filter works" />
   </component>
   <component name="masterDetails">
     <states>

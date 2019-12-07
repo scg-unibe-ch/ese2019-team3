@@ -49,6 +49,9 @@ import {AdvertisementComponent} from './Categories/advertisement/advertisement.c
 import {MusicComponent} from './Categories/music/music.component';
 import {SearchresultsComponent} from './Categories/searchresults/searchresults.component';
 import {MyServicesGuard} from './myServices.guard';
+import {AboutusComponent} from "./footer/aboutus/aboutus.component";
+import {FaqComponent} from "./footer/faq/faq.component";
+import {AgbComponent} from "./footer/agb/agb.component";
 
 
 
@@ -65,6 +68,9 @@ const appRoutes: Routes = [
     {path: 'advertisement', component: AdvertisementComponent},
     {path: 'music', component: MusicComponent, canActivate: [AuthGuard]},
     {path: 'searchresults', component: SearchresultsComponent},
+    {path: 'aboutus', component: AboutusComponent},
+    {path: 'faq', component: FaqComponent},
+    {path: 'agb', component: AgbComponent},
     {path: 'Profile/myservices', component: MyservicesComponent, canActivate: [MyServicesGuard]},
     { path: 'Admin', component: AdminComponent, canActivate: [AdminGuard] },
     { path: '', component: HeaderComponent},
@@ -93,6 +99,9 @@ const appRoutes: Routes = [
         AdvertisementComponent,
         MusicComponent,
         SearchresultsComponent,
+        AboutusComponent,
+        FaqComponent,
+        AgbComponent,
 
     ],
 
