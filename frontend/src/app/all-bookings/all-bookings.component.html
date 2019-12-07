@@ -25,7 +25,7 @@
         <td>{{booking.date}}</td>
         <td>{{booking.serviceInfo.serviceTitle}}</td>
         <td>{{booking.serviceInfo.serviceType}}</td>
-        <td>{{booking.serviceInfo.provider}}</td>
+        <td *ngIf="isCustomer(this.user)">{{booking.serviceInfo.provider}}</td>
         <td>{{booking.serviceInfo.description}}</td>
         <td>{{booking.bookingStatus}}</td>
         <td>{{booking.serviceInfo.price}}</td>

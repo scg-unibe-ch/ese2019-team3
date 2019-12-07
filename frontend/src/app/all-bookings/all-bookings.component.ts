@@ -73,6 +73,12 @@ export class AllBookingsComponent implements OnInit {
     }
   }
   ngOnInit() {}
+  getClientName(id: number) {
+    this.allBookings.getClientName(id)
+        .subscribe((data: User) => {
+          return data.firstname + data.lastname;
+        });
+  }
 
 
 }
