@@ -3,8 +3,10 @@ import {Booking} from '../models/booking.model';
 import {User} from '../models/user.model';
 import {Service} from '../models/service.model';
 import sequelize, {Op} from 'sequelize';
+import {Sequelize} from 'sequelize-typescript';
 
 const router: Router = Router();
+
 
 
 router.get('/', async (req: Request, res: Response) => {
@@ -13,13 +15,16 @@ router.get('/', async (req: Request, res: Response) => {
      res.send(booking);
 });
 
+
 /**
  * Get all bookings a specific client made (including accepted and declined one, past and future ones
  * => give a client an overview of all his bookings
  */
 router.get('/client/:id', async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
-    const booking = await Booking.findAll({where: {clientId: id} }); //https://sequelize-guides.netlify.com/search-operators/
+    const booking = await Booking.findAll({ include: [{
+        model: Service], where: {clientId: id}
+        }); //https://sequelize-guides.netlify.com/search-operators/
     res.statusCode = 200;
     res.send(booking);
 });
@@ -31,7 +36,8 @@ router.get('/client/:id', async (req: Request, res: Response) => {
  */
 router.get('/provider/:id', async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
-    const booking = await Booking.findAll({where: {providerId: id} }); //https://sequelize-guides.netlify.com/search-operators/
+    const booking = await Booking.findAll({ include: [{
+            model: Service], where: {providerId: id} }); //https://sequelize-guides.netlify.com/search-operators/
     res.statusCode = 200;
     res.send(booking);
 });

@@ -66,7 +66,7 @@ export class AllBookingsComponent implements OnInit {
     this.allBookings.rateBooking(booking);
   }
   showRatingForProvider(booking: Booking) {
-    if (stringify(booking.rating) === '') {
+    if (true) {
       return 'Service wurde nicht bewertet';
     } else {
       return booking.rating;

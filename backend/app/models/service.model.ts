@@ -1,8 +1,12 @@
-import {Column, Model, Table} from 'sequelize-typescript';
-
+import {BelongsTo, Column, Model, Table} from 'sequelize-typescript';
+import {Booking} from './booking.model';
+import {Sequelize} from 'sequelize-typescript';
+import { SequelizeAttributes } from 'typings/SequelizeAttributes';
+import sequelize from 'sequelize';
 
 @Table
 export class Service extends Model<Service> {
+
 
   @Column
   provider!: string;
@@ -13,7 +17,7 @@ export class Service extends Model<Service> {
   @Column
   description!: string;
 
-  //<s@ForeignKey((user: User) => user.id)
+
   @Column
   providerId!: number;
 
@@ -25,6 +29,8 @@ export class Service extends Model<Service> {
 
    @Column
   city!: string;
+
+
 
 
   toSimplification(): any {
@@ -60,5 +66,9 @@ export class Service extends Model<Service> {
     this.price = 50;
     this.city= 'Bern';
   }
+
+
 }
+
+
 

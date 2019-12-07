@@ -7,7 +7,13 @@
       <thead>
       <tr>
         <th>Datum</th>
+        <th>Service Name</th>
+        <th>Service Typ</th>
+        <th>Anbieter</th>
+        <th>Beschrieb</th>
         <th>Buchungsstauts</th>
+        <th>Preis</th>
+        <th>Stadt</th>
         <th>Bewertung</th>
           <!--th *ngIf="isCustomer(this.user)">Provider Name</th>
           <th *ngIf="isProvider(this.user)">Customer Name</th>-->
@@ -17,17 +23,24 @@
       <tbody>
       <tr mdbTableCol *ngFor="let booking of Bookings">
         <td>{{booking.date}}</td>
+        <td>{{booking.serviceInfo.serviceTitle}}</td>
+        <td>{{booking.serviceInfo.serviceType}}</td>
+        <td>{{booking.serviceInfo.provider}}</td>
+        <td>{{booking.serviceInfo.description}}</td>
         <td>{{booking.bookingStatus}}</td>
-          <td *ngIf="ratingPossibleIfCustomer(booking)">
-            <ngb-rating
+        <td>{{booking.serviceInfo.price}}</td>
+        <td>{{booking.serviceInfo.city}}</td>
+        <td *ngIf="ratingPossibleIfCustomer(booking)">
+          <ngb-rating
                   [(rate)]="booking.rating" (hover)="hovered=$event" (leave)="hovered=0" [readonly]="readonly"
                   max="5" (click)="readonly = !readonly" (click)="this.rateBooking(selected, booking)">
-            </ngb-rating>
-            <p *ngIf="booking.rating == ''">
-              Noch nicht bewertet
-            </p>
-          </td>
-          <td *ngIf="isProvider(this.user)">{{showRatingForProvider(booking)}}</td>
+          </ngb-rating>
+          <p *ngIf="booking.rating == ''">
+            Noch nicht bewertet
+          </p>
+        </td>
+        <td *ngIf="isProvider(this.user)">{{showRatingForProvider(booking)}}</td>
+
       </tr>
       </tbody>
     </table>
