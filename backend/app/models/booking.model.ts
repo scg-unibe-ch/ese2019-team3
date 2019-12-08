@@ -1,12 +1,15 @@
-import {Column, ForeignKey, Model, Table} from 'sequelize-typescript';
+import {BelongsTo, Column, ForeignKey, Model, Table} from 'sequelize-typescript';
 import {User} from './user.model';
 import {Service} from './service.model';
-
 
 @Table
 export class Booking extends Model<Booking> {
 
-  @ForeignKey(() => User)
+    @BelongsTo(() => Service, {
+        foreignKey: 'serviceId',
+        as: 'serviceInfo',
+        targetKey: 'id',
+    })
   @Column
   providerId!: number;
 
@@ -23,6 +26,9 @@ export class Booking extends Model<Booking> {
 
   @Column
   rating!: number;
+
+  @Column
+  description!: string;
 
   @Column
   bookingStatus!: string;

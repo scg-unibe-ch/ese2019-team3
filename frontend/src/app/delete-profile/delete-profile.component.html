@@ -1,0 +1,18 @@
+<div class="delete-profile-box">
+<mat-card>
+  <mat-card-title>Delete your Profile</mat-card-title>
+  <mat-card-subtitle
+    >By clicking the button below your Profile and all your personal data will
+    be deleted finally.</mat-card-subtitle
+  >
+
+  <mat-card-content>
+    <p>Are your sure?</p>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-button routerLink="..">Go back to Profile</button>
+    <button mat-button color="warn" [routerLink] = "['/']" (click)="deleteProfile()">Delete Profile</button>
+  </mat-card-actions>
+</mat-card>
+</div>
