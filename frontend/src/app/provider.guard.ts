@@ -26,7 +26,7 @@ export class ProviderGuard implements CanActivate {
     } else {
       const tokenPayload: User = decode(token); // decode the token to get its payload, checks if user belongs to provider group
       this.assertAlive(tokenPayload)
-      return tokenPayload.userGroup === 'provider';
+      return tokenPayload.userGroup === 'serviceProvider';
     }
   }
 

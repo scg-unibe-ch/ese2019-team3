@@ -52,58 +52,80 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { BookmedialogComponent } from "./bookmedialog/bookmedialog.component";
 
 const appRoutes: Routes = [
-  { path: "LogIn", component: LoginComponent },
-  { path: "LogIn/PasswordForgotten", component: PasswordforgottenComponent },
-  { path: "Registration", component: RegistrationComponent },
-  { path: "Profile", component: ProfileComponent, canActivate: [AuthGuard] },
-  {
-    path: "Profile/ChangePassword",
-    component: ChangePasswordComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: "Profile/addService",
-    component: AddserviceComponent,
-    //canActivate: [UserGroupGuard]
-  },
-  {
-    path: "Profile/DeleteProfile",
-    component: DeleteProfileComponent,
-    //TODO, only for serviceProvider and customer
-    canActivate: [AuthGuard]
-  },
-  {
-    path: "foodanddrink",
-    component: FoodAndDrinkComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: "lightandstage",
-    component: LightAndStageComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: "advertisement",
-    component: AdvertisementComponent,
-    canActivate: [AuthGuard]
-  },
-  { path: "music", component: MusicComponent, canActivate: [AuthGuard] },
-  {
-    path: "searchresults",
-    component: SearchresultsComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: "Profile/myservices",
-    component: MyservicesComponent,
-    //canActivate: [UserGroupGuard]
-  },
-  { path: "Admin", component: AdminComponent, canActivate: [AdminGuard] },
-  { path: "", component: HeaderComponent },
-  { path: "**", component: PageNotFoundComponent }
-
+    { path: 'LogIn', component: LoginComponent },
+    { path: 'LogIn/PasswordForgotten', component: PasswordforgottenComponent },
+    { path: 'Registration', component: RegistrationComponent},
+    { path: 'Profile', component: ProfileComponent, canActivate: [AuthGuard] },
+    { path: 'Profile/ChangePassword', component: ChangePasswordComponent, canActivate: [AuthGuard] },
+    {path: 'Profile/addService', component: AddserviceComponent, canActivate: [ProviderGuard]},
+    {path: 'foodanddrink', component: FoodAndDrinkComponent},
+    {path: 'lightandstage', component: LightAndStageComponent},
+    {path: 'advertisement', component: AdvertisementComponent},
+    {path: 'music', component: MusicComponent, canActivate: [AuthGuard]},
+    {path: 'searchresults', component: SearchresultsComponent},
+    {path: 'aboutus', component: AboutusComponent},
+    {path: 'faq', component: FaqComponent},
+    {path: 'agb', component: AgbComponent},
+    {
+        path: "Profile/DeleteProfile",
+        component: DeleteProfileComponent,
+        //TODO, only for serviceProvider and customer
+        canActivate: [AuthGuard]
+    },
+    {path: 'Profile/myservices', component: MyservicesComponent, canActivate: [MyServicesGuard]},
+    { path: 'Admin', component: AdminComponent, canActivate: [AdminGuard] },
+    { path: '', component: HeaderComponent},
+    { path: '**', component: PageNotFoundComponent },
 ];
 @NgModule({
+    declarations: [
+        AppComponent,
+        TodoListComponent,
+        TodoItemComponent,
+        LoginComponent,
+        HomeComponent,
+        ProfileComponent,
+        PasswordforgottenComponent,
+        RegistrationComponent,
+        ChangePasswordComponent,
+        AdminComponent,
+        HeaderComponent,
+        PageNotFoundComponent,
+        AddserviceComponent,
+        BodyComponent,
+        FooterComponent,
+        MyservicesComponent,
+        FoodAndDrinkComponent,
+        LightAndStageComponent,
+        AdvertisementComponent,
+        MusicComponent,
+        SearchresultsComponent,
+        AboutusComponent,
+        FaqComponent,
+        AgbComponent,
+
+    ],
+
+  entryComponents: [],
+    imports: [
+        BrowserModule,
+        IonicModule.forRoot(),
+        HttpClientModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        MaterialModule,
+        ReactiveFormsModule,
+        RouterModule.forRoot(
+            appRoutes,
+            {enableTracing: true} // <-- debugging purposes only
+        ),
+        MatSelectModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatMenuModule,
+        MatTableModule,
+        MatExpansionModule
+    ],
   declarations: [
     AppComponent,
     TodoListComponent,

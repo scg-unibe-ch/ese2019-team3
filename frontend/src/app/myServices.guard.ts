@@ -26,7 +26,7 @@ export class MyServicesGuard implements CanActivate {
       return false;
     } else {
       const tokenPayload: User = decode(token); // gets currentUser, checks if user belongs to customer group
-      return (tokenPayload.userGroup === 'customer') || (tokenPayload.userGroup === 'provider');
+      return (tokenPayload.userGroup === 'customer') || (tokenPayload.userGroup === 'serviceProvider');
     }
   }
 }

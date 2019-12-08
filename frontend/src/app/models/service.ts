@@ -1,4 +1,5 @@
 export class Service {
+   public id : number;
    public provider : string;
    public serviceTitle : string;
    public description: string;
@@ -7,6 +8,9 @@ export class Service {
    public  price : number;
    public city  : string;
 
+   constructor(){
+
+   };
 
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Service} from "../../models/service";
 import {ServiceService} from "../../service.service";
+import {AuthenticationService} from "../../authentication.service";
 
 @Component({
   selector: 'app-advertisement',
@@ -20,9 +21,9 @@ export class AdvertisementComponent implements OnInit {
   public anything: string;
   public city: string;
 
-  constructor(private service: ServiceService) {
+  constructor(private service: ServiceService, private auth: AuthenticationService) {
   }
-
+  loggedIn =  this.auth.loggedIn();
   ngOnInit() {
     this.clickAdvert();
 

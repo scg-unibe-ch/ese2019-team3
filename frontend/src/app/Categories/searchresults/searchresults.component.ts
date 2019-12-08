@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Service} from "../../models/service";
 import {ServiceService} from "../../service.service";
 import {HeaderComponent} from "../../header/header.component";
+import {DataServiceService} from "../../data-service.service";
 
 @Component({
   selector: 'app-searchresults',
@@ -11,6 +12,7 @@ import {HeaderComponent} from "../../header/header.component";
 export class SearchresultsComponent implements OnInit {
   location: string [] = ['Aarau', 'Basel', 'Bern', 'Biel/Bienne', 'Frauenfeld', 'Freiburg', 'Genf', 'Lausanne', 'Lugano', 'Luzern', 'Neuenburg', 'Schaffhausen',
     'Schwyz', 'Sitten', 'Solothurn', 'St. Gallen', 'Zug', 'Zürich'];
+  @Input() Service: Service = new Service();
 
   private Services: Service[];
   public id: any;
@@ -22,10 +24,10 @@ export class SearchresultsComponent implements OnInit {
   public city: string;
   d = new Date();
 
-
-  constructor(private service: ServiceService) {
+  s: Service;
+  constructor(private service: ServiceService, private data: DataServiceService) {
   }
- /* s = {city: '', serviceType: '', description: ''}
+// s = {city: '', serviceType: '', description: ''}
 
   searchObject = {
     provider: '',
@@ -37,17 +39,16 @@ export class SearchresultsComponent implements OnInit {
     dates: '',
     city: '',
 
-  };*/
+  };
 
   ngOnInit() {
-   /* this.service.currentS.subscribe(s => this.s = s);
-    this.searchObject.city = this.s.city;
-    this.searchObject.serviceType = this.s.serviceType;
-    this.searchObject.description = this.s.description;
 
-    this.searchService(this.searchObject);*/
-    this.clickSearch();
+  this.data.currentInputSearch.subscribe(s => this.searchObject = s );
+  console.log(this.searchObject);
+  this.searchService(this.searchObject);
+  //this.clickSearch();
   }
+
   clickSearch() {
     const searchObject = {
       provider: this.p,
