@@ -2,41 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8704b63c-4c20-4746-872b-9573fee9748e" name="Default" comment="filter works">
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/footer/aboutus/aboutus.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/footer/aboutus/aboutus.component.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/footer/aboutus/aboutus.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/footer/aboutus/aboutus.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/footer/agb/agb.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/footer/agb/agb.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/footer/faq/faq.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/footer/faq/faq.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/home/advert2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/home/band2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/home/blue.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/home/cake2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/home/catering2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/home/green.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/home/red.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/home/stage2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/home/white.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/home/yellow.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/Categories/advertisement/advertisement.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/Categories/advertisement/advertisement.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/Categories/advertisement/advertisement.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/Categories/advertisement/advertisement.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/db.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/backend/db.sqlite" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/body/body.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/body/body.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/body/body.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/body/body.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/body/body.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/body/body.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/footer/agb/agb.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/footer/agb/agb.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/footer/agb/agb.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/footer/agb/agb.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/footer/faq/faq.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/footer/faq/faq.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/footer/faq/faq.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/footer/faq/faq.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/footer/footer.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/footer/footer.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/footer/footer.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/footer/footer.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/header/header.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/header/header.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/home/home.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/login/login.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/login/login.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/login/login.component.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

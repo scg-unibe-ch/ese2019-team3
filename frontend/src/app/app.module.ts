@@ -12,6 +12,7 @@ import { StatusBar } from "@ionic-native/status-bar/ngx";
 
 import { AppComponent } from "./app.component";
 
+
 import { TodoListComponent } from "./todo-list/todo-list.component";
 import { TodoItemComponent } from "./todo-list/todo-item/todo-item.component";
 import { LoginComponent } from "./login/login.component";
@@ -20,6 +21,7 @@ import { ProfileComponent } from "./profile/profile.component";
 import { RegistrationComponent } from "./registration/registration.component";
 import { PasswordforgottenComponent } from "./passwordforgotten/passwordforgotten.component";
 import { MyservicesComponent } from "./myservices/myservices.component";
+
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MaterialModule } from "./material.module";
@@ -50,6 +52,11 @@ import { SearchresultsComponent } from "./Categories/searchresults/searchresults
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { BookmedialogComponent } from "./bookmedialog/bookmedialog.component";
+import {MyServicesGuard} from "./myServices.guard";
+import {AgbComponent} from "./footer/agb/agb.component";
+import {FaqComponent} from "./footer/faq/faq.component";
+import {AboutusComponent} from "./footer/aboutus/aboutus.component";
+import {ProviderGuard} from "./provider.guard";
 
 const appRoutes: Routes = [
     { path: 'LogIn', component: LoginComponent },
@@ -103,10 +110,12 @@ const appRoutes: Routes = [
         AboutusComponent,
         FaqComponent,
         AgbComponent,
+        BookmedialogComponent,
+        DeleteProfileComponent,
 
     ],
 
-  entryComponents: [],
+  entryComponents: [BookmedialogComponent],
     imports: [
         BrowserModule,
         IonicModule.forRoot(),
@@ -124,56 +133,11 @@ const appRoutes: Routes = [
         MatNativeDateModule,
         MatMenuModule,
         MatTableModule,
-        MatExpansionModule
+        MatExpansionModule,
+        MatSnackBarModule,
+        MatDialogModule,
     ],
-  declarations: [
-    AppComponent,
-    TodoListComponent,
-    TodoItemComponent,
-    LoginComponent,
-    HomeComponent,
-    ProfileComponent,
-    PasswordforgottenComponent,
-    RegistrationComponent,
-    ChangePasswordComponent,
-    AdminComponent,
-    HeaderComponent,
-    PageNotFoundComponent,
-    AddserviceComponent,
-    BodyComponent,
-    FooterComponent,
-    MyservicesComponent,
-    FoodAndDrinkComponent,
-    LightAndStageComponent,
-    AdvertisementComponent,
-    MusicComponent,
-    SearchresultsComponent,
-    BookmedialogComponent,
-    DeleteProfileComponent
-  ],
-  //so it can be used as an dialog
-  entryComponents: [BookmedialogComponent],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(),
-    HttpClientModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    ReactiveFormsModule,
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
-    ),
-    MatSelectModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatMenuModule,
-    MatSnackBarModule,
-    MatTableModule,
-    MatExpansionModule,
-    MatDialogModule
-  ],
+
   providers: [
     StatusBar,
     SplashScreen,
