@@ -42,5 +42,26 @@
   color: whitesmoke;
 }
 
+.button {
+  background-color:  whitesmoke;
+  color: black;
+  font-family: "Avenir Next";
+  font-size: 16px;
+  padding:12px 24px ;
+  cursor: pointer;
+  border-radius: 5px;
 
+
+  left: 50%;
+}
+.button:hover{
+  background-color: black;
+  color: whitesmoke;
+}
+
+
+.wrapper {
+  text-align: center;
+  margin-bottom: -20%;
+}
 

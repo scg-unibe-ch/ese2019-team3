@@ -21,10 +21,14 @@
       <button class = "btn" routerLink = "/music" routerLinkActive="active"> Musik </button>
     </div>
   </div>
-
+<div class = "anmelden" *ngIf= "!loggedIn">
 <h1 align = "center" style = "margin-top: 5%; ">Bieten Sie einen Service an?</h1>
-<p style = "padding-bottom : 5%"align = "center"> Das geht ganz einfach mit uns! Registrieren, Service hinzufügen und auf eine Buchung warten!</p>
+<p style = "padding-bottom : 3%"align = "center"> Das geht ganz einfach mit uns! Registrieren, Service hinzufügen und auf eine Buchung warten!</p>
 
+<div class =  "wrapper">
+<button class = "button" routerLink = "/Registration" routerLinkActive="active"> Hier anmelden! </button>
+</div>
+</div>
 <!-- make slideshow -->
 <!--
 <div class = "slideshowcontainer" *ngIf = "images">

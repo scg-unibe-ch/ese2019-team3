@@ -3,6 +3,7 @@ import {Service} from "../models/service";
 import {ServiceService} from "../service.service";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {AuthenticationService} from "../authentication.service";
 
 @Component({
   selector: 'app-body',
@@ -11,9 +12,10 @@ import {Router} from "@angular/router";
 })
 export class BodyComponent implements OnInit {
 //public selectedIndex = 0;
-  constructor(private service: ServiceService, public httpClient: HttpClient, private router: Router) {
+  constructor(private service: ServiceService, public httpClient: HttpClient, private router: Router, private auth: AuthenticationService) {
 
   }
+  loggedIn = this.auth.getCurrentUser();
  /* public number: string []= [
       "1", "2", "3", "4", "5"
   ];*/

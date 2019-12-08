@@ -56,7 +56,9 @@
     </mat-card-content>
 
     <mat-card-actions>
-      <button mat-button>Buchen!</button>
+      <button *ngIf = "loggedIn" mat-button>Buchen!</button>
+      <button *ngIf =  "!loggedIn"mat-button>Anmelden, um Buchung vorzunehmen.</button>
+
     </mat-card-actions>
 
   </mat-card>
