@@ -66,7 +66,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BookmedialogComponent } from './bookmedialog/bookmedialog.component';
 import {DeleteProfileComponent} from './delete-profile/delete-profile.component';
-import {RatingComponent} from './rating/rating.component';
 
 const appRoutes: Routes = [
 
@@ -87,7 +86,6 @@ const appRoutes: Routes = [
     { path: 'allBookings', component: AllBookingsComponent, canActivate: [CustomerOrProviderGuard]},
     { path: '', component: HeaderComponent, canActivate: [TokenExpirationGuard]},
     { path: 'Profile/DeleteProfile', component: DeleteProfileComponent, canActivate: [CustomerOrProviderGuard]},
-    { path: 'rating', component: RatingComponent},
     { path: '**', component: PageNotFoundComponent, canActivate: [TokenExpirationGuard] },
 
 ];
@@ -118,7 +116,6 @@ const appRoutes: Routes = [
         BookmedialogComponent,
         AllBookingsComponent,
         DeleteProfileComponent,
-        RatingComponent,
     ],
 // so it can be used as an dialog
   entryComponents: [BookmedialogComponent],

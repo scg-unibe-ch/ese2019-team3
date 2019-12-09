@@ -18,7 +18,7 @@ export class BookingRequestsComponent implements OnInit {
 // fetches booking requests from backend
   getBookingRequests() {
     this.bookingReq.getBookingRequests(this.auth.getCurrentUser())
-        .subscribe((data: Booking[]) => {this.Requests = data; });
+        .subscribe((data: Booking[]) => {this.Requests = data; console.log(this.Requests.length); console.log(this.Requests[0]); });
   }
 // calls function for accepting booking and refreshes booking requests
   acceptBooking(booking: Booking) {
