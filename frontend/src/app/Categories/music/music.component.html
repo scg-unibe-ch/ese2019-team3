@@ -1,24 +1,26 @@
 <div class="image">
-
   <div class="text">
     <h1 style="font-weight: bold; font-size: 70px">Musik</h1>
     <p>Finden Sie die perfekte Band oder DJ.</p>
   </div>
-
 </div>
 
-
-<div class = "main">
-  <mat-card class = "searchfield">
+<div class="main">
+  <mat-card class="searchfield">
     <mat-card-content>
       <mat-list>
         <mat-list-item>
-          <form class ="btn" style="float: left; margin-left: 2%; margin-bottom: 1%; ">
+          <form
+            class="btn"
+            style="float: left; margin-left: 2%; margin-bottom: 1%; "
+          >
             <mat-form-field>
               <mat-label> Ort </mat-label>
-              <mat-select id = "location" [(ngModel)]="city" name="city" >
+              <mat-select id="location" [(ngModel)]="city" name="city">
                 <mat-option> - </mat-option>
-                <mat-option *ngFor = "let city of location" [value] = "city"> {{city}}</mat-option>
+                <mat-option *ngFor="let city of location" [value]="city">
+                  {{ city }}</mat-option
+                >
               </mat-select>
             </mat-form-field>
           </form>
@@ -26,38 +28,46 @@
 
         <!-- Search Button -->
         <mat-list-item>
-          <form class = "btn" style="float: left; margin-left: 2%; margin-right: 5%;">
-            <mat-form-field class = "InputBtn">
-              <input [(ngModel)] = "price" name = "price" matInput placeholder="Preis" >
+          <form
+            class="btn"
+            style="float: left; margin-left: 2%; margin-right: 5%;"
+          >
+            <mat-form-field class="InputBtn">
+              <input
+                [(ngModel)]="price"
+                name="price"
+                matInput
+                placeholder="Preis"
+              />
             </mat-form-field>
           </form>
         </mat-list-item>
-        <br>
+        <br />
         <mat-list-item>
           <button
-                  class = "btn"
-                  mat-stroked-button
-                  style="float:right; margin-right: 10%; margin-top: -0.5%"
-                  (click) = updateResults()>Search</button>
+            class="btn"
+            mat-stroked-button
+            style="float:right; margin-right: 10%; margin-top: -0.5%"
+            (click)="updateResults()"
+          >
+            Search
+          </button>
         </mat-list-item>
-
-
       </mat-list>
     </mat-card-content>
   </mat-card>
 
-  <mat-card class = "searchresults" *ngFor = "let service of Services">
-    <mat-card-title id = "title">{{service.serviceTitle}}</mat-card-title>
-    <mat-card-subtitle id = "subtitle">{{service.city}}</mat-card-subtitle>
+  <mat-card class="searchresults" *ngFor="let service of Services">
+    <mat-card-title id="title">{{ service.serviceTitle }}</mat-card-title>
+    <mat-card-subtitle id="subtitle">{{ service.city }}</mat-card-subtitle>
     <mat-card-content>
-      <p> {{service.description}}</p>
-      <br>
-      <h4>{{service.price}} CHF </h4>
+      <p>{{ service.description }}</p>
+      <br />
+      <h4>{{ service.price }} CHF</h4>
     </mat-card-content>
 
     <mat-card-actions>
-      <button mat-button>Book Me!</button>
+      <button mat-button (click)="openDialog(service)">Book Me!</button>
     </mat-card-actions>
-
   </mat-card>
 </div>

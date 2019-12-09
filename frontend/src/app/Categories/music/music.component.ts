@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ServiceService} from "../../service.service";
 import {Service} from "../../models/service";
+import {MatDialog} from "@angular/material"
+import { BookmedialogComponent } from 'src/app/bookmedialog/bookmedialog.component';
+
 
 @Component({
   selector: 'app-music',
@@ -20,13 +23,27 @@ export class MusicComponent implements OnInit {
   public anything: string;
   public city: string;
 
-  constructor(private service: ServiceService) {
+  constructor(private service: ServiceService, public bookMeDialog: MatDialog) {
   }
 
   ngOnInit() {
     this.clickMusic();
 
   }
+
+  openDialog(service: Service){
+
+    //calling the dialog and sending him the specific input service data, on which the button has been clicked
+    const bookingDialogRef = this.bookMeDialog.open(BookmedialogComponent, {data: service})
+    //this.bookService(service);
+
+    bookingDialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        alert("Vielen Dank für ihre Buchung, ihre 'Anfrage' wurde erfolgreich an den Eventanbieter ermittelt. Name wird sich in kürze bei Ihnen melden");
+      }
+    });
+  }
+  
   clickMusic() {
     let fObject = {
       provider: this.p,
