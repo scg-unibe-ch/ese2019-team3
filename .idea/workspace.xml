@@ -3,11 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="8704b63c-4c20-4746-872b-9573fee9748e" name="Default" comment="merging">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentation/Biweekly Report 1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/Reports/Biweekly Report 1.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentation/Biweekly Report 2.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentation/Milestone 1/Biweekly Report 1.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentation/Requirements collection.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentation/Usability Testing/Usability Testing" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/db.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/backend/db.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/Categories/advertisement/advertisement.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/Categories/advertisement/advertisement.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/Categories/advertisement/advertisement.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/Categories/advertisement/advertisement.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/Categories/food-and-drink/food-and-drink.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/Categories/food-and-drink/food-and-drink.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/Categories/food-and-drink/food-and-drink.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/Categories/food-and-drink/food-and-drink.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/Categories/light-and-stage/ligth-and-stage.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/Categories/light-and-stage/ligth-and-stage.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/Categories/light-and-stage/ligth-and-stage.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/Categories/light-and-stage/ligth-and-stage.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/Categories/music/music.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/Categories/music/music.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/Categories/music/music.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/Categories/music/music.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/Categories/searchresults/searchresults.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/Categories/searchresults/searchresults.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/Categories/searchresults/searchresults.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/Categories/searchresults/searchresults.component.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -79,6 +85,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="Errors" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/backend/node_modules/typescript/lib" />
   </component>

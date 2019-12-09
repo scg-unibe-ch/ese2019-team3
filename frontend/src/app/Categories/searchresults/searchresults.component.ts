@@ -6,6 +6,7 @@ import { DataServiceService } from "../../data-service.service";
 import { AuthenticationService } from "../../authentication.service";
 import { MatDialog } from "@angular/material";
 import { BookmedialogComponent } from "src/app/bookmedialog/bookmedialog.component";
+import {CustomerOrProviderGuard} from "../../customerOrProvider.guard";
 
 @Component({
   selector: "app-searchresults",
@@ -50,10 +51,12 @@ export class SearchresultsComponent implements OnInit {
     private service: ServiceService,
     private data: DataServiceService,
     private auth: AuthenticationService,
-    public bookMeDialog: MatDialog
+    public bookMeDialog: MatDialog,
+    private customerGuard: CustomerOrProviderGuard
   ) {}
   // s = {city: '', serviceType: '', description: ''}
-
+  loggedIn =  this.auth.loggedIn();
+  customer  = this.customerGuard.isCustomerOrProvider();
   searchObject = {
     provider: "",
     serviceTitle: "",

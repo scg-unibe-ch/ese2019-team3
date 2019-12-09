@@ -56,8 +56,8 @@
     </mat-card-content>
 
     <mat-card-actions>
-      <button *ngIf = "loggedIn" mat-button (click)="openDialog(service)">Buchen!</button>
-      <button *ngIf =  "!loggedIn"mat-button>Anmelden, um Buchung vorzunehmen.</button>
+      <button *ngIf = "loggedIn && customer" mat-button (click)="openDialog(service)">Buchen!</button>
+      <button *ngIf =  "!loggedIn || !customer" mat-button routerLink = "/LogIn" routerLinkActive="active">Als Customer anmelden, um Buchung vorzunehmen.</button>
 
     </mat-card-actions>
 

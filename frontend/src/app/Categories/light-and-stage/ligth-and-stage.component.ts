@@ -3,6 +3,8 @@ import {ServiceService} from "../../service.service";
 import {Service} from "../../models/service";
 import {MatDialog} from "@angular/material"
 import { BookmedialogComponent } from 'src/app/bookmedialog/bookmedialog.component';
+import {AuthenticationService} from "../../authentication.service";
+import {CustomerOrProviderGuard} from "../../customerOrProvider.guard";
 
 @Component({
   selector: 'app-ligth-and-stage',
@@ -22,9 +24,10 @@ export class LightAndStageComponent implements OnInit {
   public anything: string;
   public city: string;
 
-  constructor(private service: ServiceService, public bookMeDialog: MatDialog) {
+  constructor(private service: ServiceService, public bookMeDialog: MatDialog, private auth: AuthenticationService, private customerGuard: CustomerOrProviderGuard) {
   }
-
+  loggedIn =  this.auth.loggedIn();
+  customer  = this.customerGuard.isCustomerOrProvider();
   openDialog(service: Service){
 
     //calling the dialog and sending him the specific input service data, on which the button has been clicked
