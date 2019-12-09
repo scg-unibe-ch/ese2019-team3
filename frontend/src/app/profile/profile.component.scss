@@ -4,11 +4,21 @@
     //border: solid 1px rgb(141, 137, 137);
     //centers
     margin: auto;
-    margin-top: 10%;
+   // margin-top: -3%;
     color: gray;
 
 }
-
+.background {
+        margin-bottom: -40%;
+        margin-top: -5%;
+        padding-top: 5%;
+        padding-bottom: 10%;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url("../../assets/home/forest.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+}
 // ion-input{
 //     border: solid 1px black;
 //     border-block-style: round($number: 1)

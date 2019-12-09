@@ -6,6 +6,7 @@ import {BookmedialogComponent} from '../../bookmedialog/bookmedialog.component';
 import {MatDialog} from '@angular/material';
 import {AuthenticationService} from "../../authentication.service";
 import {CustomerOrProviderGuard} from "../../customerOrProvider.guard";
+import {ProviderGuard} from "../../provider.guard";
 
 @Component({
   selector: 'app-music',
@@ -25,10 +26,13 @@ export class MusicComponent implements OnInit {
   public anything: string;
   public city: string;
 
-  constructor(private service: ServiceService, public bookMeDialog: MatDialog, private auth: AuthenticationService, private customerGuard: CustomerOrProviderGuard) {
+  constructor(private service: ServiceService, public bookMeDialog: MatDialog,
+              private providerGuard: ProviderGuard,
+              private auth: AuthenticationService, private customerGuard: CustomerOrProviderGuard) {
   }
   loggedIn =  this.auth.loggedIn();
   customer  = this.customerGuard.isCustomerOrProvider();
+  provider = this.providerGuard.isProvider();
 
   ngOnInit() {
     this.clickMusic();

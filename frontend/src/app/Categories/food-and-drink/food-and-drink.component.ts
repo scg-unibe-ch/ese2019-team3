@@ -5,6 +5,7 @@ import {MatDialog} from "@angular/material"
 import { BookmedialogComponent } from 'src/app/bookmedialog/bookmedialog.component';
 import {CustomerOrProviderGuard} from 'src/app/customerOrProvider.guard';
 import {AuthenticationService} from "../../authentication.service";
+import {ProviderGuard} from "../../provider.guard";
 
 @Component({
   selector: 'app-food-and-drink',
@@ -24,10 +25,12 @@ export class FoodAndDrinkComponent implements OnInit {
   public anything: string;
   public city: string;
 
-  constructor(private service: ServiceService, public bookMeDialog: MatDialog, private customerGuard: CustomerOrProviderGuard, private auth: AuthenticationService) {
+  constructor(private service: ServiceService, public bookMeDialog: MatDialog, private customerGuard: CustomerOrProviderGuard, private auth: AuthenticationService,
+              private providerGuard: ProviderGuard) {
   }
   loggedIn =  this.auth.loggedIn();
   customer  = this.customerGuard.isCustomerOrProvider();
+  provider = this.providerGuard.isProvider();
 
   ngOnInit() {
     this.clickFoodAnDrink();

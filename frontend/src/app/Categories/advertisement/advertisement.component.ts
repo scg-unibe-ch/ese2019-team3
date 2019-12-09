@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Provider} from '@angular/core';
 import {Service} from "../../models/service";
 import {ServiceService} from "../../service.service";
 import {AuthenticationService} from "../../authentication.service";
 import {MatDialog} from "@angular/material"
 import { BookmedialogComponent } from 'src/app/bookmedialog/bookmedialog.component';
 import {CustomerOrProviderGuard} from 'src/app/customerOrProvider.guard';
+import {ProviderGuard} from "../../provider.guard";
 
 @Component({
   selector: 'app-advertisement',
@@ -25,10 +26,12 @@ export class AdvertisementComponent implements OnInit {
   public city: string;
 
 
-  constructor(private service: ServiceService, private auth: AuthenticationService, public bookMeDialog: MatDialog, private customerGuard: CustomerOrProviderGuard) {
+  constructor(private service: ServiceService, private auth: AuthenticationService,
+              private providerGuard: ProviderGuard, public bookMeDialog: MatDialog, private customerGuard: CustomerOrProviderGuard) {
   }
   loggedIn =  this.auth.loggedIn();
   customer  = this.customerGuard.isCustomerOrProvider();
+  provider = this.providerGuard.isProvider();
   ngOnInit() {
     this.clickAdvert();
 
