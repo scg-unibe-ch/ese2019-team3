@@ -45,7 +45,7 @@ The detailed structure of these tables can be found in the XY.model.ts (e.g. Use
 ## Frontend Documentation
 After the app is running you can register as a service provider or a customer. Afterwards the admin can verify or deny your request based on the truthworthy of your registration form. After your registration has been verified you'll recive a confirmation email and you are ready to use our application. 
 
-For further informations check (Documentation)[https://github.com/scg-unibe-ch/ese2019-team3/tree/master/Documentation]
+For further informations check the Documentation
 
 ## Useful Information
 When running the backend an admin user is automatically generated. 
