@@ -17,7 +17,7 @@ export class BookingRequestService {
   }
 
   acceptBooking(booking: Booking) {
-    return this.http.put(this.acceptBookingRequestsUrl +  booking.id, null);
+    return this.http.put(this.acceptBookingRequestsUrl +  booking.id, booking);
   }
 
   getBookingRequests(user: User) {

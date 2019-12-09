@@ -16,7 +16,6 @@ export class AllBookingsComponent implements OnInit {
   Bookings: Booking[];
   user: User;
 // for rating service
-  selected = 0;
   hovered = 0;
   readonly = false;
 
@@ -45,14 +44,7 @@ export class AllBookingsComponent implements OnInit {
   isCustomer(user: User) {
     return user.userGroup === 'customer';
   }
-  /*bookingName(booking: Booking){
-    this.allBookings.getBookingName(booking);
-  }
 
-  getCustomerName(booking: Booking) {
-    booking.clientId;
-  }
-*/
   ratingPossibleIfCustomer(booking: Booking) {
     return this.isCustomer(this.user) /*&& this.pastEvent(booking)*/;
   }
@@ -61,24 +53,20 @@ export class AllBookingsComponent implements OnInit {
     let today = new Date();
     return booking.date < today;
   }*/
-  rateBooking(rating: number, booking: Booking) {
-    booking.rating = rating;
-    this.allBookings.rateBooking(booking);
+  rateBooking(booking: Booking) {
+    booking.rating = this.hovered;
+    console.log(booking.rating);
+    this.allBookings.rateBooking(booking).subscribe(res => alert(res), err => console.log(err));
   }
   showRatingForProvider(booking: Booking) {
-    if (true) {
+    if (booking.rating == null) {
       return 'Service wurde nicht bewertet';
     } else {
       return booking.rating;
     }
   }
   ngOnInit() {}
-  getClientName(id: number) {
-    this.allBookings.getClientName(id)
-        .subscribe((data: User) => {
-          return data.firstname + data.lastname;
-        });
-  }
+
 
 
 }

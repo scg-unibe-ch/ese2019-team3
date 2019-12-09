@@ -7,16 +7,22 @@
       <thead>
       <tr>
         <th>Datum</th>
-        <th>Service ID</th>
-        <th>Client ID</th>
+        <th>Titel</th>
+        <th>Service Typ</th>
+        <th>Beschrieb</th>
+        <th>Preis</th>
+        <th>Ort</th>
       </tr>
       </thead>
       <!-- lists all unverified users that are being fetched from backend-->
       <tbody>
       <tr mdbTableCol *ngFor="let request of Requests">
         <td>{{request.date}}</td>
-        <td>{{request.serviceId}}</td>
-        <td>{{request.clientId}}</td>
+        <td>{{request.serviceInfo.serviceTitle}}</td>
+        <td>{{request.serviceInfo.serviceType}}</td>
+        <td>{{request.serviceInfo.description}}</td>
+        <td>{{request.serviceInfo.price}}</td>
+        <td>{{request.serviceInfo.city}}</td>
         <td><button mat-button style="color: #0ec254" (click)="acceptBooking(request)">Accept</button></td>
         <td><button mat-button style="color: #d33939" (click)="denyBooking(request)" >Deny</button></td>
       </tr>

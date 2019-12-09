@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {AuthenticationService} from './authentication.service';
-import {TokenInterceptorService} from './token-interceptor.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthenticationService } from './authentication.service';
+import { TokenInterceptorService } from './token-interceptor.service';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -52,8 +52,7 @@ import {SearchresultsComponent} from './Categories/searchresults/searchresults.c
 import {CustomerOrProviderGuard} from './customerOrProvider.guard';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import {BookingRequestsComponent} from './booking-requests/booking-requests.component';
-import {MatDialogModule} from '@angular/material/dialog';
-import { BookmedialogComponent } from './bookmedialog/bookmedialog.component';
+
 import {TokenExpirationGuard} from './token-expiration.guard';
 import {LoggedInGuard} from './loggedIn.guard';
 import {AllBookingsComponent} from './all-bookings/all-bookings.component';
@@ -63,9 +62,14 @@ import {AdminService} from './admin.service';
 import {ALL} from 'tslint/lib/rules/completedDocsRule';
 import {AllBookingsService} from './all-bookings.service';
 import {BookingRequestService} from './booking-request.service';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BookmedialogComponent } from './bookmedialog/bookmedialog.component';
+import {DeleteProfileComponent} from './delete-profile/delete-profile.component';
+import {RatingComponent} from './rating/rating.component';
 
 const appRoutes: Routes = [
+
     { path: 'LogIn', component: LoginComponent, canActivate: [TokenExpirationGuard, LoggedInGuard] },
     { path: 'LogIn/PasswordForgotten', component: PasswordforgottenComponent, canActivate: [TokenExpirationGuard, LoggedInGuard] },
     { path: 'Registration', component: RegistrationComponent, canActivate: [TokenExpirationGuard, LoggedInGuard]},
@@ -82,7 +86,10 @@ const appRoutes: Routes = [
     { path: 'bookingRequests', component: BookingRequestsComponent, canActivate: [ProviderGuard, TokenExpirationGuard]},
     { path: 'allBookings', component: AllBookingsComponent, canActivate: [CustomerOrProviderGuard]},
     { path: '', component: HeaderComponent, canActivate: [TokenExpirationGuard]},
+    { path: 'Profile/DeleteProfile', component: DeleteProfileComponent, canActivate: [CustomerOrProviderGuard]},
+    { path: 'rating', component: RatingComponent},
     { path: '**', component: PageNotFoundComponent, canActivate: [TokenExpirationGuard] },
+
 ];
 @NgModule({
     declarations: [
@@ -110,6 +117,8 @@ const appRoutes: Routes = [
         BookingRequestsComponent,
         BookmedialogComponent,
         AllBookingsComponent,
+        DeleteProfileComponent,
+        RatingComponent,
     ],
 // so it can be used as an dialog
   entryComponents: [BookmedialogComponent],
@@ -126,6 +135,7 @@ const appRoutes: Routes = [
             {enableTracing: true} // <-- debugging purposes only
         ),
         MatSelectModule,
+        MatSnackBarModule,
         MatDatepickerModule,
         MatNativeDateModule,
         MatMenuModule,
@@ -143,11 +153,15 @@ const appRoutes: Routes = [
       AdminService,
       AllBookingsService,
       BookingRequestService,
+
+
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-      { provide: HTTP_INTERCEPTORS,
+    {
+      provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
-      multi: true,
-      }],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

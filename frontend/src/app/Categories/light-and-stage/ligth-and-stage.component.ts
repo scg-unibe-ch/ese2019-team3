@@ -28,15 +28,22 @@ export class LightAndStageComponent implements OnInit {
   openDialog(service: Service){
 
     //calling the dialog and sending him the specific input service data, on which the button has been clicked
-    this.bookMeDialog.open(BookmedialogComponent, {data: service});
+    const bookingDialogRef = this.bookMeDialog.open(BookmedialogComponent, {data: service})
     //this.bookService(service);
+
+    bookingDialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        alert("Vielen Dank für ihre Buchung, ihre 'Anfrage' wurde erfolgreich an den Eventanbieter ermittelt. Name wird sich in kürze bei Ihnen melden");
+      }
+    });
   }
   
 
   ngOnInit() {
     this.clickLight();
-
   }
+
+  
   clickLight() {
     let fObject = {
       provider: this.p,

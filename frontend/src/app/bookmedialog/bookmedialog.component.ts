@@ -1,5 +1,6 @@
+
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import {MAT_DIALOG_DATA, MatSnackBar} from '@angular/material';
 import { BookingService } from '../booking.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from '../authentication.service';
@@ -10,22 +11,22 @@ import { AuthenticationService } from '../authentication.service';
   styleUrls: ['./bookmedialog.component.scss']
 })
 export class BookmedialogComponent implements OnInit {
-
+    bookingForm = new FormGroup({
+        date: new FormControl('', Validators.required),
+        comment: new FormControl('')
+    });
   // able to inject any data into the dialog, data is defined as which the element who were send
   constructor(
     private bookingService: BookingService,
     private auth: AuthenticationService,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
-  bookingForm = new FormGroup({
-    date: new FormControl('', Validators.required),
-    comment: new FormControl('')
-  });
 
-  booking: any;
-
-  ngOnInit() {}
-
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private _snackBar: MatSnackBar
+    ) {}
+    booking: any;
+    message: string;
+    action: string;
+  ngOnInit() {  }
   book() {
     this.booking = {
       clientId: this.auth.getCurrentUser().id,
@@ -44,9 +45,13 @@ export class BookmedialogComponent implements OnInit {
       res => console.log(res),
       err => console.log(err)
     );
-
-    alert(
-      'Vielen Dank für ihre Buchung, ihre \'Anfrage\' wurde erfolgreich an den Eventanbieter ermittelt. Name wird sich in kürze bei Ihnen melden'
-    );
+    this.message = 'Vielen Dank für ihre Buchung, ihre Anfrage wurde erfolgreich übermittelt.'
+    this.action = '';
+    this._snackBar.open(this.message, this.action, {
+      duration: 4000,
+    });
+    // alert(
+    //   "Vielen Dank für ihre Buchung, ihre 'Anfrage' wurde erfolgreich an den Eventanbieter ermittelt. Name wird sich in kürze bei Ihnen melden"
+    // );
   }
 }

@@ -49,7 +49,8 @@ router.get('/provider/:id', async (req: Request, res: Response) => {
 router.get('/provider/requests/:id', async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
     //https://sequelize-guides.netlify.com/search-operators/
-    const booking = await Booking.findAll({where: {providerId: id, bookingStatus: 'request'} });
+    const booking = await Booking.findAll({ include: [{
+            model: Service], where: {providerId: id, bookingStatus: 'request'} });
     res.statusCode = 200;
     res.send(booking);
 });

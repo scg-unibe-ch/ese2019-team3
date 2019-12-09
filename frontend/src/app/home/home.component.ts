@@ -4,6 +4,7 @@ import { AuthenticationService} from '../authentication.service';
 import { AdminGuard} from '../admin.guard';
 import { Router} from '@angular/router';
 import {ProviderGuard} from '../provider.guard';
+
 import {CustomerOrProviderGuard} from '../customerOrProvider.guard';
 
 
@@ -29,6 +30,7 @@ export class HomeComponent implements OnInit {
       private router: Router,
       private providerGuard: ProviderGuard,
       private customerGuard: CustomerOrProviderGuard) {
+
   }
 
   ngOnInit() {

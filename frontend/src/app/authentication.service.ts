@@ -109,5 +109,8 @@ export class AuthenticationService {
     return this.http.post<any>(this.checkPasswordUrl, checkUser);
   }
 
+  deleteProfile(id: any ){
+    return this.http.delete<any>(this.rootUrl + id);
+  }
 
 }
