@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8704b63c-4c20-4746-872b-9573fee9748e" name="Default" comment="filter works">
+    <list default="true" id="8704b63c-4c20-4746-872b-9573fee9748e" name="Default" comment="merging">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/db.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/backend/db.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/Biweekly Report 1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/Reports/Biweekly Report 1.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/Biweekly Report 2.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/Milestone 1/Biweekly Report 1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/Requirements collection.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/Usability Testing/Usability Testing" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -200,6 +203,7 @@
       <workItem from="1575485302260" duration="16954000" />
       <workItem from="1575619984868" duration="7041000" />
       <workItem from="1575713497968" duration="4404000" />
+      <workItem from="1575910732338" duration="751000" />
     </task>
     <task id="LOCAL-00001" summary="-">
       <created>1573655861690</created>
@@ -264,7 +268,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575566810200</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="merging">
+      <created>1575834193101</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1575834193101</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -293,7 +304,8 @@
     <MESSAGE value="myservices component and WIP search services, display on new site" />
     <MESSAGE value="changed language" />
     <MESSAGE value="filter works" />
-    <option name="LAST_COMMIT_MESSAGE" value="filter works" />
+    <MESSAGE value="merging" />
+    <option name="LAST_COMMIT_MESSAGE" value="merging" />
   </component>
   <component name="masterDetails">
     <states>
