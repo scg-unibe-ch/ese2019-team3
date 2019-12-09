@@ -2,7 +2,7 @@
 
   <div class="text">
     <h1 style="font-weight: bold; font-size: 70px">Licht und Bühne</h1>
-    <p>In need for some light? Easy with us.</p>
+    <p>Brauchen Sie Licht?</p>
   </div>
 
 </div>
@@ -15,7 +15,7 @@
         <mat-list-item>
           <form class ="btn" style="float: left; margin-left: 2%; margin-bottom: 1%; ">
             <mat-form-field>
-              <mat-label> Locations </mat-label>
+              <mat-label> Orte </mat-label>
               <mat-select id = "location" [(ngModel)]="city" name="city" >
                 <mat-option> None </mat-option>
                 <mat-option *ngFor = "let city of location" [value] = "city"> {{city}}</mat-option>
@@ -28,7 +28,7 @@
         <mat-list-item>
           <form class = "btn" style="float: left; margin-left: 2%; margin-right: 5%;">
             <mat-form-field class = "InputBtn">
-              <input [(ngModel)] = "price" name = "price" matInput placeholder="Price" >
+              <input [(ngModel)] = "price" name = "price" matInput placeholder="Preis" >
             </mat-form-field>
           </form>
         </mat-list-item>
@@ -52,11 +52,11 @@
     <mat-card-content>
       <p> {{service.description}}</p>
       <br>
-      <h4>{{service.price}} CHF </h4>
+      <h4>{{service.price}}</h4>
     </mat-card-content>
 
     <mat-card-actions>
-      <button mat-button (click)= "openDialog(service)">Book Me!</button>
+      <button mat-button (click)= "openDialog(service)">Buchen</button>
     </mat-card-actions>
 
   </mat-card>

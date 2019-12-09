@@ -28,6 +28,9 @@ export class Booking extends Model<Booking> {
   rating!: number;
 
   @Column
+  description!: string;
+
+  @Column
   bookingStatus!: string;
 
   toSimplification(): any {

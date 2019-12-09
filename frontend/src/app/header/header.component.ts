@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 // import {MatDatepickerModule} from '@angular/material/datepicker';
 // import {MatOptionModule} from "@angular/material/core";
 // import {MatSelectModule} from "@angular/material/select";
@@ -8,6 +8,7 @@ import {ServiceService} from '../service.service';
 import { Router } from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {Service} from '../models/service';
+import {DataServiceService} from "../data-service.service";
 // import {Service} from "../models/service";
 
 @Component({
@@ -30,20 +31,35 @@ export class HeaderComponent implements OnInit {
   d = new Date();
   public anything: string;
   public city: string;
-
+  public i: number;
   private Services: Service[];
   private dataTest: string;
+  s: Service;
+
+  search: any = {
+      provider: '',
+      serviceTitle: '',
+      description: '',
+      providerId: '',
+      serviceType: '',
+      price: '',
+      dates: '',
+      city: '',
+
+  };
 
   constructor(public authentication: AuthenticationService,
-              private service: ServiceService, private router: Router, public httpClient: HttpClient) {
+              private service: ServiceService, private router: Router, public httpClient: HttpClient, private data: DataServiceService) {
 
   }
 
-  ngOnInit() {}
-  // click on Search Button!
-  onSubmit() {
 
+  ngOnInit() {}
+
+//on Submit we want to set the Input and use the input then in our searchresultscomponent.
+  onSubmit() {
     const searchObject = {
+      id : this.i,
       provider : this.p,
       serviceTitle : this.serviceTitle,
       description: this.anything,
@@ -54,13 +70,18 @@ export class HeaderComponent implements OnInit {
       city : this.city,
 
     };
+    this.data.setInputSearch(searchObject);
+    console.log(searchObject);
+    this.router.navigate(['/searchresults']);
+
+    /*
     this.searchService(searchObject);
 
     console.log('searching for service');
     // calls method to post the registerUser to the backend
-    // this.router.navigate(['/searchresults']);
+   // this.router.navigate(['/searchresults']);
     JSON.stringify(searchObject);
-    delete searchObject[0];
+    delete searchObject[0];*/
   }
 // goes to backend
   async searchService(searchObject) {

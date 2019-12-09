@@ -1,32 +1,54 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { BehaviorSubject, Observable } from "rxjs";
-import { Service } from "./models/service";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Service } from './models/service';
+import {AuthenticationService} from './authentication.service';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class ServiceService {
-  private addserviceurl = "http://localhost:3000/service/register";
-  private verificationUrl = "http://localhost:3000/user/verifyToken";
-  private searchserviceurl = "http://localhost:3000/service/filter";
-  private allservices = "http://localhost:3000/service";
-  private myServices = "http://localhost:3000/service/filter";
+  private addserviceurl = 'http://localhost:3000/service/register';
+  private verificationUrl = 'http://localhost:3000/user/verifyToken';
+  private searchserviceurl = 'http://localhost:3000/service/filter';
+  private allservices = 'http://localhost:3000/service';
+  private myServices = 'http://localhost:3000/service/filter';
+private deleteService = 'http://localhost:3000/service/';
+
+  public p: string;
+  public serviceTitle: string;
+  public anything: string;
+  public id: number;
+  public categorie: string;
+  public price: number;
+   d = new Date();
+  public city: string;
 
   private Services: Service[];
-  /*s = {city: '', serviceType: '', description: ''};
-  private selectedStrings = new BehaviorSubject(this.s);
+
+  s: object = {
+    provider : this.p,
+    serviceTitle : this.serviceTitle,
+    description: this.anything,
+    providerId : this.id,
+    serviceType : this.categorie,
+    price : this.price,
+    dates: this.d,
+    city : this.city,
+  };
+
+  /*private selectedStrings = new BehaviorSubject(this.s);
   currentS = this.selectedStrings.asObservable();
 */
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authentication: AuthenticationService) {}
 
-  addService(service: Object): Observable<any> {
+  addService(service: object): Observable<any> {
     return this.http.post<any>(this.addserviceurl, service);
   }
 
-  searchService(search: Object): Observable<any> {
-    return this.http.post<Object>(this.searchserviceurl, search);
-    //.subscribe((data : Service[]) => {this.Services = data}
+  searchService(search: object): Observable<any> {
+    return this.http.post<object>(this.searchserviceurl, search);
+    // .subscribe((data : Service[]) => {this.Services = data}
   }
 
   getAll() {
@@ -37,4 +59,9 @@ export class ServiceService {
     return this.http.post<any>(this.myServices, id);
   }
 
+
+  deleteMyService(service: Service) {
+   this.http.delete(this.deleteService + service.id).subscribe(res => alert('Dein Angebot wurde gelöscht.'), err => alert(err));
+
+  }
 }

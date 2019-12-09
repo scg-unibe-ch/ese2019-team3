@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {ServiceService} from '../service.service';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {HttpClient} from '@angular/common/http';
-import {AuthenticationService} from '../authentication.service';
+
+import {ServiceService} from "../service.service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {HttpClient} from "@angular/common/http";
+import {AuthenticationService} from "../authentication.service";
+import { Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-addservice',
@@ -14,7 +17,7 @@ export class AddserviceComponent implements OnInit {
   services: string [] = ['Food & Drink', 'Musik', 'Licht & Bühne', 'Werbung'];
   locations: string [] = ['Aarau', 'Basel', 'Bern', 'Biel/Bienne', 'Frauenfeld', 'Freiburg', 'Genf', 'Lausanne', 'Lugano', 'Luzern', 'Neuenburg', 'Schaffhausen',
     'Schwyz', 'Sitten', 'Solothurn', 'St. Gallen', 'Zug', 'Zürich'];
-
+  private url = "http://localhost:4200/Profile/myservice"
 
   /*filter : any = {
     l : '',
@@ -38,8 +41,9 @@ export class AddserviceComponent implements OnInit {
 
   constructor(private http: HttpClient,
               private authentification: AuthenticationService,
-              private service: ServiceService, ) {
-    const url = 'http://localhost:4200/Profile/addService';
+              private service: ServiceService,
+              private router: Router) {
+    const url = "http://localhost:4200/Profile/addService";
     const serviceForm = {
       serviceTitle: this.serviceTitle,
       serviceType: this.s,
@@ -51,7 +55,7 @@ export class AddserviceComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.serviceForm.valueChanges.subscribe(value => console.log(value));
+
   }
 
   onSubmit() {
@@ -68,6 +72,7 @@ export class AddserviceComponent implements OnInit {
     console.log('Adding new Service', addService);
     // calls method to post the registerUser to the backend
     this.addservice(addService);
+    this.router.navigateByUrl("Profile/myservices")
   }
 
   // sends service to backend

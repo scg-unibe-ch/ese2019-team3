@@ -62,32 +62,35 @@ import {AdminService} from './admin.service';
 import {ALL} from 'tslint/lib/rules/completedDocsRule';
 import {AllBookingsService} from './all-bookings.service';
 import {BookingRequestService} from './booking-request.service';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { BookmedialogComponent } from './bookmedialog/bookmedialog.component';
+import {AboutusComponent} from './footer/aboutus/aboutus.component';
+import {FaqComponent} from './footer/faq/faq.component';
+import {BookmedialogComponent} from './bookmedialog/bookmedialog.component';
 import {DeleteProfileComponent} from './delete-profile/delete-profile.component';
+import {MatDialogModule, MatSnackBarModule} from '@angular/material';
+import {AgbComponent} from './footer/agb/agb.component';
+
+
 
 const appRoutes: Routes = [
-
-    { path: 'LogIn', component: LoginComponent, canActivate: [TokenExpirationGuard, LoggedInGuard] },
-    { path: 'LogIn/PasswordForgotten', component: PasswordforgottenComponent, canActivate: [TokenExpirationGuard, LoggedInGuard] },
-    { path: 'Registration', component: RegistrationComponent, canActivate: [TokenExpirationGuard, LoggedInGuard]},
-    { path: 'Profile', component: ProfileComponent, canActivate: [AuthGuard, TokenExpirationGuard] },
-    { path: 'Profile/ChangePassword', component: ChangePasswordComponent, canActivate: [AuthGuard, TokenExpirationGuard] },
-    {path: 'Profile/addService', component: AddserviceComponent, canActivate: [ProviderGuard, TokenExpirationGuard]},
-    {path: 'foodanddrink', component: FoodAndDrinkComponent, canActivate: [TokenExpirationGuard]},
-    {path: 'lightandstage', component: LightAndStageComponent, canActivate: [TokenExpirationGuard]},
-    {path: 'advertisement', component: AdvertisementComponent, canActivate: [TokenExpirationGuard]},
-    {path: 'music', component: MusicComponent, canActivate: [AuthGuard, TokenExpirationGuard]},
-    {path: 'searchresults', component: SearchresultsComponent, canActivate: [TokenExpirationGuard]},
-    {path: 'Profile/myservices', component: MyservicesComponent, canActivate: [CustomerOrProviderGuard, TokenExpirationGuard]},
-    { path: 'Admin', component: AdminComponent, canActivate: [AdminGuard, TokenExpirationGuard] },
-    { path: 'bookingRequests', component: BookingRequestsComponent, canActivate: [ProviderGuard, TokenExpirationGuard]},
-    { path: 'allBookings', component: AllBookingsComponent, canActivate: [CustomerOrProviderGuard]},
-    { path: '', component: HeaderComponent, canActivate: [TokenExpirationGuard]},
-    { path: 'Profile/DeleteProfile', component: DeleteProfileComponent, canActivate: [CustomerOrProviderGuard]},
-    { path: '**', component: PageNotFoundComponent, canActivate: [TokenExpirationGuard] },
-
+    { path: 'LogIn', component: LoginComponent },
+    { path: 'LogIn/PasswordForgotten', component: PasswordforgottenComponent },
+    { path: 'Registration', component: RegistrationComponent},
+    { path: 'Profile', component: ProfileComponent, canActivate: [AuthGuard] },
+    { path: 'Profile/ChangePassword', component: ChangePasswordComponent, canActivate: [AuthGuard] },
+    {path: 'Profile/addService', component: AddserviceComponent, canActivate: [ProviderGuard]},
+    {path: 'foodanddrink', component: FoodAndDrinkComponent},
+    {path: 'lightandstage', component: LightAndStageComponent},
+    {path: 'advertisement', component: AdvertisementComponent},
+    {path: 'music', component: MusicComponent, canActivate: [AuthGuard]},
+    {path: 'searchresults', component: SearchresultsComponent},
+    {path: 'aboutus', component: AboutusComponent},
+    {path: 'faq', component: FaqComponent},
+    {path: 'agb', component: AgbComponent},
+    {path: 'Profile/DeleteProfile', component: DeleteProfileComponent, canActivate: [CustomerOrProviderGuard]},
+    {path: 'Profile/myservices', component: MyservicesComponent, canActivate: [ProviderGuard]},
+    { path: 'Admin', component: AdminComponent, canActivate: [AdminGuard] },
+    { path: '', component: HeaderComponent},
+    { path: '**', component: PageNotFoundComponent },
 ];
 @NgModule({
     declarations: [
@@ -112,12 +115,12 @@ const appRoutes: Routes = [
         AdvertisementComponent,
         MusicComponent,
         SearchresultsComponent,
-        BookingRequestsComponent,
+        AboutusComponent,
+        FaqComponent,
+        AgbComponent,
         BookmedialogComponent,
-        AllBookingsComponent,
         DeleteProfileComponent,
     ],
-// so it can be used as an dialog
   entryComponents: [BookmedialogComponent],
     imports: [
         BrowserModule,
@@ -142,6 +145,7 @@ const appRoutes: Routes = [
         NgbRatingModule,
         NgbModule,
     ],
+
   providers: [
     StatusBar,
     SplashScreen,
