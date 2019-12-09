@@ -28,11 +28,13 @@
                 type="password"
                 required
               />
-              <mat-hint>Mindestens 8 Buchstaben, Gross- und Kleinschreibung und Sonderzeichen.</mat-hint>
+              <mat-hint>Mindestens 8 Buchstaben, Gross- und Kleinschreibung, Zahlen und Sonderzeichen</mat-hint>
+             
+              
             </mat-form-field>
             <br />
             <br />
-
+            <br />
             <mat-form-field>
               <input
                 matInput
@@ -41,14 +43,19 @@
                 type="password"
                 required
               />
+              <mat-error *ngIf="!validPassword()">
+                Passwörter stimmen nicht überein.
+                 </mat-error
+               >
             </mat-form-field>
+            
 
             <div>
               <button
                 mat-button
                 matStepperNext
                 [disabled]="!validPassword() || !validEmail()"
-              >
+              > 
                 Weiter
               </button>
             </div>
@@ -76,14 +83,19 @@
               />
             </mat-form-field>
             <br />
-            <mat-form-field>
-              <input
-                matInput
-                placeholder="Geburtsdatum"
-                formControlName="birthday"
-                required
-              />
-            </mat-form-field>
+              <mat-form-field>
+                <input
+                  formControlName="birthday"
+                  matInput
+                  [matDatepicker]="picker"
+                  placeholder="Geburtsdatum"
+                  required
+                  disabled
+                  
+                />
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker disabled="false"></mat-datepicker>
+              </mat-form-field>
             <br />
             <mat-form-field>
               <input
@@ -127,19 +139,18 @@
                 mat-button
                 matStepperNext
                 (click)="registerUser()"
-                [disabled]="!registrationForm.valid"
+                [disabled]="!registrationForm.valid || !validRadiobutton()"
                 (click)="isEditable = !isEditable"
                 (click)="onSubmit()"
               >
-                Registrierung bestätigen.
+                Registrierung bestätigen
               </button>
             </div>
           </form>
         </mat-step>
-        <!-- WIP, either all editable or none -->
         <mat-step [editable]="false">
           <ng-template matStepLabel>Fertig.</ng-template>
-          In 5-10 Minuten wird Ihnen eine Mail zugesendet.
+          In 5-10 Minuten wird Ihnen eine Mail zugesendet
         </mat-step>
       </mat-vertical-stepper>
 

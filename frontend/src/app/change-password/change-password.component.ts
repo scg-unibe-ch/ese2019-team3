@@ -22,12 +22,12 @@ export class ChangePasswordComponent implements OnInit {
     password: new FormControl("", Validators.required),
     newPassword: new FormControl("", [
       Validators.required,
-      Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=(.*[dW]){1,})(?!.*s).{8,}$")
+      Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$%^&*()\-_=+{};:,<.>]).{8,}$")
     ]),
     //not need to send
     checkpassword: new FormControl("", [
       Validators.required,
-      Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=(.*[dW]){1,})(?!.*s).{8,}$")
+      Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$%^&*()\-_=+{};:,<.>]).{8,}$")
     ])
   });
 
