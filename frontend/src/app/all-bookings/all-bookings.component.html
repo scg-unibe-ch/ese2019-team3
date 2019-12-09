@@ -1,0 +1,54 @@
+
+<mat-card>
+  <mat-card-title>Buchungsanfragen</mat-card-title>
+  <mat-card-content>
+    <br>
+    <table mdbTable>
+      <thead>
+      <tr>
+        <th>Datum</th>
+        <th>Service Name</th>
+        <th>Service Typ</th>
+        <th *ngIf="isCustomer(this.user)">Anbieter</th>
+        <th>Beschrieb</th>
+        <th>Buchungsstauts</th>
+        <th>Preis</th>
+        <th>Stadt</th>
+        <th>Bewertung</th>
+      </tr>
+      </thead>
+      <!-- lists all unverified users that are being fetched from backend-->
+      <tbody>
+      <tr mdbTableCol *ngFor="let booking of Bookings">
+        <td>{{booking.date}}</td>
+        <td>{{booking.serviceInfo.serviceTitle}}</td>
+        <td>{{booking.serviceInfo.serviceType}}</td>
+        <td *ngIf="isCustomer(this.user)">{{booking.serviceInfo.provider}}</td>
+        <td>{{booking.serviceInfo.description}}</td>
+        <td>{{booking.bookingStatus}}</td>
+        <td>{{booking.serviceInfo.price}}</td>
+        <td>{{booking.serviceInfo.city}}</td>
+        <td *ngIf="ratingPossibleIfCustomer(booking)">
+          <ngb-rating
+                  [(rate)]="booking.rating" (hover)="hovered=$event" (leave)="hovered=0" [readonly]="readonly"
+                  max="5" (click)="readonly = !readonly"  (click)="this.rateBooking(booking)">
+          </ngb-rating>
+          <p *ngIf="booking.rating == ''">
+            Noch nicht bewertet
+          </p>
+        </td>
+        <td *ngIf="isProvider(this.user)&& showRatingForProvider(booking)">
+          <ngb-rating
+                [(rate)]="booking.rating"  [readonly]=true
+                max="5">
+        </ngb-rating>
+        </td>
+        <td *ngIf="isProvider(this.user)&& !showRatingForProvider(booking)">
+          Buchung noch nicht bewertet
+        </td>
+
+      </tr>
+      </tbody>
+    </table>
+  </mat-card-content>
+</mat-card>

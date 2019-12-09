@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ServiceService} from "../../service.service";
-import {Service} from "../../models/service";
-import {MatDialog} from "@angular/material"
-import { BookmedialogComponent } from 'src/app/bookmedialog/bookmedialog.component';
+import {ServiceService} from '../../service.service';
+import {Service} from '../../models/service';
+
+import {BookmedialogComponent} from '../../bookmedialog/bookmedialog.component';
+import {MatDialog} from '@angular/material';
 
 
 @Component({
@@ -16,10 +17,10 @@ export class MusicComponent implements OnInit {
 
   private Services: Service[];
   public id: any;
-  public categorie:string;
+  public categorie: string;
   public p: string;
-  public serviceTitle : string;
-  public price : number;
+  public serviceTitle: string;
+  public price: number;
   public anything: string;
   public city: string;
 
@@ -31,21 +32,21 @@ export class MusicComponent implements OnInit {
 
   }
 
-  openDialog(service: Service){
+  openDialog(service: Service) {
 
-    //calling the dialog and sending him the specific input service data, on which the button has been clicked
-    const bookingDialogRef = this.bookMeDialog.open(BookmedialogComponent, {data: service})
-    //this.bookService(service);
+    // calling the dialog and sending him the specific input service data, on which the button has been clicked
+    const bookingDialogRef = this.bookMeDialog.open(BookmedialogComponent, {data: service});
+    // this.bookService(service);
 
     bookingDialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
-        alert("Vielen Dank für ihre Buchung, ihre 'Anfrage' wurde erfolgreich an den Eventanbieter ermittelt. Name wird sich in kürze bei Ihnen melden");
+        alert('Vielen Dank für ihre Buchung, ihre \'Anfrage\' wurde erfolgreich an den Eventanbieter ermittelt. Name wird sich in kürze bei Ihnen melden');
       }
     });
   }
-  
+
   clickMusic() {
-    let fObject = {
+    const fObject = {
       provider: this.p,
       serviceTitle: this.serviceTitle,
       description: this.anything,
@@ -61,11 +62,17 @@ export class MusicComponent implements OnInit {
 
   async getMusic(object) {
     console.log(object);
-    await this.service.searchService(object).subscribe((data: Service[]) => {this.Services = data});
+    await this.service.searchService(object).subscribe((data: Service[]) => {this.Services = data; });
   }
 
   updateResults() {
     this.clickMusic();
+  }
+  openDialog(service: Service) {
+
+    // calling the dialog and sending him the specific input service data, on which the button has been clicked
+    this.bookMeDialog.open(BookmedialogComponent, {data: service});
+    // this.bookService(service);
   }
 
 }

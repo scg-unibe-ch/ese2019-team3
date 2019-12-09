@@ -59,6 +59,7 @@ export class Booking extends Model<Booking> {
     this.clientId = 1;
     this.serviceId = 1;
     this.date = '10-10-2000';
+    this.bookingStatus = 'request';
   }
 }
 

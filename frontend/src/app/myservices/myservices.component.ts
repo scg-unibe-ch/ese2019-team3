@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {AuthenticationService} from "../authentication.service";
-import {Service} from "../models/service";
-import {ServiceService} from "../service.service";
-import {retry} from "rxjs/operators";
-import {stringify} from "querystring";
+import {HttpClient} from '@angular/common/http';
+import {AuthenticationService} from '../authentication.service';
+import {Service} from '../models/service';
+import {ServiceService} from '../service.service';
+import {retry} from 'rxjs/operators';
+import {stringify} from 'querystring';
 
 @Component({
   selector: 'app-myservices',
@@ -14,15 +14,15 @@ import {stringify} from "querystring";
 export class MyservicesComponent implements OnInit {
 
   constructor(private http: HttpClient,
-              private authentification: AuthenticationService,private service: ServiceService) {
-    const url = "http://localhost:4200/Profile/myservices";
+              private authentification: AuthenticationService, private service: ServiceService) {
+    const url = 'http://localhost:4200/Profile/myservices';
   }
   private Services: Service[] = [];
   public id: any;
-  public categorie:string;
+  public categorie: string;
   public p: string;
-  public serviceTitle : string;
-  public price : number;
+  public serviceTitle: string;
+  public price: number;
   public anything: string;
   public city: string;
 /*
@@ -42,14 +42,14 @@ export class MyservicesComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.authentification.getCurrentUser().id;
-    
+
     this.getMyServices(this.id)  ;
-    //this.returnEmptyService(this.Services);
+    // this.returnEmptyService(this.Services);
 
     console.log(JSON.stringify(this.Services)) ;
     console.log(this.authentification.getCurrentUser().id);
-    console.log("returns ID of current user " + this.id);
-    console.log("returns current user " + this.authentification.getCurrentUser().firstname);
+    console.log('returns ID of current user ' + this.id);
+    console.log('returns current user ' + this.authentification.getCurrentUser().firstname);
   }
   /*returnEmptyService(service: Service[]){
     if (Object.keys(service).length ===  0) {
@@ -59,12 +59,13 @@ export class MyservicesComponent implements OnInit {
     getMyServices(id) {
       console.log(id);
       this.http.get('http://localhost:3000/service/user/' + id).subscribe( result => {
-        this.Services = result as Service[]
-      })
+        this.Services = result as Service[];
+      });
 
     }
 
-    deleteService(provider){
+
+    deleteService(provider) {
         this.service.deleteMyService(provider);
         setTimeout(() => { this.getMyServices(this.authentification.getCurrentUser().id); }, 50);
     }

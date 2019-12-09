@@ -7,7 +7,7 @@ import {User} from './models/user';
 @Injectable({
   providedIn: 'root'
 })
-export class MyServicesGuard implements CanActivate {
+export class CustomerOrProviderGuard implements CanActivate {
   constructor(public auth: AuthenticationService, public router: Router) {
   }
 

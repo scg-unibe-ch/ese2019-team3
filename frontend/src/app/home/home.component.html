@@ -41,19 +41,22 @@
     </button>
 
     <mat-menu #menu>
-      <mat-list-item> Hallo, {{ firstname }}</mat-list-item>
+      <mat-list-item> Hello, {{ firstname }}</mat-list-item>
+      <!--Profile Button, visible if customer or provider-->
       <button *ngIf="loggedIn" mat-menu-item
         class = "profileButton" routerLink="/Profile" routerLinkActive="active">
         Profil
       </button>
+      <!--My Services Button, visible if provider-->
       <button
         mat-menu-item
-        *ngIf="isProvider || isCustomer"
+        *ngIf="isProvider"
         routerLink="/Profile/myservices"
         routerLinkActive="active"
       >
        Meine Services
       </button>
+      <!--Add Service Button, only for providers-->
       <button
         mat-menu-item
         *ngIf="isProvider"
@@ -61,6 +64,24 @@
         routerLinkActive="active"
       >
         Service hinzufügen
+      </button>
+      <!--Booking Requests Button, only for providers-->
+      <button
+              mat-menu-item
+              *ngIf="isProvider"
+              routerLink="/bookingRequests"
+              routerLinkActive="active"
+      >
+        Anfragen
+      </button>
+      <!--All Bookings Button, visible if customer or provider-->
+      <button
+              mat-menu-item
+              *ngIf="isProvider || isCustomer"
+              routerLink="/allBookings"
+              routerLinkActive="active"
+      >
+        Alle Buchungen
       </button>
       <!--Admin Button, only visible when logged in as Admin-->
       <button
