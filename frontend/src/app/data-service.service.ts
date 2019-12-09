@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, Observable} from "rxjs";
-import {Service} from "./models/service";
+import {BehaviorSubject, Observable} from 'rxjs';
+import {Service} from './models/service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +25,8 @@ export class DataServiceService {
   constructor() {
   }
 
-  //setInput and use it in  new component.
-  setInputSearch(s: any){
+  // setInput and use it in  new component.
+  setInputSearch(s: any) {
     this.InputSearch.next(s);
   }
 

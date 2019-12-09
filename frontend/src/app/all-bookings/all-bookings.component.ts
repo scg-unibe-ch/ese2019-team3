@@ -60,9 +60,9 @@ export class AllBookingsComponent implements OnInit {
   }
   showRatingForProvider(booking: Booking) {
     if (booking.rating == null) {
-      return 'Service wurde nicht bewertet';
+      return false;
     } else {
-      return booking.rating;
+      return true;
     }
   }
   ngOnInit() {}

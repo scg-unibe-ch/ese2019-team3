@@ -9,7 +9,7 @@ import {LoginComponent} from './login/login.component';
 @Injectable({
   providedIn: 'root'
 })
-export class TokenExpirationGuard implements CanActivate{
+export class TokenExpirationGuard implements CanActivate {
   constructor(private router: Router, private auth: AuthenticationService ) {}
   canActivate(): boolean {
     const token = this.auth.getToken();

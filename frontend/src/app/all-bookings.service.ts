@@ -17,7 +17,12 @@ export class AllBookingsService {
     return this.http.get('http://localhost:3000/booking/client/' + user.id);
   }
   rateBooking(booking: Booking) {
-    return this.http.put('http://localhost:3000/booking/rate/', booking);
+    const data = {
+      rating: booking.rating,
+      bookingId: booking.id,
+      providerId: booking.providerId,
+    };
+    return this.http.put('http://localhost:3000/booking/rate/', data);
   }
 
 }

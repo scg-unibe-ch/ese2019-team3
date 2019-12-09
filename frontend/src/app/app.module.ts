@@ -71,26 +71,29 @@ import {AgbComponent} from './footer/agb/agb.component';
 
 
 
+// @ts-ignore
 const appRoutes: Routes = [
-    { path: 'LogIn', component: LoginComponent },
-    { path: 'LogIn/PasswordForgotten', component: PasswordforgottenComponent },
-    { path: 'Registration', component: RegistrationComponent},
-    { path: 'Profile', component: ProfileComponent, canActivate: [AuthGuard] },
-    { path: 'Profile/ChangePassword', component: ChangePasswordComponent, canActivate: [AuthGuard] },
-    {path: 'Profile/addService', component: AddserviceComponent, canActivate: [ProviderGuard]},
-    {path: 'foodanddrink', component: FoodAndDrinkComponent},
-    {path: 'lightandstage', component: LightAndStageComponent},
-    {path: 'advertisement', component: AdvertisementComponent},
-    {path: 'music', component: MusicComponent, canActivate: [AuthGuard]},
-    {path: 'searchresults', component: SearchresultsComponent},
-    {path: 'aboutus', component: AboutusComponent},
-    {path: 'faq', component: FaqComponent},
-    {path: 'agb', component: AgbComponent},
-    {path: 'Profile/DeleteProfile', component: DeleteProfileComponent, canActivate: [CustomerOrProviderGuard]},
-    {path: 'Profile/myservices', component: MyservicesComponent, canActivate: [ProviderGuard]},
-    { path: 'Admin', component: AdminComponent, canActivate: [AdminGuard] },
-    { path: '', component: HeaderComponent},
-    { path: '**', component: PageNotFoundComponent },
+    { path: 'LogIn', component: LoginComponent, canActivate: [LoggedInGuard, TokenExpirationGuard]},
+    { path: 'LogIn/PasswordForgotten', component: PasswordforgottenComponent, canActivate: [LoggedInGuard, TokenExpirationGuard] },
+    { path: 'Registration', component: RegistrationComponent, canActivate: [LoggedInGuard, TokenExpirationGuard]},
+    { path: 'Profile', component: ProfileComponent, canActivate: [AuthGuard, TokenExpirationGuard] },
+    { path: 'Profile/ChangePassword', component: ChangePasswordComponent, canActivate: [AuthGuard, TokenExpirationGuard] },
+    {path: 'Profile/addService', component: AddserviceComponent, canActivate: [ProviderGuard, TokenExpirationGuard]},
+    {path: 'foodanddrink', component: FoodAndDrinkComponent, canActivate: [TokenExpirationGuard]},
+    {path: 'lightandstage', component: LightAndStageComponent, canActivate: [TokenExpirationGuard]},
+    {path: 'advertisement', component: AdvertisementComponent, canActivate: [TokenExpirationGuard]},
+    {path: 'music', component: MusicComponent, canActivate: [AuthGuard, TokenExpirationGuard]},
+    {path: 'searchresults', component: SearchresultsComponent, canActivate: [TokenExpirationGuard]},
+    {path: 'aboutus', component: AboutusComponent, canActivate: [TokenExpirationGuard]},
+    {path: 'faq', component: FaqComponent, canActivate: [TokenExpirationGuard]},
+    {path: 'agb', component: AgbComponent, canActivate: [TokenExpirationGuard]},
+    {path: 'Profile/DeleteProfile', component: DeleteProfileComponent, canActivate: [CustomerOrProviderGuard, TokenExpirationGuard]},
+    {path: 'Profile/myservices', component: MyservicesComponent, canActivate: [ProviderGuard,  TokenExpirationGuard]},
+    {path: 'allBookings', component: AllBookingsComponent, canActivate: [CustomerOrProviderGuard, TokenExpirationGuard]},
+    {path: 'Admin', component: AdminComponent, canActivate: [AdminGuard, TokenExpirationGuard] },
+    {path: 'bookingRequests', component: BookingRequestsComponent, canActivate: [ProviderGuard, TokenExpirationGuard]},
+    {path: '', component: HeaderComponent, canActivate: [TokenExpirationGuard]},
+    { path: '**', component: PageNotFoundComponent, canActivate: [TokenExpirationGuard] },
 ];
 @NgModule({
     declarations: [
@@ -120,6 +123,8 @@ const appRoutes: Routes = [
         AgbComponent,
         BookmedialogComponent,
         DeleteProfileComponent,
+        AllBookingsComponent,
+        BookingRequestsComponent,
     ],
   entryComponents: [BookmedialogComponent],
     imports: [

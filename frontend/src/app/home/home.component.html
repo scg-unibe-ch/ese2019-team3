@@ -47,10 +47,10 @@
         class = "profileButton" routerLink="/Profile" routerLinkActive="active">
         Profil
       </button>
-      <!--My Services Button, visible if customer or provider-->
+      <!--My Services Button, visible if provider-->
       <button
         mat-menu-item
-        *ngIf="isProvider || isCustomer"
+        *ngIf="isProvider"
         routerLink="/Profile/myservices"
         routerLinkActive="active"
       >
@@ -72,7 +72,7 @@
               routerLink="/bookingRequests"
               routerLinkActive="active"
       >
-        Booking Requests
+        Anfragen
       </button>
       <!--All Bookings Button, visible if customer or provider-->
       <button
@@ -81,7 +81,7 @@
               routerLink="/allBookings"
               routerLinkActive="active"
       >
-        All Bookings
+        Alle Buchungen
       </button>
       <!--Admin Button, only visible when logged in as Admin-->
       <button

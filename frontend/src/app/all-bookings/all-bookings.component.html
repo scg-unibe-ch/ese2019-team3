@@ -37,7 +37,15 @@
             Noch nicht bewertet
           </p>
         </td>
-        <td *ngIf="isProvider(this.user)">{{showRatingForProvider(booking)}}</td>
+        <td *ngIf="isProvider(this.user)&& showRatingForProvider(booking)">
+          <ngb-rating
+                [(rate)]="booking.rating"  [readonly]=true
+                max="5">
+        </ngb-rating>
+        </td>
+        <td *ngIf="isProvider(this.user)&& !showRatingForProvider(booking)">
+          Buchung noch nicht bewertet
+        </td>
 
       </tr>
       </tbody>
