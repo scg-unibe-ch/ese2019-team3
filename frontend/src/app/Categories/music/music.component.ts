@@ -68,11 +68,5 @@ export class MusicComponent implements OnInit {
   updateResults() {
     this.clickMusic();
   }
-  openDialog(service: Service) {
-
-    // calling the dialog and sending him the specific input service data, on which the button has been clicked
-    this.bookMeDialog.open(BookmedialogComponent, {data: service});
-    // this.bookService(service);
-  }
 
 }
