@@ -13,7 +13,7 @@ export class MyServicesGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
     if (!this.isCustomerOrProvider()) {
-      alert('Access not permitted');
+      alert('Zugriff nicht erlaubt');
       this.router.navigate(['']);
       return false;
     }

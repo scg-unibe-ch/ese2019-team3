@@ -11,7 +11,7 @@ export class AuthGuard implements  CanActivate {
   canActivate(): boolean {
     if (this.auth.getToken() != null) {
       return true; } else {
-      alert('You must be logged in to see this page');
+      alert('SIe müssen angemeldet sein um diese Seite zu besuchen');
       this.router.navigate(['LogIn']);
       return false;
     }

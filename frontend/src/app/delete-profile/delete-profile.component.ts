@@ -17,7 +17,7 @@ export class DeleteProfileComponent implements OnInit {
       .subscribe(
         res => (
           console.log("Delete Profile: " + res),
-          alert("Your Profile has been deleted successfully"),
+          alert("Ihr Profil wurde erfolgreich gelöscht"),
           //remove token
           this.authentification.logOutUser()
           

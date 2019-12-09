@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Router, CanActivate, ActivatedRouteSnapshot} from '@angular/router';
 import { AuthenticationService } from './authentication.service';
-import * as decode from "jwt-decode";
+import * as decode from 'jwt-decode';
 import {User} from './models/user';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class AdminGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
     if (!this.isAdmin()) {
-      alert('Access not permitted');
+      alert('Zugriff nicht erlaubt');
       this.router.navigate(['']);
       return false;
     }

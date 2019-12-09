@@ -33,7 +33,7 @@ export class ProviderGuard implements CanActivate {
  assertAlive(tokenPayload) {
     const now = Date.now()
     if (typeof tokenPayload.exp !== 'undefined' && tokenPayload.exp < now) {
-      alert('Your Session expired, you will be logged out');
+      alert('Ihre Sitzung ist abgelaufen, Sie werden abgemeldet');
       this.logOut();
       throw new Error(`token expired: ${JSON.stringify(tokenPayload)}`)
     }
