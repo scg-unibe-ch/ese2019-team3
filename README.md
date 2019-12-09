@@ -30,7 +30,7 @@ The event service platform is an app which companies can offer their services. O
 - Go to localhost:4200 in your Webbrowser to see the running app.
 
 ## Backend/API Documentation
-The backend APi is fully documented with swagger. For a detailed description of all API's available (including models, possible request etc.), start the server and go to localhost:3000/swagger API's can be tested manually there.
+The backend API is fully documented with swagger. For a detailed description of all API's available (including models, possible request etc.), start the server and go to localhost:3000/swagger API's can be tested manually there.
 Swagger documentation can be changed by edition the swagger.json file (in the root folder) 
 
 Its important to know that there are basically three tables in the database used by our app:
@@ -43,9 +43,11 @@ The detailed structure of these tables can be found in the XY.model.ts (e.g. Use
 
 
 ## Frontend Documentation
-...
+After the app is running you can register as a service provider or a customer. Afterwards the admin can verify or deny your request based on the truthworthy of your registration form. After your registration has been verified you'll recive a confirmation email and you are ready to use our application. 
 
-## Ueeful information
+For further informations check (Documentation)[https://github.com/scg-unibe-ch/ese2019-team3/tree/master/Documentation]
+
+## Useful Information
 When running the backend an admin user is automatically generated. 
 
 Its login data is: 
