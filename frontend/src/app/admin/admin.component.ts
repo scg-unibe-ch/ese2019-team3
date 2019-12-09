@@ -13,7 +13,7 @@ import {AdminService} from '../admin.service';
 
 
 export class AdminComponent implements OnInit {
-   Users: User[];
+  Users: User[];
 
   constructor(private http: HttpClient, private adminService: AdminService) {
     this.getRegistrationRequests();
@@ -24,32 +24,22 @@ export class AdminComponent implements OnInit {
   }
 // calls function for verification and refreshes users to be verified
   validateUser(user: User) {
-    this.sendUserToValidate(user);
+    this.adminService.validateUser(user)
+        .subscribe(res => alert('User wurde validiert'), err => console.log('User konnte nicht validiert werden'));
+
     setTimeout(() => { this.getRegistrationRequests(); }, 50);
   }
 
   // calls function for deletion and refreshes users to be verified
   deleteUser(user: User) {
-    this.sendUserToDelete(user);
+    this.adminService.deleteUser(user)
+        .subscribe(res => alert('User wurde gelöscht'), err => alert('User konnte nicht gelöscht werden'));
     setTimeout(() => { this.getRegistrationRequests(); }, 50);
   }
-// sends user to backend for deletion and tells admin it was deleted
-sendUserToDelete(user: User) {
 
-  this.http.delete('http://localhost:3000/user/' + user.id)
-      .subscribe(res => alert('User wurde gelöscht'), err => alert('User konnte nicht gelöscht werden'));
-}
-// sends user to backend for validation and tells admin it was validated
-sendUserToValidate(user: User) {
-    this.http.put('http://localhost:3000/user/verify/' + user.id, user, {responseType: 'text'})
-        .subscribe(res => alert('User wurde validiert'), err => console.log('User konnte nicht validiert werden'));
-
-}
   ngOnInit() {
     this.getRegistrationRequests();
   }
 
 
 }
-
-

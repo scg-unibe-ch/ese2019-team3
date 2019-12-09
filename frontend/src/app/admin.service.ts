@@ -14,7 +14,7 @@ export class AdminService {
   deleteUser(user: User) {
     return this.http.delete('http://localhost:3000/user/' + user.id);
   }
-  validateUser(user: User){
+  validateUser(user: User) {
     return this.http.put('http://localhost:3000/user/verify/' + user.id, user, {responseType: 'text'});
   }
 }
