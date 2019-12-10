@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {Booking} from './models/booking';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +15,7 @@ export class BookingService {
   setBooking() {
     this.booked = true;
   }
-  addService(bookingservice: object): Observable<any> {
+  addService(bookingservice: Booking): Observable<any> {
     return this.http.post<any>(this.bookServiceUrl, bookingservice);
   }
 }

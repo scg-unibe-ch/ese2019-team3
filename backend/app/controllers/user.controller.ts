@@ -56,7 +56,7 @@ router.post('/register', async (req, res) => {
         number: user.number,
         birthday: user.birthday,
         iss : getTime(),
-        exp : getTime() + 60000,
+        exp : getTime() + 1200000,
     };
     const token = jwt.sign(payload, 'key');  // 'key' could be any string
     res.statusCode = 201; // Status code: created

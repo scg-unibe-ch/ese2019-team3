@@ -43,7 +43,27 @@ The detailed structure of these tables can be found in the XY.model.ts (e.g. Use
 
 
 ## Frontend Documentation
-After the app is running you can register as a service provider or a customer. Afterwards the admin can verify or deny your request based on the truthworthy of your registration form. After your registration has been verified you'll recive a confirmation email and you are ready to use our application. 
+After the app is running you can register as a service provider or a customer. Afterwards the admin can verify or deny your request based on the truthworthy of your registration form. After your registration has been verified you'll recive a confirmation email and you are ready to use our application. Following you see, which features you can use as a specific user.
+
+### All Users:
+   -Change password
+   -Update profile
+   -Delete profile
+   -Request new password, if forgotten
+   -Search for services
+   
+### Administator:
+   -Deny or accept users
+   
+### Service Provider:
+   -Create, update and delete services
+   -Accept or deny booking requests
+   -Display your services
+   
+ ### Customer:
+   -book services
+   -Display your services
+
 
 For further informations check the Documentation
 

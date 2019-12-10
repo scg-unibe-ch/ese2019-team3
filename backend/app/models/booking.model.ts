@@ -22,7 +22,7 @@ export class Booking extends Model<Booking> {
   serviceId!: number;
 
   @Column
-  date!: number;
+  date!: string;
 
   @Column
   rating!: number;
