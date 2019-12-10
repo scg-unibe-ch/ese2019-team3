@@ -9,7 +9,7 @@ The event service platform is an app which companies can offer their services. O
 ## Prerequisites
 - You should have Node.js and NPM installed (NPM is installed automatically with latest versions of Node.js) which are needed by both frontend and backend projects. You can verify whether you have both by running node -v and npm -v in terminal or command prompt.
 - You should have Angular CLI globally installed on your machine (npm in-stall -g @angular/cli).
-- You should have materialize globally installed on your machine (npm install ngx-materialze).
+- You should have materialize globally installed on your machine (npm install ngx-materialize).
 
 
 ## Understanding project structure
