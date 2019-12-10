@@ -86,7 +86,7 @@
     >
       Passwort ändern
     </button>
-    <button mat-button routerLink="addService">Service hinzufügen</button>
+    <button *ngIf="isProvider()" mat-button routerLink="addService">Service hinzufügen</button>
     <button mat-button color="warn">Profil löschen</button>
   </mat-card>
 </div>
