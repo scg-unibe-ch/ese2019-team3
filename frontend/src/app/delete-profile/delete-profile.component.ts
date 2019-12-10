@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthenticationService } from "../authentication.service";
+import { HomeComponent } from '../home/home.component';
 
 @Component({
   selector: "app-delete-profile",
@@ -7,7 +8,7 @@ import { AuthenticationService } from "../authentication.service";
   styleUrls: ["./delete-profile.component.scss"]
 })
 export class DeleteProfileComponent implements OnInit {
-  constructor(private authentification: AuthenticationService) {}
+  constructor(private authentification: AuthenticationService, private home: HomeComponent) {}
 
   ngOnInit() {}
 
@@ -17,9 +18,8 @@ export class DeleteProfileComponent implements OnInit {
       .subscribe(
         res => (
           console.log("Delete Profile: " + res),
-          alert("Ihr Profil wurde erfolgreich gelöscht"),
-          //remove token
-          this.authentification.logOutUser()
+          //remove token and logout
+          this.home.logOut()
           
         ),
         err => console.log(err)

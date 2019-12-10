@@ -4,7 +4,7 @@ import { ServiceService } from "../../service.service";
 import { HeaderComponent } from "../../header/header.component";
 import { DataServiceService } from "../../data-service.service";
 import { AuthenticationService } from "../../authentication.service";
-import { MatDialog } from "@angular/material";
+import { MatDialog, MatSnackBar } from "@angular/material";
 import { BookmedialogComponent } from "src/app/bookmedialog/bookmedialog.component";
 import {CustomerOrProviderGuard} from "../../customerOrProvider.guard";
 import {ProviderGuard} from "../../provider.guard";
@@ -46,6 +46,8 @@ export class SearchresultsComponent implements OnInit {
   public anything: string;
   public city: string;
   d = new Date();
+  message: string;
+  action: string;
 
   s: Service;
   constructor(
@@ -54,7 +56,8 @@ export class SearchresultsComponent implements OnInit {
     private auth: AuthenticationService,
     public bookMeDialog: MatDialog,
     private customerGuard: CustomerOrProviderGuard,
-    private  providerGuard: ProviderGuard
+    private  providerGuard: ProviderGuard,
+    private _snackBar: MatSnackBar
   ) {}
   // s = {city: '', serviceType: '', description: ''}
   loggedIn =  this.auth.loggedIn();
@@ -119,10 +122,14 @@ export class SearchresultsComponent implements OnInit {
 
 
   openDialog(service: Service) {
-    if (this.auth.getToken() == null) {
-      alert(
-        "Bitte registrieren Sie sich als Kunde um unsere Service zu buchen."
-      );
+    if (this.auth.getCurrentUser().userGroup != "customer") {
+      // if
+      this.message =
+        "Bitte registrieren Sie sich als Kunde um unsere Service zu buchen.";
+      this.action = "";
+      this._snackBar.open(this.message, this.action, {
+        duration: 5000
+      });
     } else {
       //calling the dialog and sending him the specific input service data, on which the button has been clicked
       const bookingDialogRef = this.bookMeDialog.open(BookmedialogComponent, {
