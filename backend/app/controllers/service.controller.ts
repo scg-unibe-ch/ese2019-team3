@@ -217,7 +217,7 @@ router.get('/:preis', async (req: Request, res: Response) => {
  * Request type: PUT
  * Body:
  * {
- *     "rating": "number"
+ *     "providerId": "number"
  * }
  */
 router.put('/updateRating',  async (req: Request, res: Response) => {
