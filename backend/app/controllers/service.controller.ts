@@ -49,6 +49,9 @@ router.post('/register', async (req, res) => {
 
 router.get('/', async (req, res) => {
     const service = await Service.findAll();
+    for(let i = 0; i < service.length; i++){
+        await updateRatings(service[i].providerId.toString());
+    }
     res.statusCode = 200;
     res.send(service.map(e => e.toSimplification()));
     });
@@ -101,6 +104,7 @@ router.put('/:id', async (req: Request, res: Response) => {
         });
         return;
     }
+    await updateRatings(service.providerId.toString());
     service.fromSimplification(req.body);
     await service.save();
     res.statusCode = 200;
@@ -122,6 +126,7 @@ router.delete('/:id', async (req: Request, res: Response) => {
         });
         return;
     }
+    await updateRatings(service.providerId.toString());
     service.fromSimplification(req.body);
     await service.destroy();
     res.statusCode = 204;
@@ -195,6 +200,7 @@ router.post('/filter', async (req: Request, res: Response) => {
  */
 router.get('/user/:id', async (req: Request, res: Response) => {
     const userId = parseInt(req.params.id);
+    await updateRatings(userId.toString());
     const user = await Service.findAll({where: {providerId: userId}});
     res.statusCode = 200;
     res.send(user.map(e => e.toSimplification()));
@@ -223,18 +229,26 @@ router.get('/:preis', async (req: Request, res: Response) => {
  */
 router.put('/updateRating',  async (req: Request, res: Response) => {
     const id = req.body.providerId;
+    let average = updateRatings(id);
+    res.statusCode=200;
+    res.send(average.toString());
+});
+
+async function updateRatings(id: string) {
     const service = await Service.findOne({where: {id: id}});
     const ratings = await Booking.findAll({where: {providerId: id}});
-    let sum= 0;
+    let sum = 0;
     let i = 0;
     for (; i < ratings.length; i++) {
         sum += ratings[i].rating;
     }
-    const average = sum / (i+1);
-    service != null ? service.rating = average: res.statusCode=500;
-    res.statusCode=200;
-    res.send(average.toString());
-});
+    const average = sum / (i + 1);
+    if(service != null) {
+        service.rating = average;
+        return average;
+    }
+    throw new Error('No service found');
+}
 
 export const ServiceController: Router = router;
 
