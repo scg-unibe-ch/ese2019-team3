@@ -56,7 +56,7 @@ router.post('/register', async (req, res) => {
         number: user.number,
         birthday: user.birthday,
         iss : getTime(),
-        exp : getTime() + 60000,
+        exp : getTime() + 1200000,
     };
     const token = jwt.sign(payload, 'key');  // 'key' could be any string
     res.statusCode = 201; // Status code: created
@@ -141,7 +141,7 @@ function verifyToken (req: Request, res: Response, next: () => void) {
       res.statusCode = 401;
       res.send('Unauthorized request');
     }
-    const token = req.headers.authorization;
+    let token = req.headers.authorization;
 
     if (token === 'null') {
       res.statusCode = 401;
@@ -329,6 +329,9 @@ router.delete('/:id', async (req: Request, res: Response) => {
     return;
   }
   user.fromSimplification(req.body);
+  if(!user.isVerified) {
+      contact.sendRegistrationDenied(user.email);
+  }
   await user.destroy();
   res.statusCode = 204;
   res.send('user deleted');

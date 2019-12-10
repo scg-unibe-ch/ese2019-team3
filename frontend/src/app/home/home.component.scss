@@ -3,9 +3,20 @@ mat-card{
   padding-bottom: 1%;
   background-color: whitesmoke
 }
-mat-card-title{
-  width: 200px;
+mat-card-title:hover {
+  background-color: darkgoldenrod;
+  color: white;
+  border-radius: 5px;
 }
+mat-card-title {
+  color: darkgoldenrod;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  font-family: "Avenir Next";
+
+}
+
+
 .distanceToTitle{
   width: 65%;
 }

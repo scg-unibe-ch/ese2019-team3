@@ -16,7 +16,6 @@ export class BookingService {
     this.booked = true;
   }
   addService(bookingservice: Booking): Observable<any> {
-    alert(bookingservice.date);
     return this.http.post<any>(this.bookServiceUrl, bookingservice);
   }
 }

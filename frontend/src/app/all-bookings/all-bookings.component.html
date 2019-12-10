@@ -1,8 +1,39 @@
-
-<mat-card>
-  <mat-card-title>Buchungsanfragen</mat-card-title>
+<h1 style ="font-family: 'Avenir Next'; font-weight: bolder; font-size: 50px; color: darkblue; text-align: center;  margin-top: -3%; margin-bottom: 2%;">
+  Meine Buchungen</h1>
+<mat-card class = "booking" *ngFor="let booking of Bookings">
+  <mat-card-title style =  "color: darkblue; font-weight: bolder">{{booking.serviceInfo.serviceTitle}}</mat-card-title>
+  <mat-card-subtitle>{{booking.date}}</mat-card-subtitle>
   <mat-card-content>
-    <br>
+    <p>{{booking.date}}</p>
+    <p>{{booking.serviceInfo.serviceType}} in <b>{{booking.serviceInfo.city}}</b> </p>
+    <p *ngIf="isCustomer(this.user)">{{booking.serviceInfo.provider}}</p>
+    <p>{{booking.serviceInfo.description}}</p>
+    <p>{{booking.serviceInfo.price}}</p>
+    <p><u>{{booking.bookingStatus}}</u></p>
+    <p *ngIf="ratingPossibleIfCustomer(booking)">
+      <ngb-rating
+              [(rate)]="booking.rating" (hover)="hovered=$event" (leave)="hovered=0" [readonly]="true"
+              max="5"  (click)="this.rateBooking(booking)">
+      </ngb-rating>
+        Noch nicht bewertet
+    </p>
+    <p *ngIf="booking.rating != null">
+      <ngb-rating
+              [(rate)]="booking.rating"  [readonly]="true" max="5">
+      </ngb-rating>
+    </p>
+    <p *ngIf="isProvider(this.user)&& showRatingForProvider(booking)">
+      <ngb-rating
+              [(rate)]="booking.rating"  [readonly]=true
+              max="5">
+      </ngb-rating>
+    </p>
+    <p *ngIf="isProvider(this.user)&& !showRatingForProvider(booking)">
+      Buchung noch nicht bewertet
+    </p>
+  </mat-card-content>
+
+    <!--<br>
     <table mdbTable>
       <thead>
       <tr>
@@ -17,7 +48,7 @@
         <th>Bewertung</th>
       </tr>
       </thead>
-      <!-- lists all unverified users that are being fetched from backend-->
+       lists all unverified users that are being fetched from backend
       <tbody>
       <tr mdbTableCol *ngFor="let booking of Bookings">
         <td>{{booking.date}}</td>
@@ -54,6 +85,6 @@
 
       </tr>
       </tbody>
-    </table>
-  </mat-card-content>
+    </table>-->
+
 </mat-card>

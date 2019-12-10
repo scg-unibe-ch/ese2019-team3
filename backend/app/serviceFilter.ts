@@ -57,10 +57,10 @@ function dateFilter(input: string, services: Service[]): Service[] {
 }
 
 
-function servicesFilter(input: string,services: Service[]): Service[]{
+export function servicesFilter(input: string,services: Service[]): Service[]{
     return services.filter(service => service.serviceType == input);
 }
 
-function locationFilter(input: string,services: Service[]): Service[]{
+export function locationFilter(input: string,services: Service[]): Service[]{
     return services.filter(service => service.city == input);
 }

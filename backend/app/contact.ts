@@ -29,6 +29,22 @@ module.exports = {
     });
 },
 
+    sendRegistrationDenied: function sendRegistrationDenied(clientMail: string) {
+        var mailOptions = {
+            from: 'cooleseproject@gmail.com',
+            to: clientMail,
+            subject: 'Registration Denied',
+            text: 'Your Registration to our Website has been denied. \nif you think this is a mistake please contact ou Administrator. \n best regards \n your Ese Team'
+        };
+        transporter.sendMail(mailOptions, function (error: any, info: { response: string; }) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email sent: ' + info.response);
+            }
+        });
+    },
+
     sendValidatedEmail: function sendValidatedEmail(clientMail: string) {
     var mailOptions = {
         from: 'cooleseproject@gmail.com',
