@@ -30,6 +30,9 @@ export class Service extends Model<Service> {
    @Column
   city!: string;
 
+   @Column
+   rating!: number;
+
 
 
 
@@ -42,7 +45,8 @@ export class Service extends Model<Service> {
       'providerId': this.providerId,
       'price': this.price,
       'description': this.description,
-      'city': this.city
+      'city': this.city,
+      'rating': this.rating
     };
   }
 
@@ -54,7 +58,7 @@ export class Service extends Model<Service> {
     this.price = simplification['price'];
     this.description = simplification['description'];
     this.city = simplification['city'];
-
+    this.rating = simplification['rating'];
 
   }
 
@@ -63,8 +67,9 @@ export class Service extends Model<Service> {
     this.serviceTitle = 'essen';
     this.description = 'Sehr feines Essen';
     this.providerId = 2;
-    this.price = 50;
+    this.price = "50";
     this.city= 'Bern';
+    this.rating = 2;
   }
 
 

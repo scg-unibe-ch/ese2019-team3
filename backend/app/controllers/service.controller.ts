@@ -1,5 +1,6 @@
 import {Request, Response, Router} from 'express';
 import {Service} from '../models/service.model';
+import {Booking} from '../models/booking.model';
 import {filterFunction} from '../serviceFilter';
 
 const fullTextSearch = require('full-text-search');
@@ -210,6 +211,29 @@ router.get('/:preis', async (req: Request, res: Response) => {
     res.send(user.map(e => e.toSimplification()));
 });
 
+/**
+ * Method to update Rating and return it
+ * Path: ./service/updateRating
+ * Request type: PUT
+ * Body:
+ * {
+ *     "rating": "number"
+ * }
+ */
+router.put('/updateRating',  async (req: Request, res: Response) => {
+    const id = req.body.providerId;
+    const service = await Service.findOne({where: {id: id}});
+    const ratings = await Booking.findAll({where: {providerId: id}});
+    let sum= 0;
+    let i = 0;
+    for (; i < ratings.length; i++) {
+        sum += ratings[i].rating;
+    }
+    const average = sum / (i+1);
+    service != null ? service.rating = average: res.statusCode=500;
+    res.statusCode=200;
+    res.send(average.toString());
+});
 
 export const ServiceController: Router = router;
 

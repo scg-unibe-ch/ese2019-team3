@@ -410,6 +410,37 @@
         }
       }
     },
+    "/service/updateRating": {
+      "put": {
+        "tags": [
+          "Services"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "providerId",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Service"
+            }
+          }
+        ],
+        "summary": "Show average rating of a service",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "500": {
+            "description": "Couldn't find the Service"
+          }
+        }
+      }
+    },
     "/service/register": {
       "post": {
         "tags": [
@@ -1040,6 +1071,9 @@
 
         "provider": {
           "type": "string"
+        },
+        "rating": {
+          "type": "number"
         },
         "serviceTitle": {
           "type": "string"
