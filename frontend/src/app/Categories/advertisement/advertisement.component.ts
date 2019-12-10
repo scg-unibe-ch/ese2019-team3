@@ -26,6 +26,7 @@ export class AdvertisementComponent implements OnInit {
   public city: string;
   message: string;
   action: string;
+  public r: number;
 
   constructor(private service: ServiceService, private auth: AuthenticationService,
               private providerGuard: ProviderGuard, private _snackBar: MatSnackBar, public bookMeDialog: MatDialog, private customerGuard: CustomerOrProviderGuard) {
@@ -46,6 +47,7 @@ export class AdvertisementComponent implements OnInit {
       serviceType: 'Werbung',
       price: this.price,
       city: this.city,
+      rating: this.r
     };
     this.getAdvert(fObject);
     JSON.stringify(fObject);
