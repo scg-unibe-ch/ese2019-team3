@@ -4,7 +4,6 @@
   <mat-card-title style =  "color: darkblue; font-weight: bolder">{{booking.serviceInfo.serviceTitle}}</mat-card-title>
   <mat-card-subtitle>{{booking.date}}</mat-card-subtitle>
   <mat-card-content>
-    <p>{{booking.date}}</p>
     <p>{{booking.serviceInfo.serviceType}} in <b>{{booking.serviceInfo.city}}</b> </p>
     <p *ngIf="isCustomer(this.user)">{{booking.serviceInfo.provider}}</p>
     <p>{{booking.serviceInfo.description}}</p>

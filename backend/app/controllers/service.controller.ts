@@ -229,8 +229,8 @@ router.get('/:preis', async (req: Request, res: Response) => {
 router.put('/updateRating',  async (req: Request, res: Response) => {
     const id = req.body.serviceId;
     let service = await updateRatings(id);
-    await service.save();
     res.statusCode = 200;
+    res.send(service);
 });
 
 async function updateRatings(id: string): Promise<Service> {

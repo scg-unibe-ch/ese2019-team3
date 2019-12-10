@@ -34,8 +34,7 @@ export class BookmedialogComponent implements OnInit {
       providerId: this.data.providerId,
       serviceId: this.data.id,
       date: this.bookingForm.get("date").value.toLocaleDateString(),
-      // add to the backend
-      comment: this.bookingForm.get("comment").value
+      description: this.bookingForm.get("comment").value
     };
     console.log("Current Service Object " + JSON.stringify(this.data));
     console.log("Booking Object " + JSON.stringify(this.booking));
