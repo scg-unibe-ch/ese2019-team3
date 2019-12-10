@@ -59,7 +59,6 @@ export class AllBookingsComponent implements OnInit {
     console.log(booking.rating);
     this.allBookings.rateBooking(booking).subscribe(res => alert(res), err => console.log(err));
     this.allBookings.updateService(booking);
-    console.log(this.allBookings.updateService(booking) ,test);
     this.getBookings();
 
   }

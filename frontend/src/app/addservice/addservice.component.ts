@@ -37,6 +37,7 @@ export class AddserviceComponent implements OnInit {
   d = new Date();
   private price: string;
   private about: string; // evt. json file!
+  private  r: number;
 
 
   constructor(private http: HttpClient,
@@ -68,6 +69,7 @@ export class AddserviceComponent implements OnInit {
         description: this.about,
         providerId :  this.authentification.getCurrentUser().id,
         provider : this.authentification.getCurrentUser().lastname,
+        rating: this.r,
     };
     console.log('Adding new Service', addService);
     // calls method to post the registerUser to the backend
