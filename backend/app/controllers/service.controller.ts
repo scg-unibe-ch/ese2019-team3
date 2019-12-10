@@ -229,8 +229,8 @@ router.get('/:preis', async (req: Request, res: Response) => {
 router.put('/updateRating',  async (req: Request, res: Response) => {
     const id = req.body.serviceId;
     let service = await updateRatings(id);
-    res.statusCode=200;
-    res.send(service.rating.toString());
+    await service.save();
+    res.statusCode = 200;
 });
 
 async function updateRatings(id: string): Promise<Service> {
@@ -239,8 +239,8 @@ async function updateRatings(id: string): Promise<Service> {
     const ratings = await Booking.findAll({where: {serviceId: intID}});
     let sum = 0;
     let average = 0;
-    let i = 0;
     if(ratings.length > 0) {
+        let i = 0;
         for (; i < ratings.length; i++) {
             sum += ratings[i].rating;
         }
