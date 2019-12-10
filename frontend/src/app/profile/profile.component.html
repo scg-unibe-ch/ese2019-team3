@@ -1,6 +1,7 @@
+<div class = "background">
 <div class="profile-box" [formGroup]="profileForm">
   <mat-card>
-    <mat-card-title>Mein Profile</mat-card-title>
+    <mat-card-title>Mein Profil</mat-card-title>
     <mat-card-content>
       <mat-list>
         <mat-list-item>
@@ -83,9 +84,10 @@
       color="primary"
       type="submit"
     >
-      Change Password
+      Passwort ändern
     </button>
-    <button mat-button routerLink="addService">Add Service</button>
-    <button mat-button color="warn" routerLink="DeleteProfile">Profil löschen</button>
+    <button *ngIf="isProvider()" mat-button routerLink="addService">Service hinzufügen</button>
+    <button mat-button color="warn">Profil löschen</button>
   </mat-card>
+</div>
 </div>

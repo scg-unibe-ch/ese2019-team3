@@ -1,9 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8704b63c-4c20-4746-872b-9573fee9748e" name="Default" comment="-">
+    <list default="true" id="8704b63c-4c20-4746-872b-9573fee9748e" name="Default" comment="added authentication to booking request in html">
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/home/forest.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/home/mountain.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/db.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/backend/db.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/user-group.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/user-group.guard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/Categories/advertisement/advertisement.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/Categories/advertisement/advertisement.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/Categories/advertisement/advertisement.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/Categories/advertisement/advertisement.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/Categories/food-and-drink/food-and-drink.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/Categories/food-and-drink/food-and-drink.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/Categories/food-and-drink/food-and-drink.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/Categories/food-and-drink/food-and-drink.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/Categories/light-and-stage/ligth-and-stage.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/Categories/light-and-stage/ligth-and-stage.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/Categories/light-and-stage/ligth-and-stage.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/Categories/light-and-stage/ligth-and-stage.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/Categories/music/music.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/Categories/music/music.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/Categories/music/music.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/Categories/music/music.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/Categories/searchresults/searchresults.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/Categories/searchresults/searchresults.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/Categories/searchresults/searchresults.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/Categories/searchresults/searchresults.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/addservice/addservice.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/addservice/addservice.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/addservice/addservice.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/addservice/addservice.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/header/header.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/header/header.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/profile/profile.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/profile/profile.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/profile/profile.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/profile/profile.component.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,7 +31,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Filter" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -75,13 +92,17 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="Errors" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/backend/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/frontend/src/assets/home" />
-      <recent name="$PROJECT_DIR$/frontend/src/app/Categories" />
+      <recent name="$PROJECT_DIR$/frontend/src/app/footer/aboutus" />
+      <recent name="$PROJECT_DIR$/frontend/src/app/footer/aboutus/about us" />
+      <recent name="$PROJECT_DIR$/frontend/src/app/body" />
+      <recent name="$PROJECT_DIR$/frontend/src/app/body/slideshow" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -191,6 +212,12 @@
       <workItem from="1574716833320" duration="2117000" />
       <workItem from="1574842766665" duration="1941000" />
       <workItem from="1574856559416" duration="8203000" />
+      <workItem from="1575208743748" duration="17840000" />
+      <workItem from="1575413368397" duration="23251000" />
+      <workItem from="1575485302260" duration="16954000" />
+      <workItem from="1575619984868" duration="7041000" />
+      <workItem from="1575713497968" duration="4404000" />
+      <workItem from="1575910732338" duration="751000" />
     </task>
     <task id="LOCAL-00001" summary="-">
       <created>1573655861690</created>
@@ -227,7 +254,49 @@
       <option name="project" value="LOCAL" />
       <updated>1574870168158</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added styling to login and home">
+      <created>1575225845875</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1575225845875</updated>
+    </task>
+    <task id="LOCAL-00007" summary="myservices component and WIP search services, display on new site">
+      <created>1575485170942</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1575485170942</updated>
+    </task>
+    <task id="LOCAL-00008" summary="changed language">
+      <created>1575533751053</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1575533751053</updated>
+    </task>
+    <task id="LOCAL-00009" summary="filter works">
+      <created>1575566810200</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1575566810200</updated>
+    </task>
+    <task id="LOCAL-00010" summary="merging">
+      <created>1575834193101</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1575834193101</updated>
+    </task>
+    <task id="LOCAL-00011" summary="added authentication to booking request in html">
+      <created>1575930377593</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1575930377593</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -252,7 +321,13 @@
     <MESSAGE value="styled search results in one component" />
     <MESSAGE value="WIP results in componenet. created a component for each category." />
     <MESSAGE value="-" />
-    <option name="LAST_COMMIT_MESSAGE" value="-" />
+    <MESSAGE value="added styling to login and home" />
+    <MESSAGE value="myservices component and WIP search services, display on new site" />
+    <MESSAGE value="changed language" />
+    <MESSAGE value="filter works" />
+    <MESSAGE value="merging" />
+    <MESSAGE value="added authentication to booking request in html" />
+    <option name="LAST_COMMIT_MESSAGE" value="added authentication to booking request in html" />
   </component>
   <component name="masterDetails">
     <states>

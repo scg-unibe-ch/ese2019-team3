@@ -1,0 +1,96 @@
+.column1 .btn {
+  position: absolute;
+  top : 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: whitesmoke;
+  color: black;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: "Avenir Next";
+}
+
+.column1 .btn:hover {
+  background-color: black;
+  color: whitesmoke;
+}
+.column1 {
+  position: relative;
+  display: inline-block;
+  padding: 2%;
+  width: 50%;
+  overflow: hidden;
+  padding-bottom: 7%;
+  transition: .5s ease;
+
+}
+.column1:hover .image  {
+  text-align: center;
+  margin-top: -2%;
+  opacity: 0.3;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.column1:hover .aboutme {
+  opacity: 1;
+}
+
+.aboutme {
+  font-family: "Avenir Next";
+  font-weight: bolder;
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%)
+}
+
+ .center {
+  position: relative;
+  display: block;
+  padding: 2%;
+  width: 50%;
+  overflow: hidden;
+  padding-bottom: 7%;
+  transition: .5s ease;
+  margin-left: auto;
+   margin-right: auto;
+}
+
+ .center .btn {
+   position: absolute;
+   top : 60%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   -ms-transform: translate(-50%, -50%);
+   background-color: whitesmoke;
+   color: black;
+   font-size: 16px;
+   padding: 12px 24px;
+   border: none;
+   cursor: pointer;
+   border-radius: 5px;
+   font-family: "Avenir Next";
+ }
+
+.center:hover .image  {
+  text-align: center;
+  margin-top: -2%;
+  opacity: 0.3;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+.center:hover .aboutme {
+  opacity: 1;
+}
+
+.row {
+  margin-bottom: -30%;
+}

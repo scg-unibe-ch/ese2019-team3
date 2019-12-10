@@ -3,6 +3,9 @@ import {ServiceService} from "../../service.service";
 import {Service} from "../../models/service";
 import {MatDialog} from "@angular/material"
 import { BookmedialogComponent } from 'src/app/bookmedialog/bookmedialog.component';
+import {AuthenticationService} from "../../authentication.service";
+import {CustomerOrProviderGuard} from "../../customerOrProvider.guard";
+import {ProviderGuard} from "../../provider.guard";
 
 @Component({
   selector: 'app-ligth-and-stage',
@@ -22,8 +25,12 @@ export class LightAndStageComponent implements OnInit {
   public anything: string;
   public city: string;
 
-  constructor(private service: ServiceService, public bookMeDialog: MatDialog) {
+  constructor(private service: ServiceService, public bookMeDialog: MatDialog, private auth: AuthenticationService,
+              private customerGuard: CustomerOrProviderGuard, private providerGuard: ProviderGuard) {
   }
+  loggedIn =  this.auth.loggedIn();
+  customer  = this.customerGuard.isCustomerOrProvider();
+  provider = this.providerGuard.isProvider();
 
   openDialog(service: Service){
 

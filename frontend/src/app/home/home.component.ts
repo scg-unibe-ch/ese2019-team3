@@ -1,14 +1,17 @@
+
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService} from '../authentication.service';
 import { AdminGuard} from '../admin.guard';
 import { Router} from '@angular/router';
 import {ProviderGuard} from '../provider.guard';
-import {MyServicesGuard} from '../myServices.guard';
+
+import {CustomerOrProviderGuard} from '../customerOrProvider.guard';
+
 
 @Component({
-  selector: "app-home",
-  templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.scss"]
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
   loggedIn = this.auth.loggedIn();
@@ -20,8 +23,14 @@ export class HomeComponent implements OnInit {
   public lastname: string;
   public profileId: string;
 
-  constructor(private auth: AuthenticationService, private adminGuard: AdminGuard, private router: Router,
-              private providerGuard: ProviderGuard, private customerGuard: MyServicesGuard) {
+
+  constructor(
+      private auth: AuthenticationService,
+      private adminGuard: AdminGuard,
+      private router: Router,
+      private providerGuard: ProviderGuard,
+      private customerGuard: CustomerOrProviderGuard) {
+
   }
 
   ngOnInit() {
@@ -29,8 +38,8 @@ export class HomeComponent implements OnInit {
     this.getUsername();
     this.getProfileId();
 
-    console.warn("Your ProfileId"+this.profileId);
-    console.warn("Your Profile Name"+JSON.stringify(this.auth.getCurrentUser()));
+    console.warn('Your ProfileId' + this.profileId);
+    console.warn('Your Profile Name' + JSON.stringify(this.auth.getCurrentUser()));
 
   }
 
@@ -50,17 +59,16 @@ export class HomeComponent implements OnInit {
 
   logOut() {
     // Test
-    alert("Sie wurden erfolgreich abgemeldet");
+    alert('Sie wurden erfolgreich abgemeldet');
     this.auth.logOutUser();
     this.updateUserStatus();
     this.router.navigate(['']);
   }
 
-  updateUserStatus(){
+  updateUserStatus() {
     this.loggedIn = this.auth.loggedIn();
     this.isAdmin = this.adminGuard.isAdmin();
     this.isProvider = this.providerGuard.isProvider();
-    this.router.navigate([""]);
     this.isCustomer = this.customerGuard.isCustomerOrProvider();
   }
 }

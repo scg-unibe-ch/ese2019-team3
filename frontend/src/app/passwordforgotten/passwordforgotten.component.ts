@@ -20,9 +20,9 @@ export class PasswordforgottenComponent implements OnInit {
 
   getErrorMessage() {
     return this.email.hasError("required")
-      ? "You must enter a valid email"
+      ? "Es muss eine gültige E-Mail eingegeben werden"
       : this.email.hasError("email")
-      ? " Not a valid email"
+      ? "Ungültige E-Mail"
       : "";
   }
 

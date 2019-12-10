@@ -1,5 +1,5 @@
 
-<h1 align = "center ">Make every occasion memorable!</h1>
+<h1 align = "center " style = "margin-top: -2%">Mache jeden Augenblick zu etwas Besonderem!</h1>
 <br>
 <br>
 
@@ -21,19 +21,30 @@
       <button class = "btn" routerLink = "/music" routerLinkActive="active"> Musik </button>
     </div>
   </div>
+<div class = "anmelden" *ngIf= "!loggedIn">
+<h1 align = "center" style = "margin-top: 5%; ">Bieten Sie einen Service an?</h1>
+<p style = "padding-bottom : 3%"align = "center"> Das geht ganz einfach mit uns! Registrieren, Service hinzufügen und auf eine Buchung warten!</p>
 
-<h1 align = "center">Are you a service provider?</h1>
-<p style = "padding-bottom : 5%"align = "center"> Fairly easy with us! Register, add your Service and wait for a booking request.</p>
-<div class = "review">
-  <img class = "image" src = "../../assets/home/concert.png" alt = "concert">
+<div class =  "wrapper">
+<button class = "button" routerLink = "/Registration" routerLinkActive="active"> Hier anmelden! </button>
 </div>
-
-
-
+</div>
+<!-- make slideshow -->
 <!--
-<div id = "title">
-  Find your service provider...
-  <button [routerLink]= "['/essenundtrinken']">Essen&Trinken </button>
+<div class = "slideshowcontainer" *ngIf = "images">
+  <div class = "slideshow-container">
+    <img *ngFor="let images of images; let i = index" style = "width: 50%"
+    [src] = "images"
+    [ngClass]="{'image-active': selectedIndex==i}" >
+    <div class = "text">Caption</div>
 
+    <div style="text-align:center; display:inline-block;"  *ngFor="let number of images; let i=index">
+            <span class="dot"
+                  (click)="selectImage(i)"
+                  [ngClass]="{'active': selectedIndex == i}">
+            </span>
+    </div>
+  </div>
 </div>
 -->
+

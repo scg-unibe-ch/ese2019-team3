@@ -6,7 +6,7 @@
     </mat-card-title>
     <div class="distanceToTitle"></div>
 
-    <button id="search" mat-button>Search</button>
+
     <!-- Login Button, only visible when logged out-->
     <button
       *ngIf="!loggedIn"
@@ -15,7 +15,7 @@
       routerLink="/LogIn"
       routerLinkActive="active"
     >
-      Log In
+      Anmelden
     </button>
     <!-- Logout Button, only visible when logged in-->
     <button
@@ -26,13 +26,13 @@
       routerLink=""
       routerLinkActive="active"
     >
-      Log out
+      Abmelden
     </button>
     <!--Registration Button, only visible when logged out-->
     <div class="divider"></div>
     <button *ngIf="!loggedIn" mat-button
       class ="registrationButtonButton" routerLink="/Registration"
-      routerLinkActive="active"> Register
+      routerLinkActive="active"> Registrieren
     </button>
     <!--Profile Button, only visible when logged in-->
 
@@ -42,25 +42,46 @@
 
     <mat-menu #menu>
       <mat-list-item> Hello, {{ firstname }}</mat-list-item>
+      <!--Profile Button, visible if customer or provider-->
       <button *ngIf="loggedIn" mat-menu-item
         class = "profileButton" routerLink="/Profile" routerLinkActive="active">
-        Profile
+        Profil
       </button>
+      <!--My Services Button, visible if provider-->
       <button
         mat-menu-item
-        *ngIf="isProvider || isCustomer"
+        *ngIf="isProvider"
         routerLink="/Profile/myservices"
         routerLinkActive="active"
       >
-        My Services
+       Meine Services
       </button>
+      <!--Add Service Button, only for providers-->
       <button
         mat-menu-item
         *ngIf="isProvider"
         routerLink="/Profile/addService"
         routerLinkActive="active"
       >
-        Add Service
+        Service hinzufügen
+      </button>
+      <!--Booking Requests Button, only for providers-->
+      <button
+              mat-menu-item
+              *ngIf="isProvider"
+              routerLink="/bookingRequests"
+              routerLinkActive="active"
+      >
+        Anfragen
+      </button>
+      <!--All Bookings Button, visible if customer or provider-->
+      <button
+              mat-menu-item
+              *ngIf="isProvider || isCustomer"
+              routerLink="/allBookings"
+              routerLinkActive="active"
+      >
+        Alle Buchungen
       </button>
       <!--Admin Button, only visible when logged in as Admin-->
       <button

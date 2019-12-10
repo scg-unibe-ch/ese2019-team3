@@ -48,28 +48,11 @@ export class AuthenticationService {
     );
   }
 
-  // getEmail(): string {
-  //   //usage
-
-  //   const token = localStorage.getItem("token");
-  //   this.emailtoken = this.getDecodedAccessToken(token).email;
-
-  //   this.loggedInUser = this.getDecodedAccessToken(token);
-  //   //localStorage.getItem("token")
-  //   return this.emailtoken;
-  // }
   getCurrentUser(): any {
     const token = localStorage.getItem('token');
     return this.getDecodedAccessToken(token);
   }
-  // loginUer(user) {
-  //   return this.http.post<any>(this.loginUrl, user).pipe(
-  //     //getting token parameter, doesn't modify stream only saves the one into the for
-  //     tap(token => {
-  //       this.loggedInUser = user;
-  //     })
-  //   );
-  // }
+
   logOutUser() {
     localStorage.removeItem('token');
   }
@@ -122,11 +105,12 @@ export class AuthenticationService {
     return this.http.post<any>(this.addServiceUrl, addService);
   }
 
-  checkPassword(checkUser: Object) /*: Observable<boolean> */ {
+  checkPassword(checkUser: object) /*: Observable<boolean> */ {
     return this.http.post<any>(this.checkPasswordUrl, checkUser);
   }
 
   deleteProfile(id: any ){
     return this.http.delete<any>(this.rootUrl + id);
   }
+
 }

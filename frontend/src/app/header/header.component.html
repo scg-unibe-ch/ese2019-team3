@@ -2,12 +2,6 @@
 <div class="navigation">
   <!-- When logged in -- @TODO authentication.loggedIn and authentication.isUser method in authentication service  -->
 
- <div class = "top">
-    <button class = "navigation"[routerLink] = "['/profile']" *ngIf="authentication.loggedIn()">
-      Profile
-    </button>
-  </div>
-
   <!--search form -->
    <div class = "main">
        <mat-card class = "searchfield">
@@ -19,9 +13,9 @@
   <mat-list-item>
    <form class = "btn" style="float: left;margin-left: 2%">
     <mat-form-field >
-      <mat-label> All Locations </mat-label>
+      <mat-label> Alle Orte</mat-label>
         <mat-select id = "location" [(ngModel)] = "city" name="location" >
-          <mat-option> None </mat-option>
+          <mat-option> Nichts </mat-option>
           <mat-option *ngFor = "let locations of locations " [value]  = "locations"> {{locations}} </mat-option>
         </mat-select>
     </mat-form-field>
@@ -31,9 +25,9 @@
   <mat-list-item>
    <form class ="btn" style="float: left; margin-left: 2%; margin-bottom: 1%; ">
     <mat-form-field>
-      <mat-label> All Services </mat-label>
+      <mat-label> Alle Angebote </mat-label>
       <mat-select id = "services" [(ngModel)]="categorie" name="services" >
-        <mat-option> None </mat-option>
+        <mat-option> Nichts </mat-option>
         <mat-option *ngFor = "let services of services" [value] = "services"> {{services}}</mat-option>
       </mat-select>
     </mat-form-field>
@@ -54,7 +48,7 @@
  <mat-list-item>
    <form class = "btn" style="float: left; margin-left: 2%; margin-right: 5%;">
      <mat-form-field class = "InputBtn">
-      <input [(ngModel)] = "anything" name = "anything" matInput placeholder="Search for anything" >
+      <input [(ngModel)] = "anything" name = "anything" matInput placeholder="Irgendetwas suchen." >
      </mat-form-field>
     </form>
  </mat-list-item>
@@ -66,7 +60,7 @@
             mat-stroked-button
             style="float:right; margin-right: 10%; margin-top: -0.5%"
             (click) = onSubmit()>
-        Search</button>
+        Suchen</button>
   </mat-list-item>
 
 
@@ -76,7 +70,7 @@
 
   </div> <!--/main -->
 
-
+<!--
     <div>
         <table>
             <tr>
@@ -85,7 +79,7 @@
                 <th>Price</th>
             </tr>
 
-            <!-- lists all users that are being fetched from backend-->
+
 
             <tr *ngFor="let service of Services">
                 <td>{{service.serviceTitle}}</td>
@@ -94,7 +88,7 @@
             </tr>
         </table>
     </div>
-
+-->
 <!--
 <div class = "categories">
     <div class = "row1">

@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit {
     company: new FormControl('')
   });
 
-
+/* @TODO notifications if new booking request/whether request was accepted or not*/
   constructor(
     private http: HttpClient,
     private authentification: AuthenticationService

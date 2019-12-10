@@ -23,8 +23,8 @@ router.get('/', async (req: Request, res: Response) => {
 router.get('/client/:id', async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
     const booking = await Booking.findAll({ include: [{
-        model: Service], where: {clientId: id}
-        }); //https://sequelize-guides.netlify.com/search-operators/
+        model: Service}], where: {clientId: id}
+        }); // https://sequelize-guides.netlify.com/search-operators/
     res.statusCode = 200;
     res.send(booking);
 });
@@ -36,7 +36,8 @@ router.get('/client/:id', async (req: Request, res: Response) => {
  */
 router.get('/provider/:id', async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
-    const booking = await Booking.findAll({where: {providerId: id} }); //https://sequelize-guides.netlify.com/search-operators/
+    const booking = await Booking.findAll({ include: [{
+            model: Service}], where: {providerId: id} }); // https://sequelize-guides.netlify.com/search-operators/
     res.statusCode = 200;
     res.send(booking);
 });
@@ -47,8 +48,9 @@ router.get('/provider/:id', async (req: Request, res: Response) => {
  */
 router.get('/provider/requests/:id', async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
-    //https://sequelize-guides.netlify.com/search-operators/
-    const booking = await Booking.findAll({where: {providerId: id, bookingStatus: 'request'} });
+    // https://sequelize-guides.netlify.com/search-operators/
+    const booking = await Booking.findAll({ include: [{
+            model: Service}], where: {providerId: id, bookingStatus: 'request'} });
     res.statusCode = 200;
     res.send(booking);
 });
@@ -61,7 +63,7 @@ router.get('/provider/requests/:id', async (req: Request, res: Response) => {
  */
 router.get('/client/rate/:id', async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
-    //https://sequelize-guides.netlify.com/search-operators/
+    // https://sequelize-guides.netlify.com/search-operators/
     const booking = await Booking.findAll({where: {date: { [Op.lte]: Date.now()}, clientId: id, bookingStatus: 'accepted', rating: { [Op.is]: null }} });
     res.statusCode = 200;
     res.send(booking);
@@ -72,7 +74,7 @@ router.post('/register', async (req: Request, res: Response) => {
     booking.fromSimplification(req.body);
     booking.bookingStatus = 'request';
     console.log(new Date(req.body.date).getTime());
-    booking.date = parseInt(new Date(req.body.dates).getTime()); //convert date format from date picker to unix time stamp
+    booking.date = parseInt(new Date(req.body.dates).getTime()); // convert date format from date picker to unix time stamp
 
     await booking.save().then ( async() => {
     });
@@ -97,11 +99,11 @@ router.put('/rate', async (req: Request, res: Response) => {
 
     res.statusCode = 200;
     res.send('Service rated!');
-   await updateRating(providerId)
+   await updateRating(providerId);
 });
 
 async function updateRating(providerId: number) {
-    console.log(providerId)
+    console.log(providerId);
     const user = await User.findOne({where: {id: providerId}});
     const bookings = await Booking.findAll({where: {providerId: providerId}});
     if (bookings != null) {
@@ -125,14 +127,14 @@ async function updateRating(providerId: number) {
 router.put('/accept/:id', async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
     const booking = await Booking.findOne({where: {id: id}});
-    if (booking!=null){
+    if (booking != null) {
     booking.bookingStatus = 'accepted';
     await booking.save().then ( async() => {
     });
     res.send('booking accepted');
-    res.status(200);
+    res.status(400);
     } else {
-        res.statusCode = 400;
+        res.statusCode = 200;
         res.send('Booking not found');
     }
 
@@ -141,14 +143,14 @@ router.put('/accept/:id', async (req: Request, res: Response) => {
 router.put('/decline/:id', async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
     const booking = await Booking.findOne({where: {id: id}});
-    if (booking!=null){
+    if (booking != null) {
         booking.bookingStatus = 'declined';
         await booking.save().then ( async() => {
         });
         res.send('booking declined');
-        res.status(200);
+        res.status(400);
     } else {
-        res.statusCode = 400;
+        res.statusCode = 200;
         res.send('Booking not found');
     }
 

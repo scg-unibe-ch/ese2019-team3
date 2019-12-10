@@ -9,7 +9,7 @@
       <div class = "f1">
         <mat-list-item>
           <mat-form-field>
-            <mat-label>Service Title</mat-label>
+            <mat-label>Titel</mat-label>
             <textarea matInput [(ngModel)]="serviceTitle" name = "serviceTitle"
                       cdkTextareaAutosize
                       #autosize="cdkTextareaAutosize"
@@ -23,9 +23,9 @@
       <div class = "f1">
       <mat-list-item>
         <mat-form-field>
-          <mat-label>Service Category</mat-label>
+          <mat-label>Service Kategorie</mat-label>
           <mat-select id = "service" [(ngModel)]="s" name = "service">
-            <mat-option> None</mat-option>
+            <mat-option> - </mat-option>
             <mat-option *ngFor = "let services of services " [value]  = "services"> {{services}} </mat-option>
           </mat-select>
         </mat-form-field>
@@ -35,15 +35,15 @@
       <div class ="f1">
       <mat-list-item>
         <mat-form-field>
-          <mat-label>Where?</mat-label>
+          <mat-label>Ort</mat-label>
           <mat-select id = "location" [(ngModel)]="l" name = "location">
-            <mat-option>None</mat-option>
+            <mat-option> - </mat-option>
             <mat-option *ngFor = "let locations of locations " [value] = "locations">{{locations}}</mat-option>
           </mat-select>
         </mat-form-field>
       </mat-list-item>
       </div>
-
+  <!--
       <div class = "f2">
       <mat-list-item>
         <mat-form-field>
@@ -53,7 +53,7 @@
         </mat-form-field>
       </mat-list-item>
       </div>
-
+-->
       <div class = "f3">
       <mat-list-item>
         <mat-form-field>
@@ -79,7 +79,7 @@
 
     <br>
 
-    <button mat-button (click) = onSubmit()> Add Service! </button>
+    <button mat-button (click) = onSubmit() > Add Service! </button>
 
   </mat-card-content>
 </mat-card>

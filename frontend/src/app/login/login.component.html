@@ -1,5 +1,10 @@
-<div class = login-box>
+<div class = "main">
+    <div class = "welcome">
+        <h2 style="font-weight: bold; font-size: 60px; font-family: 'Avenir Next'; color: white; ">Welcome Back!</h2>
+    </div>
 
+
+<div class = "login" style = "font-family: 'Avenir Next'">
   <mat-card>
       <mat-card-title>Login</mat-card-title>
       <mat-card-content>
@@ -13,7 +18,7 @@
               <br>
 
             <mat-form-field>
-                <input formControlName="password" type="password" matInput placeholder="Password">
+                <input formControlName="password" type="password" matInput placeholder="Passwort">
             </mat-form-field>
 
         </form>
@@ -24,15 +29,17 @@
       <button mat-raised-button color="primary" (click)="loginUser()" >Log In</button>
 
       <button mat-button  routerLink="PasswordForgotten"
-              routerLinkActive="active" >Forgot password ? </button>
+              routerLinkActive="active" >Passwort vergessen? </button>
       </p>
       <br>
-      <p>You do not have an account yet?
+      <p>Noch kein Konto?
           <button routerLink="/Registration" mat-button color="primary" type="submit">
-              Register here</button>
+              Hier registrieren</button>
       </p>
-
-  
     </mat-card>
+</div> <!-- right -->
+
+
+
 
 </div>

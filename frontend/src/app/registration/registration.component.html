@@ -1,3 +1,4 @@
+<div class = "main">
 <div class="registration-box" (ngSubmit)="onSubmit()">
   <mat-card>
     <mat-card-title>Registrierung</mat-card-title>
@@ -7,7 +8,7 @@
         <mat-step [stepControl]="registrationForm" [editable]="isEditable">
           <form [formGroup]="registrationForm">
             <ng-template matStepLabel
-              >Fill out your E-mail and Password</ng-template
+              >Geben Sie ihre Email an und wählen Sie ein Passwort.</ng-template
             >
 
             <mat-form-field>
@@ -22,40 +23,47 @@
             <mat-form-field>
               <input
                 matInput
-                placeholder="Password"
+                placeholder="Passwort"
                 formControlName="password"
                 type="password"
                 required
               />
-              <mat-hint>At least 8 letters, capital and small letters and special Characters </mat-hint>
+              <mat-hint>Mindestens 8 Buchstaben, Gross- und Kleinschreibung, Zahlen und Sonderzeichen</mat-hint>
+             
+              
             </mat-form-field>
             <br />
             <br />
-
+            <br />
             <mat-form-field>
               <input
                 matInput
-                placeholder="Confirm Password"
+                placeholder="Passwort bestätigen."
                 formControlName="passwordconfirm"
                 type="password"
                 required
               />
+              <mat-error *ngIf="!validPassword()">
+                Passwörter stimmen nicht überein.
+                 </mat-error
+               >
             </mat-form-field>
+            
 
             <div>
               <button
                 mat-button
                 matStepperNext
                 [disabled]="!validPassword() || !validEmail()"
-              >
-                Next
+              > 
+                Weiter
               </button>
             </div>
           </form>
         </mat-step>
         <mat-step [stepControl]="registrationForm" [editable]="isEditable">
           <form [formGroup]="registrationForm">
-            <ng-template matStepLabel>Fill out your Details</ng-template>
+            <ng-template matStepLabel>Deine Nutzerdaten</ng-template>
 
             <mat-form-field>
               <input
@@ -75,14 +83,19 @@
               />
             </mat-form-field>
             <br />
-            <mat-form-field>
-              <input
-                matInput
-                placeholder="Geburtsdatum"
-                formControlName="birthday"
-                required
-              />
-            </mat-form-field>
+              <mat-form-field>
+                <input
+                  formControlName="birthday"
+                  matInput
+                  [matDatepicker]="picker"
+                  placeholder="Geburtsdatum"
+                  required
+                  disabled
+                  
+                />
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker disabled="false"></mat-datepicker>
+              </mat-form-field>
             <br />
             <mat-form-field>
               <input
@@ -112,7 +125,7 @@
               </p>
               <p>
                 <mat-radio-button value="customer"
-                  >Service-Nachfrager</mat-radio-button
+                  >Kunde</mat-radio-button
                 >
               </p>
             </mat-radio-group>
@@ -126,29 +139,28 @@
                 mat-button
                 matStepperNext
                 (click)="registerUser()"
-                [disabled]="!registrationForm.valid"
+                [disabled]="!registrationForm.valid || !validRadiobutton()"
                 (click)="isEditable = !isEditable"
                 (click)="onSubmit()"
               >
-                Confirm Registration
+                Registrierung bestätigen
               </button>
             </div>
           </form>
         </mat-step>
-        <!-- WIP, either all editable or none -->
         <mat-step [editable]="false">
-          <ng-template matStepLabel>Done</ng-template>
-          You are done with the registration. Please wait 5-10 minutes and check
-          your email.
+          <ng-template matStepLabel>Fertig.</ng-template>
+          In 5-10 Minuten wird Ihnen eine Mail zugesendet
         </mat-step>
       </mat-vertical-stepper>
 
       <p>
-        You already have an account?
+        Sie haben ein Konto?
         <button routerLink="/LogIn" mat-button color="primary" type="submit">
-          Log in
+          Anmelden
         </button>
       </p>
     </mat-card-content>
   </mat-card>
+</div>
 </div>

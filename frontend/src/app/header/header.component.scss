@@ -1,5 +1,4 @@
 .top {
-  height: 2 vh;
   padding-top: 1%;
   padding-bottom: -0.5%;
 }
@@ -8,7 +7,7 @@
 }
 .body{
   width: 100%;
-  height: auto; //1 percent screens size is 1 vh
+  height: auto;
 }
 .logInButton {
   float: right;
@@ -24,7 +23,15 @@
 }
 
 .main {
-  padding-bottom: 10%;
+  padding-bottom: 25%;
+  //margin-bottom: 3%;
+  margin-top: -5%;
+  padding-top: 7%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url("bokeh.jpg");
 }
 
 .InputBtn {
@@ -32,7 +39,7 @@
 }
 
 .searchfield{
-  width: 20%;
+  width: 22%;
   margin: auto;
 
 }
