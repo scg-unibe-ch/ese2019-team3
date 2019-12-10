@@ -4,8 +4,8 @@
     <list default="true" id="8704b63c-4c20-4746-872b-9573fee9748e" name="Default" comment="WIP rating">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/db.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/backend/db.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/Categories/food-and-drink/food-and-drink.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/Categories/food-and-drink/food-and-drink.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/all-bookings.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/all-bookings.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/myservices/myservices.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/myservices/myservices.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/service.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/service.service.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

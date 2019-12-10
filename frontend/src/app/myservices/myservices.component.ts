@@ -64,9 +64,8 @@ export class MyservicesComponent implements OnInit {
 
     }
 
-
     deleteService(provider) {
         this.service.deleteMyService(provider);
-        setTimeout(() => { this.getMyServices(this.authentification.getCurrentUser().id); }, 50);
+        setTimeout(() => {this.getMyServices(this.authentification.getCurrentUser().id)}, 50 );
     }
 }

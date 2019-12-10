@@ -61,7 +61,7 @@ private deleteService = 'http://localhost:3000/service/';
 
 
   deleteMyService(service: Service) {
-   this.http.delete(this.deleteService + service.id).subscribe(res => alert('Dein Angebot wurde gelöscht.'), err => alert(err));
+   this.http.delete(this.deleteService + service.id).subscribe(res => console.log("deleted service"), err => alert(err));
 
   }
 }
