@@ -48,11 +48,12 @@
 
   <mat-card class = "searchresults" *ngFor = "let service of Services">
     <mat-card-title id = "title">{{service.serviceTitle}}</mat-card-title>
-    <mat-card-subtitle id = "subtitle">{{service.city}}</mat-card-subtitle>
+    <mat-card-subtitle id = "subtitle">{{service.serviceType}} in {{service.city}}</mat-card-subtitle>
     <mat-card-content>
       <p> {{service.description}}</p>
       <br>
       <h4>{{service.price}}</h4>
+      <!--<h6>{{service.rating}}</h6>-->
     </mat-card-content>
 
     <mat-card-actions>

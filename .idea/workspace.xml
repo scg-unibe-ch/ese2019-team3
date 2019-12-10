@@ -4,10 +4,8 @@
     <list default="true" id="8704b63c-4c20-4746-872b-9573fee9748e" name="Default" comment="WIP rating">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/db.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/backend/db.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/Categories/advertisement/advertisement.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/Categories/advertisement/advertisement.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/addservice/addservice.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/addservice/addservice.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/all-bookings/all-bookings.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/all-bookings/all-bookings.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/myservices/myservices.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/myservices/myservices.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/Categories/food-and-drink/food-and-drink.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/Categories/food-and-drink/food-and-drink.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/all-bookings.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/all-bookings.service.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -297,7 +295,21 @@
       <option name="project" value="LOCAL" />
       <updated>1576002206837</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="WIP rating">
+      <created>1576004013544</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1576004013544</updated>
+    </task>
+    <task id="LOCAL-00015" summary="WIP rating">
+      <created>1576004664862</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1576004664862</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

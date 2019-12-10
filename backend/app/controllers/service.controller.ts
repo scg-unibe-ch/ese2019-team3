@@ -48,9 +48,9 @@ router.post('/register', async (req, res) => {
 
 
 router.get('/', async (req, res) => {
-    const service = await Service.findAll();
+    let service = await Service.findAll();
     for(let i = 0; i < service.length; i++){
-        await updateRatings(service[i].id.toString());
+       service[i] = await updateRatings(service[i].id.toString());
     }
     res.statusCode = 200;
     res.send(service.map(e => e.toSimplification()));
@@ -96,7 +96,7 @@ router.post('/filter', async (req: Request, res: Response) => {
  */
 router.put('/:id', async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
-    const service = await Service.findByPk(id);
+    let service = await Service.findByPk(id);
     if (service == null) {
         res.statusCode = 404;
         res.json({
@@ -104,7 +104,7 @@ router.put('/:id', async (req: Request, res: Response) => {
         });
         return;
     }
-    await updateRatings(service.id.toString());
+    service = await updateRatings(service.id.toString());
     service.fromSimplification(req.body);
     await service.save();
     res.statusCode = 200;
@@ -118,7 +118,7 @@ router.put('/:id', async (req: Request, res: Response) => {
  */
 router.delete('/:id', async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
-    const service = await Service.findByPk(id);
+    let service = await Service.findByPk(id);
     if (service == null) {
         res.statusCode = 404;
         res.json({
@@ -126,7 +126,7 @@ router.delete('/:id', async (req: Request, res: Response) => {
         });
         return;
     }
-    await updateRatings(service.id.toString());
+    service = await updateRatings(service.id.toString());
     service.fromSimplification(req.body);
     await service.destroy();
     res.statusCode = 204;
@@ -200,7 +200,6 @@ router.post('/filter', async (req: Request, res: Response) => {
  */
 router.get('/user/:id', async (req: Request, res: Response) => {
     const userId = parseInt(req.params.id);
-    await updateRatings(userId.toString());
     const user = await Service.findAll({where: {providerId: userId}});
     res.statusCode = 200;
     res.send(user.map(e => e.toSimplification()));
@@ -229,23 +228,28 @@ router.get('/:preis', async (req: Request, res: Response) => {
  */
 router.put('/updateRating',  async (req: Request, res: Response) => {
     const id = req.body.serviceId;
-    let average = updateRatings(id);
-    res.statusCode=200;
-    res.send(average.toString());
+    let service = await updateRatings(id);
+    await service.save();
+    res.statusCode = 200;
 });
 
-async function updateRatings(id: string) {
-    const service = await Service.findOne({where: {id: id}});
-    const ratings = await Booking.findAll({where: {serviceId: id}});
+async function updateRatings(id: string): Promise<Service> {
+    let intID = parseInt(id);
+    const service = await Service.findOne({where: {id: intID}});
+    const ratings = await Booking.findAll({where: {serviceId: intID}});
     let sum = 0;
-    let i = 0;
-    for (; i < ratings.length; i++) {
-        sum += ratings[i].rating;
+    let average = 0;
+    if(ratings.length > 0) {
+        let i = 0;
+        for (; i < ratings.length; i++) {
+            sum += ratings[i].rating;
+        }
+        average = sum / (i + 1);
     }
-    const average = sum / (i + 1);
     if(service != null) {
         service.rating = average;
-        return average;
+        await service.save();
+        return service;
     }
     throw new Error('No service found');
 }

@@ -26,10 +26,8 @@ export class AllBookingsService {
   }
 
   updateService(booking:Booking){
-    const data= {
-      rating: booking.rating,
-      serviceId: booking.serviceId,
-    };
+    const data = {
+    serviceId: booking.serviceId}
     return this.http.put('http://localhost:3000/service/updateRating', data);
   }
 
