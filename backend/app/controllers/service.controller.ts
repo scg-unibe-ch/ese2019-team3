@@ -133,17 +133,16 @@ router.delete('/:id', async (req: Request, res: Response) => {
  * {
  *     city:       string,
  *     serviceType: string,
- *     price: number
+ *     price: string
  * }
 */
 
 router.post('/filter', async (req: Request, res: Response) => {
     searchResult.length = 0;
-    let reqPrice:number = parseInt(req.body.price);
     //serach for serviceType and Location
-    if (req.body.serviceType == undefined && req.body.city == undefined && reqPrice == undefined) {
+    if (req.body.serviceType == undefined && req.body.city == undefined && req.body.price == undefined) {
         searchResult = await Service.findAll();
-    } else if(reqPrice === undefined || reqPrice === null){
+    } else if(req.body.price === undefined || req.body.price === null){
     if (req.body.city === undefined || req.body.city === '') {
         searchResult = await Service.findAll({where: {serviceType: req.body.serviceType}});
     } else if (req.body.serviceType === undefined || req.params.serviceType === '') {
@@ -152,12 +151,14 @@ router.post('/filter', async (req: Request, res: Response) => {
         searchResult = await Service.findAll({where: {city: req.body.city, serviceType: req.body.serviceType}});
     }
     } else {
-        if (req.body.city === undefined || req.body.city === '') {
-            searchResult = await Service.findAll({where: {serviceType: req.body.serviceType, price: reqPrice}});
-        } else if (req.body.serviceType === undefined || req.params.serviceType === '') {
-            searchResult = await Service.findAll({where: {city: req.body.city, price: reqPrice}});
+        if(req.body.serviceType == undefined && req.body.city == undefined) {
+            searchResult = await Service.findAll({where: {price: req.body.price}});
+        } else if ((req.body.city === undefined || req.body.city === '') && req.body.serviceType != undefined) {
+            searchResult = await Service.findAll({where: {serviceType: req.body.serviceType, price: req.body.price}});
+        } else if ((req.body.serviceType === undefined || req.params.serviceType === '') && req.body.city != undefined) {
+            searchResult = await Service.findAll({where: {city: req.body.city, price: req.body.price}});
         } else {
-            searchResult = await Service.findAll({where: {city: req.body.city, serviceType: req.body.serviceType, price: reqPrice}});
+            searchResult = await Service.findAll({where: {city: req.body.city, serviceType: req.body.serviceType, price: req.body.price}});
         }
     }
 

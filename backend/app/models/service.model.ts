@@ -25,7 +25,7 @@ export class Service extends Model<Service> {
   serviceType!: string;
 
   @Column
-  price!: number;
+  price!: string;
 
    @Column
   city!: string;

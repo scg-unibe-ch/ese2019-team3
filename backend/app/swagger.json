@@ -694,7 +694,7 @@
           "400": {
             "description": "Invalid status value"
           }
-        },
+        }
       }
     },
     "/booking/client/{id}": {
@@ -728,7 +728,7 @@
           "400": {
             "description": "Invalid status value"
           }
-        },
+        }
       }
     },
     "/booking/provider/{id}": {
@@ -762,7 +762,7 @@
           "400": {
             "description": "Invalid status value"
           }
-        },
+        }
       }
     },
     "/booking/provider/requests/{id}": {
@@ -796,7 +796,7 @@
           "400": {
             "description": "Invalid status value"
           }
-        },
+        }
       }
     },
     "/booking/client/rate/{id}": {
@@ -830,7 +830,7 @@
           "400": {
             "description": "Invalid status value"
           }
-        },
+        }
       }
     },
     "/booking/accept/{id}": {
@@ -864,7 +864,7 @@
           "400": {
             "description": "Invalid status value"
           }
-        },
+        }
       }
     },
     "/booking/register": {
@@ -900,7 +900,7 @@
           "400": {
             "description": "Invalid status value"
           }
-        },
+        }
       }
     },
     "/booking/rate": {
@@ -936,7 +936,7 @@
           "400": {
             "description": "Invalid status value"
           }
-        },
+        }
       }
     }
   },
@@ -1055,13 +1055,12 @@
           "type": "string"
         },
         "price": {
-          "type": "integer",
-          "format": "int32"
+          "type": "string"
         },
         "city": {
           "type": "string"
         }
-      },
+      }
     },
 
     "login": {
@@ -1096,9 +1095,9 @@
           "format": "int32"
         },
         "date": {
-          "type": "string",
-        },
-      },
+          "type": "string"
+        }
+      }
 
     },
     "Rating": {
@@ -1116,8 +1115,8 @@
         "rating": {
           "type": "integer",
           "format": "int32"
-        },
-      },
+        }
+      }
 
     }
   },
