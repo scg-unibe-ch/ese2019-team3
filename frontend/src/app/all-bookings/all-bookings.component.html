@@ -16,7 +16,7 @@
       </ngb-rating>
         Noch nicht bewertet
     </p>
-    <p *ngIf="booking.rating != null">
+    <p *ngIf="(booking.rating != null) && isCustomer(this.user)">
       <ngb-rating
               [(rate)]="booking.rating"  [readonly]="true" max="5">
       </ngb-rating>
