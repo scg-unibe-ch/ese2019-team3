@@ -93,6 +93,7 @@ router.put('/rate', async (req: Request, res: Response) => {
     } else {
         res.statusCode = 400;
         res.send ('booking not found');
+        return;
     }
     await booking.save();
 

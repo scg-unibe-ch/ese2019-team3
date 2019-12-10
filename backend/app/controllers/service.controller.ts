@@ -234,16 +234,21 @@ router.put('/updateRating',  async (req: Request, res: Response) => {
 });
 
 async function updateRatings(id: string): Promise<Service> {
-    const service = await Service.findOne({where: {id: id}});
-    const ratings = await Booking.findAll({where: {serviceId: id}});
+    let intID = parseInt(id);
+    const service = await Service.findOne({where: {id: intID}});
+    const ratings = await Booking.findAll({where: {serviceId: intID}});
     let sum = 0;
+    let average = 0;
     let i = 0;
-    for (; i < ratings.length; i++) {
-        sum += ratings[i].rating;
+    if(ratings.length > 0) {
+        for (; i < ratings.length; i++) {
+            sum += ratings[i].rating;
+        }
+        average = sum / (i + 1);
     }
-    const average = sum / (i + 1);
     if(service != null) {
         service.rating = average;
+        await service.save();
         return service;
     }
     throw new Error('No service found');
