@@ -141,7 +141,7 @@ function verifyToken (req: Request, res: Response, next: () => void) {
       res.statusCode = 401;
       res.send('Unauthorized request');
     }
-    const token = req.headers.authorization;
+    let token = req.headers.authorization;
 
     if (token === 'null') {
       res.statusCode = 401;
@@ -329,6 +329,9 @@ router.delete('/:id', async (req: Request, res: Response) => {
     return;
   }
   user.fromSimplification(req.body);
+  if(!user.isVerified) {
+      contact.sendRegistrationDenied(user.email);
+  }
   await user.destroy();
   res.statusCode = 204;
   res.send('user deleted');

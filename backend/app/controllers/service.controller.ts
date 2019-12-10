@@ -133,22 +133,35 @@ router.delete('/:id', async (req: Request, res: Response) => {
  * {
  *     city:       string,
  *     serviceType: string,
- *
+ *     price: string
  * }
 */
 
 router.post('/filter', async (req: Request, res: Response) => {
     searchResult.length = 0;
     //serach for serviceType and Location
-    if (req.body.serviceType == undefined && req.body.city == undefined) {
+    if (req.body.serviceType == undefined && req.body.city == undefined && req.body.price == undefined) {
         searchResult = await Service.findAll();
-    } else if (req.body.city === undefined || req.body.city === '') {
+    } else if(req.body.price === undefined || req.body.price === null){
+    if (req.body.city === undefined || req.body.city === '') {
         searchResult = await Service.findAll({where: {serviceType: req.body.serviceType}});
     } else if (req.body.serviceType === undefined || req.params.serviceType === '') {
         searchResult = await Service.findAll({where: {city: req.body.city}});
     } else {
         searchResult = await Service.findAll({where: {city: req.body.city, serviceType: req.body.serviceType}});
     }
+    } else {
+        if(req.body.serviceType == undefined && req.body.city == undefined) {
+            searchResult = await Service.findAll({where: {price: req.body.price}});
+        } else if ((req.body.city === undefined || req.body.city === '') && req.body.serviceType != undefined) {
+            searchResult = await Service.findAll({where: {serviceType: req.body.serviceType, price: req.body.price}});
+        } else if ((req.body.serviceType === undefined || req.params.serviceType === '') && req.body.city != undefined) {
+            searchResult = await Service.findAll({where: {city: req.body.city, price: req.body.price}});
+        } else {
+            searchResult = await Service.findAll({where: {city: req.body.city, serviceType: req.body.serviceType, price: req.body.price}});
+        }
+    }
+
 
     // add results for fulltextsearch if needed
     if (req.body.description !== undefined && req.body.description !== null) {  //description is the term used in the frontend for the "Search for anything" field
@@ -171,7 +184,6 @@ router.post('/filter', async (req: Request, res: Response) => {
     res.statusCode = 200;
     res.send(searchResult);
     }
-
 });
 
 /**
@@ -185,6 +197,19 @@ router.get('/user/:id', async (req: Request, res: Response) => {
     res.statusCode = 200;
     res.send(user.map(e => e.toSimplification()));
 });
+
+/**
+ * Method to show all services with this exact price
+ * Path: ./service/ :preis
+ * Request type: GET
+ */
+router.get('/:preis', async (req: Request, res: Response) => {
+    const reqPrice = parseInt(req.params.preis);
+    const user = await Service.findAll({where: {price: reqPrice}});
+    res.statusCode = 200;
+    res.send(user.map(e => e.toSimplification()));
+});
+
 
 export const ServiceController: Router = router;
 
