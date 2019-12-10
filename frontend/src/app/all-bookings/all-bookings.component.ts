@@ -59,7 +59,6 @@ export class AllBookingsComponent implements OnInit {
     console.log(booking.rating);
     this.allBookings.rateBooking(booking).subscribe(res => alert(res), err => console.log(err));
     this.allBookings.updateService(booking);
-    console.log(this.allBookings.updateService(booking) ,test);
     this.getBookings();
 
   }
@@ -72,14 +71,5 @@ export class AllBookingsComponent implements OnInit {
   }
   ngOnInit() {}
 
-  // already rated bookings cannot be rated again
-isReadOnly(booking: Booking) {
-    console.log(booking.rating);
-    if (booking.rating === (1 || 2 || 3 || 4 || 5)) {
-      return false;
-    } else {
-      return true;
-    }
-}
 
 }

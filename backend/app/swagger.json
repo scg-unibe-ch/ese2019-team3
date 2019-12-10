@@ -1085,6 +1085,10 @@
           "type": "integer",
           "format": "int32"
         },
+        "serviceId": {
+          "type": "integer",
+          "format": "int32"
+        },
         "serviceType": {
           "type": "string"
         },

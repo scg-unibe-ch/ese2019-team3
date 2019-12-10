@@ -73,7 +73,6 @@ router.post('/register', async (req: Request, res: Response) => {
     booking.fromSimplification(req.body);
     booking.bookingStatus = 'request';
     console.log(new Date(req.body.date).getTime());
-    booking.date = parseInt(new Date(req.body.dates).getTime()); // convert date format from date picker to unix time stamp
 
     await booking.save().then ( async() => {
     });
@@ -131,9 +130,9 @@ router.put('/accept/:id', async (req: Request, res: Response) => {
     await booking.save().then ( async() => {
     });
     res.send('booking accepted');
-    res.status(400);
+    res.status(200);
     } else {
-        res.statusCode = 200;
+        res.statusCode = 400;
         res.send('Booking not found');
     }
 

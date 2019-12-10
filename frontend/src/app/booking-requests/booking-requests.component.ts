@@ -22,15 +22,13 @@ export class BookingRequestsComponent implements OnInit {
   }
 // calls function for accepting booking and refreshes booking requests
   acceptBooking(booking: Booking) {
-    this.bookingReq.acceptBooking(booking)
-        .subscribe(res => alert('Booking was accepted!'), err => alert('Error! Booking was not accepted'));
+    this.bookingReq.acceptBooking(booking);
     setTimeout(() => { this.getBookingRequests(); }, 50);
   }
 
 // calls function for denying booking and refreshes booking requests
   denyBooking(booking: Booking) {
-    this.bookingReq.denyBooking(booking)
-        .subscribe(res => alert('Booking was denied!'), err => alert('Error! Booking was not denied'));
+    this.bookingReq.denyBooking(booking);
     setTimeout(() => { this.getBookingRequests(); }, 50);
   }
 
