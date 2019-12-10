@@ -422,7 +422,7 @@
             "description": "providerId",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Service"
+              "$ref": "#/definitions/ServiceRating"
             }
           }
         ],
@@ -1063,6 +1063,12 @@
       },
       "xml": {
         "name": "Order"
+      }
+    },
+    "ServiceRating": {
+      "serviceId": {
+        "type": "integer",
+        "format": "int32"
       }
     },
        "Service": {
