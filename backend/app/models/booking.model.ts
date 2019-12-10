@@ -41,7 +41,8 @@ export class Booking extends Model<Booking> {
       'serviceId': this.serviceId,
       'date': this.date,
       'rating': this.rating,
-      'bookingStatus': this.bookingStatus
+      'bookingStatus': this.bookingStatus,
+      'description': this.description
     };
   }
 
@@ -52,6 +53,7 @@ export class Booking extends Model<Booking> {
     this.date = simplification['date'];
     this.rating = simplification['rating'];
     this.bookingStatus = simplification['bookingStatus'];
+    this.description = simplification['description'];
   }
 
   createDummyBooking() {
@@ -60,6 +62,7 @@ export class Booking extends Model<Booking> {
     this.serviceId = 1;
     this.date = '10-10-2000';
     this.bookingStatus = 'request';
+    this.description = 'New Dummy Booking';
   }
 }
 

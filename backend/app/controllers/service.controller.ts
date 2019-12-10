@@ -37,6 +37,7 @@ router.post('/register', async (req, res) => {
     if (req.body.price == null) {
         service.price = "Auf Anfrage"
     }
+    service.rating = 0;
 
     await service.save().then ( async() => {
     });
@@ -217,7 +218,7 @@ router.get('/:preis', async (req: Request, res: Response) => {
  * Request type: PUT
  * Body:
  * {
- *     "rating": "number"
+ *     "providerId": "number"
  * }
  */
 router.put('/updateRating',  async (req: Request, res: Response) => {

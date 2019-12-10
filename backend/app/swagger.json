@@ -1149,6 +1149,9 @@
         "rating": {
           "type": "integer",
           "format": "int32"
+        },
+        "description": {
+          "type": "string"
         }
       }
 
