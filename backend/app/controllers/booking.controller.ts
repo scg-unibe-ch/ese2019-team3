@@ -11,7 +11,6 @@ const router: Router = Router();
 
 router.get('/', async (req: Request, res: Response) => {
     const booking = await Booking.findAll();
-
      res.send(booking);
 });
 
@@ -157,4 +156,3 @@ router.put('/decline/:id', async (req: Request, res: Response) => {
 });
 
 export const BookingController: Router = router;
-

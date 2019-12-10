@@ -37,6 +37,7 @@ router.post('/register', async (req, res) => {
     if (req.body.price == null) {
         service.price = "Auf Anfrage"
     }
+    service.rating = 0;
 
     await service.save().then ( async() => {
     });
@@ -217,13 +218,13 @@ router.get('/:preis', async (req: Request, res: Response) => {
  * Request type: PUT
  * Body:
  * {
- *     "rating": "number"
+ *     "providerId": "number"
  * }
  */
 router.put('/updateRating',  async (req: Request, res: Response) => {
-    const id = req.body.providerId;
+    const id = req.body.serviceId;
     const service = await Service.findOne({where: {id: id}});
-    const ratings = await Booking.findAll({where: {providerId: id}});
+    const ratings = await Booking.findAll({where: {serviceId: id}});
     let sum= 0;
     let i = 0;
     for (; i < ratings.length; i++) {
