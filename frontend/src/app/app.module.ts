@@ -82,7 +82,7 @@ const appRoutes: Routes = [
     {path: 'foodanddrink', component: FoodAndDrinkComponent, canActivate: [TokenExpirationGuard]},
     {path: 'lightandstage', component: LightAndStageComponent, canActivate: [TokenExpirationGuard]},
     {path: 'advertisement', component: AdvertisementComponent, canActivate: [TokenExpirationGuard]},
-    {path: 'music', component: MusicComponent, canActivate: [AuthGuard, TokenExpirationGuard]},
+    {path: 'music', component: MusicComponent, canActivate: [TokenExpirationGuard]},
     {path: 'searchresults', component: SearchresultsComponent, canActivate: [TokenExpirationGuard]},
     {path: 'aboutus', component: AboutusComponent, canActivate: [TokenExpirationGuard]},
     {path: 'faq', component: FaqComponent, canActivate: [TokenExpirationGuard]},
