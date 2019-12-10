@@ -30,12 +30,17 @@
         <td>{{booking.serviceInfo.city}}</td>
         <td *ngIf="ratingPossibleIfCustomer(booking)">
           <ngb-rating
-                  [(rate)]="booking.rating" (hover)="hovered=$event" (leave)="hovered=0" [readonly]="isReadOnly(booking)"
+                  [(rate)]="booking.rating" (hover)="hovered=$event" (leave)="hovered=0" [readonly]="true"
                   max="5"  (click)="this.rateBooking(booking)">
           </ngb-rating>
-          <p *ngIf="booking.rating == ''">
+          <p>
             Noch nicht bewertet
           </p>
+        </td>
+        <td *ngIf="booking.rating != null">
+        <ngb-rating
+                [(rate)]="booking.rating"  [readonly]=true max="5">
+        </ngb-rating>
         </td>
         <td *ngIf="isProvider(this.user)&& showRatingForProvider(booking)">
           <ngb-rating

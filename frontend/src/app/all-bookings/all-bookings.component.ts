@@ -46,7 +46,7 @@ export class AllBookingsComponent implements OnInit {
   }
 
   ratingPossibleIfCustomer(booking: Booking) {
-    return this.isCustomer(this.user) /*&& this.pastEvent(booking)*/;
+    return this.isCustomer(this.user) && booking.rating == null; /*&& this.pastEvent(booking)*/;
   }
   // Todo only allow rating for past events
   /*pastEvent(booking: Booking){
@@ -57,6 +57,7 @@ export class AllBookingsComponent implements OnInit {
     booking.rating = this.hovered;
     console.log(booking.rating);
     this.allBookings.rateBooking(booking).subscribe(res => alert(res), err => console.log(err));
+    this.getBookings();
   }
   showRatingForProvider(booking: Booking) {
     if (booking.rating == null) {
