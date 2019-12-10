@@ -5,6 +5,7 @@ import {AuthenticationService} from '../authentication.service';
 import {User} from '../models/user';
 import {AllBookingsService} from '../all-bookings.service';
 import {stringify} from 'querystring';
+import {test} from "@angular-devkit/core/src/virtual-fs/host";
 
 @Component({
   selector: 'app-all-bookings',
@@ -57,7 +58,10 @@ export class AllBookingsComponent implements OnInit {
     booking.rating = this.hovered;
     console.log(booking.rating);
     this.allBookings.rateBooking(booking).subscribe(res => alert(res), err => console.log(err));
+    this.allBookings.updateService(booking);
+    console.log(this.allBookings.updateService(booking) ,test);
     this.getBookings();
+
   }
   showRatingForProvider(booking: Booking) {
     if (booking.rating == null) {

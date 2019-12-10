@@ -50,7 +50,7 @@ router.post('/register', async (req, res) => {
 router.get('/', async (req, res) => {
     const service = await Service.findAll();
     for(let i = 0; i < service.length; i++){
-        await updateRatings(service[i].providerId.toString());
+        await updateRatings(service[i].id.toString());
     }
     res.statusCode = 200;
     res.send(service.map(e => e.toSimplification()));
@@ -104,7 +104,7 @@ router.put('/:id', async (req: Request, res: Response) => {
         });
         return;
     }
-    await updateRatings(service.providerId.toString());
+    await updateRatings(service.id.toString());
     service.fromSimplification(req.body);
     await service.save();
     res.statusCode = 200;
@@ -126,7 +126,7 @@ router.delete('/:id', async (req: Request, res: Response) => {
         });
         return;
     }
-    await updateRatings(service.providerId.toString());
+    await updateRatings(service.id.toString());
     service.fromSimplification(req.body);
     await service.destroy();
     res.statusCode = 204;
@@ -228,7 +228,7 @@ router.get('/:preis', async (req: Request, res: Response) => {
  * }
  */
 router.put('/updateRating',  async (req: Request, res: Response) => {
-    const id = req.body.providerId;
+    const id = req.body.serviceId;
     let average = updateRatings(id);
     res.statusCode=200;
     res.send(average.toString());
@@ -236,7 +236,7 @@ router.put('/updateRating',  async (req: Request, res: Response) => {
 
 async function updateRatings(id: string) {
     const service = await Service.findOne({where: {id: id}});
-    const ratings = await Booking.findAll({where: {providerId: id}});
+    const ratings = await Booking.findAll({where: {serviceId: id}});
     let sum = 0;
     let i = 0;
     for (; i < ratings.length; i++) {
