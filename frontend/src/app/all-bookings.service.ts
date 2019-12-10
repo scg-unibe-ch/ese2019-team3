@@ -25,4 +25,12 @@ export class AllBookingsService {
     return this.http.put('http://localhost:3000/booking/rate/', data);
   }
 
+  updateService(booking:Booking){
+    const data= {
+      rating: booking.rating,
+      serviceId: booking.serviceId,
+    };
+    return this.http.put('http://localhost:3000/service/updateRating', data);
+  }
+
 }

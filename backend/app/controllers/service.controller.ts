@@ -221,9 +221,9 @@ router.get('/:preis', async (req: Request, res: Response) => {
  * }
  */
 router.put('/updateRating',  async (req: Request, res: Response) => {
-    const id = req.body.providerId;
+    const id = req.body.serviceId;
     const service = await Service.findOne({where: {id: id}});
-    const ratings = await Booking.findAll({where: {providerId: id}});
+    const ratings = await Booking.findAll({where: {serviceId: id}});
     let sum= 0;
     let i = 0;
     for (; i < ratings.length; i++) {

@@ -7,6 +7,7 @@ export class Service {
    public serviceType: string;
    public  price: number;
    public city: string;
+   public rating: number;
 
    constructor() {
 
