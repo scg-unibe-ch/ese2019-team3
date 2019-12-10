@@ -37,6 +37,7 @@ router.post('/register', async (req, res) => {
     if (req.body.price == null) {
         service.price = "Auf Anfrage"
     }
+    service.rating = 0;
 
     await service.save().then ( async() => {
     });
