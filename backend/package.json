@@ -24,7 +24,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "full-text-search": "0.0.16",
     "jsonwebtoken": "^8.5.1",
     "ngx-materialize": "^6.1.3",
